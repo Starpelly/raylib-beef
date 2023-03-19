@@ -5,6 +5,7 @@ namespace Raylib;
 
 static
 {
+    /// Used internally for bindings.
     public const String RAYLIB_LIB = "raylib.dll";
     
     [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("InitWindow")]
