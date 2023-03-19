@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="Windows-1252" ?>
+<raylibAPI>
+    <Defines count="3">
+        <Define name="RMEM_H" type="GUARD" value="" desc="" />
+        <Define name="RMEMAPI" type="UNKNOWN" value="__declspec(dllexport)" desc="We are building library as a Win32 shared library (.dll)" />
+        <Define name="RMEM_VERSION" type="STRING" value="v1.3" desc="changelog at bottom of header." />
+    </Defines>
+    <Structs count="6">
+        <Struct name="MemNode" fieldCount="3" desc="Memory pool node">
+            <Field type="size_t" name="size" desc="" />
+            <Field type="MemNode *" name="next" desc="" />
+            <Field type="MemNode *" name="prev" desc="" />
+        </Struct>
+        <Struct name="AllocList" fieldCount="3" desc="Freelist implementation">
+            <Field type="MemNode *" name="head" desc="" />
+            <Field type="MemNode *" name="tail" desc="" />
+            <Field type="size_t" name="len" desc="" />
+        </Struct>
+        <Struct name="Arena" fieldCount="3" desc="Arena allocator">
+            <Field type="uintptr_t" name="mem" desc="" />
+            <Field type="uintptr_t" name="offs" desc="" />
+            <Field type="size_t" name="size" desc="" />
+        </Struct>
+        <Struct name="MemPool" fieldCount="3" desc="Memory pool">
+            <Field type="AllocList" name="large" desc="" />
+            <Field type="AllocList[MEMPOOL_BUCKET_SIZE]" name="buckets" desc="" />
+            <Field type="Arena" name="arena" desc="" />
+        </Struct>
+        <Struct name="ObjPool" fieldCount="5" desc="Object pool">
+            <Field type="uintptr_t" name="mem" desc="" />
+            <Field type="uintptr_t" name="offs" desc="" />
+            <Field type="size_t" name="objSize" desc="" />
+            <Field type="size_t" name="freeBlocks" desc="" />
+            <Field type="size_t" name="memSize" desc="" />
+        </Struct>
+        <Struct name="BiStack" fieldCount="4" desc="Double-ended stack (aka Deque)">
+            <Field type="uintptr_t" name="mem" desc="" />
+            <Field type="uintptr_t" name="front" desc="" />
+            <Field type="uintptr_t" name="back" desc="" />
+            <Field type="size_t" name="size" desc="" />
+        </Struct>
+    </Structs>
+    <Aliases count="0">
+    </Aliases>
+    <Enums count="0">
+    </Enums>
+    <Callbacks count="0">
+    </Callbacks>
+    <Functions count="24">
+        <Function name="CreateMemPool" retType="MemPool" paramCount="1" desc="">
+            <Param type="size_t" name="bytes" desc="" />
+        </Function>
+        <Function name="CreateMemPoolFromBuffer" retType="MemPool" paramCount="2" desc="">
+            <Param type="void *" name="buf" desc="" />
+            <Param type="size_t" name="bytes" desc="" />
+        </Function>
+        <Function name="DestroyMemPool" retType="void" paramCount="1" desc="">
+            <Param type="MemPool *" name="mempool" desc="" />
+        </Function>
+        <Function name="MemPoolAlloc" retType="void *" paramCount="2" desc="">
+            <Param type="MemPool *" name="mempool" desc="" />
+            <Param type="size_t" name="bytes" desc="" />
+        </Function>
+        <Function name="MemPoolRealloc" retType="void *" paramCount="3" desc="">
+            <Param type="MemPool *" name="mempool" desc="" />
+            <Param type="void *" name="ptr" desc="" />
+            <Param type="size_t" name="bytes" desc="" />
+        </Function>
+        <Function name="MemPoolFree" retType="void" paramCount="2" desc="">
+            <Param type="MemPool *" name="mempool" desc="" />
+            <Param type="void *" name="ptr" desc="" />
+        </Function>
+        <Function name="MemPoolCleanUp" retType="void" paramCount="2" desc="">
+            <Param type="MemPool *" name="mempool" desc="" />
+            <Param type="void **" name="ptrref" desc="" />
+        </Function>
+        <Function name="MemPoolReset" retType="void" paramCount="1" desc="">
+            <Param type="MemPool *" name="mempool" desc="" />
+        </Function>
+        <Function name="GetMemPoolFreeMemory" retType="size_t" paramCount="1" desc="">
+            <Param type="const MemPool" name="mempool" desc="" />
+        </Function>
+        <Function name="CreateObjPool" retType="ObjPool" paramCount="2" desc="">
+            <Param type="size_t" name="objsize" desc="" />
+            <Param type="size_t" name="len" desc="" />
+        </Function>
+        <Function name="CreateObjPoolFromBuffer" retType="ObjPool" paramCount="3" desc="">
+            <Param type="void *" name="buf" desc="" />
+            <Param type="size_t" name="objsize" desc="" />
+            <Param type="size_t" name="len" desc="" />
+        </Function>
+        <Function name="DestroyObjPool" retType="void" paramCount="1" desc="">
+            <Param type="ObjPool *" name="objpool" desc="" />
+        </Function>
+        <Function name="ObjPoolAlloc" retType="void *" paramCount="1" desc="">
+            <Param type="ObjPool *" name="objpool" desc="" />
+        </Function>
+        <Function name="ObjPoolFree" retType="void" paramCount="2" desc="">
+            <Param type="ObjPool *" name="objpool" desc="" />
+            <Param type="void *" name="ptr" desc="" />
+        </Function>
+        <Function name="ObjPoolCleanUp" retType="void" paramCount="2" desc="">
+            <Param type="ObjPool *" name="objpool" desc="" />
+            <Param type="void **" name="ptrref" desc="" />
+        </Function>
+        <Function name="CreateBiStack" retType="BiStack" paramCount="1" desc="">
+            <Param type="size_t" name="len" desc="" />
+        </Function>
+        <Function name="CreateBiStackFromBuffer" retType="BiStack" paramCount="2" desc="">
+            <Param type="void *" name="buf" desc="" />
+            <Param type="size_t" name="len" desc="" />
+        </Function>
+        <Function name="DestroyBiStack" retType="void" paramCount="1" desc="">
+            <Param type="BiStack *" name="destack" desc="" />
+        </Function>
+        <Function name="BiStackAllocFront" retType="void *" paramCount="2" desc="">
+            <Param type="BiStack *" name="destack" desc="" />
+            <Param type="size_t" name="len" desc="" />
+        </Function>
+        <Function name="BiStackAllocBack" retType="void *" paramCount="2" desc="">
+            <Param type="BiStack *" name="destack" desc="" />
+            <Param type="size_t" name="len" desc="" />
+        </Function>
+        <Function name="BiStackResetFront" retType="void" paramCount="1" desc="">
+            <Param type="BiStack *" name="destack" desc="" />
+        </Function>
+        <Function name="BiStackResetBack" retType="void" paramCount="1" desc="">
+            <Param type="BiStack *" name="destack" desc="" />
+        </Function>
+        <Function name="BiStackResetAll" retType="void" paramCount="1" desc="">
+            <Param type="BiStack *" name="destack" desc="" />
+        </Function>
+        <Function name="BiStackMargins" retType="intptr_t" paramCount="1" desc="">
+            <Param type="BiStack" name="destack" desc="" />
+        </Function>
+    </Functions>
+</raylibAPI>

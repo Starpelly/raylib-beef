@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="Windows-1252" ?>
+<raylibAPI>
+    <Defines count="9">
+        <Define name="RRES_H" type="GUARD" value="" desc="" />
+        <Define name="RRESAPI" type="UNKNOWN" value="__declspec(dllexport)" desc="We are building the library as a Win32 shared library (.dll)" />
+        <Define name="RRES_MALLOC(sz)" type="MACRO" value="malloc(sz)" desc="" />
+        <Define name="RRES_CALLOC(ptr,sz)" type="MACRO" value="calloc(ptr,sz)" desc="" />
+        <Define name="RRES_REALLOC(ptr,sz)" type="MACRO" value="realloc(ptr,sz)" desc="" />
+        <Define name="RRES_FREE(ptr)" type="MACRO" value="free(ptr)" desc="" />
+        <Define name="RRES_SUPPORT_LOG_INFO" type="GUARD" value="" desc="" />
+        <Define name="RRES_LOG(...)" type="MACRO" value="printf(__VA_ARGS__)" desc="" />
+        <Define name="RRES_MAX_FILENAME_SIZE" type="INT" value="1024" desc="" />
+    </Defines>
+    <Structs count="8">
+        <Struct name="rresFileHeader" fieldCount="5" desc="rres file header (16 bytes)">
+            <Field type="unsigned char[4]" name="id" desc="File identifier: rres" />
+            <Field type="unsigned short" name="version" desc="File version: 100 for version 1.0" />
+            <Field type="unsigned short" name="chunkCount" desc="Number of resource chunks in the file (MAX: 65535)" />
+            <Field type="unsigned int" name="cdOffset" desc="Central Directory offset in file (0 if not available)" />
+            <Field type="unsigned int" name="reserved" desc="<reserved>" />
+        </Struct>
+        <Struct name="rresResourceChunkInfo" fieldCount="10" desc="rres resource chunk info header (32 bytes)">
+            <Field type="unsigned char[4]" name="type" desc="Resource chunk type (FourCC)" />
+            <Field type="unsigned int" name="id" desc="Resource chunk identifier (generated from filename CRC32 hash)" />
+            <Field type="unsigned char" name="compType" desc="Data compression algorithm" />
+            <Field type="unsigned char" name="cipherType" desc="Data encription algorithm" />
+            <Field type="unsigned short" name="flags" desc="Data flags (if required)" />
+            <Field type="unsigned int" name="packedSize" desc="Data chunk size (compressed/encrypted + custom data appended)" />
+            <Field type="unsigned int" name="baseSize" desc="Data base size (uncompressed/unencrypted)" />
+            <Field type="unsigned int" name="nextOffset" desc="Next resource chunk global offset (if resource has multiple chunks)" />
+            <Field type="unsigned int" name="reserved" desc="<reserved>" />
+            <Field type="unsigned int" name="crc32" desc="Data chunk CRC32 (propCount + props[] + data)" />
+        </Struct>
+        <Struct name="rresResourceChunkData" fieldCount="3" desc="rres resource chunk data">
+            <Field type="unsigned int" name="propCount" desc="Resource chunk properties count" />
+            <Field type="unsigned int *" name="props" desc="Resource chunk properties" />
+            <Field type="void *" name="raw" desc="Resource chunk raw data" />
+        </Struct>
+        <Struct name="rresResourceChunk" fieldCount="2" desc="rres resource chunk">
+            <Field type="rresResourceChunkInfo" name="info" desc="Resource chunk info" />
+            <Field type="rresResourceChunkData" name="data" desc="Resource chunk packed data, contains propCount, props[] and raw data" />
+        </Struct>
+        <Struct name="rresResourceMulti" fieldCount="2" desc="NOTE: It supports multiple resource chunks">
+            <Field type="unsigned int" name="count" desc="Resource chunks count" />
+            <Field type="rresResourceChunk *" name="chunks" desc="Resource chunks" />
+        </Struct>
+        <Struct name="rresDirEntry" fieldCount="5" desc="CDIR: rres central directory entry">
+            <Field type="unsigned int" name="id" desc="Resource id" />
+            <Field type="unsigned int" name="offset" desc="Resource global offset in file" />
+            <Field type="unsigned int" name="reserved" desc="reserved" />
+            <Field type="unsigned int" name="fileNameSize" desc="Resource fileName size (NULL terminator and 4-byte alignment padding considered)" />
+            <Field type="char[RRES_MAX_FILENAME_SIZE]" name="fileName" desc="Resource original fileName (NULL terminated and padded to 4-byte alignment)" />
+        </Struct>
+        <Struct name="rresCentralDir" fieldCount="2" desc="NOTE: This data conforms the rresResourceChunkData">
+            <Field type="unsigned int" name="count" desc="Central directory entries count" />
+            <Field type="rresDirEntry *" name="entries" desc="Central directory entries" />
+        </Struct>
+        <Struct name="rresFontGlyphInfo" fieldCount="8" desc="NOTE: And array of this type conforms the rresResourceChunkData">
+            <Field type="int" name="x" desc="Glyph rectangle in the atlas image" />
+            <Field type="int" name="y" desc="Glyph rectangle in the atlas image" />
+            <Field type="int" name="width" desc="Glyph rectangle in the atlas image" />
+            <Field type="int" name="height" desc="Glyph rectangle in the atlas image" />
+            <Field type="int" name="value" desc="Glyph codepoint value" />
+            <Field type="int" name="offsetX" desc="Glyph drawing offset (from base line)" />
+            <Field type="int" name="offsetY" desc="Glyph drawing offset (from base line)" />
+            <Field type="int" name="advanceX" desc="Glyph advance X for next character" />
+        </Struct>
+    </Structs>
+    <Aliases count="0">
+    </Aliases>
+    <Enums count="0">
+    </Enums>
+    <Callbacks count="0">
+    </Callbacks>
+    <Functions count="13">
+        <Function name="rresLoadResourceChunk" retType="rresResourceChunk" paramCount="2" desc="Load one resource chunk for provided id">
+            <Param type="const char *" name="fileName" desc="" />
+            <Param type="int" name="rresId" desc="" />
+        </Function>
+        <Function name="rresUnloadResourceChunk" retType="void" paramCount="1" desc="Unload resource chunk from memory">
+            <Param type="rresResourceChunk" name="chunk" desc="" />
+        </Function>
+        <Function name="rresLoadResourceMulti" retType="rresResourceMulti" paramCount="2" desc="Load resource for provided id (multiple resource chunks)">
+            <Param type="const char *" name="fileName" desc="" />
+            <Param type="int" name="rresId" desc="" />
+        </Function>
+        <Function name="rresUnloadResourceMulti" retType="void" paramCount="1" desc="Unload resource from memory (multiple resource chunks)">
+            <Param type="rresResourceMulti" name="multi" desc="" />
+        </Function>
+        <Function name="rresLoadResourceChunkInfo" retType="rresResourceChunkInfo" paramCount="2" desc="Load resource chunk info for provided id">
+            <Param type="const char *" name="fileName" desc="" />
+            <Param type="int" name="rresId" desc="" />
+        </Function>
+        <Function name="rresLoadResourceChunkInfoAll" retType="rresResourceChunkInfo *" paramCount="2" desc="Load all resource chunks info">
+            <Param type="const char *" name="fileName" desc="" />
+            <Param type="unsigned int *" name="chunkCount" desc="" />
+        </Function>
+        <Function name="rresLoadCentralDirectory" retType="rresCentralDir" paramCount="1" desc="Load central directory resource chunk from file">
+            <Param type="const char *" name="fileName" desc="" />
+        </Function>
+        <Function name="rresUnloadCentralDirectory" retType="void" paramCount="1" desc="Unload central directory resource chunk">
+            <Param type="rresCentralDir" name="dir" desc="" />
+        </Function>
+        <Function name="rresGetDataType" retType="unsigned int" paramCount="1" desc="Get rresResourceDataType from FourCC code">
+            <Param type="const unsigned char *" name="fourCC" desc="" />
+        </Function>
+        <Function name="rresGetResourceId" retType="int" paramCount="2" desc="Get resource id for a provided filename">
+            <Param type="rresCentralDir" name="dir" desc="" />
+            <Param type="const char *" name="fileName" desc="" />
+        </Function>
+        <Function name="rresComputeCRC32" retType="unsigned int" paramCount="2" desc="Compute CRC32 for provided data">
+            <Param type="unsigned char *" name="data" desc="" />
+            <Param type="int" name="len" desc="" />
+        </Function>
+        <Function name="rresSetCipherPassword" retType="void" paramCount="1" desc="Set password to be used on data decryption">
+            <Param type="const char *" name="pass" desc="" />
+        </Function>
+        <Function name="rresGetCipherPassword" retType="const char *" paramCount="0" desc="Get password to be used on data decryption">
+        </Function>
+    </Functions>
+</raylibAPI>

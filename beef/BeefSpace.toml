@@ -1,0 +1,5 @@
+FileVersion = 1
+Projects = {raylib-beef = {Path = "."}}
+
+[Workspace]
+StartupProject = "raylib-beef"

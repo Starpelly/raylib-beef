@@ -1,0 +1,28 @@
+{
+  "name": "@raylib/api",
+  "version": "4.5.0",
+  "description": "raylib-api: Exports of the raylib API in various file formats.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "update": "make"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobLoach/raylib-api.git"
+  },
+  "keywords": [
+    "raylib"
+  ],
+  "files": [
+    "*.json",
+    "*.md",
+    "*.js"
+  ],
+  "author": "Rob Loach",
+  "license": "Zlib",
+  "bugs": {
+    "url": "https://github.com/RobLoach/raylib-api/issues"
+  },
+  "homepage": "https://github.com/RobLoach/raylib-api#readme"
+}

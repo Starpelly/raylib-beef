@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="Windows-1252" ?>
+<raylibAPI>
+    <Defines count="86">
+        <Define name="RLGL_H" type="GUARD" value="" desc="" />
+        <Define name="RLGL_VERSION" type="STRING" value="4.5" desc="" />
+        <Define name="RLAPI" type="UNKNOWN" value="__declspec(dllexport)" desc="We are building the library as a Win32 shared library (.dll)" />
+        <Define name="TRACELOG(level, ...)" type="MACRO" value="(void)0" desc="" />
+        <Define name="TRACELOGD(...)" type="MACRO" value="(void)0" desc="" />
+        <Define name="RL_MALLOC(sz)" type="MACRO" value="malloc(sz)" desc="" />
+        <Define name="RL_CALLOC(n,sz)" type="MACRO" value="calloc(n,sz)" desc="" />
+        <Define name="RL_REALLOC(n,sz)" type="MACRO" value="realloc(n,sz)" desc="" />
+        <Define name="RL_FREE(p)" type="MACRO" value="free(p)" desc="" />
+        <Define name="GRAPHICS_API_OPENGL_33" type="GUARD" value="" desc="" />
+        <Define name="RLGL_RENDER_TEXTURES_HINT" type="GUARD" value="" desc="" />
+        <Define name="RL_DEFAULT_BATCH_BUFFER_ELEMENTS" type="INT" value="8192" desc="" />
+        <Define name="RL_DEFAULT_BATCH_BUFFERS" type="INT" value="1" desc="Default number of batch buffers (multi-buffering)" />
+        <Define name="RL_DEFAULT_BATCH_DRAWCALLS" type="INT" value="256" desc="Default number of batch draw calls (by state changes: mode, texture)" />
+        <Define name="RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS" type="INT" value="4" desc="Maximum number of textures units that can be activated on batch drawing (SetShaderValueTexture())" />
+        <Define name="RL_MAX_MATRIX_STACK_SIZE" type="INT" value="32" desc="Maximum size of Matrix stack" />
+        <Define name="RL_MAX_SHADER_LOCATIONS" type="INT" value="32" desc="Maximum number of shader locations supported" />
+        <Define name="RL_CULL_DISTANCE_NEAR" type="DOUBLE" value="0.01" desc="Default near cull distance" />
+        <Define name="RL_CULL_DISTANCE_FAR" type="DOUBLE" value="1000.0" desc="Default far cull distance" />
+        <Define name="RL_TEXTURE_WRAP_S" type="INT" value="0x2802" desc="GL_TEXTURE_WRAP_S" />
+        <Define name="RL_TEXTURE_WRAP_T" type="INT" value="0x2803" desc="GL_TEXTURE_WRAP_T" />
+        <Define name="RL_TEXTURE_MAG_FILTER" type="INT" value="0x2800" desc="GL_TEXTURE_MAG_FILTER" />
+        <Define name="RL_TEXTURE_MIN_FILTER" type="INT" value="0x2801" desc="GL_TEXTURE_MIN_FILTER" />
+        <Define name="RL_TEXTURE_FILTER_NEAREST" type="INT" value="0x2600" desc="GL_NEAREST" />
+        <Define name="RL_TEXTURE_FILTER_LINEAR" type="INT" value="0x2601" desc="GL_LINEAR" />
+        <Define name="RL_TEXTURE_FILTER_MIP_NEAREST" type="INT" value="0x2700" desc="GL_NEAREST_MIPMAP_NEAREST" />
+        <Define name="RL_TEXTURE_FILTER_NEAREST_MIP_LINEAR" type="INT" value="0x2702" desc="GL_NEAREST_MIPMAP_LINEAR" />
+        <Define name="RL_TEXTURE_FILTER_LINEAR_MIP_NEAREST" type="INT" value="0x2701" desc="GL_LINEAR_MIPMAP_NEAREST" />
+        <Define name="RL_TEXTURE_FILTER_MIP_LINEAR" type="INT" value="0x2703" desc="GL_LINEAR_MIPMAP_LINEAR" />
+        <Define name="RL_TEXTURE_FILTER_ANISOTROPIC" type="INT" value="0x3000" desc="Anisotropic filter (custom identifier)" />
+        <Define name="RL_TEXTURE_MIPMAP_BIAS_RATIO" type="INT" value="0x4000" desc="Texture mipmap bias, percentage ratio (custom identifier)" />
+        <Define name="RL_TEXTURE_WRAP_REPEAT" type="INT" value="0x2901" desc="GL_REPEAT" />
+        <Define name="RL_TEXTURE_WRAP_CLAMP" type="INT" value="0x812F" desc="GL_CLAMP_TO_EDGE" />
+        <Define name="RL_TEXTURE_WRAP_MIRROR_REPEAT" type="INT" value="0x8370" desc="GL_MIRRORED_REPEAT" />
+        <Define name="RL_TEXTURE_WRAP_MIRROR_CLAMP" type="INT" value="0x8742" desc="GL_MIRROR_CLAMP_EXT" />
+        <Define name="RL_MODELVIEW" type="INT" value="0x1700" desc="GL_MODELVIEW" />
+        <Define name="RL_PROJECTION" type="INT" value="0x1701" desc="GL_PROJECTION" />
+        <Define name="RL_TEXTURE" type="INT" value="0x1702" desc="GL_TEXTURE" />
+        <Define name="RL_LINES" type="INT" value="0x0001" desc="GL_LINES" />
+        <Define name="RL_TRIANGLES" type="INT" value="0x0004" desc="GL_TRIANGLES" />
+        <Define name="RL_QUADS" type="INT" value="0x0007" desc="GL_QUADS" />
+        <Define name="RL_UNSIGNED_BYTE" type="INT" value="0x1401" desc="GL_UNSIGNED_BYTE" />
+        <Define name="RL_FLOAT" type="INT" value="0x1406" desc="GL_FLOAT" />
+        <Define name="RL_STREAM_DRAW" type="INT" value="0x88E0" desc="GL_STREAM_DRAW" />
+        <Define name="RL_STREAM_READ" type="INT" value="0x88E1" desc="GL_STREAM_READ" />
+        <Define name="RL_STREAM_COPY" type="INT" value="0x88E2" desc="GL_STREAM_COPY" />
+        <Define name="RL_STATIC_DRAW" type="INT" value="0x88E4" desc="GL_STATIC_DRAW" />
+        <Define name="RL_STATIC_READ" type="INT" value="0x88E5" desc="GL_STATIC_READ" />
+        <Define name="RL_STATIC_COPY" type="INT" value="0x88E6" desc="GL_STATIC_COPY" />
+        <Define name="RL_DYNAMIC_DRAW" type="INT" value="0x88E8" desc="GL_DYNAMIC_DRAW" />
+        <Define name="RL_DYNAMIC_READ" type="INT" value="0x88E9" desc="GL_DYNAMIC_READ" />
+        <Define name="RL_DYNAMIC_COPY" type="INT" value="0x88EA" desc="GL_DYNAMIC_COPY" />
+        <Define name="RL_FRAGMENT_SHADER" type="INT" value="0x8B30" desc="GL_FRAGMENT_SHADER" />
+        <Define name="RL_VERTEX_SHADER" type="INT" value="0x8B31" desc="GL_VERTEX_SHADER" />
+        <Define name="RL_COMPUTE_SHADER" type="INT" value="0x91B9" desc="GL_COMPUTE_SHADER" />
+        <Define name="RL_ZERO" type="INT" value="0" desc="GL_ZERO" />
+        <Define name="RL_ONE" type="INT" value="1" desc="GL_ONE" />
+        <Define name="RL_SRC_COLOR" type="INT" value="0x0300" desc="GL_SRC_COLOR" />
+        <Define name="RL_ONE_MINUS_SRC_COLOR" type="INT" value="0x0301" desc="GL_ONE_MINUS_SRC_COLOR" />
+        <Define name="RL_SRC_ALPHA" type="INT" value="0x0302" desc="GL_SRC_ALPHA" />
+        <Define name="RL_ONE_MINUS_SRC_ALPHA" type="INT" value="0x0303" desc="GL_ONE_MINUS_SRC_ALPHA" />
+        <Define name="RL_DST_ALPHA" type="INT" value="0x0304" desc="GL_DST_ALPHA" />
+        <Define name="RL_ONE_MINUS_DST_ALPHA" type="INT" value="0x0305" desc="GL_ONE_MINUS_DST_ALPHA" />
+        <Define name="RL_DST_COLOR" type="INT" value="0x0306" desc="GL_DST_COLOR" />
+        <Define name="RL_ONE_MINUS_DST_COLOR" type="INT" value="0x0307" desc="GL_ONE_MINUS_DST_COLOR" />
+        <Define name="RL_SRC_ALPHA_SATURATE" type="INT" value="0x0308" desc="GL_SRC_ALPHA_SATURATE" />
+        <Define name="RL_CONSTANT_COLOR" type="INT" value="0x8001" desc="GL_CONSTANT_COLOR" />
+        <Define name="RL_ONE_MINUS_CONSTANT_COLOR" type="INT" value="0x8002" desc="GL_ONE_MINUS_CONSTANT_COLOR" />
+        <Define name="RL_CONSTANT_ALPHA" type="INT" value="0x8003" desc="GL_CONSTANT_ALPHA" />
+        <Define name="RL_ONE_MINUS_CONSTANT_ALPHA" type="INT" value="0x8004" desc="GL_ONE_MINUS_CONSTANT_ALPHA" />
+        <Define name="RL_FUNC_ADD" type="INT" value="0x8006" desc="GL_FUNC_ADD" />
+        <Define name="RL_MIN" type="INT" value="0x8007" desc="GL_MIN" />
+        <Define name="RL_MAX" type="INT" value="0x8008" desc="GL_MAX" />
+        <Define name="RL_FUNC_SUBTRACT" type="INT" value="0x800A" desc="GL_FUNC_SUBTRACT" />
+        <Define name="RL_FUNC_REVERSE_SUBTRACT" type="INT" value="0x800B" desc="GL_FUNC_REVERSE_SUBTRACT" />
+        <Define name="RL_BLEND_EQUATION" type="INT" value="0x8009" desc="GL_BLEND_EQUATION" />
+        <Define name="RL_BLEND_EQUATION_RGB" type="INT" value="0x8009" desc="GL_BLEND_EQUATION_RGB   // (Same as BLEND_EQUATION)" />
+        <Define name="RL_BLEND_EQUATION_ALPHA" type="INT" value="0x883D" desc="GL_BLEND_EQUATION_ALPHA" />
+        <Define name="RL_BLEND_DST_RGB" type="INT" value="0x80C8" desc="GL_BLEND_DST_RGB" />
+        <Define name="RL_BLEND_SRC_RGB" type="INT" value="0x80C9" desc="GL_BLEND_SRC_RGB" />
+        <Define name="RL_BLEND_DST_ALPHA" type="INT" value="0x80CA" desc="GL_BLEND_DST_ALPHA" />
+        <Define name="RL_BLEND_SRC_ALPHA" type="INT" value="0x80CB" desc="GL_BLEND_SRC_ALPHA" />
+        <Define name="RL_BLEND_COLOR" type="INT" value="0x8005" desc="GL_BLEND_COLOR" />
+        <Define name="RL_MATRIX_TYPE" type="GUARD" value="" desc="" />
+        <Define name="RL_SHADER_LOC_MAP_DIFFUSE" type="UNKNOWN" value="RL_SHADER_LOC_MAP_ALBEDO" desc="" />
+        <Define name="RL_SHADER_LOC_MAP_SPECULAR" type="UNKNOWN" value="RL_SHADER_LOC_MAP_METALNESS" desc="" />
+    </Defines>
+    <Structs count="4">
+        <Struct name="Matrix" fieldCount="16" desc="Matrix, 4x4 components, column major, OpenGL style, right handed">
+            <Field type="float" name="m0" desc="Matrix first row (4 components)" />
+            <Field type="float" name="m4" desc="Matrix first row (4 components)" />
+            <Field type="float" name="m8" desc="Matrix first row (4 components)" />
+            <Field type="float" name="m12" desc="Matrix first row (4 components)" />
+            <Field type="float" name="m1" desc="Matrix second row (4 components)" />
+            <Field type="float" name="m5" desc="Matrix second row (4 components)" />
+            <Field type="float" name="m9" desc="Matrix second row (4 components)" />
+            <Field type="float" name="m13" desc="Matrix second row (4 components)" />
+            <Field type="float" name="m2" desc="Matrix third row (4 components)" />
+            <Field type="float" name="m6" desc="Matrix third row (4 components)" />
+            <Field type="float" name="m10" desc="Matrix third row (4 components)" />
+            <Field type="float" name="m14" desc="Matrix third row (4 components)" />
+            <Field type="float" name="m3" desc="Matrix fourth row (4 components)" />
+            <Field type="float" name="m7" desc="Matrix fourth row (4 components)" />
+            <Field type="float" name="m11" desc="Matrix fourth row (4 components)" />
+            <Field type="float" name="m15" desc="Matrix fourth row (4 components)" />
+        </Struct>
+        <Struct name="rlVertexBuffer" fieldCount="12" desc="Dynamic vertex buffers (position + texcoords + colors + indices arrays)">
+            <Field type="int" name="elementCount" desc="Number of elements in the buffer (QUADS)" />
+            <Field type="float *" name="vertices" desc="Vertex position (XYZ - 3 components per vertex) (shader-location = 0)" />
+            <Field type="float *" name="texcoords" desc="Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)" />
+            <Field type="unsigned char *" name="colors" desc="Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)" />
+            <Field type="#if defined(GRAPHICS_API_OPENGL_11) || defined(GRAPHICS_API_OPENunsigned int *" name="indices" desc="Vertex indices (in case vertex data comes indexed) (6 indices per quad)" />
+            <Field type="unsigned int *" name="indices" desc="Vertex indices (in case vertex data comes indexed) (6 indices per quad)" />
+            <Field type="#endif" name="indices" desc="Vertex indices (in case vertex data comes indexed) (6 indices per quad)" />
+            <Field type="#if defined(GRAPHICS_API_OPENGL_ES2)" name="indices" desc="Vertex indices (in case vertex data comes indexed) (6 indices per quad)" />
+            <Field type="unsigned short *" name="indices" desc="Vertex indices (in case vertex data comes indexed) (6 indices per quad)" />
+            <Field type="#endif" name="vaoId" desc="OpenGL Vertex Array Object id" />
+            <Field type="unsigned int" name="vaoId" desc="OpenGL Vertex Array Object id" />
+            <Field type="unsigned int[4]" name="vboId" desc="OpenGL Vertex Buffer Objects id (4 types of vertex data)" />
+        </Struct>
+        <Struct name="rlDrawCall" fieldCount="4" desc="of those state-change happens (this is done in core module)">
+            <Field type="int" name="mode" desc="Drawing mode: LINES, TRIANGLES, QUADS" />
+            <Field type="int" name="vertexCount" desc="Number of vertex of the draw" />
+            <Field type="int" name="vertexAlignment" desc="Number of vertex required for index alignment (LINES, TRIANGLES)" />
+            <Field type="unsigned int" name="textureId" desc="Texture id to be used on the draw -> Use to create new draw call if changes" />
+        </Struct>
+        <Struct name="rlRenderBatch" fieldCount="6" desc="rlRenderBatch type">
+            <Field type="int" name="bufferCount" desc="Number of vertex buffers (multi-buffering support)" />
+            <Field type="int" name="currentBuffer" desc="Current buffer tracking in case of multi-buffering" />
+            <Field type="rlVertexBuffer *" name="vertexBuffer" desc="Dynamic buffer(s) for vertex data" />
+            <Field type="rlDrawCall *" name="draws" desc="Draw calls array, depends on textureId" />
+            <Field type="int" name="drawCounter" desc="Draw calls counter" />
+            <Field type="float" name="currentDepth" desc="Current depth value for next draw" />
+        </Struct>
+    </Structs>
+    <Aliases count="0">
+    </Aliases>
+    <Enums count="11">
+        <Enum name="rlGlVersion" valueCount="5" desc="OpenGL version">
+            <Value name="RL_OPENGL_11" integer="1" desc="OpenGL 1.1" />
+            <Value name="RL_OPENGL_21" integer="2" desc="OpenGL 2.1 (GLSL 120)" />
+            <Value name="RL_OPENGL_33" integer="3" desc="OpenGL 3.3 (GLSL 330)" />
+            <Value name="RL_OPENGL_43" integer="4" desc="OpenGL 4.3 (using GLSL 330)" />
+            <Value name="RL_OPENGL_ES_20" integer="5" desc="OpenGL ES 2.0 (GLSL 100)" />
+        </Enum>
+        <Enum name="rlTraceLogLevel" valueCount="8" desc="Trace log level">
+            <Value name="RL_LOG_ALL" integer="0" desc="Display all logs" />
+            <Value name="RL_LOG_TRACE" integer="1" desc="Trace logging, intended for internal use only" />
+            <Value name="RL_LOG_DEBUG" integer="2" desc="Debug logging, used for internal debugging, it should be disabled on release builds" />
+            <Value name="RL_LOG_INFO" integer="3" desc="Info logging, used for program execution info" />
+            <Value name="RL_LOG_WARNING" integer="4" desc="Warning logging, used on recoverable failures" />
+            <Value name="RL_LOG_ERROR" integer="5" desc="Error logging, used on unrecoverable failures" />
+            <Value name="RL_LOG_FATAL" integer="6" desc="Fatal logging, used to abort program: exit(EXIT_FAILURE)" />
+            <Value name="RL_LOG_NONE" integer="7" desc="Disable logging" />
+        </Enum>
+        <Enum name="rlPixelFormat" valueCount="21" desc="Texture pixel formats">
+            <Value name="RL_PIXELFORMAT_UNCOMPRESSED_GRAYSCALE" integer="1" desc="8 bit per pixel (no alpha)" />
+            <Value name="RL_PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA" integer="2" desc="8*2 bpp (2 channels)" />
+            <Value name="RL_PIXELFORMAT_UNCOMPRESSED_R5G6B5" integer="3" desc="16 bpp" />
+            <Value name="RL_PIXELFORMAT_UNCOMPRESSED_R8G8B8" integer="4" desc="24 bpp" />
+            <Value name="RL_PIXELFORMAT_UNCOMPRESSED_R5G5B5A1" integer="5" desc="16 bpp (1 bit alpha)" />
+            <Value name="RL_PIXELFORMAT_UNCOMPRESSED_R4G4B4A4" integer="6" desc="16 bpp (4 bit alpha)" />
+            <Value name="RL_PIXELFORMAT_UNCOMPRESSED_R8G8B8A8" integer="7" desc="32 bpp" />
+            <Value name="RL_PIXELFORMAT_UNCOMPRESSED_R32" integer="8" desc="32 bpp (1 channel - float)" />
+            <Value name="RL_PIXELFORMAT_UNCOMPRESSED_R32G32B32" integer="9" desc="32*3 bpp (3 channels - float)" />
+            <Value name="RL_PIXELFORMAT_UNCOMPRESSED_R32G32B32A32" integer="10" desc="32*4 bpp (4 channels - float)" />
+            <Value name="RL_PIXELFORMAT_COMPRESSED_DXT1_RGB" integer="11" desc="4 bpp (no alpha)" />
+            <Value name="RL_PIXELFORMAT_COMPRESSED_DXT1_RGBA" integer="12" desc="4 bpp (1 bit alpha)" />
+            <Value name="RL_PIXELFORMAT_COMPRESSED_DXT3_RGBA" integer="13" desc="8 bpp" />
+            <Value name="RL_PIXELFORMAT_COMPRESSED_DXT5_RGBA" integer="14" desc="8 bpp" />
+            <Value name="RL_PIXELFORMAT_COMPRESSED_ETC1_RGB" integer="15" desc="4 bpp" />
+            <Value name="RL_PIXELFORMAT_COMPRESSED_ETC2_RGB" integer="16" desc="4 bpp" />
+            <Value name="RL_PIXELFORMAT_COMPRESSED_ETC2_EAC_RGBA" integer="17" desc="8 bpp" />
+            <Value name="RL_PIXELFORMAT_COMPRESSED_PVRT_RGB" integer="18" desc="4 bpp" />
+            <Value name="RL_PIXELFORMAT_COMPRESSED_PVRT_RGBA" integer="19" desc="4 bpp" />
+            <Value name="RL_PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA" integer="20" desc="8 bpp" />
+            <Value name="RL_PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA" integer="21" desc="2 bpp" />
+        </Enum>
+        <Enum name="rlTextureFilter" valueCount="6" desc="Texture parameters: filter mode">
+            <Value name="RL_TEXTURE_FILTER_POINT" integer="0" desc="No filter, just pixel approximation" />
+            <Value name="RL_TEXTURE_FILTER_BILINEAR" integer="1" desc="Linear filtering" />
+            <Value name="RL_TEXTURE_FILTER_TRILINEAR" integer="2" desc="Trilinear filtering (linear with mipmaps)" />
+            <Value name="RL_TEXTURE_FILTER_ANISOTROPIC_4X" integer="3" desc="Anisotropic filtering 4x" />
+            <Value name="RL_TEXTURE_FILTER_ANISOTROPIC_8X" integer="4" desc="Anisotropic filtering 8x" />
+            <Value name="RL_TEXTURE_FILTER_ANISOTROPIC_16X" integer="5" desc="Anisotropic filtering 16x" />
+        </Enum>
+        <Enum name="rlBlendMode" valueCount="8" desc="Color blending modes (pre-defined)">
+            <Value name="RL_BLEND_ALPHA" integer="0" desc="Blend textures considering alpha (default)" />
+            <Value name="RL_BLEND_ADDITIVE" integer="1" desc="Blend textures adding colors" />
+            <Value name="RL_BLEND_MULTIPLIED" integer="2" desc="Blend textures multiplying colors" />
+            <Value name="RL_BLEND_ADD_COLORS" integer="3" desc="Blend textures adding colors (alternative)" />
+            <Value name="RL_BLEND_SUBTRACT_COLORS" integer="4" desc="Blend textures subtracting colors (alternative)" />
+            <Value name="RL_BLEND_ALPHA_PREMULTIPLY" integer="5" desc="Blend premultiplied textures considering alpha" />
+            <Value name="RL_BLEND_CUSTOM" integer="6" desc="Blend textures using custom src/dst factors (use rlSetBlendFactors())" />
+            <Value name="RL_BLEND_CUSTOM_SEPARATE" integer="7" desc="Blend textures using custom src/dst factors (use rlSetBlendFactorsSeparate())" />
+        </Enum>
+        <Enum name="rlShaderLocationIndex" valueCount="26" desc="Shader location point type">
+            <Value name="RL_SHADER_LOC_VERTEX_POSITION" integer="0" desc="Shader location: vertex attribute: position" />
+            <Value name="RL_SHADER_LOC_VERTEX_TEXCOORD01" integer="1" desc="Shader location: vertex attribute: texcoord01" />
+            <Value name="RL_SHADER_LOC_VERTEX_TEXCOORD02" integer="2" desc="Shader location: vertex attribute: texcoord02" />
+            <Value name="RL_SHADER_LOC_VERTEX_NORMAL" integer="3" desc="Shader location: vertex attribute: normal" />
+            <Value name="RL_SHADER_LOC_VERTEX_TANGENT" integer="4" desc="Shader location: vertex attribute: tangent" />
+            <Value name="RL_SHADER_LOC_VERTEX_COLOR" integer="5" desc="Shader location: vertex attribute: color" />
+            <Value name="RL_SHADER_LOC_MATRIX_MVP" integer="6" desc="Shader location: matrix uniform: model-view-projection" />
+            <Value name="RL_SHADER_LOC_MATRIX_VIEW" integer="7" desc="Shader location: matrix uniform: view (camera transform)" />
+            <Value name="RL_SHADER_LOC_MATRIX_PROJECTION" integer="8" desc="Shader location: matrix uniform: projection" />
+            <Value name="RL_SHADER_LOC_MATRIX_MODEL" integer="9" desc="Shader location: matrix uniform: model (transform)" />
+            <Value name="RL_SHADER_LOC_MATRIX_NORMAL" integer="10" desc="Shader location: matrix uniform: normal" />
+            <Value name="RL_SHADER_LOC_VECTOR_VIEW" integer="11" desc="Shader location: vector uniform: view" />
+            <Value name="RL_SHADER_LOC_COLOR_DIFFUSE" integer="12" desc="Shader location: vector uniform: diffuse color" />
+            <Value name="RL_SHADER_LOC_COLOR_SPECULAR" integer="13" desc="Shader location: vector uniform: specular color" />
+            <Value name="RL_SHADER_LOC_COLOR_AMBIENT" integer="14" desc="Shader location: vector uniform: ambient color" />
+            <Value name="RL_SHADER_LOC_MAP_ALBEDO" integer="15" desc="Shader location: sampler2d texture: albedo (same as: RL_SHADER_LOC_MAP_DIFFUSE)" />
+            <Value name="RL_SHADER_LOC_MAP_METALNESS" integer="16" desc="Shader location: sampler2d texture: metalness (same as: RL_SHADER_LOC_MAP_SPECULAR)" />
+            <Value name="RL_SHADER_LOC_MAP_NORMAL" integer="17" desc="Shader location: sampler2d texture: normal" />
+            <Value name="RL_SHADER_LOC_MAP_ROUGHNESS" integer="18" desc="Shader location: sampler2d texture: roughness" />
+            <Value name="RL_SHADER_LOC_MAP_OCCLUSION" integer="19" desc="Shader location: sampler2d texture: occlusion" />
+            <Value name="RL_SHADER_LOC_MAP_EMISSION" integer="20" desc="Shader location: sampler2d texture: emission" />
+            <Value name="RL_SHADER_LOC_MAP_HEIGHT" integer="21" desc="Shader location: sampler2d texture: height" />
+            <Value name="RL_SHADER_LOC_MAP_CUBEMAP" integer="22" desc="Shader location: samplerCube texture: cubemap" />
+            <Value name="RL_SHADER_LOC_MAP_IRRADIANCE" integer="23" desc="Shader location: samplerCube texture: irradiance" />
+            <Value name="RL_SHADER_LOC_MAP_PREFILTER" integer="24" desc="Shader location: samplerCube texture: prefilter" />
+            <Value name="RL_SHADER_LOC_MAP_BRDF" integer="25" desc="Shader location: sampler2d texture: brdf" />
+        </Enum>
+        <Enum name="rlShaderUniformDataType" valueCount="9" desc="Shader uniform data type">
+            <Value name="RL_SHADER_UNIFORM_FLOAT" integer="0" desc="Shader uniform type: float" />
+            <Value name="RL_SHADER_UNIFORM_VEC2" integer="1" desc="Shader uniform type: vec2 (2 float)" />
+            <Value name="RL_SHADER_UNIFORM_VEC3" integer="2" desc="Shader uniform type: vec3 (3 float)" />
+            <Value name="RL_SHADER_UNIFORM_VEC4" integer="3" desc="Shader uniform type: vec4 (4 float)" />
+            <Value name="RL_SHADER_UNIFORM_INT" integer="4" desc="Shader uniform type: int" />
+            <Value name="RL_SHADER_UNIFORM_IVEC2" integer="5" desc="Shader uniform type: ivec2 (2 int)" />
+            <Value name="RL_SHADER_UNIFORM_IVEC3" integer="6" desc="Shader uniform type: ivec3 (3 int)" />
+            <Value name="RL_SHADER_UNIFORM_IVEC4" integer="7" desc="Shader uniform type: ivec4 (4 int)" />
+            <Value name="RL_SHADER_UNIFORM_SAMPLER2D" integer="8" desc="Shader uniform type: sampler2d" />
+        </Enum>
+        <Enum name="rlShaderAttributeDataType" valueCount="4" desc="Shader attribute data types">
+            <Value name="RL_SHADER_ATTRIB_FLOAT" integer="0" desc="Shader attribute type: float" />
+            <Value name="RL_SHADER_ATTRIB_VEC2" integer="1" desc="Shader attribute type: vec2 (2 float)" />
+            <Value name="RL_SHADER_ATTRIB_VEC3" integer="2" desc="Shader attribute type: vec3 (3 float)" />
+            <Value name="RL_SHADER_ATTRIB_VEC4" integer="3" desc="Shader attribute type: vec4 (4 float)" />
+        </Enum>
+        <Enum name="rlFramebufferAttachType" valueCount="10" desc="Framebuffer attachment type">
+            <Value name="RL_ATTACHMENT_COLOR_CHANNEL0" integer="0" desc="Framebuffer attachment type: color 0" />
+            <Value name="RL_ATTACHMENT_COLOR_CHANNEL1" integer="1" desc="Framebuffer attachment type: color 1" />
+            <Value name="RL_ATTACHMENT_COLOR_CHANNEL2" integer="2" desc="Framebuffer attachment type: color 2" />
+            <Value name="RL_ATTACHMENT_COLOR_CHANNEL3" integer="3" desc="Framebuffer attachment type: color 3" />
+            <Value name="RL_ATTACHMENT_COLOR_CHANNEL4" integer="4" desc="Framebuffer attachment type: color 4" />
+            <Value name="RL_ATTACHMENT_COLOR_CHANNEL5" integer="5" desc="Framebuffer attachment type: color 5" />
+            <Value name="RL_ATTACHMENT_COLOR_CHANNEL6" integer="6" desc="Framebuffer attachment type: color 6" />
+            <Value name="RL_ATTACHMENT_COLOR_CHANNEL7" integer="7" desc="Framebuffer attachment type: color 7" />
+            <Value name="RL_ATTACHMENT_DEPTH" integer="100" desc="Framebuffer attachment type: depth" />
+            <Value name="RL_ATTACHMENT_STENCIL" integer="200" desc="Framebuffer attachment type: stencil" />
+        </Enum>
+        <Enum name="rlFramebufferAttachTextureType" valueCount="8" desc="Framebuffer texture attachment type">
+            <Value name="RL_ATTACHMENT_CUBEMAP_POSITIVE_X" integer="0" desc="Framebuffer texture attachment type: cubemap, +X side" />
+            <Value name="RL_ATTACHMENT_CUBEMAP_NEGATIVE_X" integer="1" desc="Framebuffer texture attachment type: cubemap, -X side" />
+            <Value name="RL_ATTACHMENT_CUBEMAP_POSITIVE_Y" integer="2" desc="Framebuffer texture attachment type: cubemap, +Y side" />
+            <Value name="RL_ATTACHMENT_CUBEMAP_NEGATIVE_Y" integer="3" desc="Framebuffer texture attachment type: cubemap, -Y side" />
+            <Value name="RL_ATTACHMENT_CUBEMAP_POSITIVE_Z" integer="4" desc="Framebuffer texture attachment type: cubemap, +Z side" />
+            <Value name="RL_ATTACHMENT_CUBEMAP_NEGATIVE_Z" integer="5" desc="Framebuffer texture attachment type: cubemap, -Z side" />
+            <Value name="RL_ATTACHMENT_TEXTURE2D" integer="100" desc="Framebuffer texture attachment type: texture2d" />
+            <Value name="RL_ATTACHMENT_RENDERBUFFER" integer="200" desc="Framebuffer texture attachment type: renderbuffer" />
+        </Enum>
+        <Enum name="rlCullMode" valueCount="2" desc="Face culling mode">
+            <Value name="RL_CULL_FACE_FRONT" integer="0" desc="" />
+            <Value name="RL_CULL_FACE_BACK" integer="1" desc="" />
+        </Enum>
+    </Enums>
+    <Callbacks count="0">
+    </Callbacks>
+    <Functions count="147">
+        <Function name="rlMatrixMode" retType="void" paramCount="1" desc="Choose the current matrix to be transformed">
+            <Param type="int" name="mode" desc="" />
+        </Function>
+        <Function name="rlPushMatrix" retType="void" paramCount="0" desc="Push the current matrix to stack">
+        </Function>
+        <Function name="rlPopMatrix" retType="void" paramCount="0" desc="Pop latest inserted matrix from stack">
+        </Function>
+        <Function name="rlLoadIdentity" retType="void" paramCount="0" desc="Reset current matrix to identity matrix">
+        </Function>
+        <Function name="rlTranslatef" retType="void" paramCount="3" desc="Multiply the current matrix by a translation matrix">
+            <Param type="float" name="x" desc="" />
+            <Param type="float" name="y" desc="" />
+            <Param type="float" name="z" desc="" />
+        </Function>
+        <Function name="rlRotatef" retType="void" paramCount="4" desc="Multiply the current matrix by a rotation matrix">
+            <Param type="float" name="angle" desc="" />
+            <Param type="float" name="x" desc="" />
+            <Param type="float" name="y" desc="" />
+            <Param type="float" name="z" desc="" />
+        </Function>
+        <Function name="rlScalef" retType="void" paramCount="3" desc="Multiply the current matrix by a scaling matrix">
+            <Param type="float" name="x" desc="" />
+            <Param type="float" name="y" desc="" />
+            <Param type="float" name="z" desc="" />
+        </Function>
+        <Function name="rlMultMatrixf" retType="void" paramCount="1" desc="Multiply the current matrix by another matrix">
+            <Param type="const float *" name="matf" desc="" />
+        </Function>
+        <Function name="rlFrustum" retType="void" paramCount="6" desc="">
+            <Param type="double" name="left" desc="" />
+            <Param type="double" name="right" desc="" />
+            <Param type="double" name="bottom" desc="" />
+            <Param type="double" name="top" desc="" />
+            <Param type="double" name="znear" desc="" />
+            <Param type="double" name="zfar" desc="" />
+        </Function>
+        <Function name="rlOrtho" retType="void" paramCount="6" desc="">
+            <Param type="double" name="left" desc="" />
+            <Param type="double" name="right" desc="" />
+            <Param type="double" name="bottom" desc="" />
+            <Param type="double" name="top" desc="" />
+            <Param type="double" name="znear" desc="" />
+            <Param type="double" name="zfar" desc="" />
+        </Function>
+        <Function name="rlViewport" retType="void" paramCount="4" desc="Set the viewport area">
+            <Param type="int" name="x" desc="" />
+            <Param type="int" name="y" desc="" />
+            <Param type="int" name="width" desc="" />
+            <Param type="int" name="height" desc="" />
+        </Function>
+        <Function name="rlBegin" retType="void" paramCount="1" desc="Initialize drawing mode (how to organize vertex)">
+            <Param type="int" name="mode" desc="" />
+        </Function>
+        <Function name="rlEnd" retType="void" paramCount="0" desc="Finish vertex providing">
+        </Function>
+        <Function name="rlVertex2i" retType="void" paramCount="2" desc="Define one vertex (position) - 2 int">
+            <Param type="int" name="x" desc="" />
+            <Param type="int" name="y" desc="" />
+        </Function>
+        <Function name="rlVertex2f" retType="void" paramCount="2" desc="Define one vertex (position) - 2 float">
+            <Param type="float" name="x" desc="" />
+            <Param type="float" name="y" desc="" />
+        </Function>
+        <Function name="rlVertex3f" retType="void" paramCount="3" desc="Define one vertex (position) - 3 float">
+            <Param type="float" name="x" desc="" />
+            <Param type="float" name="y" desc="" />
+            <Param type="float" name="z" desc="" />
+        </Function>
+        <Function name="rlTexCoord2f" retType="void" paramCount="2" desc="Define one vertex (texture coordinate) - 2 float">
+            <Param type="float" name="x" desc="" />
+            <Param type="float" name="y" desc="" />
+        </Function>
+        <Function name="rlNormal3f" retType="void" paramCount="3" desc="Define one vertex (normal) - 3 float">
+            <Param type="float" name="x" desc="" />
+            <Param type="float" name="y" desc="" />
+            <Param type="float" name="z" desc="" />
+        </Function>
+        <Function name="rlColor4ub" retType="void" paramCount="4" desc="Define one vertex (color) - 4 byte">
+            <Param type="unsigned char" name="r" desc="" />
+            <Param type="unsigned char" name="g" desc="" />
+            <Param type="unsigned char" name="b" desc="" />
+            <Param type="unsigned char" name="a" desc="" />
+        </Function>
+        <Function name="rlColor3f" retType="void" paramCount="3" desc="Define one vertex (color) - 3 float">
+            <Param type="float" name="x" desc="" />
+            <Param type="float" name="y" desc="" />
+            <Param type="float" name="z" desc="" />
+        </Function>
+        <Function name="rlColor4f" retType="void" paramCount="4" desc="Define one vertex (color) - 4 float">
+            <Param type="float" name="x" desc="" />
+            <Param type="float" name="y" desc="" />
+            <Param type="float" name="z" desc="" />
+            <Param type="float" name="w" desc="" />
+        </Function>
+        <Function name="rlEnableVertexArray" retType="bool" paramCount="1" desc="Enable vertex array (VAO, if supported)">
+            <Param type="unsigned int" name="vaoId" desc="" />
+        </Function>
+        <Function name="rlDisableVertexArray" retType="void" paramCount="0" desc="Disable vertex array (VAO, if supported)">
+        </Function>
+        <Function name="rlEnableVertexBuffer" retType="void" paramCount="1" desc="Enable vertex buffer (VBO)">
+            <Param type="unsigned int" name="id" desc="" />
+        </Function>
+        <Function name="rlDisableVertexBuffer" retType="void" paramCount="0" desc="Disable vertex buffer (VBO)">
+        </Function>
+        <Function name="rlEnableVertexBufferElement" retType="void" paramCount="1" desc="Enable vertex buffer element (VBO element)">
+            <Param type="unsigned int" name="id" desc="" />
+        </Function>
+        <Function name="rlDisableVertexBufferElement" retType="void" paramCount="0" desc="Disable vertex buffer element (VBO element)">
+        </Function>
+        <Function name="rlEnableVertexAttribute" retType="void" paramCount="1" desc="Enable vertex attribute index">
+            <Param type="unsigned int" name="index" desc="" />
+        </Function>
+        <Function name="rlDisableVertexAttribute" retType="void" paramCount="1" desc="Disable vertex attribute index">
+            <Param type="unsigned int" name="index" desc="" />
+        </Function>
+        <Function name="rlEnableStatePointer" retType="void" paramCount="2" desc="Enable attribute state pointer">
+            <Param type="int" name="vertexAttribType" desc="" />
+            <Param type="void *" name="buffer" desc="" />
+        </Function>
+        <Function name="rlDisableStatePointer" retType="void" paramCount="1" desc="Disable attribute state pointer">
+            <Param type="int" name="vertexAttribType" desc="" />
+        </Function>
+        <Function name="rlActiveTextureSlot" retType="void" paramCount="1" desc="Select and active a texture slot">
+            <Param type="int" name="slot" desc="" />
+        </Function>
+        <Function name="rlEnableTexture" retType="void" paramCount="1" desc="Enable texture">
+            <Param type="unsigned int" name="id" desc="" />
+        </Function>
+        <Function name="rlDisableTexture" retType="void" paramCount="0" desc="Disable texture">
+        </Function>
+        <Function name="rlEnableTextureCubemap" retType="void" paramCount="1" desc="Enable texture cubemap">
+            <Param type="unsigned int" name="id" desc="" />
+        </Function>
+        <Function name="rlDisableTextureCubemap" retType="void" paramCount="0" desc="Disable texture cubemap">
+        </Function>
+        <Function name="rlTextureParameters" retType="void" paramCount="3" desc="Set texture parameters (filter, wrap)">
+            <Param type="unsigned int" name="id" desc="" />
+            <Param type="int" name="param" desc="" />
+            <Param type="int" name="value" desc="" />
+        </Function>
+        <Function name="rlCubemapParameters" retType="void" paramCount="3" desc="Set cubemap parameters (filter, wrap)">
+            <Param type="unsigned int" name="id" desc="" />
+            <Param type="int" name="param" desc="" />
+            <Param type="int" name="value" desc="" />
+        </Function>
+        <Function name="rlEnableShader" retType="void" paramCount="1" desc="Enable shader program">
+            <Param type="unsigned int" name="id" desc="" />
+        </Function>
+        <Function name="rlDisableShader" retType="void" paramCount="0" desc="Disable shader program">
+        </Function>
+        <Function name="rlEnableFramebuffer" retType="void" paramCount="1" desc="Enable render texture (fbo)">
+            <Param type="unsigned int" name="id" desc="" />
+        </Function>
+        <Function name="rlDisableFramebuffer" retType="void" paramCount="0" desc="Disable render texture (fbo), return to default framebuffer">
+        </Function>
+        <Function name="rlActiveDrawBuffers" retType="void" paramCount="1" desc="Activate multiple draw color buffers">
+            <Param type="int" name="count" desc="" />
+        </Function>
+        <Function name="rlEnableColorBlend" retType="void" paramCount="0" desc="Enable color blending">
+        </Function>
+        <Function name="rlDisableColorBlend" retType="void" paramCount="0" desc="Disable color blending">
+        </Function>
+        <Function name="rlEnableDepthTest" retType="void" paramCount="0" desc="Enable depth test">
+        </Function>
+        <Function name="rlDisableDepthTest" retType="void" paramCount="0" desc="Disable depth test">
+        </Function>
+        <Function name="rlEnableDepthMask" retType="void" paramCount="0" desc="Enable depth write">
+        </Function>
+        <Function name="rlDisableDepthMask" retType="void" paramCount="0" desc="Disable depth write">
+        </Function>
+        <Function name="rlEnableBackfaceCulling" retType="void" paramCount="0" desc="Enable backface culling">
+        </Function>
+        <Function name="rlDisableBackfaceCulling" retType="void" paramCount="0" desc="Disable backface culling">
+        </Function>
+        <Function name="rlSetCullFace" retType="void" paramCount="1" desc="Set face culling mode">
+            <Param type="int" name="mode" desc="" />
+        </Function>
+        <Function name="rlEnableScissorTest" retType="void" paramCount="0" desc="Enable scissor test">
+        </Function>
+        <Function name="rlDisableScissorTest" retType="void" paramCount="0" desc="Disable scissor test">
+        </Function>
+        <Function name="rlScissor" retType="void" paramCount="4" desc="Scissor test">
+            <Param type="int" name="x" desc="" />
+            <Param type="int" name="y" desc="" />
+            <Param type="int" name="width" desc="" />
+            <Param type="int" name="height" desc="" />
+        </Function>
+        <Function name="rlEnableWireMode" retType="void" paramCount="0" desc="Enable wire mode">
+        </Function>
+        <Function name="rlDisableWireMode" retType="void" paramCount="0" desc="Disable wire mode">
+        </Function>
+        <Function name="rlSetLineWidth" retType="void" paramCount="1" desc="Set the line drawing width">
+            <Param type="float" name="width" desc="" />
+        </Function>
+        <Function name="rlGetLineWidth" retType="float" paramCount="0" desc="Get the line drawing width">
+        </Function>
+        <Function name="rlEnableSmoothLines" retType="void" paramCount="0" desc="Enable line aliasing">
+        </Function>
+        <Function name="rlDisableSmoothLines" retType="void" paramCount="0" desc="Disable line aliasing">
+        </Function>
+        <Function name="rlEnableStereoRender" retType="void" paramCount="0" desc="Enable stereo rendering">
+        </Function>
+        <Function name="rlDisableStereoRender" retType="void" paramCount="0" desc="Disable stereo rendering">
+        </Function>
+        <Function name="rlIsStereoRenderEnabled" retType="bool" paramCount="0" desc="Check if stereo render is enabled">
+        </Function>
+        <Function name="rlClearColor" retType="void" paramCount="4" desc="Clear color buffer with color">
+            <Param type="unsigned char" name="r" desc="" />
+            <Param type="unsigned char" name="g" desc="" />
+            <Param type="unsigned char" name="b" desc="" />
+            <Param type="unsigned char" name="a" desc="" />
+        </Function>
+        <Function name="rlClearScreenBuffers" retType="void" paramCount="0" desc="Clear used screen buffers (color and depth)">
+        </Function>
+        <Function name="rlCheckErrors" retType="void" paramCount="0" desc="Check and log OpenGL error codes">
+        </Function>
+        <Function name="rlSetBlendMode" retType="void" paramCount="1" desc="Set blending mode">
+            <Param type="int" name="mode" desc="" />
+        </Function>
+        <Function name="rlSetBlendFactors" retType="void" paramCount="3" desc="Set blending mode factor and equation (using OpenGL factors)">
+            <Param type="int" name="glSrcFactor" desc="" />
+            <Param type="int" name="glDstFactor" desc="" />
+            <Param type="int" name="glEquation" desc="" />
+        </Function>
+        <Function name="rlSetBlendFactorsSeparate" retType="void" paramCount="6" desc="Set blending mode factors and equations separately (using OpenGL factors)">
+            <Param type="int" name="glSrcRGB" desc="" />
+            <Param type="int" name="glDstRGB" desc="" />
+            <Param type="int" name="glSrcAlpha" desc="" />
+            <Param type="int" name="glDstAlpha" desc="" />
+            <Param type="int" name="glEqRGB" desc="" />
+            <Param type="int" name="glEqAlpha" desc="" />
+        </Function>
+        <Function name="rlglInit" retType="void" paramCount="2" desc="Initialize rlgl (buffers, shaders, textures, states)">
+            <Param type="int" name="width" desc="" />
+            <Param type="int" name="height" desc="" />
+        </Function>
+        <Function name="rlglClose" retType="void" paramCount="0" desc="De-initialize rlgl (buffers, shaders, textures)">
+        </Function>
+        <Function name="rlLoadExtensions" retType="void" paramCount="1" desc="Load OpenGL extensions (loader function required)">
+            <Param type="void *" name="loader" desc="" />
+        </Function>
+        <Function name="rlGetVersion" retType="int" paramCount="0" desc="Get current OpenGL version">
+        </Function>
+        <Function name="rlSetFramebufferWidth" retType="void" paramCount="1" desc="Set current framebuffer width">
+            <Param type="int" name="width" desc="" />
+        </Function>
+        <Function name="rlGetFramebufferWidth" retType="int" paramCount="0" desc="Get default framebuffer width">
+        </Function>
+        <Function name="rlSetFramebufferHeight" retType="void" paramCount="1" desc="Set current framebuffer height">
+            <Param type="int" name="height" desc="" />
+        </Function>
+        <Function name="rlGetFramebufferHeight" retType="int" paramCount="0" desc="Get default framebuffer height">
+        </Function>
+        <Function name="rlGetTextureIdDefault" retType="unsigned int" paramCount="0" desc="Get default texture id">
+        </Function>
+        <Function name="rlGetShaderIdDefault" retType="unsigned int" paramCount="0" desc="Get default shader id">
+        </Function>
+        <Function name="rlGetShaderLocsDefault" retType="int *" paramCount="0" desc="Get default shader locations">
+        </Function>
+        <Function name="rlLoadRenderBatch" retType="rlRenderBatch" paramCount="2" desc="Load a render batch system">
+            <Param type="int" name="numBuffers" desc="" />
+            <Param type="int" name="bufferElements" desc="" />
+        </Function>
+        <Function name="rlUnloadRenderBatch" retType="void" paramCount="1" desc="Unload render batch system">
+            <Param type="rlRenderBatch" name="batch" desc="" />
+        </Function>
+        <Function name="rlDrawRenderBatch" retType="void" paramCount="1" desc="Draw render batch data (Update->Draw->Reset)">
+            <Param type="rlRenderBatch *" name="batch" desc="" />
+        </Function>
+        <Function name="rlSetRenderBatchActive" retType="void" paramCount="1" desc="Set the active render batch for rlgl (NULL for default internal)">
+            <Param type="rlRenderBatch *" name="batch" desc="" />
+        </Function>
+        <Function name="rlDrawRenderBatchActive" retType="void" paramCount="0" desc="Update and draw internal render batch">
+        </Function>
+        <Function name="rlCheckRenderBatchLimit" retType="bool" paramCount="1" desc="Check internal buffer overflow for a given number of vertex">
+            <Param type="int" name="vCount" desc="" />
+        </Function>
+        <Function name="rlSetTexture" retType="void" paramCount="1" desc="Set current texture for render batch and check buffers limits">
+            <Param type="unsigned int" name="id" desc="" />
+        </Function>
+        <Function name="rlLoadVertexArray" retType="unsigned int" paramCount="0" desc="Load vertex array (vao) if supported">
+        </Function>
+        <Function name="rlLoadVertexBuffer" retType="unsigned int" paramCount="3" desc="Load a vertex buffer attribute">
+            <Param type="const void *" name="buffer" desc="" />
+            <Param type="int" name="size" desc="" />
+            <Param type="bool" name="dynamic" desc="" />
+        </Function>
+        <Function name="rlLoadVertexBufferElement" retType="unsigned int" paramCount="3" desc="Load a new attributes element buffer">
+            <Param type="const void *" name="buffer" desc="" />
+            <Param type="int" name="size" desc="" />
+            <Param type="bool" name="dynamic" desc="" />
+        </Function>
+        <Function name="rlUpdateVertexBuffer" retType="void" paramCount="4" desc="Update GPU buffer with new data">
+            <Param type="unsigned int" name="bufferId" desc="" />
+            <Param type="const void *" name="data" desc="" />
+            <Param type="int" name="dataSize" desc="" />
+            <Param type="int" name="offset" desc="" />
+        </Function>
+        <Function name="rlUpdateVertexBufferElements" retType="void" paramCount="4" desc="Update vertex buffer elements with new data">
+            <Param type="unsigned int" name="id" desc="" />
+            <Param type="const void *" name="data" desc="" />
+            <Param type="int" name="dataSize" desc="" />
+            <Param type="int" name="offset" desc="" />
+        </Function>
+        <Function name="rlUnloadVertexArray" retType="void" paramCount="1" desc="">
+            <Param type="unsigned int" name="vaoId" desc="" />
+        </Function>
+        <Function name="rlUnloadVertexBuffer" retType="void" paramCount="1" desc="">
+            <Param type="unsigned int" name="vboId" desc="" />
+        </Function>
+        <Function name="rlSetVertexAttribute" retType="void" paramCount="6" desc="">
+            <Param type="unsigned int" name="index" desc="" />
+            <Param type="int" name="compSize" desc="" />
+            <Param type="int" name="type" desc="" />
+            <Param type="bool" name="normalized" desc="" />
+            <Param type="int" name="stride" desc="" />
+            <Param type="const void *" name="pointer" desc="" />
+        </Function>
+        <Function name="rlSetVertexAttributeDivisor" retType="void" paramCount="2" desc="">
+            <Param type="unsigned int" name="index" desc="" />
+            <Param type="int" name="divisor" desc="" />
+        </Function>
+        <Function name="rlSetVertexAttributeDefault" retType="void" paramCount="4" desc="Set vertex attribute default value">
+            <Param type="int" name="locIndex" desc="" />
+            <Param type="const void *" name="value" desc="" />
+            <Param type="int" name="attribType" desc="" />
+            <Param type="int" name="count" desc="" />
+        </Function>
+        <Function name="rlDrawVertexArray" retType="void" paramCount="2" desc="">
+            <Param type="int" name="offset" desc="" />
+            <Param type="int" name="count" desc="" />
+        </Function>
+        <Function name="rlDrawVertexArrayElements" retType="void" paramCount="3" desc="">
+            <Param type="int" name="offset" desc="" />
+            <Param type="int" name="count" desc="" />
+            <Param type="const void *" name="buffer" desc="" />
+        </Function>
+        <Function name="rlDrawVertexArrayInstanced" retType="void" paramCount="3" desc="">
+            <Param type="int" name="offset" desc="" />
+            <Param type="int" name="count" desc="" />
+            <Param type="int" name="instances" desc="" />
+        </Function>
+        <Function name="rlDrawVertexArrayElementsInstanced" retType="void" paramCount="4" desc="">
+            <Param type="int" name="offset" desc="" />
+            <Param type="int" name="count" desc="" />
+            <Param type="const void *" name="buffer" desc="" />
+            <Param type="int" name="instances" desc="" />
+        </Function>
+        <Function name="rlLoadTexture" retType="unsigned int" paramCount="5" desc="Load texture in GPU">
+            <Param type="const void *" name="data" desc="" />
+            <Param type="int" name="width" desc="" />
+            <Param type="int" name="height" desc="" />
+            <Param type="int" name="format" desc="" />
+            <Param type="int" name="mipmapCount" desc="" />
+        </Function>
+        <Function name="rlLoadTextureDepth" retType="unsigned int" paramCount="3" desc="Load depth texture/renderbuffer (to be attached to fbo)">
+            <Param type="int" name="width" desc="" />
+            <Param type="int" name="height" desc="" />
+            <Param type="bool" name="useRenderBuffer" desc="" />
+        </Function>
+        <Function name="rlLoadTextureCubemap" retType="unsigned int" paramCount="3" desc="Load texture cubemap">
+            <Param type="const void *" name="data" desc="" />
+            <Param type="int" name="size" desc="" />
+            <Param type="int" name="format" desc="" />
+        </Function>
+        <Function name="rlUpdateTexture" retType="void" paramCount="7" desc="Update GPU texture with new data">
+            <Param type="unsigned int" name="id" desc="" />
+            <Param type="int" name="offsetX" desc="" />
+            <Param type="int" name="offsetY" desc="" />
+            <Param type="int" name="width" desc="" />
+            <Param type="int" name="height" desc="" />
+            <Param type="int" name="format" desc="" />
+            <Param type="const void *" name="data" desc="" />
+        </Function>
+        <Function name="rlGetGlTextureFormats" retType="void" paramCount="4" desc="Get OpenGL internal formats">
+            <Param type="int" name="format" desc="" />
+            <Param type="unsigned int *" name="glInternalFormat" desc="" />
+            <Param type="unsigned int *" name="glFormat" desc="" />
+            <Param type="unsigned int *" name="glType" desc="" />
+        </Function>
+        <Function name="rlGetPixelFormatName" retType="const char *" paramCount="1" desc="Get name string for pixel format">
+            <Param type="unsigned int" name="format" desc="" />
+        </Function>
+        <Function name="rlUnloadTexture" retType="void" paramCount="1" desc="Unload texture from GPU memory">
+            <Param type="unsigned int" name="id" desc="" />
+        </Function>
+        <Function name="rlGenTextureMipmaps" retType="void" paramCount="5" desc="Generate mipmap data for selected texture">
+            <Param type="unsigned int" name="id" desc="" />
+            <Param type="int" name="width" desc="" />
+            <Param type="int" name="height" desc="" />
+            <Param type="int" name="format" desc="" />
+            <Param type="int *" name="mipmaps" desc="" />
+        </Function>
+        <Function name="rlReadTexturePixels" retType="void *" paramCount="4" desc="Read texture pixel data">
+            <Param type="unsigned int" name="id" desc="" />
+            <Param type="int" name="width" desc="" />
+            <Param type="int" name="height" desc="" />
+            <Param type="int" name="format" desc="" />
+        </Function>
+        <Function name="rlReadScreenPixels" retType="unsigned char *" paramCount="2" desc="Read screen pixel data (color buffer)">
+            <Param type="int" name="width" desc="" />
+            <Param type="int" name="height" desc="" />
+        </Function>
+        <Function name="rlLoadFramebuffer" retType="unsigned int" paramCount="2" desc="Load an empty framebuffer">
+            <Param type="int" name="width" desc="" />
+            <Param type="int" name="height" desc="" />
+        </Function>
+        <Function name="rlFramebufferAttach" retType="void" paramCount="5" desc="Attach texture/renderbuffer to a framebuffer">
+            <Param type="unsigned int" name="fboId" desc="" />
+            <Param type="unsigned int" name="texId" desc="" />
+            <Param type="int" name="attachType" desc="" />
+            <Param type="int" name="texType" desc="" />
+            <Param type="int" name="mipLevel" desc="" />
+        </Function>
+        <Function name="rlFramebufferComplete" retType="bool" paramCount="1" desc="Verify framebuffer is complete">
+            <Param type="unsigned int" name="id" desc="" />
+        </Function>
+        <Function name="rlUnloadFramebuffer" retType="void" paramCount="1" desc="Delete framebuffer from GPU">
+            <Param type="unsigned int" name="id" desc="" />
+        </Function>
+        <Function name="rlLoadShaderCode" retType="unsigned int" paramCount="2" desc="Load shader from code strings">
+            <Param type="const char *" name="vsCode" desc="" />
+            <Param type="const char *" name="fsCode" desc="" />
+        </Function>
+        <Function name="rlCompileShader" retType="unsigned int" paramCount="2" desc="Compile custom shader and return shader id (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)">
+            <Param type="const char *" name="shaderCode" desc="" />
+            <Param type="int" name="type" desc="" />
+        </Function>
+        <Function name="rlLoadShaderProgram" retType="unsigned int" paramCount="2" desc="Load custom shader program">
+            <Param type="unsigned int" name="vShaderId" desc="" />
+            <Param type="unsigned int" name="fShaderId" desc="" />
+        </Function>
+        <Function name="rlUnloadShaderProgram" retType="void" paramCount="1" desc="Unload shader program">
+            <Param type="unsigned int" name="id" desc="" />
+        </Function>
+        <Function name="rlGetLocationUniform" retType="int" paramCount="2" desc="Get shader location uniform">
+            <Param type="unsigned int" name="shaderId" desc="" />
+            <Param type="const char *" name="uniformName" desc="" />
+        </Function>
+        <Function name="rlGetLocationAttrib" retType="int" paramCount="2" desc="Get shader location attribute">
+            <Param type="unsigned int" name="shaderId" desc="" />
+            <Param type="const char *" name="attribName" desc="" />
+        </Function>
+        <Function name="rlSetUniform" retType="void" paramCount="4" desc="Set shader value uniform">
+            <Param type="int" name="locIndex" desc="" />
+            <Param type="const void *" name="value" desc="" />
+            <Param type="int" name="uniformType" desc="" />
+            <Param type="int" name="count" desc="" />
+        </Function>
+        <Function name="rlSetUniformMatrix" retType="void" paramCount="2" desc="Set shader value matrix">
+            <Param type="int" name="locIndex" desc="" />
+            <Param type="Matrix" name="mat" desc="" />
+        </Function>
+        <Function name="rlSetUniformSampler" retType="void" paramCount="2" desc="Set shader value sampler">
+            <Param type="int" name="locIndex" desc="" />
+            <Param type="unsigned int" name="textureId" desc="" />
+        </Function>
+        <Function name="rlSetShader" retType="void" paramCount="2" desc="Set shader currently active (id and locations)">
+            <Param type="unsigned int" name="id" desc="" />
+            <Param type="int *" name="locs" desc="" />
+        </Function>
+        <Function name="rlLoadComputeShaderProgram" retType="unsigned int" paramCount="1" desc="Load compute shader program">
+            <Param type="unsigned int" name="shaderId" desc="" />
+        </Function>
+        <Function name="rlComputeShaderDispatch" retType="void" paramCount="3" desc="Dispatch compute shader (equivalent to *draw* for graphics pipeline)">
+            <Param type="unsigned int" name="groupX" desc="" />
+            <Param type="unsigned int" name="groupY" desc="" />
+            <Param type="unsigned int" name="groupZ" desc="" />
+        </Function>
+        <Function name="rlLoadShaderBuffer" retType="unsigned int" paramCount="3" desc="Load shader storage buffer object (SSBO)">
+            <Param type="unsigned int" name="size" desc="" />
+            <Param type="const void *" name="data" desc="" />
+            <Param type="int" name="usageHint" desc="" />
+        </Function>
+        <Function name="rlUnloadShaderBuffer" retType="void" paramCount="1" desc="Unload shader storage buffer object (SSBO)">
+            <Param type="unsigned int" name="ssboId" desc="" />
+        </Function>
+        <Function name="rlUpdateShaderBuffer" retType="void" paramCount="4" desc="Update SSBO buffer data">
+            <Param type="unsigned int" name="id" desc="" />
+            <Param type="const void *" name="data" desc="" />
+            <Param type="unsigned int" name="dataSize" desc="" />
+            <Param type="unsigned int" name="offset" desc="" />
+        </Function>
+        <Function name="rlBindShaderBuffer" retType="void" paramCount="2" desc="Bind SSBO buffer">
+            <Param type="unsigned int" name="id" desc="" />
+            <Param type="unsigned int" name="index" desc="" />
+        </Function>
+        <Function name="rlReadShaderBuffer" retType="void" paramCount="4" desc="Read SSBO buffer data (GPU->CPU)">
+            <Param type="unsigned int" name="id" desc="" />
+            <Param type="void *" name="dest" desc="" />
+            <Param type="unsigned int" name="count" desc="" />
+            <Param type="unsigned int" name="offset" desc="" />
+        </Function>
+        <Function name="rlCopyShaderBuffer" retType="void" paramCount="5" desc="Copy SSBO data between buffers">
+            <Param type="unsigned int" name="destId" desc="" />
+            <Param type="unsigned int" name="srcId" desc="" />
+            <Param type="unsigned int" name="destOffset" desc="" />
+            <Param type="unsigned int" name="srcOffset" desc="" />
+            <Param type="unsigned int" name="count" desc="" />
+        </Function>
+        <Function name="rlGetShaderBufferSize" retType="unsigned int" paramCount="1" desc="Get SSBO buffer size">
+            <Param type="unsigned int" name="id" desc="" />
+        </Function>
+        <Function name="rlBindImageTexture" retType="void" paramCount="4" desc="Bind image texture">
+            <Param type="unsigned int" name="id" desc="" />
+            <Param type="unsigned int" name="index" desc="" />
+            <Param type="int" name="format" desc="" />
+            <Param type="bool" name="readonly" desc="" />
+        </Function>
+        <Function name="rlGetMatrixModelview" retType="Matrix" paramCount="0" desc="Get internal modelview matrix">
+        </Function>
+        <Function name="rlGetMatrixProjection" retType="Matrix" paramCount="0" desc="Get internal projection matrix">
+        </Function>
+        <Function name="rlGetMatrixTransform" retType="Matrix" paramCount="0" desc="Get internal accumulated transform matrix">
+        </Function>
+        <Function name="rlGetMatrixProjectionStereo" retType="Matrix" paramCount="1" desc="Get internal projection matrix for stereo render (selected eye)">
+            <Param type="int" name="eye" desc="" />
+        </Function>
+        <Function name="rlGetMatrixViewOffsetStereo" retType="Matrix" paramCount="1" desc="Get internal view offset matrix for stereo render (selected eye)">
+            <Param type="int" name="eye" desc="" />
+        </Function>
+        <Function name="rlSetMatrixProjection" retType="void" paramCount="1" desc="Set a custom projection matrix (replaces internal projection matrix)">
+            <Param type="Matrix" name="proj" desc="" />
+        </Function>
+        <Function name="rlSetMatrixModelview" retType="void" paramCount="1" desc="Set a custom modelview matrix (replaces internal modelview matrix)">
+            <Param type="Matrix" name="view" desc="" />
+        </Function>
+        <Function name="rlSetMatrixProjectionStereo" retType="void" paramCount="2" desc="Set eyes projection matrices for stereo rendering">
+            <Param type="Matrix" name="right" desc="" />
+            <Param type="Matrix" name="left" desc="" />
+        </Function>
+        <Function name="rlSetMatrixViewOffsetStereo" retType="void" paramCount="2" desc="Set eyes view offsets matrices for stereo rendering">
+            <Param type="Matrix" name="right" desc="" />
+            <Param type="Matrix" name="left" desc="" />
+        </Function>
+        <Function name="rlLoadDrawCube" retType="void" paramCount="0" desc="Load and draw a cube">
+        </Function>
+        <Function name="rlLoadDrawQuad" retType="void" paramCount="0" desc="Load and draw a quad">
+        </Function>
+    </Functions>
+</raylibAPI>
