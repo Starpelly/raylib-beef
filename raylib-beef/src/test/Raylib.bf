@@ -8,2072 +8,2072 @@ static
     /// Used internally for bindings.
     public const String RAYLIB_LIB = "raylib.dll";
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("InitWindow")]
     /// Initialize window and OpenGL context
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("InitWindow")]
     public static extern void InitWindow(int width, int height, char8 * title);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("WindowShouldClose")]
     /// Check if KEY_ESCAPE pressed or Close icon pressed
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("WindowShouldClose")]
     public static extern bool WindowShouldClose();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CloseWindow")]
     /// Close window and unload OpenGL context
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CloseWindow")]
     public static extern void CloseWindow();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsWindowReady")]
     /// Check if window has been initialized successfully
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsWindowReady")]
     public static extern bool IsWindowReady();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsWindowFullscreen")]
     /// Check if window is currently fullscreen
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsWindowFullscreen")]
     public static extern bool IsWindowFullscreen();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsWindowHidden")]
     /// Check if window is currently hidden (only PLATFORM_DESKTOP)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsWindowHidden")]
     public static extern bool IsWindowHidden();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsWindowMinimized")]
     /// Check if window is currently minimized (only PLATFORM_DESKTOP)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsWindowMinimized")]
     public static extern bool IsWindowMinimized();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsWindowMaximized")]
     /// Check if window is currently maximized (only PLATFORM_DESKTOP)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsWindowMaximized")]
     public static extern bool IsWindowMaximized();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsWindowFocused")]
     /// Check if window is currently focused (only PLATFORM_DESKTOP)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsWindowFocused")]
     public static extern bool IsWindowFocused();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsWindowResized")]
     /// Check if window has been resized last frame
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsWindowResized")]
     public static extern bool IsWindowResized();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsWindowState")]
     /// Check if one specific window flag is enabled
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsWindowState")]
     public static extern bool IsWindowState(int flag);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetWindowState")]
     /// Set window configuration state using flags (only PLATFORM_DESKTOP)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetWindowState")]
     public static extern void SetWindowState(int flags);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ClearWindowState")]
     /// Clear window configuration state flags
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ClearWindowState")]
     public static extern void ClearWindowState(int flags);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ToggleFullscreen")]
     /// Toggle window state: fullscreen/windowed (only PLATFORM_DESKTOP)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ToggleFullscreen")]
     public static extern void ToggleFullscreen();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("MaximizeWindow")]
     /// Set window state: maximized, if resizable (only PLATFORM_DESKTOP)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("MaximizeWindow")]
     public static extern void MaximizeWindow();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("MinimizeWindow")]
     /// Set window state: minimized, if resizable (only PLATFORM_DESKTOP)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("MinimizeWindow")]
     public static extern void MinimizeWindow();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("RestoreWindow")]
     /// Set window state: not minimized/maximized (only PLATFORM_DESKTOP)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("RestoreWindow")]
     public static extern void RestoreWindow();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetWindowIcon")]
     /// Set icon for window (single image, RGBA 32bit, only PLATFORM_DESKTOP)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetWindowIcon")]
     public static extern void SetWindowIcon(Image image);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetWindowIcons")]
     /// Set icon for window (multiple images, RGBA 32bit, only PLATFORM_DESKTOP)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetWindowIcons")]
     public static extern void SetWindowIcons(Image * images, int count);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetWindowTitle")]
     /// Set title for window (only PLATFORM_DESKTOP)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetWindowTitle")]
     public static extern void SetWindowTitle(char8 * title);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetWindowPosition")]
     /// Set window position on screen (only PLATFORM_DESKTOP)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetWindowPosition")]
     public static extern void SetWindowPosition(int x, int y);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetWindowMonitor")]
     /// Set monitor for the current window (fullscreen mode)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetWindowMonitor")]
     public static extern void SetWindowMonitor(int monitor);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetWindowMinSize")]
     /// Set window minimum dimensions (for FLAG_WINDOW_RESIZABLE)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetWindowMinSize")]
     public static extern void SetWindowMinSize(int width, int height);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetWindowSize")]
     /// Set window dimensions
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetWindowSize")]
     public static extern void SetWindowSize(int width, int height);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetWindowOpacity")]
     /// Set window opacity [0.0f..1.0f] (only PLATFORM_DESKTOP)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetWindowOpacity")]
     public static extern void SetWindowOpacity(float opacity);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetWindowHandle")]
     /// Get native window handle
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetWindowHandle")]
     public static extern void * GetWindowHandle();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetScreenWidth")]
     /// Get current screen width
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetScreenWidth")]
     public static extern int GetScreenWidth();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetScreenHeight")]
     /// Get current screen height
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetScreenHeight")]
     public static extern int GetScreenHeight();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetRenderWidth")]
     /// Get current render width (it considers HiDPI)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetRenderWidth")]
     public static extern int GetRenderWidth();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetRenderHeight")]
     /// Get current render height (it considers HiDPI)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetRenderHeight")]
     public static extern int GetRenderHeight();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMonitorCount")]
     /// Get number of connected monitors
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMonitorCount")]
     public static extern int GetMonitorCount();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetCurrentMonitor")]
     /// Get current connected monitor
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetCurrentMonitor")]
     public static extern int GetCurrentMonitor();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMonitorPosition")]
     /// Get specified monitor position
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMonitorPosition")]
     public static extern Vector2 GetMonitorPosition(int monitor);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMonitorWidth")]
     /// Get specified monitor width (current video mode used by monitor)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMonitorWidth")]
     public static extern int GetMonitorWidth(int monitor);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMonitorHeight")]
     /// Get specified monitor height (current video mode used by monitor)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMonitorHeight")]
     public static extern int GetMonitorHeight(int monitor);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMonitorPhysicalWidth")]
     /// Get specified monitor physical width in millimetres
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMonitorPhysicalWidth")]
     public static extern int GetMonitorPhysicalWidth(int monitor);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMonitorPhysicalHeight")]
     /// Get specified monitor physical height in millimetres
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMonitorPhysicalHeight")]
     public static extern int GetMonitorPhysicalHeight(int monitor);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMonitorRefreshRate")]
     /// Get specified monitor refresh rate
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMonitorRefreshRate")]
     public static extern int GetMonitorRefreshRate(int monitor);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetWindowPosition")]
     /// Get window position XY on monitor
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetWindowPosition")]
     public static extern Vector2 GetWindowPosition();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetWindowScaleDPI")]
     /// Get window scale DPI factor
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetWindowScaleDPI")]
     public static extern Vector2 GetWindowScaleDPI();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMonitorName")]
     /// Get the human-readable, UTF-8 encoded name of the primary monitor
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMonitorName")]
     public static extern char8 * GetMonitorName(int monitor);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetClipboardText")]
     /// Set clipboard text content
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetClipboardText")]
     public static extern void SetClipboardText(char8 * text);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetClipboardText")]
     /// Get clipboard text content
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetClipboardText")]
     public static extern char8 * GetClipboardText();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EnableEventWaiting")]
     /// Enable waiting for events on EndDrawing(), no automatic event polling
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EnableEventWaiting")]
     public static extern void EnableEventWaiting();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DisableEventWaiting")]
     /// Disable waiting for events on EndDrawing(), automatic events polling
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DisableEventWaiting")]
     public static extern void DisableEventWaiting();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SwapScreenBuffer")]
     /// Swap back buffer with front buffer (screen drawing)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SwapScreenBuffer")]
     public static extern void SwapScreenBuffer();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("PollInputEvents")]
     /// Register all input events
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("PollInputEvents")]
     public static extern void PollInputEvents();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("WaitTime")]
     /// Wait for some time (halt program execution)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("WaitTime")]
     public static extern void WaitTime(double seconds);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ShowCursor")]
     /// Shows cursor
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ShowCursor")]
     public static extern void ShowCursor();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("HideCursor")]
     /// Hides cursor
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("HideCursor")]
     public static extern void HideCursor();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsCursorHidden")]
     /// Check if cursor is not visible
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsCursorHidden")]
     public static extern bool IsCursorHidden();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EnableCursor")]
     /// Enables cursor (unlock cursor)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EnableCursor")]
     public static extern void EnableCursor();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DisableCursor")]
     /// Disables cursor (lock cursor)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DisableCursor")]
     public static extern void DisableCursor();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsCursorOnScreen")]
     /// Check if cursor is on the screen
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsCursorOnScreen")]
     public static extern bool IsCursorOnScreen();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ClearBackground")]
     /// Set background color (framebuffer clear color)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ClearBackground")]
     public static extern void ClearBackground(Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("BeginDrawing")]
     /// Setup canvas (framebuffer) to start drawing
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("BeginDrawing")]
     public static extern void BeginDrawing();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EndDrawing")]
     /// End canvas drawing and swap buffers (double buffering)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EndDrawing")]
     public static extern void EndDrawing();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("BeginMode2D")]
     /// Begin 2D mode with custom camera (2D)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("BeginMode2D")]
     public static extern void BeginMode2D(Camera2D camera);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EndMode2D")]
     /// Ends 2D mode with custom camera
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EndMode2D")]
     public static extern void EndMode2D();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("BeginMode3D")]
     /// Begin 3D mode with custom camera (3D)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("BeginMode3D")]
     public static extern void BeginMode3D(Camera3D camera);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EndMode3D")]
     /// Ends 3D mode and returns to default 2D orthographic mode
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EndMode3D")]
     public static extern void EndMode3D();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("BeginTextureMode")]
     /// Begin drawing to render texture
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("BeginTextureMode")]
     public static extern void BeginTextureMode(RenderTexture2D target);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EndTextureMode")]
     /// Ends drawing to render texture
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EndTextureMode")]
     public static extern void EndTextureMode();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("BeginShaderMode")]
     /// Begin custom shader drawing
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("BeginShaderMode")]
     public static extern void BeginShaderMode(Shader shader);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EndShaderMode")]
     /// End custom shader drawing (use default shader)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EndShaderMode")]
     public static extern void EndShaderMode();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("BeginBlendMode")]
     /// Begin blending mode (alpha, additive, multiplied, subtract, custom)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("BeginBlendMode")]
     public static extern void BeginBlendMode(int mode);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EndBlendMode")]
     /// End blending mode (reset to default: alpha blending)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EndBlendMode")]
     public static extern void EndBlendMode();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("BeginScissorMode")]
     /// Begin scissor mode (define screen area for following drawing)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("BeginScissorMode")]
     public static extern void BeginScissorMode(int x, int y, int width, int height);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EndScissorMode")]
     /// End scissor mode
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EndScissorMode")]
     public static extern void EndScissorMode();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("BeginVrStereoMode")]
     /// Begin stereo rendering (requires VR simulator)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("BeginVrStereoMode")]
     public static extern void BeginVrStereoMode(VrStereoConfig config);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EndVrStereoMode")]
     /// End stereo rendering (requires VR simulator)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EndVrStereoMode")]
     public static extern void EndVrStereoMode();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadVrStereoConfig")]
     /// Load VR stereo config for VR simulator device parameters
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadVrStereoConfig")]
     public static extern VrStereoConfig LoadVrStereoConfig(VrDeviceInfo device);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadVrStereoConfig")]
     /// Unload VR stereo config
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadVrStereoConfig")]
     public static extern void UnloadVrStereoConfig(VrStereoConfig config);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadShader")]
     /// Load shader from files and bind default locations
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadShader")]
     public static extern Shader LoadShader(char8 * vsFileName, char8 * fsFileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadShaderFromMemory")]
     /// Load shader from code strings and bind default locations
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadShaderFromMemory")]
     public static extern Shader LoadShaderFromMemory(char8 * vsCode, char8 * fsCode);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsShaderReady")]
     /// Check if a shader is ready
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsShaderReady")]
     public static extern bool IsShaderReady(Shader shader);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetShaderLocation")]
     /// Get shader uniform location
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetShaderLocation")]
     public static extern int GetShaderLocation(Shader shader, char8 * uniformName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetShaderLocationAttrib")]
     /// Get shader attribute location
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetShaderLocationAttrib")]
     public static extern int GetShaderLocationAttrib(Shader shader, char8 * attribName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetShaderValue")]
     /// Set shader uniform value
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetShaderValue")]
     public static extern void SetShaderValue(Shader shader, int locIndex, void * value, int uniformType);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetShaderValueV")]
     /// Set shader uniform value vector
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetShaderValueV")]
     public static extern void SetShaderValueV(Shader shader, int locIndex, void * value, int uniformType, int count);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetShaderValueMatrix")]
     /// Set shader uniform value (matrix 4x4)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetShaderValueMatrix")]
     public static extern void SetShaderValueMatrix(Shader shader, int locIndex, Matrix mat);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetShaderValueTexture")]
     /// Set shader uniform value for texture (sampler2d)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetShaderValueTexture")]
     public static extern void SetShaderValueTexture(Shader shader, int locIndex, Texture2D texture);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadShader")]
     /// Unload shader from GPU memory (VRAM)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadShader")]
     public static extern void UnloadShader(Shader shader);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMouseRay")]
     /// Get a ray trace from mouse position
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMouseRay")]
     public static extern Ray GetMouseRay(Vector2 mousePosition, Camera camera);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetCameraMatrix")]
     /// Get camera transform matrix (view matrix)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetCameraMatrix")]
     public static extern Matrix GetCameraMatrix(Camera camera);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetCameraMatrix2D")]
     /// Get camera 2d transform matrix
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetCameraMatrix2D")]
     public static extern Matrix GetCameraMatrix2D(Camera2D camera);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetWorldToScreen")]
     /// Get the screen space position for a 3d world space position
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetWorldToScreen")]
     public static extern Vector2 GetWorldToScreen(Vector3 position, Camera camera);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetScreenToWorld2D")]
     /// Get the world space position for a 2d camera screen space position
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetScreenToWorld2D")]
     public static extern Vector2 GetScreenToWorld2D(Vector2 position, Camera2D camera);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetWorldToScreenEx")]
     /// Get size position for a 3d world space position
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetWorldToScreenEx")]
     public static extern Vector2 GetWorldToScreenEx(Vector3 position, Camera camera, int width, int height);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetWorldToScreen2D")]
     /// Get the screen space position for a 2d camera world space position
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetWorldToScreen2D")]
     public static extern Vector2 GetWorldToScreen2D(Vector2 position, Camera2D camera);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetTargetFPS")]
     /// Set target FPS (maximum)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetTargetFPS")]
     public static extern void SetTargetFPS(int fps);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetFPS")]
     /// Get current FPS
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetFPS")]
     public static extern int GetFPS();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetFrameTime")]
     /// Get time in seconds for last frame drawn (delta time)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetFrameTime")]
     public static extern float GetFrameTime();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetTime")]
     /// Get elapsed time in seconds since InitWindow()
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetTime")]
     public static extern double GetTime();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetRandomValue")]
     /// Get a random value between min and max (both included)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetRandomValue")]
     public static extern int GetRandomValue(int min, int max);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetRandomSeed")]
     /// Set the seed for the random number generator
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetRandomSeed")]
     public static extern void SetRandomSeed(int seed);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TakeScreenshot")]
     /// Takes a screenshot of current screen (filename extension defines format)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TakeScreenshot")]
     public static extern void TakeScreenshot(char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetConfigFlags")]
     /// Setup init configuration flags (view FLAGS)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetConfigFlags")]
     public static extern void SetConfigFlags(int flags);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TraceLog")]
     /// Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TraceLog")]
     public static extern void TraceLog(int logLevel, char8 * text);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetTraceLogLevel")]
     /// Set the current threshold (minimum) log level
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetTraceLogLevel")]
     public static extern void SetTraceLogLevel(int logLevel);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("MemAlloc")]
     /// Internal memory allocator
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("MemAlloc")]
     public static extern void * MemAlloc(int size);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("MemRealloc")]
     /// Internal memory reallocator
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("MemRealloc")]
     public static extern void * MemRealloc(void * ptr, int size);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("MemFree")]
     /// Internal memory free
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("MemFree")]
     public static extern void MemFree(void * ptr);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("OpenURL")]
     /// Open URL with default system browser (if available)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("OpenURL")]
     public static extern void OpenURL(char8 * url);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetTraceLogCallback")]
     /// Set custom trace log
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetTraceLogCallback")]
     public static extern void SetTraceLogCallback(TraceLogCallback callback);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetLoadFileDataCallback")]
     /// Set custom file binary data loader
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetLoadFileDataCallback")]
     public static extern void SetLoadFileDataCallback(LoadFileDataCallback callback);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetSaveFileDataCallback")]
     /// Set custom file binary data saver
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetSaveFileDataCallback")]
     public static extern void SetSaveFileDataCallback(SaveFileDataCallback callback);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetLoadFileTextCallback")]
     /// Set custom file text data loader
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetLoadFileTextCallback")]
     public static extern void SetLoadFileTextCallback(LoadFileTextCallback callback);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetSaveFileTextCallback")]
     /// Set custom file text data saver
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetSaveFileTextCallback")]
     public static extern void SetSaveFileTextCallback(SaveFileTextCallback callback);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadFileData")]
     /// Load file data as byte array (read)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadFileData")]
     public static extern char8 * LoadFileData(char8 * fileName, int * bytesRead);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadFileData")]
     /// Unload file data allocated by LoadFileData()
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadFileData")]
     public static extern void UnloadFileData(char8 * data);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SaveFileData")]
     /// Save data to file from byte array (write), returns true on success
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SaveFileData")]
     public static extern bool SaveFileData(char8 * fileName, void * data, int bytesToWrite);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ExportDataAsCode")]
     /// Export data to code (.h), returns true on success
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ExportDataAsCode")]
     public static extern bool ExportDataAsCode(char8 * data, int size, char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadFileText")]
     /// Load text data from file (read), returns a '\0' terminated string
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadFileText")]
     public static extern char8 * LoadFileText(char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadFileText")]
     /// Unload file text data allocated by LoadFileText()
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadFileText")]
     public static extern void UnloadFileText(char8 * text);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SaveFileText")]
     /// Save text data to file (write), string must be '\0' terminated, returns true on success
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SaveFileText")]
     public static extern bool SaveFileText(char8 * fileName, char8 * text);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("FileExists")]
     /// Check if file exists
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("FileExists")]
     public static extern bool FileExists(char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DirectoryExists")]
     /// Check if a directory path exists
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DirectoryExists")]
     public static extern bool DirectoryExists(char8 * dirPath);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsFileExtension")]
     /// Check file extension (including point: .png, .wav)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsFileExtension")]
     public static extern bool IsFileExtension(char8 * fileName, char8 * ext);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetFileLength")]
     /// Get file length in bytes (NOTE: GetFileSize() conflicts with windows.h)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetFileLength")]
     public static extern int GetFileLength(char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetFileExtension")]
     /// Get pointer to extension for a filename string (includes dot: '.png')
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetFileExtension")]
     public static extern char8 * GetFileExtension(char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetFileName")]
     /// Get pointer to filename for a path string
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetFileName")]
     public static extern char8 * GetFileName(char8 * filePath);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetFileNameWithoutExt")]
     /// Get filename string without extension (uses static string)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetFileNameWithoutExt")]
     public static extern char8 * GetFileNameWithoutExt(char8 * filePath);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetDirectoryPath")]
     /// Get full path for a given fileName with path (uses static string)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetDirectoryPath")]
     public static extern char8 * GetDirectoryPath(char8 * filePath);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetPrevDirectoryPath")]
     /// Get previous directory path for a given path (uses static string)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetPrevDirectoryPath")]
     public static extern char8 * GetPrevDirectoryPath(char8 * dirPath);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetWorkingDirectory")]
     /// Get current working directory (uses static string)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetWorkingDirectory")]
     public static extern char8 * GetWorkingDirectory();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetApplicationDirectory")]
     /// Get the directory if the running application (uses static string)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetApplicationDirectory")]
     public static extern char8 * GetApplicationDirectory();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ChangeDirectory")]
     /// Change working directory, return true on success
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ChangeDirectory")]
     public static extern bool ChangeDirectory(char8 * dir);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsPathFile")]
     /// Check if a given path is a file or a directory
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsPathFile")]
     public static extern bool IsPathFile(char8 * path);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadDirectoryFiles")]
     /// Load directory filepaths
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadDirectoryFiles")]
     public static extern FilePathList LoadDirectoryFiles(char8 * dirPath);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadDirectoryFilesEx")]
     /// Load directory filepaths with extension filtering and recursive directory scan
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadDirectoryFilesEx")]
     public static extern FilePathList LoadDirectoryFilesEx(char8 * basePath, char8 * filter, bool scanSubdirs);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadDirectoryFiles")]
     /// Unload filepaths
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadDirectoryFiles")]
     public static extern void UnloadDirectoryFiles(FilePathList files);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsFileDropped")]
     /// Check if a file has been dropped into window
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsFileDropped")]
     public static extern bool IsFileDropped();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadDroppedFiles")]
     /// Load dropped filepaths
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadDroppedFiles")]
     public static extern FilePathList LoadDroppedFiles();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadDroppedFiles")]
     /// Unload dropped filepaths
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadDroppedFiles")]
     public static extern void UnloadDroppedFiles(FilePathList files);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetFileModTime")]
     /// Get file modification time (last write time)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetFileModTime")]
     public static extern int32 GetFileModTime(char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CompressData")]
     /// Compress data (DEFLATE algorithm), memory must be MemFree()
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CompressData")]
     public static extern char8 * CompressData(char8 * data, int dataSize, int * compDataSize);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DecompressData")]
     /// Decompress data (DEFLATE algorithm), memory must be MemFree()
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DecompressData")]
     public static extern char8 * DecompressData(char8 * compData, int compDataSize, int * dataSize);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EncodeDataBase64")]
     /// Encode data to Base64 string, memory must be MemFree()
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("EncodeDataBase64")]
     public static extern char8 * EncodeDataBase64(char8 * data, int dataSize, int * outputSize);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DecodeDataBase64")]
     /// Decode Base64 string data, memory must be MemFree()
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DecodeDataBase64")]
     public static extern char8 * DecodeDataBase64(char8 * data, int * outputSize);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsKeyPressed")]
     /// Check if a key has been pressed once
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsKeyPressed")]
     public static extern bool IsKeyPressed(int key);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsKeyDown")]
     /// Check if a key is being pressed
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsKeyDown")]
     public static extern bool IsKeyDown(int key);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsKeyReleased")]
     /// Check if a key has been released once
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsKeyReleased")]
     public static extern bool IsKeyReleased(int key);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsKeyUp")]
     /// Check if a key is NOT being pressed
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsKeyUp")]
     public static extern bool IsKeyUp(int key);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetExitKey")]
     /// Set a custom key to exit program (default is ESC)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetExitKey")]
     public static extern void SetExitKey(int key);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetKeyPressed")]
     /// Get key pressed (keycode), call it multiple times for keys queued, returns 0 when the queue is empty
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetKeyPressed")]
     public static extern int GetKeyPressed();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetCharPressed")]
     /// Get char pressed (unicode), call it multiple times for chars queued, returns 0 when the queue is empty
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetCharPressed")]
     public static extern int GetCharPressed();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsGamepadAvailable")]
     /// Check if a gamepad is available
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsGamepadAvailable")]
     public static extern bool IsGamepadAvailable(int gamepad);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGamepadName")]
     /// Get gamepad internal name id
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGamepadName")]
     public static extern char8 * GetGamepadName(int gamepad);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsGamepadButtonPressed")]
     /// Check if a gamepad button has been pressed once
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsGamepadButtonPressed")]
     public static extern bool IsGamepadButtonPressed(int gamepad, int button);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsGamepadButtonDown")]
     /// Check if a gamepad button is being pressed
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsGamepadButtonDown")]
     public static extern bool IsGamepadButtonDown(int gamepad, int button);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsGamepadButtonReleased")]
     /// Check if a gamepad button has been released once
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsGamepadButtonReleased")]
     public static extern bool IsGamepadButtonReleased(int gamepad, int button);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsGamepadButtonUp")]
     /// Check if a gamepad button is NOT being pressed
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsGamepadButtonUp")]
     public static extern bool IsGamepadButtonUp(int gamepad, int button);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGamepadButtonPressed")]
     /// Get the last gamepad button pressed
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGamepadButtonPressed")]
     public static extern int GetGamepadButtonPressed();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGamepadAxisCount")]
     /// Get gamepad axis count for a gamepad
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGamepadAxisCount")]
     public static extern int GetGamepadAxisCount(int gamepad);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGamepadAxisMovement")]
     /// Get axis movement value for a gamepad axis
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGamepadAxisMovement")]
     public static extern float GetGamepadAxisMovement(int gamepad, int axis);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetGamepadMappings")]
     /// Set internal gamepad mappings (SDL_GameControllerDB)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetGamepadMappings")]
     public static extern int SetGamepadMappings(char8 * mappings);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsMouseButtonPressed")]
     /// Check if a mouse button has been pressed once
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsMouseButtonPressed")]
     public static extern bool IsMouseButtonPressed(int button);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsMouseButtonDown")]
     /// Check if a mouse button is being pressed
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsMouseButtonDown")]
     public static extern bool IsMouseButtonDown(int button);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsMouseButtonReleased")]
     /// Check if a mouse button has been released once
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsMouseButtonReleased")]
     public static extern bool IsMouseButtonReleased(int button);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsMouseButtonUp")]
     /// Check if a mouse button is NOT being pressed
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsMouseButtonUp")]
     public static extern bool IsMouseButtonUp(int button);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMouseX")]
     /// Get mouse position X
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMouseX")]
     public static extern int GetMouseX();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMouseY")]
     /// Get mouse position Y
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMouseY")]
     public static extern int GetMouseY();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMousePosition")]
     /// Get mouse position XY
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMousePosition")]
     public static extern Vector2 GetMousePosition();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMouseDelta")]
     /// Get mouse delta between frames
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMouseDelta")]
     public static extern Vector2 GetMouseDelta();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetMousePosition")]
     /// Set mouse position XY
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetMousePosition")]
     public static extern void SetMousePosition(int x, int y);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetMouseOffset")]
     /// Set mouse offset
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetMouseOffset")]
     public static extern void SetMouseOffset(int offsetX, int offsetY);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetMouseScale")]
     /// Set mouse scaling
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetMouseScale")]
     public static extern void SetMouseScale(float scaleX, float scaleY);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMouseWheelMove")]
     /// Get mouse wheel movement for X or Y, whichever is larger
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMouseWheelMove")]
     public static extern float GetMouseWheelMove();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMouseWheelMoveV")]
     /// Get mouse wheel movement for both X and Y
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMouseWheelMoveV")]
     public static extern Vector2 GetMouseWheelMoveV();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetMouseCursor")]
     /// Set mouse cursor
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetMouseCursor")]
     public static extern void SetMouseCursor(int cursor);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetTouchX")]
     /// Get touch position X for touch point 0 (relative to screen size)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetTouchX")]
     public static extern int GetTouchX();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetTouchY")]
     /// Get touch position Y for touch point 0 (relative to screen size)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetTouchY")]
     public static extern int GetTouchY();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetTouchPosition")]
     /// Get touch position XY for a touch point index (relative to screen size)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetTouchPosition")]
     public static extern Vector2 GetTouchPosition(int index);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetTouchPointId")]
     /// Get touch point identifier for given index
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetTouchPointId")]
     public static extern int GetTouchPointId(int index);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetTouchPointCount")]
     /// Get number of touch points
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetTouchPointCount")]
     public static extern int GetTouchPointCount();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetGesturesEnabled")]
     /// Enable a set of gestures using flags
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetGesturesEnabled")]
     public static extern void SetGesturesEnabled(int flags);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsGestureDetected")]
     /// Check if a gesture have been detected
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsGestureDetected")]
     public static extern bool IsGestureDetected(int gesture);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGestureDetected")]
     /// Get latest detected gesture
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGestureDetected")]
     public static extern int GetGestureDetected();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGestureHoldDuration")]
     /// Get gesture hold time in milliseconds
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGestureHoldDuration")]
     public static extern float GetGestureHoldDuration();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGestureDragVector")]
     /// Get gesture drag vector
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGestureDragVector")]
     public static extern Vector2 GetGestureDragVector();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGestureDragAngle")]
     /// Get gesture drag angle
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGestureDragAngle")]
     public static extern float GetGestureDragAngle();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGesturePinchVector")]
     /// Get gesture pinch delta
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGesturePinchVector")]
     public static extern Vector2 GetGesturePinchVector();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGesturePinchAngle")]
     /// Get gesture pinch angle
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGesturePinchAngle")]
     public static extern float GetGesturePinchAngle();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UpdateCamera")]
     /// Update camera position for selected mode
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UpdateCamera")]
     public static extern void UpdateCamera(Camera * camera, int mode);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UpdateCameraPro")]
     /// Update camera movement/rotation
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UpdateCameraPro")]
     public static extern void UpdateCameraPro(Camera * camera, Vector3 movement, Vector3 rotation, float zoom);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetShapesTexture")]
     /// Set texture and rectangle to be used on shapes drawing
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetShapesTexture")]
     public static extern void SetShapesTexture(Texture2D texture, Rectangle source);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawPixel")]
     /// Draw a pixel
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawPixel")]
     public static extern void DrawPixel(int posX, int posY, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawPixelV")]
     /// Draw a pixel (Vector version)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawPixelV")]
     public static extern void DrawPixelV(Vector2 position, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawLine")]
     /// Draw a line
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawLine")]
     public static extern void DrawLine(int startPosX, int startPosY, int endPosX, int endPosY, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawLineV")]
     /// Draw a line (Vector version)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawLineV")]
     public static extern void DrawLineV(Vector2 startPos, Vector2 endPos, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawLineEx")]
     /// Draw a line defining thickness
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawLineEx")]
     public static extern void DrawLineEx(Vector2 startPos, Vector2 endPos, float thick, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawLineBezier")]
     /// Draw a line using cubic-bezier curves in-out
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawLineBezier")]
     public static extern void DrawLineBezier(Vector2 startPos, Vector2 endPos, float thick, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawLineBezierQuad")]
     /// Draw line using quadratic bezier curves with a control point
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawLineBezierQuad")]
     public static extern void DrawLineBezierQuad(Vector2 startPos, Vector2 endPos, Vector2 controlPos, float thick, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawLineBezierCubic")]
     /// Draw line using cubic bezier curves with 2 control points
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawLineBezierCubic")]
     public static extern void DrawLineBezierCubic(Vector2 startPos, Vector2 endPos, Vector2 startControlPos, Vector2 endControlPos, float thick, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawLineStrip")]
     /// Draw lines sequence
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawLineStrip")]
     public static extern void DrawLineStrip(Vector2 * points, int pointCount, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCircle")]
     /// Draw a color-filled circle
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCircle")]
     public static extern void DrawCircle(int centerX, int centerY, float radius, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCircleSector")]
     /// Draw a piece of a circle
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCircleSector")]
     public static extern void DrawCircleSector(Vector2 center, float radius, float startAngle, float endAngle, int segments, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCircleSectorLines")]
     /// Draw circle sector outline
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCircleSectorLines")]
     public static extern void DrawCircleSectorLines(Vector2 center, float radius, float startAngle, float endAngle, int segments, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCircleGradient")]
     /// Draw a gradient-filled circle
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCircleGradient")]
     public static extern void DrawCircleGradient(int centerX, int centerY, float radius, Color color1, Color color2);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCircleV")]
     /// Draw a color-filled circle (Vector version)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCircleV")]
     public static extern void DrawCircleV(Vector2 center, float radius, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCircleLines")]
     /// Draw circle outline
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCircleLines")]
     public static extern void DrawCircleLines(int centerX, int centerY, float radius, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawEllipse")]
     /// Draw ellipse
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawEllipse")]
     public static extern void DrawEllipse(int centerX, int centerY, float radiusH, float radiusV, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawEllipseLines")]
     /// Draw ellipse outline
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawEllipseLines")]
     public static extern void DrawEllipseLines(int centerX, int centerY, float radiusH, float radiusV, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRing")]
     /// Draw ring
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRing")]
     public static extern void DrawRing(Vector2 center, float innerRadius, float outerRadius, float startAngle, float endAngle, int segments, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRingLines")]
     /// Draw ring outline
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRingLines")]
     public static extern void DrawRingLines(Vector2 center, float innerRadius, float outerRadius, float startAngle, float endAngle, int segments, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangle")]
     /// Draw a color-filled rectangle
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangle")]
     public static extern void DrawRectangle(int posX, int posY, int width, int height, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangleV")]
     /// Draw a color-filled rectangle (Vector version)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangleV")]
     public static extern void DrawRectangleV(Vector2 position, Vector2 size, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangleRec")]
     /// Draw a color-filled rectangle
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangleRec")]
     public static extern void DrawRectangleRec(Rectangle rec, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectanglePro")]
     /// Draw a color-filled rectangle with pro parameters
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectanglePro")]
     public static extern void DrawRectanglePro(Rectangle rec, Vector2 origin, float rotation, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangleGradientV")]
     /// Draw a vertical-gradient-filled rectangle
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangleGradientV")]
     public static extern void DrawRectangleGradientV(int posX, int posY, int width, int height, Color color1, Color color2);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangleGradientH")]
     /// Draw a horizontal-gradient-filled rectangle
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangleGradientH")]
     public static extern void DrawRectangleGradientH(int posX, int posY, int width, int height, Color color1, Color color2);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangleGradientEx")]
     /// Draw a gradient-filled rectangle with custom vertex colors
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangleGradientEx")]
     public static extern void DrawRectangleGradientEx(Rectangle rec, Color col1, Color col2, Color col3, Color col4);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangleLines")]
     /// Draw rectangle outline
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangleLines")]
     public static extern void DrawRectangleLines(int posX, int posY, int width, int height, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangleLinesEx")]
     /// Draw rectangle outline with extended parameters
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangleLinesEx")]
     public static extern void DrawRectangleLinesEx(Rectangle rec, float lineThick, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangleRounded")]
     /// Draw rectangle with rounded edges
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangleRounded")]
     public static extern void DrawRectangleRounded(Rectangle rec, float roundness, int segments, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangleRoundedLines")]
     /// Draw rectangle with rounded edges outline
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRectangleRoundedLines")]
     public static extern void DrawRectangleRoundedLines(Rectangle rec, float roundness, int segments, float lineThick, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTriangle")]
     /// Draw a color-filled triangle (vertex in counter-clockwise order!)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTriangle")]
     public static extern void DrawTriangle(Vector2 v1, Vector2 v2, Vector2 v3, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTriangleLines")]
     /// Draw triangle outline (vertex in counter-clockwise order!)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTriangleLines")]
     public static extern void DrawTriangleLines(Vector2 v1, Vector2 v2, Vector2 v3, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTriangleFan")]
     /// Draw a triangle fan defined by points (first vertex is the center)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTriangleFan")]
     public static extern void DrawTriangleFan(Vector2 * points, int pointCount, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTriangleStrip")]
     /// Draw a triangle strip defined by points
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTriangleStrip")]
     public static extern void DrawTriangleStrip(Vector2 * points, int pointCount, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawPoly")]
     /// Draw a regular polygon (Vector version)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawPoly")]
     public static extern void DrawPoly(Vector2 center, int sides, float radius, float rotation, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawPolyLines")]
     /// Draw a polygon outline of n sides
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawPolyLines")]
     public static extern void DrawPolyLines(Vector2 center, int sides, float radius, float rotation, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawPolyLinesEx")]
     /// Draw a polygon outline of n sides with extended parameters
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawPolyLinesEx")]
     public static extern void DrawPolyLinesEx(Vector2 center, int sides, float radius, float rotation, float lineThick, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionRecs")]
     /// Check collision between two rectangles
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionRecs")]
     public static extern bool CheckCollisionRecs(Rectangle rec1, Rectangle rec2);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionCircles")]
     /// Check collision between two circles
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionCircles")]
     public static extern bool CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionCircleRec")]
     /// Check collision between circle and rectangle
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionCircleRec")]
     public static extern bool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionPointRec")]
     /// Check if point is inside rectangle
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionPointRec")]
     public static extern bool CheckCollisionPointRec(Vector2 point, Rectangle rec);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionPointCircle")]
     /// Check if point is inside circle
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionPointCircle")]
     public static extern bool CheckCollisionPointCircle(Vector2 point, Vector2 center, float radius);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionPointTriangle")]
     /// Check if point is inside a triangle
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionPointTriangle")]
     public static extern bool CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionPointPoly")]
     /// Check if point is within a polygon described by array of vertices
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionPointPoly")]
     public static extern bool CheckCollisionPointPoly(Vector2 point, Vector2 * points, int pointCount);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionLines")]
     /// Check the collision between two lines defined by two points each, returns collision point by reference
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionLines")]
     public static extern bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2 * collisionPoint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionPointLine")]
     /// Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionPointLine")]
     public static extern bool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int threshold);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetCollisionRec")]
     /// Get collision rectangle for two rectangles collision
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetCollisionRec")]
     public static extern Rectangle GetCollisionRec(Rectangle rec1, Rectangle rec2);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadImage")]
     /// Load image from file into CPU memory (RAM)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadImage")]
     public static extern Image LoadImage(char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadImageRaw")]
     /// Load image from RAW file data
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadImageRaw")]
     public static extern Image LoadImageRaw(char8 * fileName, int width, int height, int format, int headerSize);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadImageAnim")]
     /// Load image sequence from file (frames appended to image.data)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadImageAnim")]
     public static extern Image LoadImageAnim(char8 * fileName, int * frames);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadImageFromMemory")]
     /// Load image from memory buffer, fileType refers to extension: i.e. '.png'
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadImageFromMemory")]
     public static extern Image LoadImageFromMemory(char8 * fileType, char8 * fileData, int dataSize);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadImageFromTexture")]
     /// Load image from GPU texture data
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadImageFromTexture")]
     public static extern Image LoadImageFromTexture(Texture2D texture);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadImageFromScreen")]
     /// Load image from screen buffer and (screenshot)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadImageFromScreen")]
     public static extern Image LoadImageFromScreen();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsImageReady")]
     /// Check if an image is ready
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsImageReady")]
     public static extern bool IsImageReady(Image image);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadImage")]
     /// Unload image from CPU memory (RAM)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadImage")]
     public static extern void UnloadImage(Image image);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ExportImage")]
     /// Export image data to file, returns true on success
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ExportImage")]
     public static extern bool ExportImage(Image image, char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ExportImageAsCode")]
     /// Export image as code file defining an array of bytes, returns true on success
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ExportImageAsCode")]
     public static extern bool ExportImageAsCode(Image image, char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImageColor")]
     /// Generate image: plain color
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImageColor")]
     public static extern Image GenImageColor(int width, int height, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImageGradientV")]
     /// Generate image: vertical gradient
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImageGradientV")]
     public static extern Image GenImageGradientV(int width, int height, Color top, Color bottom);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImageGradientH")]
     /// Generate image: horizontal gradient
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImageGradientH")]
     public static extern Image GenImageGradientH(int width, int height, Color left, Color right);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImageGradientRadial")]
     /// Generate image: radial gradient
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImageGradientRadial")]
     public static extern Image GenImageGradientRadial(int width, int height, float density, Color inner, Color outer);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImageChecked")]
     /// Generate image: checked
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImageChecked")]
     public static extern Image GenImageChecked(int width, int height, int checksX, int checksY, Color col1, Color col2);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImageWhiteNoise")]
     /// Generate image: white noise
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImageWhiteNoise")]
     public static extern Image GenImageWhiteNoise(int width, int height, float factor);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImagePerlinNoise")]
     /// Generate image: perlin noise
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImagePerlinNoise")]
     public static extern Image GenImagePerlinNoise(int width, int height, int offsetX, int offsetY, float scale);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImageCellular")]
     /// Generate image: cellular algorithm, bigger tileSize means bigger cells
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImageCellular")]
     public static extern Image GenImageCellular(int width, int height, int tileSize);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImageText")]
     /// Generate image: grayscale image from text data
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImageText")]
     public static extern Image GenImageText(int width, int height, char8 * text);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageCopy")]
     /// Create an image duplicate (useful for transformations)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageCopy")]
     public static extern Image ImageCopy(Image image);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageFromImage")]
     /// Create an image from another image piece
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageFromImage")]
     public static extern Image ImageFromImage(Image image, Rectangle rec);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageText")]
     /// Create an image from text (default font)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageText")]
     public static extern Image ImageText(char8 * text, int fontSize, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageTextEx")]
     /// Create an image from text (custom sprite font)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageTextEx")]
     public static extern Image ImageTextEx(Font font, char8 * text, float fontSize, float spacing, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageFormat")]
     /// Convert image data to desired format
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageFormat")]
     public static extern void ImageFormat(Image * image, int newFormat);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageToPOT")]
     /// Convert image to POT (power-of-two)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageToPOT")]
     public static extern void ImageToPOT(Image * image, Color fill);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageCrop")]
     /// Crop an image to a defined rectangle
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageCrop")]
     public static extern void ImageCrop(Image * image, Rectangle crop);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageAlphaCrop")]
     /// Crop image depending on alpha value
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageAlphaCrop")]
     public static extern void ImageAlphaCrop(Image * image, float threshold);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageAlphaClear")]
     /// Clear alpha channel to desired color
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageAlphaClear")]
     public static extern void ImageAlphaClear(Image * image, Color color, float threshold);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageAlphaMask")]
     /// Apply alpha mask to image
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageAlphaMask")]
     public static extern void ImageAlphaMask(Image * image, Image alphaMask);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageAlphaPremultiply")]
     /// Premultiply alpha channel
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageAlphaPremultiply")]
     public static extern void ImageAlphaPremultiply(Image * image);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageBlurGaussian")]
     /// Apply Gaussian blur using a box blur approximation
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageBlurGaussian")]
     public static extern void ImageBlurGaussian(Image * image, int blurSize);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageResize")]
     /// Resize image (Bicubic scaling algorithm)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageResize")]
     public static extern void ImageResize(Image * image, int newWidth, int newHeight);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageResizeNN")]
     /// Resize image (Nearest-Neighbor scaling algorithm)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageResizeNN")]
     public static extern void ImageResizeNN(Image * image, int newWidth, int newHeight);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageResizeCanvas")]
     /// Resize canvas and fill with color
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageResizeCanvas")]
     public static extern void ImageResizeCanvas(Image * image, int newWidth, int newHeight, int offsetX, int offsetY, Color fill);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageMipmaps")]
     /// Compute all mipmap levels for a provided image
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageMipmaps")]
     public static extern void ImageMipmaps(Image * image);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDither")]
     /// Dither image data to 16bpp or lower (Floyd-Steinberg dithering)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDither")]
     public static extern void ImageDither(Image * image, int rBpp, int gBpp, int bBpp, int aBpp);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageFlipVertical")]
     /// Flip image vertically
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageFlipVertical")]
     public static extern void ImageFlipVertical(Image * image);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageFlipHorizontal")]
     /// Flip image horizontally
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageFlipHorizontal")]
     public static extern void ImageFlipHorizontal(Image * image);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageRotateCW")]
     /// Rotate image clockwise 90deg
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageRotateCW")]
     public static extern void ImageRotateCW(Image * image);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageRotateCCW")]
     /// Rotate image counter-clockwise 90deg
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageRotateCCW")]
     public static extern void ImageRotateCCW(Image * image);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageColorTint")]
     /// Modify image color: tint
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageColorTint")]
     public static extern void ImageColorTint(Image * image, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageColorInvert")]
     /// Modify image color: invert
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageColorInvert")]
     public static extern void ImageColorInvert(Image * image);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageColorGrayscale")]
     /// Modify image color: grayscale
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageColorGrayscale")]
     public static extern void ImageColorGrayscale(Image * image);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageColorContrast")]
     /// Modify image color: contrast (-100 to 100)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageColorContrast")]
     public static extern void ImageColorContrast(Image * image, float contrast);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageColorBrightness")]
     /// Modify image color: brightness (-255 to 255)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageColorBrightness")]
     public static extern void ImageColorBrightness(Image * image, int brightness);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageColorReplace")]
     /// Modify image color: replace color
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageColorReplace")]
     public static extern void ImageColorReplace(Image * image, Color color, Color replace);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadImageColors")]
     /// Load color data from image as a Color array (RGBA - 32bit)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadImageColors")]
     public static extern Color * LoadImageColors(Image image);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadImagePalette")]
     /// Load colors palette from image as a Color array (RGBA - 32bit)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadImagePalette")]
     public static extern Color * LoadImagePalette(Image image, int maxPaletteSize, int * colorCount);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadImageColors")]
     /// Unload color data loaded with LoadImageColors()
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadImageColors")]
     public static extern void UnloadImageColors(Color * colors);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadImagePalette")]
     /// Unload colors palette loaded with LoadImagePalette()
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadImagePalette")]
     public static extern void UnloadImagePalette(Color * colors);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetImageAlphaBorder")]
     /// Get image alpha border rectangle
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetImageAlphaBorder")]
     public static extern Rectangle GetImageAlphaBorder(Image image, float threshold);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetImageColor")]
     /// Get image pixel color at (x, y) position
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetImageColor")]
     public static extern Color GetImageColor(Image image, int x, int y);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageClearBackground")]
     /// Clear image background with given color
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageClearBackground")]
     public static extern void ImageClearBackground(Image * dst, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawPixel")]
     /// Draw pixel within an image
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawPixel")]
     public static extern void ImageDrawPixel(Image * dst, int posX, int posY, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawPixelV")]
     /// Draw pixel within an image (Vector version)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawPixelV")]
     public static extern void ImageDrawPixelV(Image * dst, Vector2 position, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawLine")]
     /// Draw line within an image
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawLine")]
     public static extern void ImageDrawLine(Image * dst, int startPosX, int startPosY, int endPosX, int endPosY, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawLineV")]
     /// Draw line within an image (Vector version)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawLineV")]
     public static extern void ImageDrawLineV(Image * dst, Vector2 start, Vector2 end, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawCircle")]
     /// Draw a filled circle within an image
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawCircle")]
     public static extern void ImageDrawCircle(Image * dst, int centerX, int centerY, int radius, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawCircleV")]
     /// Draw a filled circle within an image (Vector version)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawCircleV")]
     public static extern void ImageDrawCircleV(Image * dst, Vector2 center, int radius, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawCircleLines")]
     /// Draw circle outline within an image
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawCircleLines")]
     public static extern void ImageDrawCircleLines(Image * dst, int centerX, int centerY, int radius, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawCircleLinesV")]
     /// Draw circle outline within an image (Vector version)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawCircleLinesV")]
     public static extern void ImageDrawCircleLinesV(Image * dst, Vector2 center, int radius, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawRectangle")]
     /// Draw rectangle within an image
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawRectangle")]
     public static extern void ImageDrawRectangle(Image * dst, int posX, int posY, int width, int height, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawRectangleV")]
     /// Draw rectangle within an image (Vector version)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawRectangleV")]
     public static extern void ImageDrawRectangleV(Image * dst, Vector2 position, Vector2 size, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawRectangleRec")]
     /// Draw rectangle within an image
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawRectangleRec")]
     public static extern void ImageDrawRectangleRec(Image * dst, Rectangle rec, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawRectangleLines")]
     /// Draw rectangle lines within an image
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawRectangleLines")]
     public static extern void ImageDrawRectangleLines(Image * dst, Rectangle rec, int thick, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDraw")]
     /// Draw a source image within a destination image (tint applied to source)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDraw")]
     public static extern void ImageDraw(Image * dst, Image src, Rectangle srcRec, Rectangle dstRec, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawText")]
     /// Draw text (using default font) within an image (destination)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawText")]
     public static extern void ImageDrawText(Image * dst, char8 * text, int posX, int posY, int fontSize, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawTextEx")]
     /// Draw text (custom sprite font) within an image (destination)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ImageDrawTextEx")]
     public static extern void ImageDrawTextEx(Image * dst, Font font, char8 * text, Vector2 position, float fontSize, float spacing, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadTexture")]
     /// Load texture from file into GPU memory (VRAM)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadTexture")]
     public static extern Texture2D LoadTexture(char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadTextureFromImage")]
     /// Load texture from image data
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadTextureFromImage")]
     public static extern Texture2D LoadTextureFromImage(Image image);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadTextureCubemap")]
     /// Load cubemap from image, multiple image cubemap layouts supported
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadTextureCubemap")]
     public static extern TextureCubemap LoadTextureCubemap(Image image, int layout);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadRenderTexture")]
     /// Load texture for rendering (framebuffer)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadRenderTexture")]
     public static extern RenderTexture2D LoadRenderTexture(int width, int height);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsTextureReady")]
     /// Check if a texture is ready
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsTextureReady")]
     public static extern bool IsTextureReady(Texture2D texture);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadTexture")]
     /// Unload texture from GPU memory (VRAM)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadTexture")]
     public static extern void UnloadTexture(Texture2D texture);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsRenderTextureReady")]
     /// Check if a render texture is ready
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsRenderTextureReady")]
     public static extern bool IsRenderTextureReady(RenderTexture2D target);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadRenderTexture")]
     /// Unload render texture from GPU memory (VRAM)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadRenderTexture")]
     public static extern void UnloadRenderTexture(RenderTexture2D target);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UpdateTexture")]
     /// Update GPU texture with new data
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UpdateTexture")]
     public static extern void UpdateTexture(Texture2D texture, void * pixels);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UpdateTextureRec")]
     /// Update GPU texture rectangle with new data
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UpdateTextureRec")]
     public static extern void UpdateTextureRec(Texture2D texture, Rectangle rec, void * pixels);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenTextureMipmaps")]
     /// Generate GPU mipmaps for a texture
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenTextureMipmaps")]
     public static extern void GenTextureMipmaps(Texture2D * texture);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetTextureFilter")]
     /// Set texture scaling filter mode
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetTextureFilter")]
     public static extern void SetTextureFilter(Texture2D texture, int filter);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetTextureWrap")]
     /// Set texture wrapping mode
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetTextureWrap")]
     public static extern void SetTextureWrap(Texture2D texture, int wrap);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTexture")]
     /// Draw a Texture2D
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTexture")]
     public static extern void DrawTexture(Texture2D texture, int posX, int posY, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTextureV")]
     /// Draw a Texture2D with position defined as Vector2
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTextureV")]
     public static extern void DrawTextureV(Texture2D texture, Vector2 position, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTextureEx")]
     /// Draw a Texture2D with extended parameters
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTextureEx")]
     public static extern void DrawTextureEx(Texture2D texture, Vector2 position, float rotation, float scale, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTextureRec")]
     /// Draw a part of a texture defined by a rectangle
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTextureRec")]
     public static extern void DrawTextureRec(Texture2D texture, Rectangle source, Vector2 position, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTexturePro")]
     /// Draw a part of a texture defined by a rectangle with 'pro' parameters
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTexturePro")]
     public static extern void DrawTexturePro(Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTextureNPatch")]
     /// Draws a texture (or part of it) that stretches or shrinks nicely
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTextureNPatch")]
     public static extern void DrawTextureNPatch(Texture2D texture, NPatchInfo nPatchInfo, Rectangle dest, Vector2 origin, float rotation, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("Fade")]
     /// Get color with alpha applied, alpha goes from 0.0f to 1.0f
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("Fade")]
     public static extern Color Fade(Color color, float alpha);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorToInt")]
     /// Get hexadecimal value for a Color
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorToInt")]
     public static extern int ColorToInt(Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorNormalize")]
     /// Get Color normalized as float [0..1]
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorNormalize")]
     public static extern Vector4 ColorNormalize(Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorFromNormalized")]
     /// Get Color from normalized values [0..1]
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorFromNormalized")]
     public static extern Color ColorFromNormalized(Vector4 normalized);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorToHSV")]
     /// Get HSV values for a Color, hue [0..360], saturation/value [0..1]
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorToHSV")]
     public static extern Vector3 ColorToHSV(Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorFromHSV")]
     /// Get a Color from HSV values, hue [0..360], saturation/value [0..1]
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorFromHSV")]
     public static extern Color ColorFromHSV(float hue, float saturation, float value);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorTint")]
     /// Get color multiplied with another color
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorTint")]
     public static extern Color ColorTint(Color color, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorBrightness")]
     /// Get color with brightness correction, brightness factor goes from -1.0f to 1.0f
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorBrightness")]
     public static extern Color ColorBrightness(Color color, float factor);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorContrast")]
     /// Get color with contrast correction, contrast values between -1.0f and 1.0f
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorContrast")]
     public static extern Color ColorContrast(Color color, float contrast);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorAlpha")]
     /// Get color with alpha applied, alpha goes from 0.0f to 1.0f
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorAlpha")]
     public static extern Color ColorAlpha(Color color, float alpha);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorAlphaBlend")]
     /// Get src alpha-blended into dst color with tint
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ColorAlphaBlend")]
     public static extern Color ColorAlphaBlend(Color dst, Color src, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetColor")]
     /// Get Color structure from hexadecimal value
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetColor")]
     public static extern Color GetColor(int hexValue);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetPixelColor")]
     /// Get Color from a source pixel pointer of certain format
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetPixelColor")]
     public static extern Color GetPixelColor(void * srcPtr, int format);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetPixelColor")]
     /// Set color formatted into destination pixel pointer
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetPixelColor")]
     public static extern void SetPixelColor(void * dstPtr, Color color, int format);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetPixelDataSize")]
     /// Get pixel data size in bytes for certain format
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetPixelDataSize")]
     public static extern int GetPixelDataSize(int width, int height, int format);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetFontDefault")]
     /// Get the default Font
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetFontDefault")]
     public static extern Font GetFontDefault();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadFont")]
     /// Load font from file into GPU memory (VRAM)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadFont")]
     public static extern Font LoadFont(char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadFontEx")]
     /// Load font from file with extended parameters, use NULL for fontChars and 0 for glyphCount to load the default character set
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadFontEx")]
     public static extern Font LoadFontEx(char8 * fileName, int fontSize, int * fontChars, int glyphCount);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadFontFromImage")]
     /// Load font from Image (XNA style)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadFontFromImage")]
     public static extern Font LoadFontFromImage(Image image, Color key, int firstChar);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadFontFromMemory")]
     /// Load font from memory buffer, fileType refers to extension: i.e. '.ttf'
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadFontFromMemory")]
     public static extern Font LoadFontFromMemory(char8 * fileType, char8 * fileData, int dataSize, int fontSize, int * fontChars, int glyphCount);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsFontReady")]
     /// Check if a font is ready
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsFontReady")]
     public static extern bool IsFontReady(Font font);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadFontData")]
     /// Load font data for further use
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadFontData")]
     public static extern GlyphInfo * LoadFontData(char8 * fileData, int dataSize, int fontSize, int * fontChars, int glyphCount, int type);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImageFontAtlas")]
     /// Generate image font atlas using chars info
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenImageFontAtlas")]
     public static extern Image GenImageFontAtlas(GlyphInfo * chars, Rectangle ** recs, int glyphCount, int fontSize, int padding, int packMethod);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadFontData")]
     /// Unload font chars info data (RAM)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadFontData")]
     public static extern void UnloadFontData(GlyphInfo * chars, int glyphCount);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadFont")]
     /// Unload font from GPU memory (VRAM)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadFont")]
     public static extern void UnloadFont(Font font);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ExportFontAsCode")]
     /// Export font as code file, returns true on success
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ExportFontAsCode")]
     public static extern bool ExportFontAsCode(Font font, char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawFPS")]
     /// Draw current FPS
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawFPS")]
     public static extern void DrawFPS(int posX, int posY);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawText")]
     /// Draw text (using default font)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawText")]
     public static extern void DrawText(char8 * text, int posX, int posY, int fontSize, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTextEx")]
     /// Draw text using font and additional parameters
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTextEx")]
     public static extern void DrawTextEx(Font font, char8 * text, Vector2 position, float fontSize, float spacing, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTextPro")]
     /// Draw text using Font and pro parameters (rotation)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTextPro")]
     public static extern void DrawTextPro(Font font, char8 * text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTextCodepoint")]
     /// Draw one character (codepoint)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTextCodepoint")]
     public static extern void DrawTextCodepoint(Font font, int codepoint, Vector2 position, float fontSize, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTextCodepoints")]
     /// Draw multiple character (codepoint)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTextCodepoints")]
     public static extern void DrawTextCodepoints(Font font, int * codepoints, int count, Vector2 position, float fontSize, float spacing, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("MeasureText")]
     /// Measure string width for default font
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("MeasureText")]
     public static extern int MeasureText(char8 * text, int fontSize);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("MeasureTextEx")]
     /// Measure string size for Font
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("MeasureTextEx")]
     public static extern Vector2 MeasureTextEx(Font font, char8 * text, float fontSize, float spacing);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGlyphIndex")]
     /// Get glyph index position in font for a codepoint (unicode character), fallback to '?' if not found
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGlyphIndex")]
     public static extern int GetGlyphIndex(Font font, int codepoint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGlyphInfo")]
     /// Get glyph font info data for a codepoint (unicode character), fallback to '?' if not found
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGlyphInfo")]
     public static extern GlyphInfo GetGlyphInfo(Font font, int codepoint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGlyphAtlasRec")]
     /// Get glyph rectangle in font atlas for a codepoint (unicode character), fallback to '?' if not found
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetGlyphAtlasRec")]
     public static extern Rectangle GetGlyphAtlasRec(Font font, int codepoint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadUTF8")]
     /// Load UTF-8 text encoded from codepoints array
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadUTF8")]
     public static extern char8 * LoadUTF8(int * codepoints, int length);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadUTF8")]
     /// Unload UTF-8 text encoded from codepoints array
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadUTF8")]
     public static extern void UnloadUTF8(char8 * text);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadCodepoints")]
     /// Load all codepoints from a UTF-8 text string, codepoints count returned by parameter
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadCodepoints")]
     public static extern int * LoadCodepoints(char8 * text, int * count);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadCodepoints")]
     /// Unload codepoints data from memory
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadCodepoints")]
     public static extern void UnloadCodepoints(int * codepoints);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetCodepointCount")]
     /// Get total number of codepoints in a UTF-8 encoded string
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetCodepointCount")]
     public static extern int GetCodepointCount(char8 * text);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetCodepoint")]
     /// Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetCodepoint")]
     public static extern int GetCodepoint(char8 * text, int * codepointSize);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetCodepointNext")]
     /// Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetCodepointNext")]
     public static extern int GetCodepointNext(char8 * text, int * codepointSize);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetCodepointPrevious")]
     /// Get previous codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetCodepointPrevious")]
     public static extern int GetCodepointPrevious(char8 * text, int * codepointSize);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CodepointToUTF8")]
     /// Encode one codepoint into UTF-8 byte array (array length returned as parameter)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CodepointToUTF8")]
     public static extern char8 * CodepointToUTF8(int codepoint, int * utf8Size);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextCopy")]
     /// Copy one string to another, returns bytes copied
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextCopy")]
     public static extern int TextCopy(char8 * dst, char8 * src);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextIsEqual")]
     /// Check if two text string are equal
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextIsEqual")]
     public static extern bool TextIsEqual(char8 * text1, char8 * text2);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextLength")]
     /// Get text length, checks for '\0' ending
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextLength")]
     public static extern int TextLength(char8 * text);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextFormat")]
     /// Text formatting with variables (sprintf() style)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextFormat")]
     public static extern char8 * TextFormat(char8 * text);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextSubtext")]
     /// Get a piece of a text string
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextSubtext")]
     public static extern char8 * TextSubtext(char8 * text, int position, int length);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextReplace")]
     /// Replace text string (WARNING: memory must be freed!)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextReplace")]
     public static extern char8 * TextReplace(char8 * text, char8 * replace, char8 * by);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextInsert")]
     /// Insert text in a position (WARNING: memory must be freed!)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextInsert")]
     public static extern char8 * TextInsert(char8 * text, char8 * insert, int position);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextJoin")]
     /// Join text strings with delimiter
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextJoin")]
     public static extern char8 * TextJoin(char8 ** textList, int count, char8 * delimiter);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextSplit")]
     /// Split text into multiple strings
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextSplit")]
     public static extern char8 ** TextSplit(char8 * text, char8 delimiter, int * count);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextAppend")]
     /// Append text at specific position and move cursor!
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextAppend")]
     public static extern void TextAppend(char8 * text, char8 * @append, int * position);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextFindIndex")]
     /// Find first text occurrence within a string
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextFindIndex")]
     public static extern int TextFindIndex(char8 * text, char8 * find);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextToUpper")]
     /// Get upper case version of provided string
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextToUpper")]
     public static extern char8 * TextToUpper(char8 * text);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextToLower")]
     /// Get lower case version of provided string
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextToLower")]
     public static extern char8 * TextToLower(char8 * text);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextToPascal")]
     /// Get Pascal case notation version of provided string
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextToPascal")]
     public static extern char8 * TextToPascal(char8 * text);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextToInteger")]
     /// Get integer value from text (negative values not supported)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("TextToInteger")]
     public static extern int TextToInteger(char8 * text);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawLine3D")]
     /// Draw a line in 3D world space
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawLine3D")]
     public static extern void DrawLine3D(Vector3 startPos, Vector3 endPos, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawPoint3D")]
     /// Draw a point in 3D space, actually a small line
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawPoint3D")]
     public static extern void DrawPoint3D(Vector3 position, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCircle3D")]
     /// Draw a circle in 3D world space
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCircle3D")]
     public static extern void DrawCircle3D(Vector3 center, float radius, Vector3 rotationAxis, float rotationAngle, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTriangle3D")]
     /// Draw a color-filled triangle (vertex in counter-clockwise order!)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTriangle3D")]
     public static extern void DrawTriangle3D(Vector3 v1, Vector3 v2, Vector3 v3, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTriangleStrip3D")]
     /// Draw a triangle strip defined by points
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawTriangleStrip3D")]
     public static extern void DrawTriangleStrip3D(Vector3 * points, int pointCount, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCube")]
     /// Draw cube
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCube")]
     public static extern void DrawCube(Vector3 position, float width, float height, float length, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCubeV")]
     /// Draw cube (Vector version)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCubeV")]
     public static extern void DrawCubeV(Vector3 position, Vector3 size, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCubeWires")]
     /// Draw cube wires
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCubeWires")]
     public static extern void DrawCubeWires(Vector3 position, float width, float height, float length, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCubeWiresV")]
     /// Draw cube wires (Vector version)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCubeWiresV")]
     public static extern void DrawCubeWiresV(Vector3 position, Vector3 size, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawSphere")]
     /// Draw sphere
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawSphere")]
     public static extern void DrawSphere(Vector3 centerPos, float radius, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawSphereEx")]
     /// Draw sphere with extended parameters
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawSphereEx")]
     public static extern void DrawSphereEx(Vector3 centerPos, float radius, int rings, int slices, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawSphereWires")]
     /// Draw sphere wires
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawSphereWires")]
     public static extern void DrawSphereWires(Vector3 centerPos, float radius, int rings, int slices, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCylinder")]
     /// Draw a cylinder/cone
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCylinder")]
     public static extern void DrawCylinder(Vector3 position, float radiusTop, float radiusBottom, float height, int slices, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCylinderEx")]
     /// Draw a cylinder with base at startPos and top at endPos
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCylinderEx")]
     public static extern void DrawCylinderEx(Vector3 startPos, Vector3 endPos, float startRadius, float endRadius, int sides, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCylinderWires")]
     /// Draw a cylinder/cone wires
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCylinderWires")]
     public static extern void DrawCylinderWires(Vector3 position, float radiusTop, float radiusBottom, float height, int slices, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCylinderWiresEx")]
     /// Draw a cylinder wires with base at startPos and top at endPos
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCylinderWiresEx")]
     public static extern void DrawCylinderWiresEx(Vector3 startPos, Vector3 endPos, float startRadius, float endRadius, int sides, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCapsule")]
     /// Draw a capsule with the center of its sphere caps at startPos and endPos
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCapsule")]
     public static extern void DrawCapsule(Vector3 startPos, Vector3 endPos, float radius, int slices, int rings, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCapsuleWires")]
     /// Draw capsule wireframe with the center of its sphere caps at startPos and endPos
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawCapsuleWires")]
     public static extern void DrawCapsuleWires(Vector3 startPos, Vector3 endPos, float radius, int slices, int rings, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawPlane")]
     /// Draw a plane XZ
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawPlane")]
     public static extern void DrawPlane(Vector3 centerPos, Vector2 size, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRay")]
     /// Draw a ray line
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawRay")]
     public static extern void DrawRay(Ray ray, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawGrid")]
     /// Draw a grid (centered at (0, 0, 0))
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawGrid")]
     public static extern void DrawGrid(int slices, float spacing);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadModel")]
     /// Load model from files (meshes and materials)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadModel")]
     public static extern Model LoadModel(char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadModelFromMesh")]
     /// Load model from generated mesh (default material)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadModelFromMesh")]
     public static extern Model LoadModelFromMesh(Mesh mesh);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsModelReady")]
     /// Check if a model is ready
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsModelReady")]
     public static extern bool IsModelReady(Model model);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadModel")]
     /// Unload model (including meshes) from memory (RAM and/or VRAM)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadModel")]
     public static extern void UnloadModel(Model model);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetModelBoundingBox")]
     /// Compute model bounding box limits (considers all meshes)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetModelBoundingBox")]
     public static extern BoundingBox GetModelBoundingBox(Model model);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawModel")]
     /// Draw a model (with texture if set)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawModel")]
     public static extern void DrawModel(Model model, Vector3 position, float scale, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawModelEx")]
     /// Draw a model with extended parameters
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawModelEx")]
     public static extern void DrawModelEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawModelWires")]
     /// Draw a model wires (with texture if set)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawModelWires")]
     public static extern void DrawModelWires(Model model, Vector3 position, float scale, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawModelWiresEx")]
     /// Draw a model wires (with texture if set) with extended parameters
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawModelWiresEx")]
     public static extern void DrawModelWiresEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawBoundingBox")]
     /// Draw bounding box (wires)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawBoundingBox")]
     public static extern void DrawBoundingBox(BoundingBox @box, Color color);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawBillboard")]
     /// Draw a billboard texture
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawBillboard")]
     public static extern void DrawBillboard(Camera camera, Texture2D texture, Vector3 position, float size, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawBillboardRec")]
     /// Draw a billboard texture defined by source
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawBillboardRec")]
     public static extern void DrawBillboardRec(Camera camera, Texture2D texture, Rectangle source, Vector3 position, Vector2 size, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawBillboardPro")]
     /// Draw a billboard texture defined by source and rotation
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawBillboardPro")]
     public static extern void DrawBillboardPro(Camera camera, Texture2D texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UploadMesh")]
     /// Upload mesh vertex data in GPU and provide VAO/VBO ids
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UploadMesh")]
     public static extern void UploadMesh(Mesh * mesh, bool dynamic);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UpdateMeshBuffer")]
     /// Update mesh vertex data in GPU for a specific buffer index
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UpdateMeshBuffer")]
     public static extern void UpdateMeshBuffer(Mesh mesh, int index, void * data, int dataSize, int offset);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadMesh")]
     /// Unload mesh data from CPU and GPU
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadMesh")]
     public static extern void UnloadMesh(Mesh mesh);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawMesh")]
     /// Draw a 3d mesh with material and transform
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawMesh")]
     public static extern void DrawMesh(Mesh mesh, Material material, Matrix transform);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawMeshInstanced")]
     /// Draw multiple mesh instances with material and different transforms
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DrawMeshInstanced")]
     public static extern void DrawMeshInstanced(Mesh mesh, Material material, Matrix * transforms, int instances);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ExportMesh")]
     /// Export mesh data to file, returns true on success
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ExportMesh")]
     public static extern bool ExportMesh(Mesh mesh, char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMeshBoundingBox")]
     /// Compute mesh bounding box limits
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMeshBoundingBox")]
     public static extern BoundingBox GetMeshBoundingBox(Mesh mesh);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshTangents")]
     /// Compute mesh tangents
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshTangents")]
     public static extern void GenMeshTangents(Mesh * mesh);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshPoly")]
     /// Generate polygonal mesh
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshPoly")]
     public static extern Mesh GenMeshPoly(int sides, float radius);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshPlane")]
     /// Generate plane mesh (with subdivisions)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshPlane")]
     public static extern Mesh GenMeshPlane(float width, float length, int resX, int resZ);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshCube")]
     /// Generate cuboid mesh
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshCube")]
     public static extern Mesh GenMeshCube(float width, float height, float length);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshSphere")]
     /// Generate sphere mesh (standard sphere)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshSphere")]
     public static extern Mesh GenMeshSphere(float radius, int rings, int slices);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshHemiSphere")]
     /// Generate half-sphere mesh (no bottom cap)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshHemiSphere")]
     public static extern Mesh GenMeshHemiSphere(float radius, int rings, int slices);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshCylinder")]
     /// Generate cylinder mesh
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshCylinder")]
     public static extern Mesh GenMeshCylinder(float radius, float height, int slices);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshCone")]
     /// Generate cone/pyramid mesh
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshCone")]
     public static extern Mesh GenMeshCone(float radius, float height, int slices);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshTorus")]
     /// Generate torus mesh
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshTorus")]
     public static extern Mesh GenMeshTorus(float radius, float size, int radSeg, int sides);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshKnot")]
     /// Generate trefoil knot mesh
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshKnot")]
     public static extern Mesh GenMeshKnot(float radius, float size, int radSeg, int sides);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshHeightmap")]
     /// Generate heightmap mesh from image data
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshHeightmap")]
     public static extern Mesh GenMeshHeightmap(Image heightmap, Vector3 size);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshCubicmap")]
     /// Generate cubes-based map mesh from image data
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GenMeshCubicmap")]
     public static extern Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadMaterials")]
     /// Load materials from model file
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadMaterials")]
     public static extern Material * LoadMaterials(char8 * fileName, int * materialCount);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadMaterialDefault")]
     /// Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadMaterialDefault")]
     public static extern Material LoadMaterialDefault();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsMaterialReady")]
     /// Check if a material is ready
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsMaterialReady")]
     public static extern bool IsMaterialReady(Material material);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadMaterial")]
     /// Unload material from GPU memory (VRAM)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadMaterial")]
     public static extern void UnloadMaterial(Material material);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetMaterialTexture")]
     /// Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetMaterialTexture")]
     public static extern void SetMaterialTexture(Material * material, int mapType, Texture2D texture);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetModelMeshMaterial")]
     /// Set material for a mesh
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetModelMeshMaterial")]
     public static extern void SetModelMeshMaterial(Model * model, int meshId, int materialId);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadModelAnimations")]
     /// Load model animations from file
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadModelAnimations")]
     public static extern ModelAnimation * LoadModelAnimations(char8 * fileName, int * animCount);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UpdateModelAnimation")]
     /// Update model animation pose
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UpdateModelAnimation")]
     public static extern void UpdateModelAnimation(Model model, ModelAnimation anim, int frame);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadModelAnimation")]
     /// Unload animation data
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadModelAnimation")]
     public static extern void UnloadModelAnimation(ModelAnimation anim);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadModelAnimations")]
     /// Unload animation array data
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadModelAnimations")]
     public static extern void UnloadModelAnimations(ModelAnimation * animations, int count);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsModelAnimationValid")]
     /// Check model animation skeleton match
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsModelAnimationValid")]
     public static extern bool IsModelAnimationValid(Model model, ModelAnimation anim);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionSpheres")]
     /// Check collision between two spheres
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionSpheres")]
     public static extern bool CheckCollisionSpheres(Vector3 center1, float radius1, Vector3 center2, float radius2);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionBoxes")]
     /// Check collision between two bounding boxes
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionBoxes")]
     public static extern bool CheckCollisionBoxes(BoundingBox box1, BoundingBox box2);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionBoxSphere")]
     /// Check collision between box and sphere
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CheckCollisionBoxSphere")]
     public static extern bool CheckCollisionBoxSphere(BoundingBox @box, Vector3 center, float radius);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetRayCollisionSphere")]
     /// Get collision info between ray and sphere
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetRayCollisionSphere")]
     public static extern RayCollision GetRayCollisionSphere(Ray ray, Vector3 center, float radius);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetRayCollisionBox")]
     /// Get collision info between ray and box
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetRayCollisionBox")]
     public static extern RayCollision GetRayCollisionBox(Ray ray, BoundingBox @box);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetRayCollisionMesh")]
     /// Get collision info between ray and mesh
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetRayCollisionMesh")]
     public static extern RayCollision GetRayCollisionMesh(Ray ray, Mesh mesh, Matrix transform);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetRayCollisionTriangle")]
     /// Get collision info between ray and triangle
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetRayCollisionTriangle")]
     public static extern RayCollision GetRayCollisionTriangle(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetRayCollisionQuad")]
     /// Get collision info between ray and quad
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetRayCollisionQuad")]
     public static extern RayCollision GetRayCollisionQuad(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3, Vector3 p4);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("InitAudioDevice")]
     /// Initialize audio device and context
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("InitAudioDevice")]
     public static extern void InitAudioDevice();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CloseAudioDevice")]
     /// Close the audio device and context
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("CloseAudioDevice")]
     public static extern void CloseAudioDevice();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsAudioDeviceReady")]
     /// Check if audio device has been initialized successfully
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsAudioDeviceReady")]
     public static extern bool IsAudioDeviceReady();
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetMasterVolume")]
     /// Set master volume (listener)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetMasterVolume")]
     public static extern void SetMasterVolume(float volume);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadWave")]
     /// Load wave data from file
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadWave")]
     public static extern Wave LoadWave(char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadWaveFromMemory")]
     /// Load wave from memory buffer, fileType refers to extension: i.e. '.wav'
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadWaveFromMemory")]
     public static extern Wave LoadWaveFromMemory(char8 * fileType, char8 * fileData, int dataSize);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsWaveReady")]
     /// Checks if wave data is ready
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsWaveReady")]
     public static extern bool IsWaveReady(Wave wave);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadSound")]
     /// Load sound from file
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadSound")]
     public static extern Sound LoadSound(char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadSoundFromWave")]
     /// Load sound from wave data
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadSoundFromWave")]
     public static extern Sound LoadSoundFromWave(Wave wave);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsSoundReady")]
     /// Checks if a sound is ready
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsSoundReady")]
     public static extern bool IsSoundReady(Sound sound);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UpdateSound")]
     /// Update sound buffer with new data
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UpdateSound")]
     public static extern void UpdateSound(Sound sound, void * data, int sampleCount);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadWave")]
     /// Unload wave data
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadWave")]
     public static extern void UnloadWave(Wave wave);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadSound")]
     /// Unload sound
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadSound")]
     public static extern void UnloadSound(Sound sound);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ExportWave")]
     /// Export wave data to file, returns true on success
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ExportWave")]
     public static extern bool ExportWave(Wave wave, char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ExportWaveAsCode")]
     /// Export wave sample data to code (.h), returns true on success
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ExportWaveAsCode")]
     public static extern bool ExportWaveAsCode(Wave wave, char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("PlaySound")]
     /// Play a sound
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("PlaySound")]
     public static extern void PlaySound(Sound sound);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("StopSound")]
     /// Stop playing a sound
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("StopSound")]
     public static extern void StopSound(Sound sound);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("PauseSound")]
     /// Pause a sound
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("PauseSound")]
     public static extern void PauseSound(Sound sound);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ResumeSound")]
     /// Resume a paused sound
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ResumeSound")]
     public static extern void ResumeSound(Sound sound);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsSoundPlaying")]
     /// Check if a sound is currently playing
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsSoundPlaying")]
     public static extern bool IsSoundPlaying(Sound sound);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetSoundVolume")]
     /// Set volume for a sound (1.0 is max level)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetSoundVolume")]
     public static extern void SetSoundVolume(Sound sound, float volume);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetSoundPitch")]
     /// Set pitch for a sound (1.0 is base level)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetSoundPitch")]
     public static extern void SetSoundPitch(Sound sound, float pitch);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetSoundPan")]
     /// Set pan for a sound (0.5 is center)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetSoundPan")]
     public static extern void SetSoundPan(Sound sound, float pan);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("WaveCopy")]
     /// Copy a wave to a new wave
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("WaveCopy")]
     public static extern Wave WaveCopy(Wave wave);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("WaveCrop")]
     /// Crop a wave to defined samples range
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("WaveCrop")]
     public static extern void WaveCrop(Wave * wave, int initSample, int finalSample);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("WaveFormat")]
     /// Convert wave data to desired format
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("WaveFormat")]
     public static extern void WaveFormat(Wave * wave, int sampleRate, int sampleSize, int channels);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadWaveSamples")]
     /// Load samples data from wave as a 32bit float data array
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadWaveSamples")]
     public static extern float * LoadWaveSamples(Wave wave);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadWaveSamples")]
     /// Unload samples data loaded with LoadWaveSamples()
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadWaveSamples")]
     public static extern void UnloadWaveSamples(float * samples);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadMusicStream")]
     /// Load music stream from file
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadMusicStream")]
     public static extern Music LoadMusicStream(char8 * fileName);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadMusicStreamFromMemory")]
     /// Load music stream from data
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadMusicStreamFromMemory")]
     public static extern Music LoadMusicStreamFromMemory(char8 * fileType, char8 * data, int dataSize);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsMusicReady")]
     /// Checks if a music stream is ready
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsMusicReady")]
     public static extern bool IsMusicReady(Music music);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadMusicStream")]
     /// Unload music stream
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadMusicStream")]
     public static extern void UnloadMusicStream(Music music);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("PlayMusicStream")]
     /// Start music playing
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("PlayMusicStream")]
     public static extern void PlayMusicStream(Music music);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsMusicStreamPlaying")]
     /// Check if music is playing
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsMusicStreamPlaying")]
     public static extern bool IsMusicStreamPlaying(Music music);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UpdateMusicStream")]
     /// Updates buffers for music streaming
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UpdateMusicStream")]
     public static extern void UpdateMusicStream(Music music);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("StopMusicStream")]
     /// Stop music playing
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("StopMusicStream")]
     public static extern void StopMusicStream(Music music);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("PauseMusicStream")]
     /// Pause music playing
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("PauseMusicStream")]
     public static extern void PauseMusicStream(Music music);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ResumeMusicStream")]
     /// Resume playing paused music
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ResumeMusicStream")]
     public static extern void ResumeMusicStream(Music music);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SeekMusicStream")]
     /// Seek music to a position (in seconds)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SeekMusicStream")]
     public static extern void SeekMusicStream(Music music, float position);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetMusicVolume")]
     /// Set volume for music (1.0 is max level)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetMusicVolume")]
     public static extern void SetMusicVolume(Music music, float volume);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetMusicPitch")]
     /// Set pitch for a music (1.0 is base level)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetMusicPitch")]
     public static extern void SetMusicPitch(Music music, float pitch);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetMusicPan")]
     /// Set pan for a music (0.5 is center)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetMusicPan")]
     public static extern void SetMusicPan(Music music, float pan);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMusicTimeLength")]
     /// Get music time length (in seconds)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMusicTimeLength")]
     public static extern float GetMusicTimeLength(Music music);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMusicTimePlayed")]
     /// Get current music time played (in seconds)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("GetMusicTimePlayed")]
     public static extern float GetMusicTimePlayed(Music music);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadAudioStream")]
     /// Load audio stream (to stream raw audio pcm data)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("LoadAudioStream")]
     public static extern AudioStream LoadAudioStream(int sampleRate, int sampleSize, int channels);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsAudioStreamReady")]
     /// Checks if an audio stream is ready
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsAudioStreamReady")]
     public static extern bool IsAudioStreamReady(AudioStream stream);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadAudioStream")]
     /// Unload audio stream and free memory
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UnloadAudioStream")]
     public static extern void UnloadAudioStream(AudioStream stream);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UpdateAudioStream")]
     /// Update audio stream buffers with data
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("UpdateAudioStream")]
     public static extern void UpdateAudioStream(AudioStream stream, void * data, int frameCount);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsAudioStreamProcessed")]
     /// Check if any audio stream buffers requires refill
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsAudioStreamProcessed")]
     public static extern bool IsAudioStreamProcessed(AudioStream stream);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("PlayAudioStream")]
     /// Play audio stream
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("PlayAudioStream")]
     public static extern void PlayAudioStream(AudioStream stream);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("PauseAudioStream")]
     /// Pause audio stream
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("PauseAudioStream")]
     public static extern void PauseAudioStream(AudioStream stream);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ResumeAudioStream")]
     /// Resume audio stream
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("ResumeAudioStream")]
     public static extern void ResumeAudioStream(AudioStream stream);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsAudioStreamPlaying")]
     /// Check if audio stream is playing
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("IsAudioStreamPlaying")]
     public static extern bool IsAudioStreamPlaying(AudioStream stream);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("StopAudioStream")]
     /// Stop audio stream
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("StopAudioStream")]
     public static extern void StopAudioStream(AudioStream stream);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetAudioStreamVolume")]
     /// Set volume for audio stream (1.0 is max level)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetAudioStreamVolume")]
     public static extern void SetAudioStreamVolume(AudioStream stream, float volume);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetAudioStreamPitch")]
     /// Set pitch for audio stream (1.0 is base level)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetAudioStreamPitch")]
     public static extern void SetAudioStreamPitch(AudioStream stream, float pitch);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetAudioStreamPan")]
     /// Set pan for audio stream (0.5 is centered)
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetAudioStreamPan")]
     public static extern void SetAudioStreamPan(AudioStream stream, float pan);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetAudioStreamBufferSizeDefault")]
     /// Default size for new audio streams
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetAudioStreamBufferSizeDefault")]
     public static extern void SetAudioStreamBufferSizeDefault(int size);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetAudioStreamCallback")]
     /// Audio thread callback to request new data
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("SetAudioStreamCallback")]
     public static extern void SetAudioStreamCallback(AudioStream stream, AudioCallback callback);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("AttachAudioStreamProcessor")]
     /// Attach audio stream processor to stream
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("AttachAudioStreamProcessor")]
     public static extern void AttachAudioStreamProcessor(AudioStream stream, AudioCallback processor);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DetachAudioStreamProcessor")]
     /// Detach audio stream processor from stream
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DetachAudioStreamProcessor")]
     public static extern void DetachAudioStreamProcessor(AudioStream stream, AudioCallback processor);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("AttachAudioMixedProcessor")]
     /// Attach audio stream processor to the entire audio pipeline
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("AttachAudioMixedProcessor")]
     public static extern void AttachAudioMixedProcessor(AudioCallback processor);
     
-    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DetachAudioMixedProcessor")]
     /// Detach audio stream processor from the entire audio pipeline
+    [Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName("DetachAudioMixedProcessor")]
     public static extern void DetachAudioMixedProcessor(AudioCallback processor);
     
 }

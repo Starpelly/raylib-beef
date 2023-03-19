@@ -157,8 +157,8 @@ namespace RaylibBeefGenerator
             {
                 var func = API.Functions[i];
 
-                AppendLine($"[Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName(\"{func.Name}\")]");
                 AppendLine($"/// {func.Description}");
+                AppendLine($"[Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName(\"{func.Name}\")]");
                 AppendLine($"public static extern {func.ReturnType.ConvertTypes()} {func.Name.ConvertName()}({Parameters2String(func.Params)});");
                 AppendLine("");
             }
