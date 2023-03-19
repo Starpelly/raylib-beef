@@ -4,6 +4,7 @@ using System.Interop;
 namespace Raylib;
 
 typealias Texture2D = Texture;
+typealias TextureCubemap = Texture;
 
 [CRepr]
 public struct Texture

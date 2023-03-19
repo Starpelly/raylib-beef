@@ -1,0 +1,14 @@
+FileVersion = 1
+
+[Project]
+Name = "raylib-beef"
+StartupObject = "beef.Program"
+DefaultNamespace = "Raylib"
+
+[Configs.Debug.Win64]
+CLibType = "DynamicDebug"
+LibPaths = ["$(ProjectDir)\\dist\\x64\\raylib.lib"]
+
+[Configs.Release.Win64]
+CLibType = "Dynamic"
+LibPaths = ["$(ProjectDir)\\dist\\x64\\raylib.lib"]

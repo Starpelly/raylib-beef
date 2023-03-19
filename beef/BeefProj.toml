@@ -1,6 +1,0 @@
-FileVersion = 1
-
-[Project]
-Name = "raylib-beef"
-StartupObject = "beef.Program"
-DefaultNamespace = "beef"

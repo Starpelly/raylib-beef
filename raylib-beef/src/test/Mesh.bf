@@ -31,7 +31,7 @@ public struct Mesh
     public char8 * colors;
     
     /// Vertex indices (in case vertex data comes indexed)
-    public short * indices;
+    public uint16 * indices;
     
     /// Animated vertex positions (after bones transformations)
     public float * animVertices;
@@ -51,7 +51,7 @@ public struct Mesh
     /// OpenGL Vertex Buffer Objects id (default vertex data)
     public int * vboId;
     
-    public this(int vertexCount, int triangleCount, float * vertices, float * texcoords, float * texcoords2, float * normals, float * tangents, char8 * colors, short * indices, float * animVertices, float * animNormals, char8 * boneIds, float * boneWeights, int vaoId, int * vboId)
+    public this(int vertexCount, int triangleCount, float * vertices, float * texcoords, float * texcoords2, float * normals, float * tangents, char8 * colors, uint16 * indices, float * animVertices, float * animNormals, char8 * boneIds, float * boneWeights, int vaoId, int * vboId)
     {
         this.vertexCount = vertexCount;
         this.triangleCount = triangleCount;

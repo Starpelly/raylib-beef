@@ -7,18 +7,18 @@ namespace Raylib;
 public struct Color
 {
     /// Color red value
-    public char8 r;
+    public uint8 r;
     
     /// Color green value
-    public char8 g;
+    public uint8 g;
     
     /// Color blue value
-    public char8 b;
+    public uint8 b;
     
     /// Color alpha value
-    public char8 a;
+    public uint8 a;
     
-    public this(char8 r, char8 g, char8 b, char8 a)
+    public this(uint8 r, uint8 g, uint8 b, uint8 a)
     {
         this.r = r;
         this.g = g;

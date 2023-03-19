@@ -13,19 +13,30 @@ namespace RaylibBeefGenerator
         // Current Output Beef Code
         private static StringBuilder OutputString = new StringBuilder();
 
-        private static string OutputDir = @"C:\Dev\raylib-beef\beef\src\test\";
+        private static string OutputDir = @"C:\Dev\raylib-beef\raylib-beef\src\test\";
 
         private static Root API;
 
         #region Output Defines
+        private static string ImportLib = "raylib.dll";
         private static string Namespace = "Raylib";
         #endregion
+
+        // TODO:
+        // Defines
+        // Enums
+        // Other things like RLGL and stuff.
+        // Output generated code to actual directory.
+        // Organize Beef project.
 
         public static void Main(string[] args)
         {
             string raylibjson = @"C:\Dev\raylib-beef\raylib-api\raylib.json";
 
             API = JsonConvert.DeserializeObject<Root>(File.ReadAllText(raylibjson));
+
+            Console.WriteLine($"Generating files at {OutputDir}");
+            Console.WriteLine($"...");
 
             RaylibBf();
 
@@ -47,13 +58,16 @@ namespace RaylibBeefGenerator
                 var callback = API.Callbacks[i];
 
                 if (!string.IsNullOrEmpty(callback.Description)) AppendLine($"/// {callback.Description}");
-                AppendLine($"public function {callback.ReturnType.ConvertTypes()} {callback.Name}({callback.Params.Parameters2String()});");
+                AppendLine($"public function {callback.ReturnType.ConvertTypes()} {callback.Name.ConvertName()}({callback.Params.Parameters2String()});");
                 AppendLine("");
             }
             DecreaseTab();
             AppendLine("}");
 
             WriteToFile("Callbacks");
+
+            Console.WriteLine("Successfully Generated Bindings!");
+            Console.ReadLine();
         }
 
         public static void StructBf(Struct structu)
@@ -63,11 +77,14 @@ namespace RaylibBeefGenerator
 
             UniversalHeader();
 
-            var alias = API.Aliases.Find(c => c.Type == structu.Name);
+            var alias = API.Aliases.FindAll(c => c.Type == structu.Name);
             if (alias != null)
             {
-                AppendLine($"typealias {alias.Name} = {alias.Type};");
-                AppendLine("");
+                for (int i = 0; i < alias.Count; i++)
+                {
+                    AppendLine($"typealias {alias[i].Name} = {alias[i].Type};");
+                }
+                if (alias.Count > 0) AppendLine("");
             }
 
             AppendLine($"[CRepr]");
@@ -80,11 +97,15 @@ namespace RaylibBeefGenerator
             for (int i = 0; i < structu.Fields.Count; i++)
             {
                 var field = structu.Fields[i];
+
+                // This is like the only thing that is hardcoded, and that saddens me.
+                if (field.Type == "rAudioProcessor *" || field.Type == "rAudioBuffer *") continue;
+
                 AppendLine($"/// {field.Description}");
                 AppendLine($"public {field.Type.ConvertTypes()} {field.Name.ConvertName()};");
                 AppendLine("");
 
-                constructorLine += $"{field.Type.ConvertTypes()} {field.Name}";
+                constructorLine += $"{field.Type.ConvertTypes()} {field.Name.ConvertName()}";
                 if (i < structu.Fields.Count - 1) constructorLine += ", ";
             }
 
@@ -96,7 +117,9 @@ namespace RaylibBeefGenerator
             for (int i = 0; i < structu.Fields.Count; i++)
             {
                 var field = structu.Fields[i];
-                AppendLine($"this.{field.Name} = {field.Name};");
+                if (field.Type == "rAudioProcessor *" || field.Type == "rAudioBuffer *") continue;
+
+                AppendLine($"this.{field.Name.ConvertName()} = {field.Name.ConvertName()};");
             }
 
             DecreaseTab();
@@ -116,12 +139,25 @@ namespace RaylibBeefGenerator
 
             AppendLine("static");
             AppendLine("{");
+
             IncreaseTab();
+            
+            AppendLine($"/// Used internally for bindings.");
+            AppendLine($"public const String RAYLIB_LIB = \"{ImportLib}\";");
+            AppendLine("");
+
+            // Skip first one, no value.
+            for (int i = 1; i < API.Defines.Count; i++)
+            {
+                var define = API.Defines[i];
+                // AppendLine($"public static {define.Type.ConvertTypes()} {define.Name.ConvertName()} = ")
+            }
+
             for (int i = 0; i < API.Functions.Count; i++)
             {
                 var func = API.Functions[i];
 
-                AppendLine($"[CallingConvention(.Cdecl), LinkName(\"{func.Name}\")]");
+                AppendLine($"[Import(RAYLIB_LIB), CallingConvention(.Cdecl), LinkName(\"{func.Name}\")]");
                 AppendLine($"/// {func.Description}");
                 AppendLine($"public static extern {func.ReturnType.ConvertTypes()} {func.Name.ConvertName()}({Parameters2String(func.Params)});");
                 AppendLine("");
@@ -162,6 +198,7 @@ namespace RaylibBeefGenerator
         public static void WriteToFile(string name)
         {
             File.WriteAllText(OutputDir + name + ".bf", OutputString.ToString());
+            Console.WriteLine($"Generated {name}.bf");
         }
 
         /// <summary>
@@ -169,9 +206,12 @@ namespace RaylibBeefGenerator
         /// </summary>
         public static string ConvertTypes(this string input)
         {
+            if (input == "unsigned char") return "uint8"; // idunno
+
             input = ReplaceWholeWord(input, "char", "char8");
             input = ReplaceWholeWord(input, "long", "int32");
             input = ReplaceWholeWord(input, "va_list", "void*");
+            input = ReplaceWholeWord(input, "short", "uint16");
 
             if (input.StartsWith("const"))
                 input = input.Remove(0, 6);

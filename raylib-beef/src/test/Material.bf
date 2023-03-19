@@ -19,6 +19,6 @@ public struct Material
     {
         this.shader = shader;
         this.maps = maps;
-        this.params = @params;
+        this.@params = @params;
     }
 }
