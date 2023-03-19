@@ -2,6 +2,7 @@
 build
 BeefSpace_User.toml
 dist
+recovery
 *.zip
 
 ## Visual Studio & CS
