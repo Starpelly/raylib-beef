@@ -45,6 +45,43 @@ namespace RaylibBeefGenerator
                 StructBf(API.Structs[i]);
             }
 
+            Callbacks();
+
+            for (int i = 0; i < API.Enums.Count; i++)
+            {
+                Enum(API.Enums[i]);
+            }
+
+            Console.WriteLine("Successfully Generated Bindings!");
+            Console.ReadLine();
+        }
+
+        public static void Enum(Enum @enum)
+        {
+            OutputString.Clear();
+            OutputString = new();
+
+            UniversalHeader();
+
+            AppendLine($"/// {@enum.Description}");
+            AppendLine($"public enum {@enum.Name} : c_int");
+            AppendLine("{");
+            IncreaseTab();
+
+            for (int i = 0; i < @enum.Values.Count; i++)
+            {
+                AppendLine($"/// {@enum.Values[i].Description}");
+                AppendLine($"{@enum.Values[i].Name} = {@enum.Values[i].Value_},");
+            }
+
+            DecreaseTab();
+            AppendLine("}");
+
+            WriteToFile($@"Enums\{@enum.Name}");
+        }
+
+        public static void Callbacks()
+        {
             OutputString.Clear();
             OutputString = new();
 
@@ -65,9 +102,6 @@ namespace RaylibBeefGenerator
             AppendLine("}");
 
             WriteToFile("Callbacks");
-
-            Console.WriteLine("Successfully Generated Bindings!");
-            Console.ReadLine();
         }
 
         public static void StructBf(Struct structu)
@@ -150,7 +184,12 @@ namespace RaylibBeefGenerator
             for (int i = 1; i < API.Defines.Count; i++)
             {
                 var define = API.Defines[i];
-                // AppendLine($"public static {define.Type.ConvertTypes()} {define.Name.ConvertName()} = ")
+                if (define.Type == "UNKNOWN" || define.Type == "MACRO" || define.Type == "GUARD") continue;
+
+                if (!string.IsNullOrEmpty(define.Description)) AppendLine($"/// {define.Description}");
+                var defineType = define.Type.ConvertTypes();
+                AppendLine($"public const {defineType} {define.Name.ConvertName()} = {define.Value.ToString().ParseValue(defineType)};");
+                AppendLine("");
             }
 
             for (int i = 0; i < API.Functions.Count; i++)
@@ -201,6 +240,30 @@ namespace RaylibBeefGenerator
             Console.WriteLine($"Generated {name}.bf");
         }
 
+        public static string ParseValue(this string inputValue, string type)
+        {
+            if (inputValue.StartsWith("CLITERAL"))
+            {
+                inputValue = inputValue.Remove(0, 9);
+                inputValue = inputValue.Remove(type.Length, 1);
+                inputValue = inputValue.Remove(type.Length + 1, 1);
+                inputValue = inputValue.Remove(inputValue.Length - 2, 1);
+                inputValue = inputValue.Replace('{', '(');
+                inputValue = inputValue.Replace('}', ')');
+            }
+            else if (type == "String" || type == "char8*")
+            {
+                inputValue = $"\"{inputValue}\"";
+            }
+            else if (type == "float")
+            {
+                if (!inputValue.EndsWith(")"))
+                    inputValue = inputValue + "f";
+            }
+
+            return inputValue;
+        }
+
         /// <summary>
         /// Converts the API types to Beef types.
         /// </summary>
@@ -212,6 +275,11 @@ namespace RaylibBeefGenerator
             input = ReplaceWholeWord(input, "long", "int32");
             input = ReplaceWholeWord(input, "va_list", "void*");
             input = ReplaceWholeWord(input, "short", "uint16");
+            input = ReplaceWholeWord(input, "INT", "int");
+            input = ReplaceWholeWord(input, "STRING", "char8*");
+            input = ReplaceWholeWord(input, "FLOAT", "float");
+            input = ReplaceWholeWord(input, "FLOAT_MATH", "float");
+            input = ReplaceWholeWord(input, "COLOR", "Color");
 
             if (input.StartsWith("const"))
                 input = input.Remove(0, 6);

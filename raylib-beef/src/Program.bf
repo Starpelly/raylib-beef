@@ -1,17 +1,29 @@
-namespace beef;
-
 using Raylib;
+
+namespace beef;
 
 class Program
 {
 	public static int Main()
 	{
-		InitWindow(1280, 720, "Raylib Beef");
+		InitWindow(1280, 720, "Raylib Beef 4.5");
 		while (!WindowShouldClose())
 		{
 			BeginDrawing();
 			
-			DrawText("Hello!", 20, 20, 20, Color(200, 200, 200, 255));
+			ClearBackground(RAYWHITE);
+
+			var beefMain = Color(165, 47, 78, 255);
+			var beefOutline = Color(243, 157, 157, 255);
+
+			DrawRectangle(GetScreenWidth() / 2 - 128, GetScreenHeight() / 2 - 128, 256, 256, beefOutline);
+			DrawRectangle(GetScreenWidth() / 2 - 112, GetScreenHeight() / 2 - 112, 224, 224, beefMain);
+
+			DrawText("raylib", GetScreenWidth() / 2 - 44, GetScreenHeight() / 2, 50, beefOutline);
+			DrawText("beef", GetScreenWidth() / 2 - 62, GetScreenHeight() / 2 + 46, 50, beefOutline);
+
+			DrawRectangle(GetScreenWidth() / 2 + 54, GetScreenHeight() / 2 + 54, 42, 42, beefOutline);
+			DrawRectangle(GetScreenWidth() / 2 + 62, GetScreenHeight() / 2 + 62, 26, 26, RAYWHITE);
 
 			EndDrawing();
 		}
