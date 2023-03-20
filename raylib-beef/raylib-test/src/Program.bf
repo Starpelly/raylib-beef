@@ -1,14 +1,14 @@
+using System;
 using Raylib;
 
-namespace beef;
+namespace raylib_test;
 
 class Program
 {
-	public static int Main()
+	public static int Main(String[] args)
 	{
 		InitWindow(800, 600, "Raylib Beef 4.5");
 
-		
 		var beefMain = Color(165, 47, 78, 255);
 		var beefOutline = Color(243, 157, 157, 255);
 
@@ -30,6 +30,7 @@ class Program
 			EndDrawing();
 		}
 		CloseWindow();
+
 		return 0;
 	}
 }

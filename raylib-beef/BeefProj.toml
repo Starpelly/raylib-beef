@@ -2,6 +2,7 @@ FileVersion = 1
 
 [Project]
 Name = "raylib-beef"
+TargetType = "BeefLib"
 StartupObject = "beef.Program"
 DefaultNamespace = "Raylib"
 

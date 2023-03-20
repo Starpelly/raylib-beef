@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", raylib-beef = "*"}
+
+[Project]
+Name = "raylib-test"
+StartupObject = "raylib_test.Program"
