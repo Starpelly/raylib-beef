@@ -6,15 +6,17 @@ class Program
 {
 	public static int Main()
 	{
-		InitWindow(1280, 720, "Raylib Beef 4.5");
+		InitWindow(800, 600, "Raylib Beef 4.5");
+
+		
+		var beefMain = Color(165, 47, 78, 255);
+		var beefOutline = Color(243, 157, 157, 255);
+
 		while (!WindowShouldClose())
 		{
 			BeginDrawing();
 			
 			ClearBackground(RAYWHITE);
-
-			var beefMain = Color(165, 47, 78, 255);
-			var beefOutline = Color(243, 157, 157, 255);
 
 			DrawRectangle(GetScreenWidth() / 2 - 128, GetScreenHeight() / 2 - 128, 256, 256, beefOutline);
 			DrawRectangle(GetScreenWidth() / 2 - 112, GetScreenHeight() / 2 - 112, 224, 224, beefMain);

@@ -13,7 +13,7 @@ namespace RaylibBeefGenerator
         // Current Output Beef Code
         private static StringBuilder OutputString = new StringBuilder();
 
-        private static string OutputDir = @"C:\Dev\raylib-beef\raylib-beef\src\test\";
+        private static string OutputDir = @"C:\Dev\raylib-beef\raylib-beef\src\";
 
         private static Root API;
 
