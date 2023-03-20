@@ -2,5 +2,6 @@ FileVersion = 1
 Dependencies = {corlib = "*", raylib-beef = "*"}
 
 [Project]
-Name = "raylib-test"
+Name = "example"
 StartupObject = "raylib_test.Program"
+DefaultNamespace = "raylib_test"
