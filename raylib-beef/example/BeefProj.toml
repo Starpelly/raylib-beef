@@ -3,5 +3,6 @@ Dependencies = {corlib = "*", raylib-beef = "*"}
 
 [Project]
 Name = "example"
+TargetType = "BeefGUIApplication"
 StartupObject = "raylib_test.Program"
 DefaultNamespace = "raylib_test"

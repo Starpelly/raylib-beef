@@ -7,6 +7,7 @@ class Program
 {
 	public static int Main(String[] args)
 	{
+		SetConfigFlags(4);
 		InitWindow(800, 600, "Raylib Beef 4.5");
 
 		var beefMain = Color(165, 47, 78, 255);
@@ -18,14 +19,22 @@ class Program
 			
 			ClearBackground(RAYWHITE);
 
+			DrawCircle(GetMouseX(), GetMouseY(), 20, beefOutline);
+
 			DrawRectangle(GetScreenWidth() / 2 - 128, GetScreenHeight() / 2 - 128, 256, 256, beefOutline);
 			DrawRectangle(GetScreenWidth() / 2 - 112, GetScreenHeight() / 2 - 112, 224, 224, beefMain);
+
+			DrawCircle(GetMouseX(), GetMouseY(), 10, beefMain);
 
 			DrawText("raylib", GetScreenWidth() / 2 - 44, GetScreenHeight() / 2, 50, beefOutline);
 			DrawText("beef", GetScreenWidth() / 2 - 62, GetScreenHeight() / 2 + 46, 50, beefOutline);
 
 			DrawRectangle(GetScreenWidth() / 2 + 54, GetScreenHeight() / 2 + 54, 42, 42, beefOutline);
 			DrawRectangle(GetScreenWidth() / 2 + 62, GetScreenHeight() / 2 + 62, 26, 26, RAYWHITE);
+
+			DrawText(scope $"{Raymath.Lerp(0, 20, 10)}", 20, 60, 20, DARKGREEN);
+
+			DrawFPS(20, 20);
 
 			EndDrawing();
 		}
