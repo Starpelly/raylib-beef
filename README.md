@@ -25,7 +25,7 @@ class Program
 {
 	public static int Main(String[] args)
 	{
-		SetConfigFlags(ConfigFlags.FLAG_WINDOW_RESIZABLE);
+		SetConfigFlags((int)ConfigFlags.FLAG_WINDOW_RESIZABLE);
 		InitWindow(800, 600, "Raylib Beef 4.5");
 
 		var beefMain = Color(165, 47, 78, 255);
