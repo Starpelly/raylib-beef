@@ -39,13 +39,6 @@ namespace RaylibBeefGenerator
         private static string Namespace = "Raylib";
         #endregion
 
-        // TODO:
-        // Defines
-        // Enums
-        // Other things like RLGL and stuff.
-        // Output generated code to actual directory.
-        // Organize Beef project.
-
         public static void Main(string[] args)
         {
             Console.WriteLine($"Generating files at {OutputDir}");

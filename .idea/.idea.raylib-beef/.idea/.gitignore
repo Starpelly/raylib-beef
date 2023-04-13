@@ -4,6 +4,7 @@
 # Rider ignored files
 /projectSettingsUpdater.xml
 /modules.xml
+/.idea.raylib-beef.iml
 /contentModel.xml
 # Editor-based HTTP Client requests
 /httpRequests/
