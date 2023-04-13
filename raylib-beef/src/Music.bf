@@ -10,18 +10,18 @@ public struct Music
     public AudioStream stream;
     
     /// Total number of frames (considering channels)
-    public int frameCount;
+    public int32 frameCount;
     
     /// Music looping enable
     public bool looping;
     
     /// Type of music context (audio filetype)
-    public int ctxType;
+    public int32 ctxType;
     
     /// Audio context data, depends on type
     public void * ctxData;
     
-    public this(AudioStream stream, int frameCount, bool looping, int ctxType, void * ctxData)
+    public this(AudioStream stream, int32 frameCount, bool looping, int32 ctxType, void * ctxData)
     {
         this.stream = stream;
         this.frameCount = frameCount;

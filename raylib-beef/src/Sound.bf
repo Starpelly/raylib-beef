@@ -10,9 +10,9 @@ public struct Sound
     public AudioStream stream;
     
     /// Total number of frames (considering channels)
-    public int frameCount;
+    public int32 frameCount;
     
-    public this(AudioStream stream, int frameCount)
+    public this(AudioStream stream, int32 frameCount)
     {
         this.stream = stream;
         this.frameCount = frameCount;

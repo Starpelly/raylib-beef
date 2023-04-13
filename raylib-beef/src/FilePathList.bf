@@ -7,15 +7,15 @@ namespace RaylibBeef;
 public struct FilePathList
 {
     /// Filepaths max entries
-    public int capacity;
+    public int32 capacity;
     
     /// Filepaths entries count
-    public int count;
+    public int32 count;
     
     /// Filepaths entries
     public char8 ** paths;
     
-    public this(int capacity, int count, char8 ** paths)
+    public this(int32 capacity, int32 count, char8 ** paths)
     {
         this.capacity = capacity;
         this.count = count;

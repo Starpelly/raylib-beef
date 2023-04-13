@@ -21,9 +21,9 @@ public struct Camera3D
     public float fovy;
     
     /// Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
-    public int projection;
+    public int32 projection;
     
-    public this(Vector3 position, Vector3 target, Vector3 up, float fovy, int projection)
+    public this(Vector3 position, Vector3 target, Vector3 up, float fovy, int32 projection)
     {
         this.position = position;
         this.target = target;

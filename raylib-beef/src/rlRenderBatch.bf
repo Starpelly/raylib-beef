@@ -7,10 +7,10 @@ namespace RaylibBeef;
 public struct rlRenderBatch
 {
     /// Number of vertex buffers (multi-buffering support)
-    public int bufferCount;
+    public int32 bufferCount;
     
     /// Current buffer tracking in case of multi-buffering
-    public int currentBuffer;
+    public int32 currentBuffer;
     
     /// Dynamic buffer(s) for vertex data
     public rlVertexBuffer * vertexBuffer;
@@ -19,12 +19,12 @@ public struct rlRenderBatch
     public rlDrawCall * draws;
     
     /// Draw calls counter
-    public int drawCounter;
+    public int32 drawCounter;
     
     /// Current depth value for next draw
     public float currentDepth;
     
-    public this(int bufferCount, int currentBuffer, rlVertexBuffer * vertexBuffer, rlDrawCall * draws, int drawCounter, float currentDepth)
+    public this(int32 bufferCount, int32 currentBuffer, rlVertexBuffer * vertexBuffer, rlDrawCall * draws, int32 drawCounter, float currentDepth)
     {
         this.bufferCount = bufferCount;
         this.currentBuffer = currentBuffer;

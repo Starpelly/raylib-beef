@@ -10,9 +10,9 @@ public struct BoneInfo
     public char8[32] name;
     
     /// Bone parent
-    public int parent;
+    public int32 parent;
     
-    public this(char8[32] name, int parent)
+    public this(char8[32] name, int32 parent)
     {
         this.name = name;
         this.parent = parent;

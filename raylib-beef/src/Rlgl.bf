@@ -224,7 +224,7 @@ public static class Rlgl
     
     /// Choose the current matrix to be transformed
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlMatrixMode")]
-    public static extern void rlMatrixMode(int mode);
+    public static extern void rlMatrixMode(int32 mode);
     
     /// Push the current matrix to stack
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlPushMatrix")]
@@ -264,11 +264,11 @@ public static class Rlgl
     
     /// Set the viewport area
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlViewport")]
-    public static extern void rlViewport(int x, int y, int width, int height);
+    public static extern void rlViewport(int32 x, int32 y, int32 width, int32 height);
     
     /// Initialize drawing mode (how to organize vertex)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlBegin")]
-    public static extern void rlBegin(int mode);
+    public static extern void rlBegin(int32 mode);
     
     /// Finish vertex providing
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlEnd")]
@@ -276,7 +276,7 @@ public static class Rlgl
     
     /// Define one vertex (position) - 2 int
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlVertex2i")]
-    public static extern void rlVertex2i(int x, int y);
+    public static extern void rlVertex2i(int32 x, int32 y);
     
     /// Define one vertex (position) - 2 float
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlVertex2f")]
@@ -308,7 +308,7 @@ public static class Rlgl
     
     /// Enable vertex array (VAO, if supported)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlEnableVertexArray")]
-    public static extern bool rlEnableVertexArray(int vaoId);
+    public static extern bool rlEnableVertexArray(int32 vaoId);
     
     /// Disable vertex array (VAO, if supported)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlDisableVertexArray")]
@@ -316,7 +316,7 @@ public static class Rlgl
     
     /// Enable vertex buffer (VBO)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlEnableVertexBuffer")]
-    public static extern void rlEnableVertexBuffer(int id);
+    public static extern void rlEnableVertexBuffer(int32 id);
     
     /// Disable vertex buffer (VBO)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlDisableVertexBuffer")]
@@ -324,7 +324,7 @@ public static class Rlgl
     
     /// Enable vertex buffer element (VBO element)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlEnableVertexBufferElement")]
-    public static extern void rlEnableVertexBufferElement(int id);
+    public static extern void rlEnableVertexBufferElement(int32 id);
     
     /// Disable vertex buffer element (VBO element)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlDisableVertexBufferElement")]
@@ -332,27 +332,27 @@ public static class Rlgl
     
     /// Enable vertex attribute index
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlEnableVertexAttribute")]
-    public static extern void rlEnableVertexAttribute(int index);
+    public static extern void rlEnableVertexAttribute(int32 index);
     
     /// Disable vertex attribute index
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlDisableVertexAttribute")]
-    public static extern void rlDisableVertexAttribute(int index);
+    public static extern void rlDisableVertexAttribute(int32 index);
     
     /// Enable attribute state pointer
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlEnableStatePointer")]
-    public static extern void rlEnableStatePointer(int vertexAttribType, void * buffer);
+    public static extern void rlEnableStatePointer(int32 vertexAttribType, void * buffer);
     
     /// Disable attribute state pointer
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlDisableStatePointer")]
-    public static extern void rlDisableStatePointer(int vertexAttribType);
+    public static extern void rlDisableStatePointer(int32 vertexAttribType);
     
     /// Select and active a texture slot
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlActiveTextureSlot")]
-    public static extern void rlActiveTextureSlot(int slot);
+    public static extern void rlActiveTextureSlot(int32 slot);
     
     /// Enable texture
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlEnableTexture")]
-    public static extern void rlEnableTexture(int id);
+    public static extern void rlEnableTexture(int32 id);
     
     /// Disable texture
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlDisableTexture")]
@@ -360,7 +360,7 @@ public static class Rlgl
     
     /// Enable texture cubemap
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlEnableTextureCubemap")]
-    public static extern void rlEnableTextureCubemap(int id);
+    public static extern void rlEnableTextureCubemap(int32 id);
     
     /// Disable texture cubemap
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlDisableTextureCubemap")]
@@ -368,15 +368,15 @@ public static class Rlgl
     
     /// Set texture parameters (filter, wrap)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlTextureParameters")]
-    public static extern void rlTextureParameters(int id, int param, int value);
+    public static extern void rlTextureParameters(int32 id, int32 param, int32 value);
     
     /// Set cubemap parameters (filter, wrap)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlCubemapParameters")]
-    public static extern void rlCubemapParameters(int id, int param, int value);
+    public static extern void rlCubemapParameters(int32 id, int32 param, int32 value);
     
     /// Enable shader program
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlEnableShader")]
-    public static extern void rlEnableShader(int id);
+    public static extern void rlEnableShader(int32 id);
     
     /// Disable shader program
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlDisableShader")]
@@ -384,7 +384,7 @@ public static class Rlgl
     
     /// Enable render texture (fbo)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlEnableFramebuffer")]
-    public static extern void rlEnableFramebuffer(int id);
+    public static extern void rlEnableFramebuffer(int32 id);
     
     /// Disable render texture (fbo), return to default framebuffer
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlDisableFramebuffer")]
@@ -392,7 +392,7 @@ public static class Rlgl
     
     /// Activate multiple draw color buffers
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlActiveDrawBuffers")]
-    public static extern void rlActiveDrawBuffers(int count);
+    public static extern void rlActiveDrawBuffers(int32 count);
     
     /// Enable color blending
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlEnableColorBlend")]
@@ -428,7 +428,7 @@ public static class Rlgl
     
     /// Set face culling mode
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlSetCullFace")]
-    public static extern void rlSetCullFace(int mode);
+    public static extern void rlSetCullFace(int32 mode);
     
     /// Enable scissor test
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlEnableScissorTest")]
@@ -440,7 +440,7 @@ public static class Rlgl
     
     /// Scissor test
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlScissor")]
-    public static extern void rlScissor(int x, int y, int width, int height);
+    public static extern void rlScissor(int32 x, int32 y, int32 width, int32 height);
     
     /// Enable wire mode
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlEnableWireMode")]
@@ -492,19 +492,19 @@ public static class Rlgl
     
     /// Set blending mode
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlSetBlendMode")]
-    public static extern void rlSetBlendMode(int mode);
+    public static extern void rlSetBlendMode(int32 mode);
     
     /// Set blending mode factor and equation (using OpenGL factors)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlSetBlendFactors")]
-    public static extern void rlSetBlendFactors(int glSrcFactor, int glDstFactor, int glEquation);
+    public static extern void rlSetBlendFactors(int32 glSrcFactor, int32 glDstFactor, int32 glEquation);
     
     /// Set blending mode factors and equations separately (using OpenGL factors)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlSetBlendFactorsSeparate")]
-    public static extern void rlSetBlendFactorsSeparate(int glSrcRGB, int glDstRGB, int glSrcAlpha, int glDstAlpha, int glEqRGB, int glEqAlpha);
+    public static extern void rlSetBlendFactorsSeparate(int32 glSrcRGB, int32 glDstRGB, int32 glSrcAlpha, int32 glDstAlpha, int32 glEqRGB, int32 glEqAlpha);
     
     /// Initialize rlgl (buffers, shaders, textures, states)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlglInit")]
-    public static extern void rlglInit(int width, int height);
+    public static extern void rlglInit(int32 width, int32 height);
     
     /// De-initialize rlgl (buffers, shaders, textures)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlglClose")]
@@ -516,39 +516,39 @@ public static class Rlgl
     
     /// Get current OpenGL version
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlGetVersion")]
-    public static extern int rlGetVersion();
+    public static extern int32 rlGetVersion();
     
     /// Set current framebuffer width
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlSetFramebufferWidth")]
-    public static extern void rlSetFramebufferWidth(int width);
+    public static extern void rlSetFramebufferWidth(int32 width);
     
     /// Get default framebuffer width
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlGetFramebufferWidth")]
-    public static extern int rlGetFramebufferWidth();
+    public static extern int32 rlGetFramebufferWidth();
     
     /// Set current framebuffer height
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlSetFramebufferHeight")]
-    public static extern void rlSetFramebufferHeight(int height);
+    public static extern void rlSetFramebufferHeight(int32 height);
     
     /// Get default framebuffer height
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlGetFramebufferHeight")]
-    public static extern int rlGetFramebufferHeight();
+    public static extern int32 rlGetFramebufferHeight();
     
     /// Get default texture id
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlGetTextureIdDefault")]
-    public static extern int rlGetTextureIdDefault();
+    public static extern int32 rlGetTextureIdDefault();
     
     /// Get default shader id
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlGetShaderIdDefault")]
-    public static extern int rlGetShaderIdDefault();
+    public static extern int32 rlGetShaderIdDefault();
     
     /// Get default shader locations
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlGetShaderLocsDefault")]
-    public static extern int * rlGetShaderLocsDefault();
+    public static extern int32 * rlGetShaderLocsDefault();
     
     /// Load a render batch system
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlLoadRenderBatch")]
-    public static extern rlRenderBatch rlLoadRenderBatch(int numBuffers, int bufferElements);
+    public static extern rlRenderBatch rlLoadRenderBatch(int32 numBuffers, int32 bufferElements);
     
     /// Unload render batch system
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlUnloadRenderBatch")]
@@ -568,203 +568,203 @@ public static class Rlgl
     
     /// Check internal buffer overflow for a given number of vertex
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlCheckRenderBatchLimit")]
-    public static extern bool rlCheckRenderBatchLimit(int vCount);
+    public static extern bool rlCheckRenderBatchLimit(int32 vCount);
     
     /// Set current texture for render batch and check buffers limits
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlSetTexture")]
-    public static extern void rlSetTexture(int id);
+    public static extern void rlSetTexture(int32 id);
     
     /// Load vertex array (vao) if supported
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlLoadVertexArray")]
-    public static extern int rlLoadVertexArray();
+    public static extern int32 rlLoadVertexArray();
     
     /// Load a vertex buffer attribute
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlLoadVertexBuffer")]
-    public static extern int rlLoadVertexBuffer(void * buffer, int size, bool dynamic);
+    public static extern int32 rlLoadVertexBuffer(void * buffer, int32 size, bool dynamic);
     
     /// Load a new attributes element buffer
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlLoadVertexBufferElement")]
-    public static extern int rlLoadVertexBufferElement(void * buffer, int size, bool dynamic);
+    public static extern int32 rlLoadVertexBufferElement(void * buffer, int32 size, bool dynamic);
     
     /// Update GPU buffer with new data
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlUpdateVertexBuffer")]
-    public static extern void rlUpdateVertexBuffer(int bufferId, void * data, int dataSize, int offset);
+    public static extern void rlUpdateVertexBuffer(int32 bufferId, void * data, int32 dataSize, int32 offset);
     
     /// Update vertex buffer elements with new data
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlUpdateVertexBufferElements")]
-    public static extern void rlUpdateVertexBufferElements(int id, void * data, int dataSize, int offset);
+    public static extern void rlUpdateVertexBufferElements(int32 id, void * data, int32 dataSize, int32 offset);
     
     /// 
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlUnloadVertexArray")]
-    public static extern void rlUnloadVertexArray(int vaoId);
+    public static extern void rlUnloadVertexArray(int32 vaoId);
     
     /// 
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlUnloadVertexBuffer")]
-    public static extern void rlUnloadVertexBuffer(int vboId);
+    public static extern void rlUnloadVertexBuffer(int32 vboId);
     
     /// 
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlSetVertexAttribute")]
-    public static extern void rlSetVertexAttribute(int index, int compSize, int type, bool normalized, int stride, void * pointer);
+    public static extern void rlSetVertexAttribute(int32 index, int32 compSize, int32 type, bool normalized, int32 stride, void * pointer);
     
     /// 
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlSetVertexAttributeDivisor")]
-    public static extern void rlSetVertexAttributeDivisor(int index, int divisor);
+    public static extern void rlSetVertexAttributeDivisor(int32 index, int32 divisor);
     
     /// Set vertex attribute default value
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlSetVertexAttributeDefault")]
-    public static extern void rlSetVertexAttributeDefault(int locIndex, void * value, int attribType, int count);
+    public static extern void rlSetVertexAttributeDefault(int32 locIndex, void * value, int32 attribType, int32 count);
     
     /// 
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlDrawVertexArray")]
-    public static extern void rlDrawVertexArray(int offset, int count);
+    public static extern void rlDrawVertexArray(int32 offset, int32 count);
     
     /// 
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlDrawVertexArrayElements")]
-    public static extern void rlDrawVertexArrayElements(int offset, int count, void * buffer);
+    public static extern void rlDrawVertexArrayElements(int32 offset, int32 count, void * buffer);
     
     /// 
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlDrawVertexArrayInstanced")]
-    public static extern void rlDrawVertexArrayInstanced(int offset, int count, int instances);
+    public static extern void rlDrawVertexArrayInstanced(int32 offset, int32 count, int32 instances);
     
     /// 
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlDrawVertexArrayElementsInstanced")]
-    public static extern void rlDrawVertexArrayElementsInstanced(int offset, int count, void * buffer, int instances);
+    public static extern void rlDrawVertexArrayElementsInstanced(int32 offset, int32 count, void * buffer, int32 instances);
     
     /// Load texture in GPU
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlLoadTexture")]
-    public static extern int rlLoadTexture(void * data, int width, int height, int format, int mipmapCount);
+    public static extern int32 rlLoadTexture(void * data, int32 width, int32 height, int32 format, int32 mipmapCount);
     
     /// Load depth texture/renderbuffer (to be attached to fbo)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlLoadTextureDepth")]
-    public static extern int rlLoadTextureDepth(int width, int height, bool useRenderBuffer);
+    public static extern int32 rlLoadTextureDepth(int32 width, int32 height, bool useRenderBuffer);
     
     /// Load texture cubemap
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlLoadTextureCubemap")]
-    public static extern int rlLoadTextureCubemap(void * data, int size, int format);
+    public static extern int32 rlLoadTextureCubemap(void * data, int32 size, int32 format);
     
     /// Update GPU texture with new data
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlUpdateTexture")]
-    public static extern void rlUpdateTexture(int id, int offsetX, int offsetY, int width, int height, int format, void * data);
+    public static extern void rlUpdateTexture(int32 id, int32 offsetX, int32 offsetY, int32 width, int32 height, int32 format, void * data);
     
     /// Get OpenGL internal formats
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlGetGlTextureFormats")]
-    public static extern void rlGetGlTextureFormats(int format, int * glInternalFormat, int * glFormat, int * glType);
+    public static extern void rlGetGlTextureFormats(int32 format, int32 * glInternalFormat, int32 * glFormat, int32 * glType);
     
     /// Get name string for pixel format
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlGetPixelFormatName")]
-    public static extern char8 * rlGetPixelFormatName(int format);
+    public static extern char8 * rlGetPixelFormatName(int32 format);
     
     /// Unload texture from GPU memory
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlUnloadTexture")]
-    public static extern void rlUnloadTexture(int id);
+    public static extern void rlUnloadTexture(int32 id);
     
     /// Generate mipmap data for selected texture
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlGenTextureMipmaps")]
-    public static extern void rlGenTextureMipmaps(int id, int width, int height, int format, int * mipmaps);
+    public static extern void rlGenTextureMipmaps(int32 id, int32 width, int32 height, int32 format, int32 * mipmaps);
     
     /// Read texture pixel data
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlReadTexturePixels")]
-    public static extern void * rlReadTexturePixels(int id, int width, int height, int format);
+    public static extern void * rlReadTexturePixels(int32 id, int32 width, int32 height, int32 format);
     
     /// Read screen pixel data (color buffer)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlReadScreenPixels")]
-    public static extern char8 * rlReadScreenPixels(int width, int height);
+    public static extern char8 * rlReadScreenPixels(int32 width, int32 height);
     
     /// Load an empty framebuffer
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlLoadFramebuffer")]
-    public static extern int rlLoadFramebuffer(int width, int height);
+    public static extern int32 rlLoadFramebuffer(int32 width, int32 height);
     
     /// Attach texture/renderbuffer to a framebuffer
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlFramebufferAttach")]
-    public static extern void rlFramebufferAttach(int fboId, int texId, int attachType, int texType, int mipLevel);
+    public static extern void rlFramebufferAttach(int32 fboId, int32 texId, int32 attachType, int32 texType, int32 mipLevel);
     
     /// Verify framebuffer is complete
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlFramebufferComplete")]
-    public static extern bool rlFramebufferComplete(int id);
+    public static extern bool rlFramebufferComplete(int32 id);
     
     /// Delete framebuffer from GPU
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlUnloadFramebuffer")]
-    public static extern void rlUnloadFramebuffer(int id);
+    public static extern void rlUnloadFramebuffer(int32 id);
     
     /// Load shader from code strings
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlLoadShaderCode")]
-    public static extern int rlLoadShaderCode(char8 * vsCode, char8 * fsCode);
+    public static extern int32 rlLoadShaderCode(char8 * vsCode, char8 * fsCode);
     
     /// Compile custom shader and return shader id (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlCompileShader")]
-    public static extern int rlCompileShader(char8 * shaderCode, int type);
+    public static extern int32 rlCompileShader(char8 * shaderCode, int32 type);
     
     /// Load custom shader program
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlLoadShaderProgram")]
-    public static extern int rlLoadShaderProgram(int vShaderId, int fShaderId);
+    public static extern int32 rlLoadShaderProgram(int32 vShaderId, int32 fShaderId);
     
     /// Unload shader program
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlUnloadShaderProgram")]
-    public static extern void rlUnloadShaderProgram(int id);
+    public static extern void rlUnloadShaderProgram(int32 id);
     
     /// Get shader location uniform
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlGetLocationUniform")]
-    public static extern int rlGetLocationUniform(int shaderId, char8 * uniformName);
+    public static extern int32 rlGetLocationUniform(int32 shaderId, char8 * uniformName);
     
     /// Get shader location attribute
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlGetLocationAttrib")]
-    public static extern int rlGetLocationAttrib(int shaderId, char8 * attribName);
+    public static extern int32 rlGetLocationAttrib(int32 shaderId, char8 * attribName);
     
     /// Set shader value uniform
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlSetUniform")]
-    public static extern void rlSetUniform(int locIndex, void * value, int uniformType, int count);
+    public static extern void rlSetUniform(int32 locIndex, void * value, int32 uniformType, int32 count);
     
     /// Set shader value matrix
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlSetUniformMatrix")]
-    public static extern void rlSetUniformMatrix(int locIndex, Matrix mat);
+    public static extern void rlSetUniformMatrix(int32 locIndex, Matrix mat);
     
     /// Set shader value sampler
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlSetUniformSampler")]
-    public static extern void rlSetUniformSampler(int locIndex, int textureId);
+    public static extern void rlSetUniformSampler(int32 locIndex, int32 textureId);
     
     /// Set shader currently active (id and locations)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlSetShader")]
-    public static extern void rlSetShader(int id, int * locs);
+    public static extern void rlSetShader(int32 id, int32 * locs);
     
     /// Load compute shader program
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlLoadComputeShaderProgram")]
-    public static extern int rlLoadComputeShaderProgram(int shaderId);
+    public static extern int32 rlLoadComputeShaderProgram(int32 shaderId);
     
     /// Dispatch compute shader (equivalent to *draw* for graphics pipeline)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlComputeShaderDispatch")]
-    public static extern void rlComputeShaderDispatch(int groupX, int groupY, int groupZ);
+    public static extern void rlComputeShaderDispatch(int32 groupX, int32 groupY, int32 groupZ);
     
     /// Load shader storage buffer object (SSBO)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlLoadShaderBuffer")]
-    public static extern int rlLoadShaderBuffer(int size, void * data, int usageHint);
+    public static extern int32 rlLoadShaderBuffer(int32 size, void * data, int32 usageHint);
     
     /// Unload shader storage buffer object (SSBO)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlUnloadShaderBuffer")]
-    public static extern void rlUnloadShaderBuffer(int ssboId);
+    public static extern void rlUnloadShaderBuffer(int32 ssboId);
     
     /// Update SSBO buffer data
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlUpdateShaderBuffer")]
-    public static extern void rlUpdateShaderBuffer(int id, void * data, int dataSize, int offset);
+    public static extern void rlUpdateShaderBuffer(int32 id, void * data, int32 dataSize, int32 offset);
     
     /// Bind SSBO buffer
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlBindShaderBuffer")]
-    public static extern void rlBindShaderBuffer(int id, int index);
+    public static extern void rlBindShaderBuffer(int32 id, int32 index);
     
     /// Read SSBO buffer data (GPU->CPU)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlReadShaderBuffer")]
-    public static extern void rlReadShaderBuffer(int id, void * dest, int count, int offset);
+    public static extern void rlReadShaderBuffer(int32 id, void * dest, int32 count, int32 offset);
     
     /// Copy SSBO data between buffers
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlCopyShaderBuffer")]
-    public static extern void rlCopyShaderBuffer(int destId, int srcId, int destOffset, int srcOffset, int count);
+    public static extern void rlCopyShaderBuffer(int32 destId, int32 srcId, int32 destOffset, int32 srcOffset, int32 count);
     
     /// Get SSBO buffer size
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlGetShaderBufferSize")]
-    public static extern int rlGetShaderBufferSize(int id);
+    public static extern int32 rlGetShaderBufferSize(int32 id);
     
     /// Bind image texture
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlBindImageTexture")]
-    public static extern void rlBindImageTexture(int id, int index, int format, bool @readonly);
+    public static extern void rlBindImageTexture(int32 id, int32 index, int32 format, bool @readonly);
     
     /// Get internal modelview matrix
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlGetMatrixModelview")]
@@ -780,11 +780,11 @@ public static class Rlgl
     
     /// Get internal projection matrix for stereo render (selected eye)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlGetMatrixProjectionStereo")]
-    public static extern Matrix rlGetMatrixProjectionStereo(int eye);
+    public static extern Matrix rlGetMatrixProjectionStereo(int32 eye);
     
     /// Get internal view offset matrix for stereo render (selected eye)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlGetMatrixViewOffsetStereo")]
-    public static extern Matrix rlGetMatrixViewOffsetStereo(int eye);
+    public static extern Matrix rlGetMatrixViewOffsetStereo(int32 eye);
     
     /// Set a custom projection matrix (replaces internal projection matrix)
     [Import("raylib.dll"), CallingConvention(.Cdecl), LinkName("rlSetMatrixProjection")]

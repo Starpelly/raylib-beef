@@ -7,13 +7,13 @@ namespace RaylibBeef;
 public struct Font
 {
     /// Base size (default chars height)
-    public int baseSize;
+    public int32 baseSize;
     
     /// Number of glyph characters
-    public int glyphCount;
+    public int32 glyphCount;
     
     /// Padding around the glyph characters
-    public int glyphPadding;
+    public int32 glyphPadding;
     
     /// Texture atlas containing the glyphs
     public Texture2D texture;
@@ -24,7 +24,7 @@ public struct Font
     /// Glyphs info data
     public GlyphInfo * glyphs;
     
-    public this(int baseSize, int glyphCount, int glyphPadding, Texture2D texture, Rectangle * recs, GlyphInfo * glyphs)
+    public this(int32 baseSize, int32 glyphCount, int32 glyphPadding, Texture2D texture, Rectangle * recs, GlyphInfo * glyphs)
     {
         this.baseSize = baseSize;
         this.glyphCount = glyphCount;

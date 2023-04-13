@@ -297,6 +297,7 @@ namespace RaylibBeefGenerator
             input = ReplaceWholeWord(input, "long", "int32");
             input = ReplaceWholeWord(input, "va_list", "void*");
             input = ReplaceWholeWord(input, "short", "uint16");
+            input = ReplaceWholeWord(input, "int", "int32");
             input = ReplaceWholeWord(input, "INT", "int");
             input = ReplaceWholeWord(input, "STRING", "char8*");
             input = ReplaceWholeWord(input, "FLOAT", "float");
@@ -306,13 +307,13 @@ namespace RaylibBeefGenerator
 
             if (input.StartsWith("const"))
                 input = input.Remove(0, 6);
-            if (input.StartsWith("unsigned"))
+            if (input.StartsWith("unsigned") && !input.EndsWith("int"))
                 input = input.Remove(0, 9);
 
             switch (input)
             {
                 case "unsigned int":
-                    return "c_uint";
+                    return "uint32";
                 default:
                     return input;
             }

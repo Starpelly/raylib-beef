@@ -10,10 +10,10 @@ public struct Model
     public Matrix transform;
     
     /// Number of meshes
-    public int meshCount;
+    public int32 meshCount;
     
     /// Number of materials
-    public int materialCount;
+    public int32 materialCount;
     
     /// Meshes array
     public Mesh * meshes;
@@ -22,10 +22,10 @@ public struct Model
     public Material * materials;
     
     /// Mesh material number
-    public int * meshMaterial;
+    public int32 * meshMaterial;
     
     /// Number of bones
-    public int boneCount;
+    public int32 boneCount;
     
     /// Bones information (skeleton)
     public BoneInfo * bones;
@@ -33,7 +33,7 @@ public struct Model
     /// Bones base transformation (pose)
     public Transform * bindPose;
     
-    public this(Matrix transform, int meshCount, int materialCount, Mesh * meshes, Material * materials, int * meshMaterial, int boneCount, BoneInfo * bones, Transform * bindPose)
+    public this(Matrix transform, int32 meshCount, int32 materialCount, Mesh * meshes, Material * materials, int32 * meshMaterial, int32 boneCount, BoneInfo * bones, Transform * bindPose)
     {
         this.transform = transform;
         this.meshCount = meshCount;

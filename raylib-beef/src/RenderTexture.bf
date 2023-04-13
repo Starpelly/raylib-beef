@@ -9,7 +9,7 @@ typealias RenderTexture2D = RenderTexture;
 public struct RenderTexture
 {
     /// OpenGL framebuffer object id
-    public int id;
+    public int32 id;
     
     /// Color buffer attachment texture
     public Texture texture;
@@ -17,7 +17,7 @@ public struct RenderTexture
     /// Depth buffer attachment texture
     public Texture depth;
     
-    public this(int id, Texture texture, Texture depth)
+    public this(int32 id, Texture texture, Texture depth)
     {
         this.id = id;
         this.texture = texture;

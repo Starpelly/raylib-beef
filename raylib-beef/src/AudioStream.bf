@@ -7,15 +7,15 @@ namespace RaylibBeef;
 public struct AudioStream
 {
     /// Frequency (samples per second)
-    public int sampleRate;
+    public int32 sampleRate;
     
     /// Bit depth (bits per sample): 8, 16, 32 (24 not supported)
-    public int sampleSize;
+    public int32 sampleSize;
     
     /// Number of channels (1-mono, 2-stereo, ...)
-    public int channels;
+    public int32 channels;
     
-    public this(int sampleRate, int sampleSize, int channels)
+    public this(int32 sampleRate, int32 sampleSize, int32 channels)
     {
         this.sampleRate = sampleRate;
         this.sampleSize = sampleSize;
