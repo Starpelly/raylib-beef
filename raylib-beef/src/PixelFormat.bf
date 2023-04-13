@@ -1,7 +1,7 @@
 using System;
 using System.Interop;
 
-namespace Raylib;
+namespace RaylibBeef;
 
 /// Pixel formats
 public enum PixelFormat : c_int

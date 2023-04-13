@@ -1,7 +1,7 @@
 using System;
 using System.Interop;
 
-namespace Raylib;
+namespace RaylibBeef;
 
 /// Framebuffer attachment type
 public enum rlFramebufferAttachType : c_int

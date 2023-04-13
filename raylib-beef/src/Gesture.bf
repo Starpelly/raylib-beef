@@ -1,7 +1,7 @@
 using System;
 using System.Interop;
 
-namespace Raylib;
+namespace RaylibBeef;
 
 /// Gesture
 public enum Gesture : c_int

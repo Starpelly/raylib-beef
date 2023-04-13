@@ -1,7 +1,7 @@
 using System;
 using System.Interop;
 
-namespace Raylib;
+namespace RaylibBeef;
 
 /// Texture pixel formats
 public enum rlPixelFormat : c_int

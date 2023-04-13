@@ -1,7 +1,7 @@
 using System;
 using System.Interop;
 
-namespace Raylib;
+namespace RaylibBeef;
 
 /// OpenGL version
 public enum rlGlVersion : c_int

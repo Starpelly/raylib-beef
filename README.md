@@ -17,7 +17,8 @@ BeefLang bindings for **Raylib 4.5**.
 ## Example
 ```cs
 using System;
-using Raylib;
+using RaylibBeef;
+using static RaylibBeef.Raylib;
 
 namespace example;
 
@@ -25,7 +26,6 @@ class Program
 {
 	public static int Main(String[] args)
 	{
-		SetConfigFlags((int)ConfigFlags.FLAG_WINDOW_RESIZABLE);
 		InitWindow(800, 600, "Raylib Beef 4.5");
 
 		var beefMain = Color(165, 47, 78, 255);

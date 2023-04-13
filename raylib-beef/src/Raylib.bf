@@ -1,9 +1,9 @@
 using System;
 using System.Interop;
 
-namespace Raylib;
+namespace RaylibBeef;
 
-static
+public static class Raylib
 {
     public const int RAYLIB_VERSION_MAJOR = 4;
     

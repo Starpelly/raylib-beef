@@ -1,7 +1,7 @@
 using System;
 using System.Interop;
 
-namespace Raylib;
+namespace RaylibBeef;
 
 /// Shader attribute data types
 public enum ShaderAttributeDataType : c_int

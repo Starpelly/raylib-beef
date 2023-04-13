@@ -1,7 +1,7 @@
 using System;
 using System.Interop;
 
-namespace Raylib;
+namespace RaylibBeef;
 
 /// Texture parameters: wrap mode
 public enum TextureWrap : c_int

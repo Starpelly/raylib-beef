@@ -1,7 +1,7 @@
 using System;
 using System.Interop;
 
-namespace Raylib;
+namespace RaylibBeef;
 
 typealias Texture2D = Texture;
 typealias TextureCubemap = Texture;

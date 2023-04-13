@@ -17,7 +17,7 @@ namespace RaylibBeefGenerator
 
         private static Dictionary<string, FileDefinition> jsonFiles = new()
         {
-            { "raylib.json", new ("Raylib", "") },
+            { "raylib.json", new ("Raylib", "Raylib") },
             { "rlgl.json", new("Rlgl", "Rlgl") },
             { "raymath.json", new("Raymath", "Raymath") }
         };
@@ -36,7 +36,7 @@ namespace RaylibBeefGenerator
 
         #region Output Defines
         private static string ImportLib = "raylib.dll";
-        private static string Namespace = "Raylib";
+        private static string Namespace = "RaylibBeef";
         #endregion
 
         public static void Main(string[] args)

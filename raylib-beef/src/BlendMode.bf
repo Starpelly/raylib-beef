@@ -1,7 +1,7 @@
 using System;
 using System.Interop;
 
-namespace Raylib;
+namespace RaylibBeef;
 
 /// Color blending modes (pre-defined)
 public enum BlendMode : c_int

@@ -1,7 +1,7 @@
 using System;
 using System.Interop;
 
-namespace Raylib;
+namespace RaylibBeef;
 
 /// Keyboard keys (US keyboard layout)
 public enum KeyboardKey : c_int

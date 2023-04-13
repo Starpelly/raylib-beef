@@ -1,7 +1,7 @@
 using System;
 using System.Interop;
 
-namespace Raylib;
+namespace RaylibBeef;
 
 /// Texture parameters: filter mode
 public enum rlTextureFilter : c_int

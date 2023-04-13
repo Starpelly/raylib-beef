@@ -1,7 +1,7 @@
 using System;
 using System.Interop;
 
-namespace Raylib;
+namespace RaylibBeef;
 
 /// Shader uniform data type
 public enum rlShaderUniformDataType : c_int
