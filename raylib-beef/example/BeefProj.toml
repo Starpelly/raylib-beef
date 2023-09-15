@@ -3,5 +3,4 @@ Dependencies = {corlib = "*", raylib-beef = "*"}
 
 [Project]
 Name = "example"
-StartupObject = "raylib_test.Program"
-DefaultNamespace = "raylib_test"
+StartupObject = "example.Program"

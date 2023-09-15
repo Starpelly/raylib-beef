@@ -35,7 +35,6 @@ namespace RaylibBeefGenerator
         }
 
         #region Output Defines
-        private static string ImportLib = "raylib.dll";
         private static string Namespace = "RaylibBeef";
         #endregion
 
@@ -82,7 +81,8 @@ namespace RaylibBeefGenerator
                 var func = api.Functions[i];
 
                 AppendLine($"/// {func.Description}");
-                AppendLine($"[Import(\"{ImportLib}\"), CallingConvention(.Cdecl), LinkName(\"{func.Name}\")]");
+                // AppendLine($"[Import(Raylib.RaylibBin), CallingConvention(.Cdecl), LinkName(\"{func.Name}\")]");
+                AppendLine("[CLink]");
                 AppendLine($"public static extern {func.ReturnType.ConvertTypes()} {func.Name.ConvertName()}({Parameters2String(func.Params)});");
                 AppendLine("");
 
@@ -191,7 +191,10 @@ namespace RaylibBeefGenerator
                 var field = structu.Fields[i];
 
                 // This is like the only thing that is hardcoded, and that saddens me.
-                if (field.Type == "rAudioProcessor *" || field.Type == "rAudioBuffer *" || field.Type.StartsWith("#if") || field.Type == "#endif") continue;
+                if (field.Type == "rAudioProcessor *" || field.Type == "rAudioBuffer *" || field.Type.StartsWith("#if") || field.Type == "#endif")
+                {
+                    field.Type = "void*";
+                }
 
                 // Avoid duplicates
                 if (createdFields.Find(c => c.Name == field.Name) == null)
@@ -297,7 +300,7 @@ namespace RaylibBeefGenerator
             input = ReplaceWholeWord(input, "long", "int32");
             input = ReplaceWholeWord(input, "va_list", "void*");
             input = ReplaceWholeWord(input, "short", "uint16");
-            input = ReplaceWholeWord(input, "int", "int32");
+            input = ReplaceWholeWord(input, "int", "int");
             input = ReplaceWholeWord(input, "INT", "int");
             input = ReplaceWholeWord(input, "STRING", "char8*");
             input = ReplaceWholeWord(input, "FLOAT", "float");
@@ -340,7 +343,7 @@ namespace RaylibBeefGenerator
             var output = string.Empty;
             for (int i = 0; i < TabIndex; i++)
             {
-                output += "    ";
+                output += "\t";
             }
             output += content;
             OutputString.AppendLine(output);

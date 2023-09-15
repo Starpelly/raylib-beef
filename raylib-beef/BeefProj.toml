@@ -9,16 +9,17 @@ DefaultNamespace = "Raylib"
 
 [Configs.Debug.Win64]
 CLibType = "DynamicDebug"
-LibPaths = ["$(ProjectDir)\\libs\\libs_x64\\raylib.lib"]
+LibPaths = ["$(ProjectDir)\\libs\\libs_x64\\raylibdll.lib"]
 PostBuildCmds = ["CopyToDependents(\"$(ProjectDir)/libs/libs_x64/*.dll\")"]
 
 [Configs.Release.Win64]
 CLibType = "Dynamic"
-LibPaths = ["$(ProjectDir)\\libs\\libs_x64\\raylib.lib"]
+LibPaths = ["$(ProjectDir)\\libs\\libs_x64\\raylibdll.lib"]
 PostBuildCmds = ["CopyToDependents(\"$(ProjectDir)/libs/libs_x64/*.dll\")"]
 
 [Configs.Paranoid.Win64]
 PostBuildCmds = ["CopyToDependents(\"$(ProjectDir)/libs/libs_x64/*.dll\")"]
 
 [Configs.Test.Win64]
+LibPaths = ["$(ProjectDir)\\libs\\libs_x64\\raylibdll.lib"]
 PostBuildCmds = ["CopyToDependents(\"$(ProjectDir)/libs/libs_x64/*.dll\")"]
