@@ -4,9 +4,7 @@
 
 BeefLang bindings for **Raylib 4.5**.
 
-> **Note**: These bindings are still in development. Bugs and changes may occur. 
-
-> OS is limited to Windows right now, I see no reason why this wouldn't work on other platforms, though. I guess only one way to find out.
+> **Note**: OS is limited to Windows right now, I see no reason why this wouldn't work on other platforms, though. I guess only one way to find out.
 
 ## Example
 ```cs
@@ -21,6 +19,7 @@ class Program
 	public static int Main(String[] args)
 	{
 		InitWindow(800, 600, "Raylib Beef 4.5");
+		InitAudioDevice();
 
 		var beefMain = Color(165, 47, 78, 255);
 		var beefOutline = Color(243, 157, 157, 255);
@@ -47,6 +46,8 @@ class Program
 
 			EndDrawing();
 		}
+
+		CloseAudioDevice();
 		CloseWindow();
 
 		return 0;
