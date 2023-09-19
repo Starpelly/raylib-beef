@@ -13,15 +13,15 @@ public struct AudioStream
 	public void* processor;
 	
 	/// Frequency (samples per second)
-	public uint32 sampleRate;
+	public int32 sampleRate;
 	
 	/// Bit depth (bits per sample): 8, 16, 32 (24 not supported)
-	public uint32 sampleSize;
+	public int32 sampleSize;
 	
 	/// Number of channels (1-mono, 2-stereo, ...)
-	public uint32 channels;
+	public int32 channels;
 	
-	public this(void* buffer, void* processor, uint32 sampleRate, uint32 sampleSize, uint32 channels)
+	public this(void* buffer, void* processor, int32 sampleRate, int32 sampleSize, int32 channels)
 	{
 		this.buffer = buffer;
 		this.processor = processor;

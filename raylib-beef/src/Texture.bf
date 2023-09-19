@@ -10,21 +10,21 @@ typealias TextureCubemap = Texture;
 public struct Texture
 {
 	/// OpenGL texture id
-	public uint32 id;
+	public int32 id;
 	
 	/// Texture base width
-	public int width;
+	public int32 width;
 	
 	/// Texture base height
-	public int height;
+	public int32 height;
 	
 	/// Mipmap levels, 1 by default
-	public int mipmaps;
+	public int32 mipmaps;
 	
 	/// Data format (PixelFormat type)
-	public int format;
+	public int32 format;
 	
-	public this(uint32 id, int width, int height, int mipmaps, int format)
+	public this(int32 id, int32 width, int32 height, int32 mipmaps, int32 format)
 	{
 		this.id = id;
 		this.width = width;

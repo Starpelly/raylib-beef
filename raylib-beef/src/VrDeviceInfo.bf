@@ -7,10 +7,10 @@ namespace RaylibBeef;
 public struct VrDeviceInfo
 {
 	/// Horizontal resolution in pixels
-	public int hResolution;
+	public int32 hResolution;
 	
 	/// Vertical resolution in pixels
-	public int vResolution;
+	public int32 vResolution;
 	
 	/// Horizontal size in meters
 	public float hScreenSize;
@@ -36,7 +36,7 @@ public struct VrDeviceInfo
 	/// Chromatic aberration correction parameters
 	public float[4] chromaAbCorrection;
 	
-	public this(int hResolution, int vResolution, float hScreenSize, float vScreenSize, float vScreenCenter, float eyeToScreenDistance, float lensSeparationDistance, float interpupillaryDistance, float[4] lensDistortionValues, float[4] chromaAbCorrection)
+	public this(int32 hResolution, int32 vResolution, float hScreenSize, float vScreenSize, float vScreenCenter, float eyeToScreenDistance, float lensSeparationDistance, float interpupillaryDistance, float[4] lensDistortionValues, float[4] chromaAbCorrection)
 	{
 		this.hResolution = hResolution;
 		this.vResolution = vResolution;

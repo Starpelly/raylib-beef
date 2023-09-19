@@ -7,12 +7,12 @@ namespace RaylibBeef;
 public struct Shader
 {
 	/// Shader program id
-	public uint32 id;
+	public int32 id;
 	
 	/// Shader locations array (RL_MAX_SHADER_LOCATIONS)
-	public int * locs;
+	public int32 * locs;
 	
-	public this(uint32 id, int * locs)
+	public this(int32 id, int32 * locs)
 	{
 		this.id = id;
 		this.locs = locs;

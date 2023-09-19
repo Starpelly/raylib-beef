@@ -10,21 +10,21 @@ public struct NPatchInfo
 	public Rectangle source;
 	
 	/// Left border offset
-	public int left;
+	public int32 left;
 	
 	/// Top border offset
-	public int top;
+	public int32 top;
 	
 	/// Right border offset
-	public int right;
+	public int32 right;
 	
 	/// Bottom border offset
-	public int bottom;
+	public int32 bottom;
 	
 	/// Layout of the n-patch: 3x3, 1x3 or 3x1
-	public int layout;
+	public int32 layout;
 	
-	public this(Rectangle source, int left, int top, int right, int bottom, int layout)
+	public this(Rectangle source, int32 left, int32 top, int32 right, int32 bottom, int32 layout)
 	{
 		this.source = source;
 		this.left = left;

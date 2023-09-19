@@ -7,10 +7,10 @@ namespace RaylibBeef;
 public struct Mesh
 {
 	/// Number of vertices stored in arrays
-	public int vertexCount;
+	public int32 vertexCount;
 	
 	/// Number of triangles stored (indexed or not)
-	public int triangleCount;
+	public int32 triangleCount;
 	
 	/// Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
 	public float * vertices;
@@ -46,12 +46,12 @@ public struct Mesh
 	public float * boneWeights;
 	
 	/// OpenGL Vertex Array Object id
-	public uint32 vaoId;
+	public int32 vaoId;
 	
 	/// OpenGL Vertex Buffer Objects id (default vertex data)
-	public int * vboId;
+	public int32 * vboId;
 	
-	public this(int vertexCount, int triangleCount, float * vertices, float * texcoords, float * texcoords2, float * normals, float * tangents, char8 * colors, uint16 * indices, float * animVertices, float * animNormals, char8 * boneIds, float * boneWeights, uint32 vaoId, int * vboId)
+	public this(int32 vertexCount, int32 triangleCount, float * vertices, float * texcoords, float * texcoords2, float * normals, float * tangents, char8 * colors, uint16 * indices, float * animVertices, float * animNormals, char8 * boneIds, float * boneWeights, int32 vaoId, int32 * vboId)
 	{
 		this.vertexCount = vertexCount;
 		this.triangleCount = triangleCount;

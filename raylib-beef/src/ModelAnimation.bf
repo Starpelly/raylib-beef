@@ -7,10 +7,10 @@ namespace RaylibBeef;
 public struct ModelAnimation
 {
 	/// Number of bones
-	public int boneCount;
+	public int32 boneCount;
 	
 	/// Number of animation frames
-	public int frameCount;
+	public int32 frameCount;
 	
 	/// Bones information (skeleton)
 	public BoneInfo * bones;
@@ -18,7 +18,7 @@ public struct ModelAnimation
 	/// Poses array by frame
 	public Transform ** framePoses;
 	
-	public this(int boneCount, int frameCount, BoneInfo * bones, Transform ** framePoses)
+	public this(int32 boneCount, int32 frameCount, BoneInfo * bones, Transform ** framePoses)
 	{
 		this.boneCount = boneCount;
 		this.frameCount = frameCount;

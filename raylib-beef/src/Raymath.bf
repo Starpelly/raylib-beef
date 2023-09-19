@@ -35,7 +35,7 @@ public static class Raymath
 	
 	/// 
 	[CLink]
-	public static extern int FloatEquals(float x, float y);
+	public static extern int32 FloatEquals(float x, float y);
 	
 	/// 
 	[CLink]
@@ -143,7 +143,7 @@ public static class Raymath
 	
 	/// 
 	[CLink]
-	public static extern int Vector2Equals(Vector2 p, Vector2 q);
+	public static extern int32 Vector2Equals(Vector2 p, Vector2 q);
 	
 	/// 
 	[CLink]
@@ -279,7 +279,7 @@ public static class Raymath
 	
 	/// 
 	[CLink]
-	public static extern int Vector3Equals(Vector3 p, Vector3 q);
+	public static extern int32 Vector3Equals(Vector3 p, Vector3 q);
 	
 	/// 
 	[CLink]
@@ -459,7 +459,7 @@ public static class Raymath
 	
 	/// 
 	[CLink]
-	public static extern int QuaternionEquals(Quaternion p, Quaternion q);
+	public static extern int32 QuaternionEquals(Quaternion p, Quaternion q);
 	
 	
 }

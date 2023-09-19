@@ -7,7 +7,7 @@ namespace RaylibBeef;
 public struct rlVertexBuffer
 {
 	/// Number of elements in the buffer (QUADS)
-	public int elementCount;
+	public int32 elementCount;
 	
 	/// Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
 	public float * vertices;
@@ -25,9 +25,9 @@ public struct rlVertexBuffer
 	public void* vaoId;
 	
 	/// OpenGL Vertex Buffer Objects id (4 types of vertex data)
-	public int[4] vboId;
+	public int32[4] vboId;
 	
-	public this(int elementCount, float * vertices, float * texcoords, char8 * colors, void* indices, void* vaoId, int[4] vboId)
+	public this(int32 elementCount, float * vertices, float * texcoords, char8 * colors, void* indices, void* vaoId, int32[4] vboId)
 	{
 		this.elementCount = elementCount;
 		this.vertices = vertices;
