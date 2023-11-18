@@ -18,22 +18,34 @@ public struct rlVertexBuffer
 	/// Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
 	public char8 * colors;
 	
+	/// 
+	public void* rlRenderBatch;
+	
 	/// Vertex indices (in case vertex data comes indexed) (6 indices per quad)
-	public void* indices;
+	public int32 * indices;
+	
+	/// Number of vertex required for index alignment (LINES, TRIANGLES)
+	public void* vertexAlignment;
+	
+	/// Shader id to be used on the draw -> Using RLGL.currentShaderId
+	public void* shaderId;
 	
 	/// OpenGL Vertex Array Object id
-	public void* vaoId;
+	public int32 vaoId;
 	
 	/// OpenGL Vertex Buffer Objects id (4 types of vertex data)
 	public int32[4] vboId;
 	
-	public this(int32 elementCount, float * vertices, float * texcoords, char8 * colors, void* indices, void* vaoId, int32[4] vboId)
+	public this(int32 elementCount, float * vertices, float * texcoords, char8 * colors, void* rlRenderBatch, int32 * indices, void* vertexAlignment, void* shaderId, int32 vaoId, int32[4] vboId)
 	{
 		this.elementCount = elementCount;
 		this.vertices = vertices;
 		this.texcoords = texcoords;
 		this.colors = colors;
+		this.rlRenderBatch = rlRenderBatch;
 		this.indices = indices;
+		this.vertexAlignment = vertexAlignment;
+		this.shaderId = shaderId;
 		this.vaoId = vaoId;
 		this.vboId = vboId;
 	}

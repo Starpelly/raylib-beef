@@ -13,7 +13,7 @@ namespace RaylibBeefGenerator
         // Current Output Beef Code
         private static StringBuilder OutputString = new StringBuilder();
 
-        private static string OutputDir = @"C:\Dev\raylib-beef\raylib-beef\src\";
+        private static string OutputDir = @"C:\Share\Game\dependencies\raylib-beef\raylib-beef\src\";
 
         private static Dictionary<string, FileDefinition> jsonFiles = new()
         {
@@ -45,7 +45,7 @@ namespace RaylibBeefGenerator
             
             for (var i = 0; i < jsonFiles.Count; i++)
             {
-                ConvertFile(jsonFiles.ElementAt(i).Value, @$"C:\Dev\raylib-beef\raylib-api\{jsonFiles.ElementAt(i).Key}");
+                ConvertFile(jsonFiles.ElementAt(i).Value, @$"C:\Share\Game\dependencies\raylib-beef\raylib-api\{jsonFiles.ElementAt(i).Key}");
             }
 
             Console.WriteLine("Successfully Generated Bindings!");

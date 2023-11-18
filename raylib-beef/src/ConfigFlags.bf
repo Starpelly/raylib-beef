@@ -32,6 +32,8 @@ public enum ConfigFlags : c_int
 	FLAG_WINDOW_HIGHDPI = 8192,
 	/// Set to support mouse passthrough, only supported when FLAG_WINDOW_UNDECORATED
 	FLAG_WINDOW_MOUSE_PASSTHROUGH = 16384,
+	/// Set to run program in borderless windowed mode
+	FLAG_BORDERLESS_WINDOWED_MODE = 32768,
 	/// Set to try enabling MSAA 4X
 	FLAG_MSAA_4X_HINT = 32,
 	/// Set to try enabling interlaced video format (for V3D)

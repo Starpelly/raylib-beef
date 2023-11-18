@@ -18,11 +18,15 @@ public struct ModelAnimation
 	/// Poses array by frame
 	public Transform ** framePoses;
 	
-	public this(int32 boneCount, int32 frameCount, BoneInfo * bones, Transform ** framePoses)
+	/// Animation name
+	public char8[32] name;
+	
+	public this(int32 boneCount, int32 frameCount, BoneInfo * bones, Transform ** framePoses, char8[32] name)
 	{
 		this.boneCount = boneCount;
 		this.frameCount = frameCount;
 		this.bones = bones;
 		this.framePoses = framePoses;
+		this.name = name;
 	}
 }
