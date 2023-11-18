@@ -5,13 +5,13 @@ namespace RaylibBeef;
 
 public static class Raylib
 {
-	public const int32 RAYLIB_VERSION_MAJOR = 4;
+	public const int32 RAYLIB_VERSION_MAJOR = 5;
 	
-	public const int32 RAYLIB_VERSION_MINOR = 5;
+	public const int32 RAYLIB_VERSION_MINOR = 0;
 	
 	public const int32 RAYLIB_VERSION_PATCH = 0;
 	
-	public const char8* RAYLIB_VERSION = "4.5";
+	public const char8* RAYLIB_VERSION = "5.0";
 	
 	public const float PI = 3.141592653589793f;
 	
@@ -101,13 +101,13 @@ public static class Raylib
 	[CLink]
 	public static extern void InitWindow(int32 width, int32 height, char8 * title);
 	
-	/// Check if KEY_ESCAPE pressed or Close icon pressed
-	[CLink]
-	public static extern bool WindowShouldClose();
-	
 	/// Close window and unload OpenGL context
 	[CLink]
 	public static extern void CloseWindow();
+	
+	/// Check if application should close (KEY_ESCAPE pressed or windows close icon clicked)
+	[CLink]
+	public static extern bool WindowShouldClose();
 	
 	/// Check if window has been initialized successfully
 	[CLink]
@@ -153,6 +153,10 @@ public static class Raylib
 	[CLink]
 	public static extern void ToggleFullscreen();
 	
+	/// Toggle window state: borderless windowed (only PLATFORM_DESKTOP)
+	[CLink]
+	public static extern void ToggleBorderlessWindowed();
+	
 	/// Set window state: maximized, if resizable (only PLATFORM_DESKTOP)
 	[CLink]
 	public static extern void MaximizeWindow();
@@ -173,7 +177,7 @@ public static class Raylib
 	[CLink]
 	public static extern void SetWindowIcons(Image * images, int32 count);
 	
-	/// Set title for window (only PLATFORM_DESKTOP)
+	/// Set title for window (only PLATFORM_DESKTOP and PLATFORM_WEB)
 	[CLink]
 	public static extern void SetWindowTitle(char8 * title);
 	
@@ -181,13 +185,17 @@ public static class Raylib
 	[CLink]
 	public static extern void SetWindowPosition(int32 x, int32 y);
 	
-	/// Set monitor for the current window (fullscreen mode)
+	/// Set monitor for the current window
 	[CLink]
 	public static extern void SetWindowMonitor(int32 monitor);
 	
 	/// Set window minimum dimensions (for FLAG_WINDOW_RESIZABLE)
 	[CLink]
 	public static extern void SetWindowMinSize(int32 width, int32 height);
+	
+	/// Set window maximum dimensions (for FLAG_WINDOW_RESIZABLE)
+	[CLink]
+	public static extern void SetWindowMaxSize(int32 width, int32 height);
 	
 	/// Set window dimensions
 	[CLink]
@@ -196,6 +204,10 @@ public static class Raylib
 	/// Set window opacity [0.0f..1.0f] (only PLATFORM_DESKTOP)
 	[CLink]
 	public static extern void SetWindowOpacity(float opacity);
+	
+	/// Set window focused (only PLATFORM_DESKTOP)
+	[CLink]
+	public static extern void SetWindowFocused();
 	
 	/// Get native window handle
 	[CLink]
@@ -257,7 +269,7 @@ public static class Raylib
 	[CLink]
 	public static extern Vector2 GetWindowScaleDPI();
 	
-	/// Get the human-readable, UTF-8 encoded name of the primary monitor
+	/// Get the human-readable, UTF-8 encoded name of the specified monitor
 	[CLink]
 	public static extern char8 * GetMonitorName(int32 monitor);
 	
@@ -276,18 +288,6 @@ public static class Raylib
 	/// Disable waiting for events on EndDrawing(), automatic events polling
 	[CLink]
 	public static extern void DisableEventWaiting();
-	
-	/// Swap back buffer with front buffer (screen drawing)
-	[CLink]
-	public static extern void SwapScreenBuffer();
-	
-	/// Register all input events
-	[CLink]
-	public static extern void PollInputEvents();
-	
-	/// Wait for some time (halt program execution)
-	[CLink]
-	public static extern void WaitTime(double seconds);
 	
 	/// Shows cursor
 	[CLink]
@@ -461,10 +461,6 @@ public static class Raylib
 	[CLink]
 	public static extern void SetTargetFPS(int32 fps);
 	
-	/// Get current FPS
-	[CLink]
-	public static extern int32 GetFPS();
-	
 	/// Get time in seconds for last frame drawn (delta time)
 	[CLink]
 	public static extern float GetFrameTime();
@@ -473,13 +469,37 @@ public static class Raylib
 	[CLink]
 	public static extern double GetTime();
 	
-	/// Get a random value between min and max (both included)
+	/// Get current FPS
 	[CLink]
-	public static extern int32 GetRandomValue(int32 min, int32 max);
+	public static extern int32 GetFPS();
+	
+	/// Swap back buffer with front buffer (screen drawing)
+	[CLink]
+	public static extern void SwapScreenBuffer();
+	
+	/// Register all input events
+	[CLink]
+	public static extern void PollInputEvents();
+	
+	/// Wait for some time (halt program execution)
+	[CLink]
+	public static extern void WaitTime(double seconds);
 	
 	/// Set the seed for the random number generator
 	[CLink]
 	public static extern void SetRandomSeed(int32 seed);
+	
+	/// Get a random value between min and max (both included)
+	[CLink]
+	public static extern int32 GetRandomValue(int32 min, int32 max);
+	
+	/// Load random values sequence, no values repeated
+	[CLink]
+	public static extern int32 * LoadRandomSequence(int32 count, int32 min, int32 max);
+	
+	/// Unload random values sequence
+	[CLink]
+	public static extern void UnloadRandomSequence(int32 * sequence);
 	
 	/// Takes a screenshot of current screen (filename extension defines format)
 	[CLink]
@@ -488,6 +508,10 @@ public static class Raylib
 	/// Setup init configuration flags (view FLAGS)
 	[CLink]
 	public static extern void SetConfigFlags(int32 flags);
+	
+	/// Open URL with default system browser (if available)
+	[CLink]
+	public static extern void OpenURL(char8 * url);
 	
 	/// Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...)
 	[CLink]
@@ -508,10 +532,6 @@ public static class Raylib
 	/// Internal memory free
 	[CLink]
 	public static extern void MemFree(void * ptr);
-	
-	/// Open URL with default system browser (if available)
-	[CLink]
-	public static extern void OpenURL(char8 * url);
 	
 	/// Set custom trace log
 	[CLink]
@@ -535,7 +555,7 @@ public static class Raylib
 	
 	/// Load file data as byte array (read)
 	[CLink]
-	public static extern char8 * LoadFileData(char8 * fileName, int32 * bytesRead);
+	public static extern char8 * LoadFileData(char8 * fileName, int32 * dataSize);
 	
 	/// Unload file data allocated by LoadFileData()
 	[CLink]
@@ -543,11 +563,11 @@ public static class Raylib
 	
 	/// Save data to file from byte array (write), returns true on success
 	[CLink]
-	public static extern bool SaveFileData(char8 * fileName, void * data, int32 bytesToWrite);
+	public static extern bool SaveFileData(char8 * fileName, void * data, int32 dataSize);
 	
 	/// Export data to code (.h), returns true on success
 	[CLink]
-	public static extern bool ExportDataAsCode(char8 * data, int32 size, char8 * fileName);
+	public static extern bool ExportDataAsCode(char8 * data, int32 dataSize, char8 * fileName);
 	
 	/// Load text data from file (read), returns a '\0' terminated string
 	[CLink]
@@ -601,7 +621,7 @@ public static class Raylib
 	[CLink]
 	public static extern char8 * GetWorkingDirectory();
 	
-	/// Get the directory if the running application (uses static string)
+	/// Get the directory of the running application (uses static string)
 	[CLink]
 	public static extern char8 * GetApplicationDirectory();
 	
@@ -657,9 +677,45 @@ public static class Raylib
 	[CLink]
 	public static extern char8 * DecodeDataBase64(char8 * data, int32 * outputSize);
 	
+	/// Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS
+	[CLink]
+	public static extern AutomationEventList LoadAutomationEventList(char8 * fileName);
+	
+	/// Unload automation events list from file
+	[CLink]
+	public static extern void UnloadAutomationEventList(AutomationEventList * list);
+	
+	/// Export automation events list as text file
+	[CLink]
+	public static extern bool ExportAutomationEventList(AutomationEventList list, char8 * fileName);
+	
+	/// Set automation event list to record to
+	[CLink]
+	public static extern void SetAutomationEventList(AutomationEventList * list);
+	
+	/// Set automation event internal base frame to start recording
+	[CLink]
+	public static extern void SetAutomationEventBaseFrame(int32 frame);
+	
+	/// Start recording automation events (AutomationEventList must be set)
+	[CLink]
+	public static extern void StartAutomationEventRecording();
+	
+	/// Stop recording automation events
+	[CLink]
+	public static extern void StopAutomationEventRecording();
+	
+	/// Play a recorded automation event
+	[CLink]
+	public static extern void PlayAutomationEvent(AutomationEvent event);
+	
 	/// Check if a key has been pressed once
 	[CLink]
 	public static extern bool IsKeyPressed(int32 key);
+	
+	/// Check if a key has been pressed again (Only PLATFORM_DESKTOP)
+	[CLink]
+	public static extern bool IsKeyPressedRepeat(int32 key);
 	
 	/// Check if a key is being pressed
 	[CLink]
@@ -673,10 +729,6 @@ public static class Raylib
 	[CLink]
 	public static extern bool IsKeyUp(int32 key);
 	
-	/// Set a custom key to exit program (default is ESC)
-	[CLink]
-	public static extern void SetExitKey(int32 key);
-	
 	/// Get key pressed (keycode), call it multiple times for keys queued, returns 0 when the queue is empty
 	[CLink]
 	public static extern int32 GetKeyPressed();
@@ -684,6 +736,10 @@ public static class Raylib
 	/// Get char pressed (unicode), call it multiple times for chars queued, returns 0 when the queue is empty
 	[CLink]
 	public static extern int32 GetCharPressed();
+	
+	/// Set a custom key to exit program (default is ESC)
+	[CLink]
+	public static extern void SetExitKey(int32 key);
 	
 	/// Check if a gamepad is available
 	[CLink]
@@ -857,29 +913,21 @@ public static class Raylib
 	[CLink]
 	public static extern void DrawLine(int32 startPosX, int32 startPosY, int32 endPosX, int32 endPosY, Color color);
 	
-	/// Draw a line (Vector version)
+	/// Draw a line (using gl lines)
 	[CLink]
 	public static extern void DrawLineV(Vector2 startPos, Vector2 endPos, Color color);
 	
-	/// Draw a line defining thickness
+	/// Draw a line (using triangles/quads)
 	[CLink]
 	public static extern void DrawLineEx(Vector2 startPos, Vector2 endPos, float thick, Color color);
 	
-	/// Draw a line using cubic-bezier curves in-out
-	[CLink]
-	public static extern void DrawLineBezier(Vector2 startPos, Vector2 endPos, float thick, Color color);
-	
-	/// Draw line using quadratic bezier curves with a control point
-	[CLink]
-	public static extern void DrawLineBezierQuad(Vector2 startPos, Vector2 endPos, Vector2 controlPos, float thick, Color color);
-	
-	/// Draw line using cubic bezier curves with 2 control points
-	[CLink]
-	public static extern void DrawLineBezierCubic(Vector2 startPos, Vector2 endPos, Vector2 startControlPos, Vector2 endControlPos, float thick, Color color);
-	
-	/// Draw lines sequence
+	/// Draw lines sequence (using gl lines)
 	[CLink]
 	public static extern void DrawLineStrip(Vector2 * points, int32 pointCount, Color color);
+	
+	/// Draw line segment cubic-bezier in-out interpolation
+	[CLink]
+	public static extern void DrawLineBezier(Vector2 startPos, Vector2 endPos, float thick, Color color);
 	
 	/// Draw a color-filled circle
 	[CLink]
@@ -904,6 +952,10 @@ public static class Raylib
 	/// Draw circle outline
 	[CLink]
 	public static extern void DrawCircleLines(int32 centerX, int32 centerY, float radius, Color color);
+	
+	/// Draw circle outline (Vector version)
+	[CLink]
+	public static extern void DrawCircleLinesV(Vector2 center, float radius, Color color);
 	
 	/// Draw ellipse
 	[CLink]
@@ -993,6 +1045,66 @@ public static class Raylib
 	[CLink]
 	public static extern void DrawPolyLinesEx(Vector2 center, int32 sides, float radius, float rotation, float lineThick, Color color);
 	
+	/// Draw spline: Linear, minimum 2 points
+	[CLink]
+	public static extern void DrawSplineLinear(Vector2 * points, int32 pointCount, float thick, Color color);
+	
+	/// Draw spline: B-Spline, minimum 4 points
+	[CLink]
+	public static extern void DrawSplineBasis(Vector2 * points, int32 pointCount, float thick, Color color);
+	
+	/// Draw spline: Catmull-Rom, minimum 4 points
+	[CLink]
+	public static extern void DrawSplineCatmullRom(Vector2 * points, int32 pointCount, float thick, Color color);
+	
+	/// Draw spline: Quadratic Bezier, minimum 3 points (1 control point): [p1, c2, p3, c4...]
+	[CLink]
+	public static extern void DrawSplineBezierQuadratic(Vector2 * points, int32 pointCount, float thick, Color color);
+	
+	/// Draw spline: Cubic Bezier, minimum 4 points (2 control points): [p1, c2, c3, p4, c5, c6...]
+	[CLink]
+	public static extern void DrawSplineBezierCubic(Vector2 * points, int32 pointCount, float thick, Color color);
+	
+	/// Draw spline segment: Linear, 2 points
+	[CLink]
+	public static extern void DrawSplineSegmentLinear(Vector2 p1, Vector2 p2, float thick, Color color);
+	
+	/// Draw spline segment: B-Spline, 4 points
+	[CLink]
+	public static extern void DrawSplineSegmentBasis(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float thick, Color color);
+	
+	/// Draw spline segment: Catmull-Rom, 4 points
+	[CLink]
+	public static extern void DrawSplineSegmentCatmullRom(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float thick, Color color);
+	
+	/// Draw spline segment: Quadratic Bezier, 2 points, 1 control point
+	[CLink]
+	public static extern void DrawSplineSegmentBezierQuadratic(Vector2 p1, Vector2 c2, Vector2 p3, float thick, Color color);
+	
+	/// Draw spline segment: Cubic Bezier, 2 points, 2 control points
+	[CLink]
+	public static extern void DrawSplineSegmentBezierCubic(Vector2 p1, Vector2 c2, Vector2 c3, Vector2 p4, float thick, Color color);
+	
+	/// Get (evaluate) spline point: Linear
+	[CLink]
+	public static extern Vector2 GetSplinePointLinear(Vector2 startPos, Vector2 endPos, float t);
+	
+	/// Get (evaluate) spline point: B-Spline
+	[CLink]
+	public static extern Vector2 GetSplinePointBasis(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float t);
+	
+	/// Get (evaluate) spline point: Catmull-Rom
+	[CLink]
+	public static extern Vector2 GetSplinePointCatmullRom(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float t);
+	
+	/// Get (evaluate) spline point: Quadratic Bezier
+	[CLink]
+	public static extern Vector2 GetSplinePointBezierQuad(Vector2 p1, Vector2 c2, Vector2 p3, float t);
+	
+	/// Get (evaluate) spline point: Cubic Bezier
+	[CLink]
+	public static extern Vector2 GetSplinePointBezierCubic(Vector2 p1, Vector2 c2, Vector2 c3, Vector2 p4, float t);
+	
 	/// Check collision between two rectangles
 	[CLink]
 	public static extern bool CheckCollisionRecs(Rectangle rec1, Rectangle rec2);
@@ -1041,6 +1153,10 @@ public static class Raylib
 	[CLink]
 	public static extern Image LoadImageRaw(char8 * fileName, int32 width, int32 height, int32 format, int32 headerSize);
 	
+	/// Load image from SVG file data or string with specified size
+	[CLink]
+	public static extern Image LoadImageSvg(char8 * fileNameOrString, int32 width, int32 height);
+	
 	/// Load image sequence from file (frames appended to image.data)
 	[CLink]
 	public static extern Image LoadImageAnim(char8 * fileName, int32 * frames);
@@ -1069,6 +1185,10 @@ public static class Raylib
 	[CLink]
 	public static extern bool ExportImage(Image image, char8 * fileName);
 	
+	/// Export image to memory buffer
+	[CLink]
+	public static extern char8 * ExportImageToMemory(Image image, char8 * fileType, int32 * fileSize);
+	
 	/// Export image as code file defining an array of bytes, returns true on success
 	[CLink]
 	public static extern bool ExportImageAsCode(Image image, char8 * fileName);
@@ -1077,17 +1197,17 @@ public static class Raylib
 	[CLink]
 	public static extern Image GenImageColor(int32 width, int32 height, Color color);
 	
-	/// Generate image: vertical gradient
+	/// Generate image: linear gradient, direction in degrees [0..360], 0=Vertical gradient
 	[CLink]
-	public static extern Image GenImageGradientV(int32 width, int32 height, Color top, Color bottom);
-	
-	/// Generate image: horizontal gradient
-	[CLink]
-	public static extern Image GenImageGradientH(int32 width, int32 height, Color left, Color right);
+	public static extern Image GenImageGradientLinear(int32 width, int32 height, int32 direction, Color start, Color end);
 	
 	/// Generate image: radial gradient
 	[CLink]
 	public static extern Image GenImageGradientRadial(int32 width, int32 height, float density, Color inner, Color outer);
+	
+	/// Generate image: square gradient
+	[CLink]
+	public static extern Image GenImageGradientSquare(int32 width, int32 height, float density, Color inner, Color outer);
 	
 	/// Generate image: checked
 	[CLink]
@@ -1184,6 +1304,10 @@ public static class Raylib
 	/// Flip image horizontally
 	[CLink]
 	public static extern void ImageFlipHorizontal(Image * image);
+	
+	/// Rotate image by input angle in degrees (-359 to 359)
+	[CLink]
+	public static extern void ImageRotate(Image * image, int32 degrees);
 	
 	/// Rotate image clockwise 90deg
 	[CLink]
@@ -1449,9 +1573,9 @@ public static class Raylib
 	[CLink]
 	public static extern Font LoadFont(char8 * fileName);
 	
-	/// Load font from file with extended parameters, use NULL for fontChars and 0 for glyphCount to load the default character set
+	/// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default character setFont
 	[CLink]
-	public static extern Font LoadFontEx(char8 * fileName, int32 fontSize, int32 * fontChars, int32 glyphCount);
+	public static extern Font LoadFontEx(char8 * fileName, int32 fontSize, int32 * codepoints, int32 codepointCount);
 	
 	/// Load font from Image (XNA style)
 	[CLink]
@@ -1459,7 +1583,7 @@ public static class Raylib
 	
 	/// Load font from memory buffer, fileType refers to extension: i.e. '.ttf'
 	[CLink]
-	public static extern Font LoadFontFromMemory(char8 * fileType, char8 * fileData, int32 dataSize, int32 fontSize, int32 * fontChars, int32 glyphCount);
+	public static extern Font LoadFontFromMemory(char8 * fileType, char8 * fileData, int32 dataSize, int32 fontSize, int32 * codepoints, int32 codepointCount);
 	
 	/// Check if a font is ready
 	[CLink]
@@ -1467,15 +1591,15 @@ public static class Raylib
 	
 	/// Load font data for further use
 	[CLink]
-	public static extern GlyphInfo * LoadFontData(char8 * fileData, int32 dataSize, int32 fontSize, int32 * fontChars, int32 glyphCount, int32 type);
+	public static extern GlyphInfo * LoadFontData(char8 * fileData, int32 dataSize, int32 fontSize, int32 * codepoints, int32 codepointCount, int32 type);
 	
 	/// Generate image font atlas using chars info
 	[CLink]
-	public static extern Image GenImageFontAtlas(GlyphInfo * chars, Rectangle ** recs, int32 glyphCount, int32 fontSize, int32 padding, int32 packMethod);
+	public static extern Image GenImageFontAtlas(GlyphInfo * glyphs, Rectangle ** glyphRecs, int32 glyphCount, int32 fontSize, int32 padding, int32 packMethod);
 	
 	/// Unload font chars info data (RAM)
 	[CLink]
-	public static extern void UnloadFontData(GlyphInfo * chars, int32 glyphCount);
+	public static extern void UnloadFontData(GlyphInfo * glyphs, int32 glyphCount);
 	
 	/// Unload font from GPU memory (VRAM)
 	[CLink]
@@ -1507,7 +1631,11 @@ public static class Raylib
 	
 	/// Draw multiple character (codepoint)
 	[CLink]
-	public static extern void DrawTextCodepoints(Font font, int32 * codepoints, int32 count, Vector2 position, float fontSize, float spacing, Color tint);
+	public static extern void DrawTextCodepoints(Font font, int32 * codepoints, int32 codepointCount, Vector2 position, float fontSize, float spacing, Color tint);
+	
+	/// Set vertical line spacing when drawing with line-breaks
+	[CLink]
+	public static extern void SetTextLineSpacing(int32 spacing);
 	
 	/// Measure string width for default font
 	[CLink]
@@ -1875,7 +2003,7 @@ public static class Raylib
 	
 	/// Unload animation array data
 	[CLink]
-	public static extern void UnloadModelAnimations(ModelAnimation * animations, int32 count);
+	public static extern void UnloadModelAnimations(ModelAnimation * animations, int32 animCount);
 	
 	/// Check model animation skeleton match
 	[CLink]
@@ -1929,6 +2057,10 @@ public static class Raylib
 	[CLink]
 	public static extern void SetMasterVolume(float volume);
 	
+	/// Get master volume (listener)
+	[CLink]
+	public static extern float GetMasterVolume();
+	
 	/// Load wave data from file
 	[CLink]
 	public static extern Wave LoadWave(char8 * fileName);
@@ -1949,6 +2081,10 @@ public static class Raylib
 	[CLink]
 	public static extern Sound LoadSoundFromWave(Wave wave);
 	
+	/// Create a new sound that shares the same sample data as the source sound, does not own the sound data
+	[CLink]
+	public static extern Sound LoadSoundAlias(Sound source);
+	
 	/// Checks if a sound is ready
 	[CLink]
 	public static extern bool IsSoundReady(Sound sound);
@@ -1964,6 +2100,10 @@ public static class Raylib
 	/// Unload sound
 	[CLink]
 	public static extern void UnloadSound(Sound sound);
+	
+	/// Unload a sound alias (does not deallocate sample data)
+	[CLink]
+	public static extern void UnloadSoundAlias(Sound alias);
 	
 	/// Export wave data to file, returns true on success
 	[CLink]
@@ -2149,7 +2289,7 @@ public static class Raylib
 	[CLink]
 	public static extern void SetAudioStreamCallback(AudioStream stream, AudioCallback callback);
 	
-	/// Attach audio stream processor to stream
+	/// Attach audio stream processor to stream, receives the samples as <float>s
 	[CLink]
 	public static extern void AttachAudioStreamProcessor(AudioStream stream, AudioCallback processor);
 	
@@ -2157,7 +2297,7 @@ public static class Raylib
 	[CLink]
 	public static extern void DetachAudioStreamProcessor(AudioStream stream, AudioCallback processor);
 	
-	/// Attach audio stream processor to the entire audio pipeline
+	/// Attach audio stream processor to the entire audio pipeline, receives the samples as <float>s
 	[CLink]
 	public static extern void AttachAudioMixedProcessor(AudioCallback processor);
 	
@@ -2170,10 +2310,10 @@ public static class Raylib
 	public function void TraceLogCallback(int32 logLevel, char8 * text, void* args);
 	
 	/// FileIO: Load binary data
-	public function char8 * LoadFileDataCallback(char8 * fileName, int32 * bytesRead);
+	public function char8 * LoadFileDataCallback(char8 * fileName, int32 * dataSize);
 	
 	/// FileIO: Save binary data
-	public function bool SaveFileDataCallback(char8 * fileName, void * data, int32 bytesToWrite);
+	public function bool SaveFileDataCallback(char8 * fileName, void * data, int32 dataSize);
 	
 	/// FileIO: Load text data
 	public function char8 * LoadFileTextCallback(char8 * fileName);

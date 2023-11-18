@@ -16,4 +16,6 @@ public enum rlGlVersion : c_int
 	RL_OPENGL_43 = 4,
 	/// OpenGL ES 2.0 (GLSL 100)
 	RL_OPENGL_ES_20 = 5,
+	/// OpenGL ES 3.0 (GLSL 300 es)
+	RL_OPENGL_ES_30 = 6,
 }
