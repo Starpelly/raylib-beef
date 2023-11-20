@@ -222,95 +222,6 @@ public static class Rlgl
 	/// GL_BLEND_COLOR
 	public const int32 RL_BLEND_COLOR = 32773;
 	
-	public const float PI = 3.141592653589793f;
-	
-	public const float DEG2RAD = (PI/180.0f);
-	
-	public const float RAD2DEG = (180.0f/PI);
-	
-	public const int32 GL_SHADING_LANGUAGE_VERSION = 35724;
-	
-	public const int32 GL_COMPRESSED_RGB_S3TC_DXT1_EXT = 33776;
-	
-	public const int32 GL_COMPRESSED_RGBA_S3TC_DXT1_EXT = 33777;
-	
-	public const int32 GL_COMPRESSED_RGBA_S3TC_DXT3_EXT = 33778;
-	
-	public const int32 GL_COMPRESSED_RGBA_S3TC_DXT5_EXT = 33779;
-	
-	public const int32 GL_ETC1_RGB8_OES = 36196;
-	
-	public const int32 GL_COMPRESSED_RGB8_ETC2 = 37492;
-	
-	public const int32 GL_COMPRESSED_RGBA8_ETC2_EAC = 37496;
-	
-	public const int32 GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG = 35840;
-	
-	public const int32 GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG = 35842;
-	
-	public const int32 GL_COMPRESSED_RGBA_ASTC_4x4_KHR = 37808;
-	
-	public const int32 GL_COMPRESSED_RGBA_ASTC_8x8_KHR = 37815;
-	
-	public const int32 GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT = 34047;
-	
-	public const int32 GL_TEXTURE_MAX_ANISOTROPY_EXT = 34046;
-	
-	public const int32 GL_UNSIGNED_SHORT_5_6_5 = 33635;
-	
-	public const int32 GL_UNSIGNED_SHORT_5_5_5_1 = 32820;
-	
-	public const int32 GL_UNSIGNED_SHORT_4_4_4_4 = 32819;
-	
-	public const int32 GL_LUMINANCE = 6409;
-	
-	public const int32 GL_LUMINANCE_ALPHA = 6410;
-	
-	/// Bound by default to shader location: 0
-	public const char8* RL_DEFAULT_SHADER_ATTRIB_NAME_POSITION = "vertexPosition";
-	
-	/// Bound by default to shader location: 1
-	public const char8* RL_DEFAULT_SHADER_ATTRIB_NAME_TEXCOORD = "vertexTexCoord";
-	
-	/// Bound by default to shader location: 2
-	public const char8* RL_DEFAULT_SHADER_ATTRIB_NAME_NORMAL = "vertexNormal";
-	
-	/// Bound by default to shader location: 3
-	public const char8* RL_DEFAULT_SHADER_ATTRIB_NAME_COLOR = "vertexColor";
-	
-	/// Bound by default to shader location: 4
-	public const char8* RL_DEFAULT_SHADER_ATTRIB_NAME_TANGENT = "vertexTangent";
-	
-	/// Bound by default to shader location: 5
-	public const char8* RL_DEFAULT_SHADER_ATTRIB_NAME_TEXCOORD2 = "vertexTexCoord2";
-	
-	/// model-view-projection matrix
-	public const char8* RL_DEFAULT_SHADER_UNIFORM_NAME_MVP = "mvp";
-	
-	/// view matrix
-	public const char8* RL_DEFAULT_SHADER_UNIFORM_NAME_VIEW = "matView";
-	
-	/// projection matrix
-	public const char8* RL_DEFAULT_SHADER_UNIFORM_NAME_PROJECTION = "matProjection";
-	
-	/// model matrix
-	public const char8* RL_DEFAULT_SHADER_UNIFORM_NAME_MODEL = "matModel";
-	
-	/// normal matrix (transpose(inverse(matModelView))
-	public const char8* RL_DEFAULT_SHADER_UNIFORM_NAME_NORMAL = "matNormal";
-	
-	/// color diffuse (base tint color, multiplied by texture color)
-	public const char8* RL_DEFAULT_SHADER_UNIFORM_NAME_COLOR = "colDiffuse";
-	
-	/// texture0 (texture slot active 0)
-	public const char8* RL_DEFAULT_SHADER_SAMPLER2D_NAME_TEXTURE0 = "texture0";
-	
-	/// texture1 (texture slot active 1)
-	public const char8* RL_DEFAULT_SHADER_SAMPLER2D_NAME_TEXTURE1 = "texture1";
-	
-	/// texture2 (texture slot active 2)
-	public const char8* RL_DEFAULT_SHADER_SAMPLER2D_NAME_TEXTURE2 = "texture2";
-	
 	/// Choose the current matrix to be transformed
 	[CLink]
 	public static extern void rlMatrixMode(int32 mode);
@@ -907,7 +818,5 @@ public static class Rlgl
 	[CLink]
 	public static extern void rlLoadDrawQuad();
 	
-	/// OpenGL extension functions loader signature (same as GLADloadproc)
-	public function void * rlglLoadProc(char8 * name);
 	
 }

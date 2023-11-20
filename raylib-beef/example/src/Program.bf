@@ -8,7 +8,7 @@ class Program
 {
 	public static int Main(String[] args)
 	{
-		InitWindow(800, 600, "Raylib Beef 4.5");
+		InitWindow(800, 600, scope $"Raylib Beef {RAYLIB_VERSION_MAJOR}.{RAYLIB_VERSION_MINOR}.{RAYLIB_VERSION_PATCH}");
 		InitAudioDevice();
 
 		var beefMain = Color(165, 47, 78, 255);

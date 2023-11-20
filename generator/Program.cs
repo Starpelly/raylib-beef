@@ -13,7 +13,8 @@ namespace RaylibBeefGenerator
         // Current Output Beef Code
         private static StringBuilder OutputString = new StringBuilder();
 
-        private static string OutputDir = @"C:\Dev\raylib-beef\raylib-beef\src\";
+        private static string ExecutingPath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)!, "../../../../");
+        private static string OutputDir = Path.Combine(ExecutingPath, "raylib-beef/src/");
 
         private static Dictionary<string, FileDefinition> jsonFiles = new()
         {
@@ -45,7 +46,7 @@ namespace RaylibBeefGenerator
             
             for (var i = 0; i < jsonFiles.Count; i++)
             {
-                ConvertFile(jsonFiles.ElementAt(i).Value, @$"C:\Dev\raylib-beef\raylib-api\{jsonFiles.ElementAt(i).Key}");
+                ConvertFile(jsonFiles.ElementAt(i).Value, Path.Combine(ExecutingPath, $"raylib-api/{jsonFiles.ElementAt(i).Key}"));
             }
 
             Console.WriteLine("Successfully Generated Bindings!");
@@ -54,7 +55,7 @@ namespace RaylibBeefGenerator
 
         public static void ConvertFile(FileDefinition def, string location)
         {
-            var api = JsonConvert.DeserializeObject<Root>(File.ReadAllText(location));
+            var api = JsonConvert.DeserializeObject<Root>(File.ReadAllText(location))!;
             
             OutputString.Clear();
             OutputString = new();
@@ -72,7 +73,7 @@ namespace RaylibBeefGenerator
 
                 if (!string.IsNullOrEmpty(define.Description)) AppendLine($"/// {define.Description}");
                 var defineType = define.Type.ConvertTypes();
-                AppendLine($"public const {defineType} {define.Name.ConvertName()} = {define.Value.ToString().ParseValue(defineType)};");
+                AppendLine($"public const {defineType} {define.Name.ConvertName()} = {define.Value.ToString()!.ParseValue(defineType)};");
                 AppendLine("");
             }
             
