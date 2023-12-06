@@ -2,7 +2,7 @@
 
 ![logo](img/raylib-beef-logo.png)
 
-BeefLang bindings for **Raylib 4.5**.
+BeefLang bindings for **Raylib 5.0**.
 
 > **Note**: OS is limited to Windows right now, I see no reason why this wouldn't work on other platforms, though. I guess only one way to find out.
 
@@ -18,7 +18,7 @@ class Program
 {
 	public static int Main(String[] args)
 	{
-		InitWindow(800, 600, "Raylib Beef 4.5");
+		InitWindow(800, 600, scope $"Raylib Beef {RAYLIB_VERSION_MAJOR}.{RAYLIB_VERSION_MINOR}.{RAYLIB_VERSION_PATCH}");
 		InitAudioDevice();
 
 		var beefMain = Color(165, 47, 78, 255);
