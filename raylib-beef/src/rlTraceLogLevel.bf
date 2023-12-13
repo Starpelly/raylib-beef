@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// Trace log level
 public enum rlTraceLogLevel : c_int
 {

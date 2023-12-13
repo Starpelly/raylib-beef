@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// Camera projection
 public enum CameraProjection : c_int
 {

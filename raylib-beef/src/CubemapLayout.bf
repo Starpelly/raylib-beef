@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// Cubemap layouts
 public enum CubemapLayout : c_int
 {

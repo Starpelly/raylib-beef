@@ -558,10 +558,6 @@ public static class Rlgl
 	[CLink]
 	public static extern rlRenderBatch rlLoadRenderBatch(int32 numBuffers, int32 bufferElements);
 	
-	/// Unload render batch system
-	[CLink]
-	public static extern void rlUnloadRenderBatch(rlRenderBatch batch);
-	
 	/// Draw render batch data (Update->Draw->Reset)
 	[CLink]
 	public static extern void rlDrawRenderBatch(rlRenderBatch * batch);
@@ -722,10 +718,6 @@ public static class Rlgl
 	[CLink]
 	public static extern void rlSetUniform(int32 locIndex, void * value, int32 uniformType, int32 count);
 	
-	/// Set shader value matrix
-	[CLink]
-	public static extern void rlSetUniformMatrix(int32 locIndex, Matrix mat);
-	
 	/// Set shader value sampler
 	[CLink]
 	public static extern void rlSetUniformSampler(int32 locIndex, int32 textureId);
@@ -794,6 +786,24 @@ public static class Rlgl
 	[CLink]
 	public static extern Matrix rlGetMatrixViewOffsetStereo(int32 eye);
 	
+	/// Load and draw a cube
+	[CLink]
+	public static extern void rlLoadDrawCube();
+	
+	/// Load and draw a quad
+	[CLink]
+	public static extern void rlLoadDrawQuad();
+	
+#if !BF_PLATFORM_WASM
+	
+	/// Unload render batch system
+	[CLink]
+	public static extern void rlUnloadRenderBatch(rlRenderBatch batch);
+	
+	/// Set shader value matrix
+	[CLink]
+	public static extern void rlSetUniformMatrix(int32 locIndex, Matrix mat);
+	
 	/// Set a custom projection matrix (replaces internal projection matrix)
 	[CLink]
 	public static extern void rlSetMatrixProjection(Matrix proj);
@@ -810,13 +820,32 @@ public static class Rlgl
 	[CLink]
 	public static extern void rlSetMatrixViewOffsetStereo(Matrix right, Matrix left);
 	
-	/// Load and draw a cube
-	[CLink]
-	public static extern void rlLoadDrawCube();
+#else
 	
-	/// Load and draw a quad
+	/// Unload render batch system
 	[CLink]
-	public static extern void rlLoadDrawQuad();
+	public static extern void rlUnloadRenderBatch(in rlRenderBatch batch);
 	
+	/// Set shader value matrix
+	[CLink]
+	public static extern void rlSetUniformMatrix(int32 locIndex, in Matrix mat);
+	
+	/// Set a custom projection matrix (replaces internal projection matrix)
+	[CLink]
+	public static extern void rlSetMatrixProjection(in Matrix proj);
+	
+	/// Set a custom modelview matrix (replaces internal modelview matrix)
+	[CLink]
+	public static extern void rlSetMatrixModelview(in Matrix view);
+	
+	/// Set eyes projection matrices for stereo rendering
+	[CLink]
+	public static extern void rlSetMatrixProjectionStereo(in Matrix right, in Matrix left);
+	
+	/// Set eyes view offsets matrices for stereo rendering
+	[CLink]
+	public static extern void rlSetMatrixViewOffsetStereo(in Matrix right, in Matrix left);
+	
+#endif
 	
 }

@@ -3,3 +3,8 @@ Projects = {raylib-beef = {Path = "."}, example = {Path = "example"}}
 
 [Workspace]
 StartupProject = "example"
+
+[Configs.Debug.wasm32]
+AllocType = "CRT"
+EnableObjectDebugFlags = false
+EmitObjectAccessCheck = false

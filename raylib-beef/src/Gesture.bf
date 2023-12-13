@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// Gesture
 public enum Gesture : c_int
 {

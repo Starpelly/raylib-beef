@@ -19,9 +19,9 @@ public struct Music
 	public int32 ctxType;
 	
 	/// Audio context data, depends on type
-	public void * ctxData;
+	public void* ctxData;
 	
-	public this(AudioStream stream, int32 frameCount, bool looping, int32 ctxType, void * ctxData)
+	public this(AudioStream stream, int32 frameCount, bool looping, int32 ctxType, void* ctxData)
 	{
 		this.stream = stream;
 		this.frameCount = frameCount;

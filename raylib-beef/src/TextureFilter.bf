@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// Texture parameters: filter mode
 public enum TextureFilter : c_int
 {

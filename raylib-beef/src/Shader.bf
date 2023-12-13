@@ -10,9 +10,9 @@ public struct Shader
 	public int32 id;
 	
 	/// Shader locations array (RL_MAX_SHADER_LOCATIONS)
-	public int32 * locs;
+	public void* locs;
 	
-	public this(int32 id, int32 * locs)
+	public this(int32 id, void* locs)
 	{
 		this.id = id;
 		this.locs = locs;

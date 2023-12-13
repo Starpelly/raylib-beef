@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -56,7 +57,7 @@ namespace RaylibBeefGenerator
         public static void ConvertFile(FileDefinition def, string location)
         {
             var api = JsonConvert.DeserializeObject<Root>(File.ReadAllText(location))!;
-            
+
             OutputString.Clear();
             OutputString = new();
 
@@ -76,40 +77,62 @@ namespace RaylibBeefGenerator
                 AppendLine($"public const {defineType} {define.Name.ConvertName()} = {define.Value.ToString()!.ParseValue(defineType)};");
                 AppendLine("");
             }
-            
-            for (var i = 0; i < api.Functions.Count; i++)
-            {
-                var func = api.Functions[i];
 
+            var functionsWStructs = new List<Function>();
+            var functionsWOStructs = new List<Function>();
+
+            foreach (var func in api.Functions)
+            {
+                var addWO = true;
+                foreach (var param in func.Params)
+                {
+                    if (api.Structs.Find(c => c.Name == param.Type) != null || api.Aliases.Find(c => c.Name == param.Type) != null)
+                    {
+                        addWO = false;
+                        break;
+                    }
+                }
+                if (addWO)
+                    functionsWOStructs.Add(func);
+                else
+                    functionsWStructs.Add(func);
+            }
+
+            // Platform agnostic methods (kinda)
+            foreach (var func in functionsWOStructs)
+            {
                 AppendLine($"/// {func.Description}");
                 // AppendLine($"[Import(Raylib.RaylibBin), CallingConvention(.Cdecl), LinkName(\"{func.Name}\")]");
                 AppendLine("[CLink]");
-                AppendLine($"public static extern {func.ReturnType.ConvertTypes()} {func.Name.ConvertName()}({Parameters2String(func.Params)});");
+                AppendLine($"public static extern {func.ReturnType.ConvertTypes()} {func.Name.ConvertName()}({Parameters2String(func.Params, api)});");
                 AppendLine("");
-
-                /*
-                var char8Params = new List<Param>();
-                var funcHasChar8 = false;
-                for (var p = 0; p < func.Params.Count; p++)
-                {
-                    var param = func.Params[p];
-                    if (param.Type.ConvertTypes() == "char8 *")
-                    {
-                        param.Type = "String";
-                        funcHasChar8 = true;
-                    }
-                    char8Params.Add(param);
-                }
-
-                if (funcHasChar8)
-                {
-                    AppendLine($"/// {func.Description}");
-                    AppendLine($"[Import(\"{ImportLib}\"), CallingConvention(.Cdecl), LinkName(\"{func.Name}\")]");
-                    AppendLine($"public static extern void {func.Name.ConvertName()}({Parameters2String(char8Params)});");
-                    AppendLine("");   
-                }
-                */
             }
+
+            AppendLine($"#if !BF_PLATFORM_WASM", true);
+            AppendLine("");
+
+            foreach (var func in functionsWStructs)
+            {
+                AppendLine($"/// {func.Description}");
+                // AppendLine($"[Import(Raylib.RaylibBin), CallingConvention(.Cdecl), LinkName(\"{func.Name}\")]");
+                AppendLine("[CLink]");
+                AppendLine($"public static extern {func.ReturnType.ConvertTypes()} {func.Name.ConvertName()}({Parameters2String(func.Params, api)});");
+                AppendLine("");
+            }
+
+            AppendLine($"#else", true);
+            AppendLine("");
+
+            // Emscripten
+            foreach (var func in functionsWStructs)
+            { 
+                AppendLine($"/// {func.Description}");
+                // AppendLine($"[Import(Raylib.RaylibBin), CallingConvention(.Cdecl), LinkName(\"{func.Name}\")]");
+                AppendLine("[CLink]");
+                AppendLine($"public static extern {func.ReturnType.ConvertTypes()} {func.Name.ConvertName()}({Parameters2String(func.Params, api, true)});");
+                AppendLine("");
+            }
+            AppendLine($"#endif", true);
 
             AppendLine("");
             
@@ -118,7 +141,7 @@ namespace RaylibBeefGenerator
                 var callback = api.Callbacks[i];
 
                 if (!string.IsNullOrEmpty(callback.Description)) AppendLine($"/// {callback.Description}");
-                AppendLine($"public function {callback.ReturnType.ConvertTypes()} {callback.Name.ConvertName()}({callback.Params.Parameters2String()});");
+                AppendLine($"public function {callback.ReturnType.ConvertTypes()} {callback.Name.ConvertName()}({ callback.Params.Parameters2String(api)});");
                 AppendLine("");
             }
             
@@ -144,6 +167,7 @@ namespace RaylibBeefGenerator
 
             UniversalHeader();
 
+            AppendLine($"[AllowDuplicates]");
             AppendLine($"/// {@enum.Description}");
             AppendLine($"public enum {@enum.Name} : c_int");
             AppendLine("{");
@@ -191,8 +215,13 @@ namespace RaylibBeefGenerator
             {
                 var field = structu.Fields[i];
 
-                // This is like the only thing that is hardcoded, and that saddens me.
-                if (field.Type == "rAudioProcessor *" || field.Type == "rAudioBuffer *" || field.Type.StartsWith("#if") || field.Type == "#endif")
+                // field.Type == "rAudioProcessor *" || field.Type == "rAudioBuffer *"
+                if (field.Type[^1] == '*') // Is Pointer
+                {
+                    if (api.Structs.Find(c => c.Name == field.Type.Remove(field.Type.Length - 2, 2)) == null)
+                        field.Type = "void*";
+                }
+                else if (field.Type.StartsWith("#if") || field.Type == "#endif")
                 {
                     field.Type = "void*";
                 }
@@ -233,7 +262,7 @@ namespace RaylibBeefGenerator
             WriteToFile($"{structu.Name}");
         }
 
-        public static string Parameters2String(this List<Param> @params)
+        public static string Parameters2String(this List<Param> @params, RaylibBeefGenerator.Root api, bool emscripten = false)
         {
             var paramStr = string.Empty;
 
@@ -242,6 +271,13 @@ namespace RaylibBeefGenerator
                 var param = @params[p];
                 var t = ConvertTypes(param.Type);
                 if (t == "...") { paramStr = paramStr[..^2]; continue; }; // Dunno what this is about, or how to convert it.
+
+                if (emscripten)
+                {
+                    // Emscripten REALLY likes passing structs by reference
+                    if (api.Structs.Find(c => c.Name == param.Type) != null || api.Aliases.Find(c => c.Name == param.Type) != null)
+                        paramStr += "in ";
+                }
 
                 paramStr += $"{t} {param.Name.ConvertName()}";
                 if (p < @params.Count - 1)
@@ -339,12 +375,15 @@ namespace RaylibBeefGenerator
             return Regex.Replace(original, pattern, replacement);
         }
 
-        public static void AppendLine(string content)
+        public static void AppendLine(string content, bool ignoreTabs = false)
         {
             var output = string.Empty;
-            for (int i = 0; i < TabIndex; i++)
+            if (!ignoreTabs)
             {
-                output += "\t";
+                for (int i = 0; i < TabIndex; i++)
+                {
+                    output += "\t";
+                }
             }
             output += content;
             OutputString.AppendLine(output);

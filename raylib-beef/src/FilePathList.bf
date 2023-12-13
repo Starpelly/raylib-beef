@@ -13,9 +13,9 @@ public struct FilePathList
 	public int32 count;
 	
 	/// Filepaths entries
-	public char8 ** paths;
+	public void* paths;
 	
-	public this(int32 capacity, int32 count, char8 ** paths)
+	public this(int32 capacity, int32 count, void* paths)
 	{
 		this.capacity = capacity;
 		this.count = count;

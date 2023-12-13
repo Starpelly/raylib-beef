@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// Shader location point type
 public enum rlShaderLocationIndex : c_int
 {

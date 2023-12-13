@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// N-patch layout
 public enum NPatchLayout : c_int
 {

@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// System/Window config flags
 public enum ConfigFlags : c_int
 {

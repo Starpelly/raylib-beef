@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// Texture pixel formats
 public enum rlPixelFormat : c_int
 {

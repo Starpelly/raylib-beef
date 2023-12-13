@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// Color blending modes (pre-defined)
 public enum rlBlendMode : c_int
 {

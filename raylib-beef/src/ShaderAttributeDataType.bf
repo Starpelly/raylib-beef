@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// Shader attribute data types
 public enum ShaderAttributeDataType : c_int
 {

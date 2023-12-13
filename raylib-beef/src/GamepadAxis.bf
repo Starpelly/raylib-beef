@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// Gamepad axis
 public enum GamepadAxis : c_int
 {

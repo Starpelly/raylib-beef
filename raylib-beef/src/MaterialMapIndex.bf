@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// Material map index
 public enum MaterialMapIndex : c_int
 {

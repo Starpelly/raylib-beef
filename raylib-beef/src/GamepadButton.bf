@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// Gamepad buttons
 public enum GamepadButton : c_int
 {

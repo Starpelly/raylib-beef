@@ -12,10 +12,18 @@ CLibType = "DynamicDebug"
 LibPaths = ["$(ProjectDir)\\libs\\libs_x64\\raylibdll.lib"]
 PostBuildCmds = ["CopyToDependents(\"$(ProjectDir)/libs/libs_x64/*.dll\")"]
 
+[Configs.Debug.wasm32]
+OtherLinkFlags = "$(LinkFlags) -s USE_GLFW=3"
+LibPaths = ["$(ProjectDir)\\libs\\wasm\\libraylib.a"]
+
 [Configs.Release.Win64]
 CLibType = "Dynamic"
 LibPaths = ["$(ProjectDir)\\libs\\libs_x64\\raylibdll.lib"]
 PostBuildCmds = ["CopyToDependents(\"$(ProjectDir)/libs/libs_x64/*.dll\")"]
+
+[Configs.Release.wasm32]
+OtherLinkFlags = "$(LinkFlags) -s USE_GLFW=3"
+LibPaths = ["$(ProjectDir)\\libs\\wasm\\libraylib.a"]
 
 [Configs.Paranoid.Win64]
 PostBuildCmds = ["CopyToDependents(\"$(ProjectDir)/libs/libs_x64/*.dll\")"]

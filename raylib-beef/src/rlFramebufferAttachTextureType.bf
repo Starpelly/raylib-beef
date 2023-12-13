@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// Framebuffer texture attachment type
 public enum rlFramebufferAttachTextureType : c_int
 {

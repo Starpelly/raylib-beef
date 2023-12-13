@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// Shader uniform data type
 public enum rlShaderUniformDataType : c_int
 {

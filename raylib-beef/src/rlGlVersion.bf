@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// OpenGL version
 public enum rlGlVersion : c_int
 {

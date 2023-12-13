@@ -169,10 +169,6 @@ public static class Raylib
 	[CLink]
 	public static extern void RestoreWindow();
 	
-	/// Set icon for window (single image, RGBA 32bit, only PLATFORM_DESKTOP)
-	[CLink]
-	public static extern void SetWindowIcon(Image image);
-	
 	/// Set icon for window (multiple images, RGBA 32bit, only PLATFORM_DESKTOP)
 	[CLink]
 	public static extern void SetWindowIcons(Image * images, int32 count);
@@ -313,10 +309,6 @@ public static class Raylib
 	[CLink]
 	public static extern bool IsCursorOnScreen();
 	
-	/// Set background color (framebuffer clear color)
-	[CLink]
-	public static extern void ClearBackground(Color color);
-	
 	/// Setup canvas (framebuffer) to start drawing
 	[CLink]
 	public static extern void BeginDrawing();
@@ -325,33 +317,17 @@ public static class Raylib
 	[CLink]
 	public static extern void EndDrawing();
 	
-	/// Begin 2D mode with custom camera (2D)
-	[CLink]
-	public static extern void BeginMode2D(Camera2D camera);
-	
 	/// Ends 2D mode with custom camera
 	[CLink]
 	public static extern void EndMode2D();
-	
-	/// Begin 3D mode with custom camera (3D)
-	[CLink]
-	public static extern void BeginMode3D(Camera3D camera);
 	
 	/// Ends 3D mode and returns to default 2D orthographic mode
 	[CLink]
 	public static extern void EndMode3D();
 	
-	/// Begin drawing to render texture
-	[CLink]
-	public static extern void BeginTextureMode(RenderTexture2D target);
-	
 	/// Ends drawing to render texture
 	[CLink]
 	public static extern void EndTextureMode();
-	
-	/// Begin custom shader drawing
-	[CLink]
-	public static extern void BeginShaderMode(Shader shader);
 	
 	/// End custom shader drawing (use default shader)
 	[CLink]
@@ -373,21 +349,9 @@ public static class Raylib
 	[CLink]
 	public static extern void EndScissorMode();
 	
-	/// Begin stereo rendering (requires VR simulator)
-	[CLink]
-	public static extern void BeginVrStereoMode(VrStereoConfig config);
-	
 	/// End stereo rendering (requires VR simulator)
 	[CLink]
 	public static extern void EndVrStereoMode();
-	
-	/// Load VR stereo config for VR simulator device parameters
-	[CLink]
-	public static extern VrStereoConfig LoadVrStereoConfig(VrDeviceInfo device);
-	
-	/// Unload VR stereo config
-	[CLink]
-	public static extern void UnloadVrStereoConfig(VrStereoConfig config);
 	
 	/// Load shader from files and bind default locations
 	[CLink]
@@ -396,66 +360,6 @@ public static class Raylib
 	/// Load shader from code strings and bind default locations
 	[CLink]
 	public static extern Shader LoadShaderFromMemory(char8 * vsCode, char8 * fsCode);
-	
-	/// Check if a shader is ready
-	[CLink]
-	public static extern bool IsShaderReady(Shader shader);
-	
-	/// Get shader uniform location
-	[CLink]
-	public static extern int32 GetShaderLocation(Shader shader, char8 * uniformName);
-	
-	/// Get shader attribute location
-	[CLink]
-	public static extern int32 GetShaderLocationAttrib(Shader shader, char8 * attribName);
-	
-	/// Set shader uniform value
-	[CLink]
-	public static extern void SetShaderValue(Shader shader, int32 locIndex, void * value, int32 uniformType);
-	
-	/// Set shader uniform value vector
-	[CLink]
-	public static extern void SetShaderValueV(Shader shader, int32 locIndex, void * value, int32 uniformType, int32 count);
-	
-	/// Set shader uniform value (matrix 4x4)
-	[CLink]
-	public static extern void SetShaderValueMatrix(Shader shader, int32 locIndex, Matrix mat);
-	
-	/// Set shader uniform value for texture (sampler2d)
-	[CLink]
-	public static extern void SetShaderValueTexture(Shader shader, int32 locIndex, Texture2D texture);
-	
-	/// Unload shader from GPU memory (VRAM)
-	[CLink]
-	public static extern void UnloadShader(Shader shader);
-	
-	/// Get a ray trace from mouse position
-	[CLink]
-	public static extern Ray GetMouseRay(Vector2 mousePosition, Camera camera);
-	
-	/// Get camera transform matrix (view matrix)
-	[CLink]
-	public static extern Matrix GetCameraMatrix(Camera camera);
-	
-	/// Get camera 2d transform matrix
-	[CLink]
-	public static extern Matrix GetCameraMatrix2D(Camera2D camera);
-	
-	/// Get the screen space position for a 3d world space position
-	[CLink]
-	public static extern Vector2 GetWorldToScreen(Vector3 position, Camera camera);
-	
-	/// Get the world space position for a 2d camera screen space position
-	[CLink]
-	public static extern Vector2 GetScreenToWorld2D(Vector2 position, Camera2D camera);
-	
-	/// Get size position for a 3d world space position
-	[CLink]
-	public static extern Vector2 GetWorldToScreenEx(Vector3 position, Camera camera, int32 width, int32 height);
-	
-	/// Get the screen space position for a 2d camera world space position
-	[CLink]
-	public static extern Vector2 GetWorldToScreen2D(Vector2 position, Camera2D camera);
 	
 	/// Set target FPS (maximum)
 	[CLink]
@@ -641,10 +545,6 @@ public static class Raylib
 	[CLink]
 	public static extern FilePathList LoadDirectoryFilesEx(char8 * basePath, char8 * filter, bool scanSubdirs);
 	
-	/// Unload filepaths
-	[CLink]
-	public static extern void UnloadDirectoryFiles(FilePathList files);
-	
 	/// Check if a file has been dropped into window
 	[CLink]
 	public static extern bool IsFileDropped();
@@ -652,10 +552,6 @@ public static class Raylib
 	/// Load dropped filepaths
 	[CLink]
 	public static extern FilePathList LoadDroppedFiles();
-	
-	/// Unload dropped filepaths
-	[CLink]
-	public static extern void UnloadDroppedFiles(FilePathList files);
 	
 	/// Get file modification time (last write time)
 	[CLink]
@@ -685,10 +581,6 @@ public static class Raylib
 	[CLink]
 	public static extern void UnloadAutomationEventList(AutomationEventList * list);
 	
-	/// Export automation events list as text file
-	[CLink]
-	public static extern bool ExportAutomationEventList(AutomationEventList list, char8 * fileName);
-	
 	/// Set automation event list to record to
 	[CLink]
 	public static extern void SetAutomationEventList(AutomationEventList * list);
@@ -704,10 +596,6 @@ public static class Raylib
 	/// Stop recording automation events
 	[CLink]
 	public static extern void StopAutomationEventRecording();
-	
-	/// Play a recorded automation event
-	[CLink]
-	public static extern void PlayAutomationEvent(AutomationEvent event);
 	
 	/// Check if a key has been pressed once
 	[CLink]
@@ -892,6 +780,540 @@ public static class Raylib
 	/// Update camera position for selected mode
 	[CLink]
 	public static extern void UpdateCamera(Camera * camera, int32 mode);
+	
+	/// Load image from file into CPU memory (RAM)
+	[CLink]
+	public static extern Image LoadImage(char8 * fileName);
+	
+	/// Load image from RAW file data
+	[CLink]
+	public static extern Image LoadImageRaw(char8 * fileName, int32 width, int32 height, int32 format, int32 headerSize);
+	
+	/// Load image from SVG file data or string with specified size
+	[CLink]
+	public static extern Image LoadImageSvg(char8 * fileNameOrString, int32 width, int32 height);
+	
+	/// Load image sequence from file (frames appended to image.data)
+	[CLink]
+	public static extern Image LoadImageAnim(char8 * fileName, int32 * frames);
+	
+	/// Load image from memory buffer, fileType refers to extension: i.e. '.png'
+	[CLink]
+	public static extern Image LoadImageFromMemory(char8 * fileType, char8 * fileData, int32 dataSize);
+	
+	/// Load image from screen buffer and (screenshot)
+	[CLink]
+	public static extern Image LoadImageFromScreen();
+	
+	/// Generate image: white noise
+	[CLink]
+	public static extern Image GenImageWhiteNoise(int32 width, int32 height, float factor);
+	
+	/// Generate image: perlin noise
+	[CLink]
+	public static extern Image GenImagePerlinNoise(int32 width, int32 height, int32 offsetX, int32 offsetY, float scale);
+	
+	/// Generate image: cellular algorithm, bigger tileSize means bigger cells
+	[CLink]
+	public static extern Image GenImageCellular(int32 width, int32 height, int32 tileSize);
+	
+	/// Generate image: grayscale image from text data
+	[CLink]
+	public static extern Image GenImageText(int32 width, int32 height, char8 * text);
+	
+	/// Convert image data to desired format
+	[CLink]
+	public static extern void ImageFormat(Image * image, int32 newFormat);
+	
+	/// Crop image depending on alpha value
+	[CLink]
+	public static extern void ImageAlphaCrop(Image * image, float threshold);
+	
+	/// Premultiply alpha channel
+	[CLink]
+	public static extern void ImageAlphaPremultiply(Image * image);
+	
+	/// Apply Gaussian blur using a box blur approximation
+	[CLink]
+	public static extern void ImageBlurGaussian(Image * image, int32 blurSize);
+	
+	/// Resize image (Bicubic scaling algorithm)
+	[CLink]
+	public static extern void ImageResize(Image * image, int32 newWidth, int32 newHeight);
+	
+	/// Resize image (Nearest-Neighbor scaling algorithm)
+	[CLink]
+	public static extern void ImageResizeNN(Image * image, int32 newWidth, int32 newHeight);
+	
+	/// Compute all mipmap levels for a provided image
+	[CLink]
+	public static extern void ImageMipmaps(Image * image);
+	
+	/// Dither image data to 16bpp or lower (Floyd-Steinberg dithering)
+	[CLink]
+	public static extern void ImageDither(Image * image, int32 rBpp, int32 gBpp, int32 bBpp, int32 aBpp);
+	
+	/// Flip image vertically
+	[CLink]
+	public static extern void ImageFlipVertical(Image * image);
+	
+	/// Flip image horizontally
+	[CLink]
+	public static extern void ImageFlipHorizontal(Image * image);
+	
+	/// Rotate image by input angle in degrees (-359 to 359)
+	[CLink]
+	public static extern void ImageRotate(Image * image, int32 degrees);
+	
+	/// Rotate image clockwise 90deg
+	[CLink]
+	public static extern void ImageRotateCW(Image * image);
+	
+	/// Rotate image counter-clockwise 90deg
+	[CLink]
+	public static extern void ImageRotateCCW(Image * image);
+	
+	/// Modify image color: invert
+	[CLink]
+	public static extern void ImageColorInvert(Image * image);
+	
+	/// Modify image color: grayscale
+	[CLink]
+	public static extern void ImageColorGrayscale(Image * image);
+	
+	/// Modify image color: contrast (-100 to 100)
+	[CLink]
+	public static extern void ImageColorContrast(Image * image, float contrast);
+	
+	/// Modify image color: brightness (-255 to 255)
+	[CLink]
+	public static extern void ImageColorBrightness(Image * image, int32 brightness);
+	
+	/// Unload color data loaded with LoadImageColors()
+	[CLink]
+	public static extern void UnloadImageColors(Color * colors);
+	
+	/// Unload colors palette loaded with LoadImagePalette()
+	[CLink]
+	public static extern void UnloadImagePalette(Color * colors);
+	
+	/// Load texture from file into GPU memory (VRAM)
+	[CLink]
+	public static extern Texture2D LoadTexture(char8 * fileName);
+	
+	/// Load texture for rendering (framebuffer)
+	[CLink]
+	public static extern RenderTexture2D LoadRenderTexture(int32 width, int32 height);
+	
+	/// Generate GPU mipmaps for a texture
+	[CLink]
+	public static extern void GenTextureMipmaps(Texture2D * texture);
+	
+	/// Get a Color from HSV values, hue [0..360], saturation/value [0..1]
+	[CLink]
+	public static extern Color ColorFromHSV(float hue, float saturation, float value);
+	
+	/// Get Color structure from hexadecimal value
+	[CLink]
+	public static extern Color GetColor(int32 hexValue);
+	
+	/// Get Color from a source pixel pointer of certain format
+	[CLink]
+	public static extern Color GetPixelColor(void * srcPtr, int32 format);
+	
+	/// Get pixel data size in bytes for certain format
+	[CLink]
+	public static extern int32 GetPixelDataSize(int32 width, int32 height, int32 format);
+	
+	/// Get the default Font
+	[CLink]
+	public static extern Font GetFontDefault();
+	
+	/// Load font from file into GPU memory (VRAM)
+	[CLink]
+	public static extern Font LoadFont(char8 * fileName);
+	
+	/// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default character setFont
+	[CLink]
+	public static extern Font LoadFontEx(char8 * fileName, int32 fontSize, int32 * codepoints, int32 codepointCount);
+	
+	/// Load font from memory buffer, fileType refers to extension: i.e. '.ttf'
+	[CLink]
+	public static extern Font LoadFontFromMemory(char8 * fileType, char8 * fileData, int32 dataSize, int32 fontSize, int32 * codepoints, int32 codepointCount);
+	
+	/// Load font data for further use
+	[CLink]
+	public static extern GlyphInfo * LoadFontData(char8 * fileData, int32 dataSize, int32 fontSize, int32 * codepoints, int32 codepointCount, int32 type);
+	
+	/// Generate image font atlas using chars info
+	[CLink]
+	public static extern Image GenImageFontAtlas(GlyphInfo * glyphs, Rectangle ** glyphRecs, int32 glyphCount, int32 fontSize, int32 padding, int32 packMethod);
+	
+	/// Unload font chars info data (RAM)
+	[CLink]
+	public static extern void UnloadFontData(GlyphInfo * glyphs, int32 glyphCount);
+	
+	/// Draw current FPS
+	[CLink]
+	public static extern void DrawFPS(int32 posX, int32 posY);
+	
+	/// Set vertical line spacing when drawing with line-breaks
+	[CLink]
+	public static extern void SetTextLineSpacing(int32 spacing);
+	
+	/// Measure string width for default font
+	[CLink]
+	public static extern int32 MeasureText(char8 * text, int32 fontSize);
+	
+	/// Load UTF-8 text encoded from codepoints array
+	[CLink]
+	public static extern char8 * LoadUTF8(int32 * codepoints, int32 length);
+	
+	/// Unload UTF-8 text encoded from codepoints array
+	[CLink]
+	public static extern void UnloadUTF8(char8 * text);
+	
+	/// Load all codepoints from a UTF-8 text string, codepoints count returned by parameter
+	[CLink]
+	public static extern int32 * LoadCodepoints(char8 * text, int32 * count);
+	
+	/// Unload codepoints data from memory
+	[CLink]
+	public static extern void UnloadCodepoints(int32 * codepoints);
+	
+	/// Get total number of codepoints in a UTF-8 encoded string
+	[CLink]
+	public static extern int32 GetCodepointCount(char8 * text);
+	
+	/// Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
+	[CLink]
+	public static extern int32 GetCodepoint(char8 * text, int32 * codepointSize);
+	
+	/// Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
+	[CLink]
+	public static extern int32 GetCodepointNext(char8 * text, int32 * codepointSize);
+	
+	/// Get previous codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
+	[CLink]
+	public static extern int32 GetCodepointPrevious(char8 * text, int32 * codepointSize);
+	
+	/// Encode one codepoint into UTF-8 byte array (array length returned as parameter)
+	[CLink]
+	public static extern char8 * CodepointToUTF8(int32 codepoint, int32 * utf8Size);
+	
+	/// Copy one string to another, returns bytes copied
+	[CLink]
+	public static extern int32 TextCopy(char8 * dst, char8 * src);
+	
+	/// Check if two text string are equal
+	[CLink]
+	public static extern bool TextIsEqual(char8 * text1, char8 * text2);
+	
+	/// Get text length, checks for '\0' ending
+	[CLink]
+	public static extern int32 TextLength(char8 * text);
+	
+	/// Text formatting with variables (sprintf() style)
+	[CLink]
+	public static extern char8 * TextFormat(char8 * text);
+	
+	/// Get a piece of a text string
+	[CLink]
+	public static extern char8 * TextSubtext(char8 * text, int32 position, int32 length);
+	
+	/// Replace text string (WARNING: memory must be freed!)
+	[CLink]
+	public static extern char8 * TextReplace(char8 * text, char8 * replace, char8 * by);
+	
+	/// Insert text in a position (WARNING: memory must be freed!)
+	[CLink]
+	public static extern char8 * TextInsert(char8 * text, char8 * insert, int32 position);
+	
+	/// Join text strings with delimiter
+	[CLink]
+	public static extern char8 * TextJoin(char8 ** textList, int32 count, char8 * delimiter);
+	
+	/// Split text into multiple strings
+	[CLink]
+	public static extern char8 ** TextSplit(char8 * text, char8 delimiter, int32 * count);
+	
+	/// Append text at specific position and move cursor!
+	[CLink]
+	public static extern void TextAppend(char8 * text, char8 * @append, int32 * position);
+	
+	/// Find first text occurrence within a string
+	[CLink]
+	public static extern int32 TextFindIndex(char8 * text, char8 * find);
+	
+	/// Get upper case version of provided string
+	[CLink]
+	public static extern char8 * TextToUpper(char8 * text);
+	
+	/// Get lower case version of provided string
+	[CLink]
+	public static extern char8 * TextToLower(char8 * text);
+	
+	/// Get Pascal case notation version of provided string
+	[CLink]
+	public static extern char8 * TextToPascal(char8 * text);
+	
+	/// Get integer value from text (negative values not supported)
+	[CLink]
+	public static extern int32 TextToInteger(char8 * text);
+	
+	/// Draw a grid (centered at (0, 0, 0))
+	[CLink]
+	public static extern void DrawGrid(int32 slices, float spacing);
+	
+	/// Load model from files (meshes and materials)
+	[CLink]
+	public static extern Model LoadModel(char8 * fileName);
+	
+	/// Upload mesh vertex data in GPU and provide VAO/VBO ids
+	[CLink]
+	public static extern void UploadMesh(Mesh * mesh, bool dynamic);
+	
+	/// Compute mesh tangents
+	[CLink]
+	public static extern void GenMeshTangents(Mesh * mesh);
+	
+	/// Generate polygonal mesh
+	[CLink]
+	public static extern Mesh GenMeshPoly(int32 sides, float radius);
+	
+	/// Generate plane mesh (with subdivisions)
+	[CLink]
+	public static extern Mesh GenMeshPlane(float width, float length, int32 resX, int32 resZ);
+	
+	/// Generate cuboid mesh
+	[CLink]
+	public static extern Mesh GenMeshCube(float width, float height, float length);
+	
+	/// Generate sphere mesh (standard sphere)
+	[CLink]
+	public static extern Mesh GenMeshSphere(float radius, int32 rings, int32 slices);
+	
+	/// Generate half-sphere mesh (no bottom cap)
+	[CLink]
+	public static extern Mesh GenMeshHemiSphere(float radius, int32 rings, int32 slices);
+	
+	/// Generate cylinder mesh
+	[CLink]
+	public static extern Mesh GenMeshCylinder(float radius, float height, int32 slices);
+	
+	/// Generate cone/pyramid mesh
+	[CLink]
+	public static extern Mesh GenMeshCone(float radius, float height, int32 slices);
+	
+	/// Generate torus mesh
+	[CLink]
+	public static extern Mesh GenMeshTorus(float radius, float size, int32 radSeg, int32 sides);
+	
+	/// Generate trefoil knot mesh
+	[CLink]
+	public static extern Mesh GenMeshKnot(float radius, float size, int32 radSeg, int32 sides);
+	
+	/// Load materials from model file
+	[CLink]
+	public static extern Material * LoadMaterials(char8 * fileName, int32 * materialCount);
+	
+	/// Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)
+	[CLink]
+	public static extern Material LoadMaterialDefault();
+	
+	/// Set material for a mesh
+	[CLink]
+	public static extern void SetModelMeshMaterial(Model * model, int32 meshId, int32 materialId);
+	
+	/// Load model animations from file
+	[CLink]
+	public static extern ModelAnimation * LoadModelAnimations(char8 * fileName, int32 * animCount);
+	
+	/// Unload animation array data
+	[CLink]
+	public static extern void UnloadModelAnimations(ModelAnimation * animations, int32 animCount);
+	
+	/// Initialize audio device and context
+	[CLink]
+	public static extern void InitAudioDevice();
+	
+	/// Close the audio device and context
+	[CLink]
+	public static extern void CloseAudioDevice();
+	
+	/// Check if audio device has been initialized successfully
+	[CLink]
+	public static extern bool IsAudioDeviceReady();
+	
+	/// Set master volume (listener)
+	[CLink]
+	public static extern void SetMasterVolume(float volume);
+	
+	/// Get master volume (listener)
+	[CLink]
+	public static extern float GetMasterVolume();
+	
+	/// Load wave data from file
+	[CLink]
+	public static extern Wave LoadWave(char8 * fileName);
+	
+	/// Load wave from memory buffer, fileType refers to extension: i.e. '.wav'
+	[CLink]
+	public static extern Wave LoadWaveFromMemory(char8 * fileType, char8 * fileData, int32 dataSize);
+	
+	/// Load sound from file
+	[CLink]
+	public static extern Sound LoadSound(char8 * fileName);
+	
+	/// Crop a wave to defined samples range
+	[CLink]
+	public static extern void WaveCrop(Wave * wave, int32 initSample, int32 finalSample);
+	
+	/// Convert wave data to desired format
+	[CLink]
+	public static extern void WaveFormat(Wave * wave, int32 sampleRate, int32 sampleSize, int32 channels);
+	
+	/// Unload samples data loaded with LoadWaveSamples()
+	[CLink]
+	public static extern void UnloadWaveSamples(float * samples);
+	
+	/// Load music stream from file
+	[CLink]
+	public static extern Music LoadMusicStream(char8 * fileName);
+	
+	/// Load music stream from data
+	[CLink]
+	public static extern Music LoadMusicStreamFromMemory(char8 * fileType, char8 * data, int32 dataSize);
+	
+	/// Load audio stream (to stream raw audio pcm data)
+	[CLink]
+	public static extern AudioStream LoadAudioStream(int32 sampleRate, int32 sampleSize, int32 channels);
+	
+	/// Default size for new audio streams
+	[CLink]
+	public static extern void SetAudioStreamBufferSizeDefault(int32 size);
+	
+	/// Attach audio stream processor to the entire audio pipeline, receives the samples as <float>s
+	[CLink]
+	public static extern void AttachAudioMixedProcessor(AudioCallback processor);
+	
+	/// Detach audio stream processor from the entire audio pipeline
+	[CLink]
+	public static extern void DetachAudioMixedProcessor(AudioCallback processor);
+	
+#if !BF_PLATFORM_WASM
+	
+	/// Set icon for window (single image, RGBA 32bit, only PLATFORM_DESKTOP)
+	[CLink]
+	public static extern void SetWindowIcon(Image image);
+	
+	/// Set background color (framebuffer clear color)
+	[CLink]
+	public static extern void ClearBackground(Color color);
+	
+	/// Begin 2D mode with custom camera (2D)
+	[CLink]
+	public static extern void BeginMode2D(Camera2D camera);
+	
+	/// Begin 3D mode with custom camera (3D)
+	[CLink]
+	public static extern void BeginMode3D(Camera3D camera);
+	
+	/// Begin drawing to render texture
+	[CLink]
+	public static extern void BeginTextureMode(RenderTexture2D target);
+	
+	/// Begin custom shader drawing
+	[CLink]
+	public static extern void BeginShaderMode(Shader shader);
+	
+	/// Begin stereo rendering (requires VR simulator)
+	[CLink]
+	public static extern void BeginVrStereoMode(VrStereoConfig config);
+	
+	/// Load VR stereo config for VR simulator device parameters
+	[CLink]
+	public static extern VrStereoConfig LoadVrStereoConfig(VrDeviceInfo device);
+	
+	/// Unload VR stereo config
+	[CLink]
+	public static extern void UnloadVrStereoConfig(VrStereoConfig config);
+	
+	/// Check if a shader is ready
+	[CLink]
+	public static extern bool IsShaderReady(Shader shader);
+	
+	/// Get shader uniform location
+	[CLink]
+	public static extern int32 GetShaderLocation(Shader shader, char8 * uniformName);
+	
+	/// Get shader attribute location
+	[CLink]
+	public static extern int32 GetShaderLocationAttrib(Shader shader, char8 * attribName);
+	
+	/// Set shader uniform value
+	[CLink]
+	public static extern void SetShaderValue(Shader shader, int32 locIndex, void * value, int32 uniformType);
+	
+	/// Set shader uniform value vector
+	[CLink]
+	public static extern void SetShaderValueV(Shader shader, int32 locIndex, void * value, int32 uniformType, int32 count);
+	
+	/// Set shader uniform value (matrix 4x4)
+	[CLink]
+	public static extern void SetShaderValueMatrix(Shader shader, int32 locIndex, Matrix mat);
+	
+	/// Set shader uniform value for texture (sampler2d)
+	[CLink]
+	public static extern void SetShaderValueTexture(Shader shader, int32 locIndex, Texture2D texture);
+	
+	/// Unload shader from GPU memory (VRAM)
+	[CLink]
+	public static extern void UnloadShader(Shader shader);
+	
+	/// Get a ray trace from mouse position
+	[CLink]
+	public static extern Ray GetMouseRay(Vector2 mousePosition, Camera camera);
+	
+	/// Get camera transform matrix (view matrix)
+	[CLink]
+	public static extern Matrix GetCameraMatrix(Camera camera);
+	
+	/// Get camera 2d transform matrix
+	[CLink]
+	public static extern Matrix GetCameraMatrix2D(Camera2D camera);
+	
+	/// Get the screen space position for a 3d world space position
+	[CLink]
+	public static extern Vector2 GetWorldToScreen(Vector3 position, Camera camera);
+	
+	/// Get the world space position for a 2d camera screen space position
+	[CLink]
+	public static extern Vector2 GetScreenToWorld2D(Vector2 position, Camera2D camera);
+	
+	/// Get size position for a 3d world space position
+	[CLink]
+	public static extern Vector2 GetWorldToScreenEx(Vector3 position, Camera camera, int32 width, int32 height);
+	
+	/// Get the screen space position for a 2d camera world space position
+	[CLink]
+	public static extern Vector2 GetWorldToScreen2D(Vector2 position, Camera2D camera);
+	
+	/// Unload filepaths
+	[CLink]
+	public static extern void UnloadDirectoryFiles(FilePathList files);
+	
+	/// Unload dropped filepaths
+	[CLink]
+	public static extern void UnloadDroppedFiles(FilePathList files);
+	
+	/// Export automation events list as text file
+	[CLink]
+	public static extern bool ExportAutomationEventList(AutomationEventList list, char8 * fileName);
+	
+	/// Play a recorded automation event
+	[CLink]
+	public static extern void PlayAutomationEvent(AutomationEvent event);
 	
 	/// Update camera movement/rotation
 	[CLink]
@@ -1145,33 +1567,9 @@ public static class Raylib
 	[CLink]
 	public static extern Rectangle GetCollisionRec(Rectangle rec1, Rectangle rec2);
 	
-	/// Load image from file into CPU memory (RAM)
-	[CLink]
-	public static extern Image LoadImage(char8 * fileName);
-	
-	/// Load image from RAW file data
-	[CLink]
-	public static extern Image LoadImageRaw(char8 * fileName, int32 width, int32 height, int32 format, int32 headerSize);
-	
-	/// Load image from SVG file data or string with specified size
-	[CLink]
-	public static extern Image LoadImageSvg(char8 * fileNameOrString, int32 width, int32 height);
-	
-	/// Load image sequence from file (frames appended to image.data)
-	[CLink]
-	public static extern Image LoadImageAnim(char8 * fileName, int32 * frames);
-	
-	/// Load image from memory buffer, fileType refers to extension: i.e. '.png'
-	[CLink]
-	public static extern Image LoadImageFromMemory(char8 * fileType, char8 * fileData, int32 dataSize);
-	
 	/// Load image from GPU texture data
 	[CLink]
 	public static extern Image LoadImageFromTexture(Texture2D texture);
-	
-	/// Load image from screen buffer and (screenshot)
-	[CLink]
-	public static extern Image LoadImageFromScreen();
 	
 	/// Check if an image is ready
 	[CLink]
@@ -1213,22 +1611,6 @@ public static class Raylib
 	[CLink]
 	public static extern Image GenImageChecked(int32 width, int32 height, int32 checksX, int32 checksY, Color col1, Color col2);
 	
-	/// Generate image: white noise
-	[CLink]
-	public static extern Image GenImageWhiteNoise(int32 width, int32 height, float factor);
-	
-	/// Generate image: perlin noise
-	[CLink]
-	public static extern Image GenImagePerlinNoise(int32 width, int32 height, int32 offsetX, int32 offsetY, float scale);
-	
-	/// Generate image: cellular algorithm, bigger tileSize means bigger cells
-	[CLink]
-	public static extern Image GenImageCellular(int32 width, int32 height, int32 tileSize);
-	
-	/// Generate image: grayscale image from text data
-	[CLink]
-	public static extern Image GenImageText(int32 width, int32 height, char8 * text);
-	
 	/// Create an image duplicate (useful for transformations)
 	[CLink]
 	public static extern Image ImageCopy(Image image);
@@ -1245,10 +1627,6 @@ public static class Raylib
 	[CLink]
 	public static extern Image ImageTextEx(Font font, char8 * text, float fontSize, float spacing, Color tint);
 	
-	/// Convert image data to desired format
-	[CLink]
-	public static extern void ImageFormat(Image * image, int32 newFormat);
-	
 	/// Convert image to POT (power-of-two)
 	[CLink]
 	public static extern void ImageToPOT(Image * image, Color fill);
@@ -1256,10 +1634,6 @@ public static class Raylib
 	/// Crop an image to a defined rectangle
 	[CLink]
 	public static extern void ImageCrop(Image * image, Rectangle crop);
-	
-	/// Crop image depending on alpha value
-	[CLink]
-	public static extern void ImageAlphaCrop(Image * image, float threshold);
 	
 	/// Clear alpha channel to desired color
 	[CLink]
@@ -1269,73 +1643,13 @@ public static class Raylib
 	[CLink]
 	public static extern void ImageAlphaMask(Image * image, Image alphaMask);
 	
-	/// Premultiply alpha channel
-	[CLink]
-	public static extern void ImageAlphaPremultiply(Image * image);
-	
-	/// Apply Gaussian blur using a box blur approximation
-	[CLink]
-	public static extern void ImageBlurGaussian(Image * image, int32 blurSize);
-	
-	/// Resize image (Bicubic scaling algorithm)
-	[CLink]
-	public static extern void ImageResize(Image * image, int32 newWidth, int32 newHeight);
-	
-	/// Resize image (Nearest-Neighbor scaling algorithm)
-	[CLink]
-	public static extern void ImageResizeNN(Image * image, int32 newWidth, int32 newHeight);
-	
 	/// Resize canvas and fill with color
 	[CLink]
 	public static extern void ImageResizeCanvas(Image * image, int32 newWidth, int32 newHeight, int32 offsetX, int32 offsetY, Color fill);
 	
-	/// Compute all mipmap levels for a provided image
-	[CLink]
-	public static extern void ImageMipmaps(Image * image);
-	
-	/// Dither image data to 16bpp or lower (Floyd-Steinberg dithering)
-	[CLink]
-	public static extern void ImageDither(Image * image, int32 rBpp, int32 gBpp, int32 bBpp, int32 aBpp);
-	
-	/// Flip image vertically
-	[CLink]
-	public static extern void ImageFlipVertical(Image * image);
-	
-	/// Flip image horizontally
-	[CLink]
-	public static extern void ImageFlipHorizontal(Image * image);
-	
-	/// Rotate image by input angle in degrees (-359 to 359)
-	[CLink]
-	public static extern void ImageRotate(Image * image, int32 degrees);
-	
-	/// Rotate image clockwise 90deg
-	[CLink]
-	public static extern void ImageRotateCW(Image * image);
-	
-	/// Rotate image counter-clockwise 90deg
-	[CLink]
-	public static extern void ImageRotateCCW(Image * image);
-	
 	/// Modify image color: tint
 	[CLink]
 	public static extern void ImageColorTint(Image * image, Color color);
-	
-	/// Modify image color: invert
-	[CLink]
-	public static extern void ImageColorInvert(Image * image);
-	
-	/// Modify image color: grayscale
-	[CLink]
-	public static extern void ImageColorGrayscale(Image * image);
-	
-	/// Modify image color: contrast (-100 to 100)
-	[CLink]
-	public static extern void ImageColorContrast(Image * image, float contrast);
-	
-	/// Modify image color: brightness (-255 to 255)
-	[CLink]
-	public static extern void ImageColorBrightness(Image * image, int32 brightness);
 	
 	/// Modify image color: replace color
 	[CLink]
@@ -1348,14 +1662,6 @@ public static class Raylib
 	/// Load colors palette from image as a Color array (RGBA - 32bit)
 	[CLink]
 	public static extern Color * LoadImagePalette(Image image, int32 maxPaletteSize, int32 * colorCount);
-	
-	/// Unload color data loaded with LoadImageColors()
-	[CLink]
-	public static extern void UnloadImageColors(Color * colors);
-	
-	/// Unload colors palette loaded with LoadImagePalette()
-	[CLink]
-	public static extern void UnloadImagePalette(Color * colors);
 	
 	/// Get image alpha border rectangle
 	[CLink]
@@ -1429,10 +1735,6 @@ public static class Raylib
 	[CLink]
 	public static extern void ImageDrawTextEx(Image * dst, Font font, char8 * text, Vector2 position, float fontSize, float spacing, Color tint);
 	
-	/// Load texture from file into GPU memory (VRAM)
-	[CLink]
-	public static extern Texture2D LoadTexture(char8 * fileName);
-	
 	/// Load texture from image data
 	[CLink]
 	public static extern Texture2D LoadTextureFromImage(Image image);
@@ -1440,10 +1742,6 @@ public static class Raylib
 	/// Load cubemap from image, multiple image cubemap layouts supported
 	[CLink]
 	public static extern TextureCubemap LoadTextureCubemap(Image image, int32 layout);
-	
-	/// Load texture for rendering (framebuffer)
-	[CLink]
-	public static extern RenderTexture2D LoadRenderTexture(int32 width, int32 height);
 	
 	/// Check if a texture is ready
 	[CLink]
@@ -1468,10 +1766,6 @@ public static class Raylib
 	/// Update GPU texture rectangle with new data
 	[CLink]
 	public static extern void UpdateTextureRec(Texture2D texture, Rectangle rec, void * pixels);
-	
-	/// Generate GPU mipmaps for a texture
-	[CLink]
-	public static extern void GenTextureMipmaps(Texture2D * texture);
 	
 	/// Set texture scaling filter mode
 	[CLink]
@@ -1525,10 +1819,6 @@ public static class Raylib
 	[CLink]
 	public static extern Vector3 ColorToHSV(Color color);
 	
-	/// Get a Color from HSV values, hue [0..360], saturation/value [0..1]
-	[CLink]
-	public static extern Color ColorFromHSV(float hue, float saturation, float value);
-	
 	/// Get color multiplied with another color
 	[CLink]
 	public static extern Color ColorTint(Color color, Color tint);
@@ -1549,57 +1839,17 @@ public static class Raylib
 	[CLink]
 	public static extern Color ColorAlphaBlend(Color dst, Color src, Color tint);
 	
-	/// Get Color structure from hexadecimal value
-	[CLink]
-	public static extern Color GetColor(int32 hexValue);
-	
-	/// Get Color from a source pixel pointer of certain format
-	[CLink]
-	public static extern Color GetPixelColor(void * srcPtr, int32 format);
-	
 	/// Set color formatted into destination pixel pointer
 	[CLink]
 	public static extern void SetPixelColor(void * dstPtr, Color color, int32 format);
-	
-	/// Get pixel data size in bytes for certain format
-	[CLink]
-	public static extern int32 GetPixelDataSize(int32 width, int32 height, int32 format);
-	
-	/// Get the default Font
-	[CLink]
-	public static extern Font GetFontDefault();
-	
-	/// Load font from file into GPU memory (VRAM)
-	[CLink]
-	public static extern Font LoadFont(char8 * fileName);
-	
-	/// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default character setFont
-	[CLink]
-	public static extern Font LoadFontEx(char8 * fileName, int32 fontSize, int32 * codepoints, int32 codepointCount);
 	
 	/// Load font from Image (XNA style)
 	[CLink]
 	public static extern Font LoadFontFromImage(Image image, Color key, int32 firstChar);
 	
-	/// Load font from memory buffer, fileType refers to extension: i.e. '.ttf'
-	[CLink]
-	public static extern Font LoadFontFromMemory(char8 * fileType, char8 * fileData, int32 dataSize, int32 fontSize, int32 * codepoints, int32 codepointCount);
-	
 	/// Check if a font is ready
 	[CLink]
 	public static extern bool IsFontReady(Font font);
-	
-	/// Load font data for further use
-	[CLink]
-	public static extern GlyphInfo * LoadFontData(char8 * fileData, int32 dataSize, int32 fontSize, int32 * codepoints, int32 codepointCount, int32 type);
-	
-	/// Generate image font atlas using chars info
-	[CLink]
-	public static extern Image GenImageFontAtlas(GlyphInfo * glyphs, Rectangle ** glyphRecs, int32 glyphCount, int32 fontSize, int32 padding, int32 packMethod);
-	
-	/// Unload font chars info data (RAM)
-	[CLink]
-	public static extern void UnloadFontData(GlyphInfo * glyphs, int32 glyphCount);
 	
 	/// Unload font from GPU memory (VRAM)
 	[CLink]
@@ -1608,10 +1858,6 @@ public static class Raylib
 	/// Export font as code file, returns true on success
 	[CLink]
 	public static extern bool ExportFontAsCode(Font font, char8 * fileName);
-	
-	/// Draw current FPS
-	[CLink]
-	public static extern void DrawFPS(int32 posX, int32 posY);
 	
 	/// Draw text (using default font)
 	[CLink]
@@ -1633,14 +1879,6 @@ public static class Raylib
 	[CLink]
 	public static extern void DrawTextCodepoints(Font font, int32 * codepoints, int32 codepointCount, Vector2 position, float fontSize, float spacing, Color tint);
 	
-	/// Set vertical line spacing when drawing with line-breaks
-	[CLink]
-	public static extern void SetTextLineSpacing(int32 spacing);
-	
-	/// Measure string width for default font
-	[CLink]
-	public static extern int32 MeasureText(char8 * text, int32 fontSize);
-	
 	/// Measure string size for Font
 	[CLink]
 	public static extern Vector2 MeasureTextEx(Font font, char8 * text, float fontSize, float spacing);
@@ -1656,102 +1894,6 @@ public static class Raylib
 	/// Get glyph rectangle in font atlas for a codepoint (unicode character), fallback to '?' if not found
 	[CLink]
 	public static extern Rectangle GetGlyphAtlasRec(Font font, int32 codepoint);
-	
-	/// Load UTF-8 text encoded from codepoints array
-	[CLink]
-	public static extern char8 * LoadUTF8(int32 * codepoints, int32 length);
-	
-	/// Unload UTF-8 text encoded from codepoints array
-	[CLink]
-	public static extern void UnloadUTF8(char8 * text);
-	
-	/// Load all codepoints from a UTF-8 text string, codepoints count returned by parameter
-	[CLink]
-	public static extern int32 * LoadCodepoints(char8 * text, int32 * count);
-	
-	/// Unload codepoints data from memory
-	[CLink]
-	public static extern void UnloadCodepoints(int32 * codepoints);
-	
-	/// Get total number of codepoints in a UTF-8 encoded string
-	[CLink]
-	public static extern int32 GetCodepointCount(char8 * text);
-	
-	/// Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
-	[CLink]
-	public static extern int32 GetCodepoint(char8 * text, int32 * codepointSize);
-	
-	/// Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
-	[CLink]
-	public static extern int32 GetCodepointNext(char8 * text, int32 * codepointSize);
-	
-	/// Get previous codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
-	[CLink]
-	public static extern int32 GetCodepointPrevious(char8 * text, int32 * codepointSize);
-	
-	/// Encode one codepoint into UTF-8 byte array (array length returned as parameter)
-	[CLink]
-	public static extern char8 * CodepointToUTF8(int32 codepoint, int32 * utf8Size);
-	
-	/// Copy one string to another, returns bytes copied
-	[CLink]
-	public static extern int32 TextCopy(char8 * dst, char8 * src);
-	
-	/// Check if two text string are equal
-	[CLink]
-	public static extern bool TextIsEqual(char8 * text1, char8 * text2);
-	
-	/// Get text length, checks for '\0' ending
-	[CLink]
-	public static extern int32 TextLength(char8 * text);
-	
-	/// Text formatting with variables (sprintf() style)
-	[CLink]
-	public static extern char8 * TextFormat(char8 * text);
-	
-	/// Get a piece of a text string
-	[CLink]
-	public static extern char8 * TextSubtext(char8 * text, int32 position, int32 length);
-	
-	/// Replace text string (WARNING: memory must be freed!)
-	[CLink]
-	public static extern char8 * TextReplace(char8 * text, char8 * replace, char8 * by);
-	
-	/// Insert text in a position (WARNING: memory must be freed!)
-	[CLink]
-	public static extern char8 * TextInsert(char8 * text, char8 * insert, int32 position);
-	
-	/// Join text strings with delimiter
-	[CLink]
-	public static extern char8 * TextJoin(char8 ** textList, int32 count, char8 * delimiter);
-	
-	/// Split text into multiple strings
-	[CLink]
-	public static extern char8 ** TextSplit(char8 * text, char8 delimiter, int32 * count);
-	
-	/// Append text at specific position and move cursor!
-	[CLink]
-	public static extern void TextAppend(char8 * text, char8 * @append, int32 * position);
-	
-	/// Find first text occurrence within a string
-	[CLink]
-	public static extern int32 TextFindIndex(char8 * text, char8 * find);
-	
-	/// Get upper case version of provided string
-	[CLink]
-	public static extern char8 * TextToUpper(char8 * text);
-	
-	/// Get lower case version of provided string
-	[CLink]
-	public static extern char8 * TextToLower(char8 * text);
-	
-	/// Get Pascal case notation version of provided string
-	[CLink]
-	public static extern char8 * TextToPascal(char8 * text);
-	
-	/// Get integer value from text (negative values not supported)
-	[CLink]
-	public static extern int32 TextToInteger(char8 * text);
 	
 	/// Draw a line in 3D world space
 	[CLink]
@@ -1833,14 +1975,6 @@ public static class Raylib
 	[CLink]
 	public static extern void DrawRay(Ray ray, Color color);
 	
-	/// Draw a grid (centered at (0, 0, 0))
-	[CLink]
-	public static extern void DrawGrid(int32 slices, float spacing);
-	
-	/// Load model from files (meshes and materials)
-	[CLink]
-	public static extern Model LoadModel(char8 * fileName);
-	
 	/// Load model from generated mesh (default material)
 	[CLink]
 	public static extern Model LoadModelFromMesh(Mesh mesh);
@@ -1889,10 +2023,6 @@ public static class Raylib
 	[CLink]
 	public static extern void DrawBillboardPro(Camera camera, Texture2D texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint);
 	
-	/// Upload mesh vertex data in GPU and provide VAO/VBO ids
-	[CLink]
-	public static extern void UploadMesh(Mesh * mesh, bool dynamic);
-	
 	/// Update mesh vertex data in GPU for a specific buffer index
 	[CLink]
 	public static extern void UpdateMeshBuffer(Mesh mesh, int32 index, void * data, int32 dataSize, int32 offset);
@@ -1917,46 +2047,6 @@ public static class Raylib
 	[CLink]
 	public static extern BoundingBox GetMeshBoundingBox(Mesh mesh);
 	
-	/// Compute mesh tangents
-	[CLink]
-	public static extern void GenMeshTangents(Mesh * mesh);
-	
-	/// Generate polygonal mesh
-	[CLink]
-	public static extern Mesh GenMeshPoly(int32 sides, float radius);
-	
-	/// Generate plane mesh (with subdivisions)
-	[CLink]
-	public static extern Mesh GenMeshPlane(float width, float length, int32 resX, int32 resZ);
-	
-	/// Generate cuboid mesh
-	[CLink]
-	public static extern Mesh GenMeshCube(float width, float height, float length);
-	
-	/// Generate sphere mesh (standard sphere)
-	[CLink]
-	public static extern Mesh GenMeshSphere(float radius, int32 rings, int32 slices);
-	
-	/// Generate half-sphere mesh (no bottom cap)
-	[CLink]
-	public static extern Mesh GenMeshHemiSphere(float radius, int32 rings, int32 slices);
-	
-	/// Generate cylinder mesh
-	[CLink]
-	public static extern Mesh GenMeshCylinder(float radius, float height, int32 slices);
-	
-	/// Generate cone/pyramid mesh
-	[CLink]
-	public static extern Mesh GenMeshCone(float radius, float height, int32 slices);
-	
-	/// Generate torus mesh
-	[CLink]
-	public static extern Mesh GenMeshTorus(float radius, float size, int32 radSeg, int32 sides);
-	
-	/// Generate trefoil knot mesh
-	[CLink]
-	public static extern Mesh GenMeshKnot(float radius, float size, int32 radSeg, int32 sides);
-	
 	/// Generate heightmap mesh from image data
 	[CLink]
 	public static extern Mesh GenMeshHeightmap(Image heightmap, Vector3 size);
@@ -1964,14 +2054,6 @@ public static class Raylib
 	/// Generate cubes-based map mesh from image data
 	[CLink]
 	public static extern Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize);
-	
-	/// Load materials from model file
-	[CLink]
-	public static extern Material * LoadMaterials(char8 * fileName, int32 * materialCount);
-	
-	/// Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)
-	[CLink]
-	public static extern Material LoadMaterialDefault();
 	
 	/// Check if a material is ready
 	[CLink]
@@ -1985,14 +2067,6 @@ public static class Raylib
 	[CLink]
 	public static extern void SetMaterialTexture(Material * material, int32 mapType, Texture2D texture);
 	
-	/// Set material for a mesh
-	[CLink]
-	public static extern void SetModelMeshMaterial(Model * model, int32 meshId, int32 materialId);
-	
-	/// Load model animations from file
-	[CLink]
-	public static extern ModelAnimation * LoadModelAnimations(char8 * fileName, int32 * animCount);
-	
 	/// Update model animation pose
 	[CLink]
 	public static extern void UpdateModelAnimation(Model model, ModelAnimation anim, int32 frame);
@@ -2000,10 +2074,6 @@ public static class Raylib
 	/// Unload animation data
 	[CLink]
 	public static extern void UnloadModelAnimation(ModelAnimation anim);
-	
-	/// Unload animation array data
-	[CLink]
-	public static extern void UnloadModelAnimations(ModelAnimation * animations, int32 animCount);
 	
 	/// Check model animation skeleton match
 	[CLink]
@@ -2041,41 +2111,9 @@ public static class Raylib
 	[CLink]
 	public static extern RayCollision GetRayCollisionQuad(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3, Vector3 p4);
 	
-	/// Initialize audio device and context
-	[CLink]
-	public static extern void InitAudioDevice();
-	
-	/// Close the audio device and context
-	[CLink]
-	public static extern void CloseAudioDevice();
-	
-	/// Check if audio device has been initialized successfully
-	[CLink]
-	public static extern bool IsAudioDeviceReady();
-	
-	/// Set master volume (listener)
-	[CLink]
-	public static extern void SetMasterVolume(float volume);
-	
-	/// Get master volume (listener)
-	[CLink]
-	public static extern float GetMasterVolume();
-	
-	/// Load wave data from file
-	[CLink]
-	public static extern Wave LoadWave(char8 * fileName);
-	
-	/// Load wave from memory buffer, fileType refers to extension: i.e. '.wav'
-	[CLink]
-	public static extern Wave LoadWaveFromMemory(char8 * fileType, char8 * fileData, int32 dataSize);
-	
 	/// Checks if wave data is ready
 	[CLink]
 	public static extern bool IsWaveReady(Wave wave);
-	
-	/// Load sound from file
-	[CLink]
-	public static extern Sound LoadSound(char8 * fileName);
 	
 	/// Load sound from wave data
 	[CLink]
@@ -2149,29 +2187,9 @@ public static class Raylib
 	[CLink]
 	public static extern Wave WaveCopy(Wave wave);
 	
-	/// Crop a wave to defined samples range
-	[CLink]
-	public static extern void WaveCrop(Wave * wave, int32 initSample, int32 finalSample);
-	
-	/// Convert wave data to desired format
-	[CLink]
-	public static extern void WaveFormat(Wave * wave, int32 sampleRate, int32 sampleSize, int32 channels);
-	
 	/// Load samples data from wave as a 32bit float data array
 	[CLink]
 	public static extern float * LoadWaveSamples(Wave wave);
-	
-	/// Unload samples data loaded with LoadWaveSamples()
-	[CLink]
-	public static extern void UnloadWaveSamples(float * samples);
-	
-	/// Load music stream from file
-	[CLink]
-	public static extern Music LoadMusicStream(char8 * fileName);
-	
-	/// Load music stream from data
-	[CLink]
-	public static extern Music LoadMusicStreamFromMemory(char8 * fileType, char8 * data, int32 dataSize);
 	
 	/// Checks if a music stream is ready
 	[CLink]
@@ -2229,10 +2247,6 @@ public static class Raylib
 	[CLink]
 	public static extern float GetMusicTimePlayed(Music music);
 	
-	/// Load audio stream (to stream raw audio pcm data)
-	[CLink]
-	public static extern AudioStream LoadAudioStream(int32 sampleRate, int32 sampleSize, int32 channels);
-	
 	/// Checks if an audio stream is ready
 	[CLink]
 	public static extern bool IsAudioStreamReady(AudioStream stream);
@@ -2281,10 +2295,6 @@ public static class Raylib
 	[CLink]
 	public static extern void SetAudioStreamPan(AudioStream stream, float pan);
 	
-	/// Default size for new audio streams
-	[CLink]
-	public static extern void SetAudioStreamBufferSizeDefault(int32 size);
-	
 	/// Audio thread callback to request new data
 	[CLink]
 	public static extern void SetAudioStreamCallback(AudioStream stream, AudioCallback callback);
@@ -2297,14 +2307,1113 @@ public static class Raylib
 	[CLink]
 	public static extern void DetachAudioStreamProcessor(AudioStream stream, AudioCallback processor);
 	
-	/// Attach audio stream processor to the entire audio pipeline, receives the samples as <float>s
-	[CLink]
-	public static extern void AttachAudioMixedProcessor(AudioCallback processor);
+#else
 	
-	/// Detach audio stream processor from the entire audio pipeline
+	/// Set icon for window (single image, RGBA 32bit, only PLATFORM_DESKTOP)
 	[CLink]
-	public static extern void DetachAudioMixedProcessor(AudioCallback processor);
+	public static extern void SetWindowIcon(in Image image);
 	
+	/// Set background color (framebuffer clear color)
+	[CLink]
+	public static extern void ClearBackground(in Color color);
+	
+	/// Begin 2D mode with custom camera (2D)
+	[CLink]
+	public static extern void BeginMode2D(in Camera2D camera);
+	
+	/// Begin 3D mode with custom camera (3D)
+	[CLink]
+	public static extern void BeginMode3D(in Camera3D camera);
+	
+	/// Begin drawing to render texture
+	[CLink]
+	public static extern void BeginTextureMode(in RenderTexture2D target);
+	
+	/// Begin custom shader drawing
+	[CLink]
+	public static extern void BeginShaderMode(in Shader shader);
+	
+	/// Begin stereo rendering (requires VR simulator)
+	[CLink]
+	public static extern void BeginVrStereoMode(in VrStereoConfig config);
+	
+	/// Load VR stereo config for VR simulator device parameters
+	[CLink]
+	public static extern VrStereoConfig LoadVrStereoConfig(in VrDeviceInfo device);
+	
+	/// Unload VR stereo config
+	[CLink]
+	public static extern void UnloadVrStereoConfig(in VrStereoConfig config);
+	
+	/// Check if a shader is ready
+	[CLink]
+	public static extern bool IsShaderReady(in Shader shader);
+	
+	/// Get shader uniform location
+	[CLink]
+	public static extern int32 GetShaderLocation(in Shader shader, char8 * uniformName);
+	
+	/// Get shader attribute location
+	[CLink]
+	public static extern int32 GetShaderLocationAttrib(in Shader shader, char8 * attribName);
+	
+	/// Set shader uniform value
+	[CLink]
+	public static extern void SetShaderValue(in Shader shader, int32 locIndex, void * value, int32 uniformType);
+	
+	/// Set shader uniform value vector
+	[CLink]
+	public static extern void SetShaderValueV(in Shader shader, int32 locIndex, void * value, int32 uniformType, int32 count);
+	
+	/// Set shader uniform value (matrix 4x4)
+	[CLink]
+	public static extern void SetShaderValueMatrix(in Shader shader, int32 locIndex, in Matrix mat);
+	
+	/// Set shader uniform value for texture (sampler2d)
+	[CLink]
+	public static extern void SetShaderValueTexture(in Shader shader, int32 locIndex, in Texture2D texture);
+	
+	/// Unload shader from GPU memory (VRAM)
+	[CLink]
+	public static extern void UnloadShader(in Shader shader);
+	
+	/// Get a ray trace from mouse position
+	[CLink]
+	public static extern Ray GetMouseRay(in Vector2 mousePosition, in Camera camera);
+	
+	/// Get camera transform matrix (view matrix)
+	[CLink]
+	public static extern Matrix GetCameraMatrix(in Camera camera);
+	
+	/// Get camera 2d transform matrix
+	[CLink]
+	public static extern Matrix GetCameraMatrix2D(in Camera2D camera);
+	
+	/// Get the screen space position for a 3d world space position
+	[CLink]
+	public static extern Vector2 GetWorldToScreen(in Vector3 position, in Camera camera);
+	
+	/// Get the world space position for a 2d camera screen space position
+	[CLink]
+	public static extern Vector2 GetScreenToWorld2D(in Vector2 position, in Camera2D camera);
+	
+	/// Get size position for a 3d world space position
+	[CLink]
+	public static extern Vector2 GetWorldToScreenEx(in Vector3 position, in Camera camera, int32 width, int32 height);
+	
+	/// Get the screen space position for a 2d camera world space position
+	[CLink]
+	public static extern Vector2 GetWorldToScreen2D(in Vector2 position, in Camera2D camera);
+	
+	/// Unload filepaths
+	[CLink]
+	public static extern void UnloadDirectoryFiles(in FilePathList files);
+	
+	/// Unload dropped filepaths
+	[CLink]
+	public static extern void UnloadDroppedFiles(in FilePathList files);
+	
+	/// Export automation events list as text file
+	[CLink]
+	public static extern bool ExportAutomationEventList(in AutomationEventList list, char8 * fileName);
+	
+	/// Play a recorded automation event
+	[CLink]
+	public static extern void PlayAutomationEvent(in AutomationEvent event);
+	
+	/// Update camera movement/rotation
+	[CLink]
+	public static extern void UpdateCameraPro(Camera * camera, in Vector3 movement, in Vector3 rotation, float zoom);
+	
+	/// Set texture and rectangle to be used on shapes drawing
+	[CLink]
+	public static extern void SetShapesTexture(in Texture2D texture, in Rectangle source);
+	
+	/// Draw a pixel
+	[CLink]
+	public static extern void DrawPixel(int32 posX, int32 posY, in Color color);
+	
+	/// Draw a pixel (Vector version)
+	[CLink]
+	public static extern void DrawPixelV(in Vector2 position, in Color color);
+	
+	/// Draw a line
+	[CLink]
+	public static extern void DrawLine(int32 startPosX, int32 startPosY, int32 endPosX, int32 endPosY, in Color color);
+	
+	/// Draw a line (using gl lines)
+	[CLink]
+	public static extern void DrawLineV(in Vector2 startPos, in Vector2 endPos, in Color color);
+	
+	/// Draw a line (using triangles/quads)
+	[CLink]
+	public static extern void DrawLineEx(in Vector2 startPos, in Vector2 endPos, float thick, in Color color);
+	
+	/// Draw lines sequence (using gl lines)
+	[CLink]
+	public static extern void DrawLineStrip(Vector2 * points, int32 pointCount, in Color color);
+	
+	/// Draw line segment cubic-bezier in-out interpolation
+	[CLink]
+	public static extern void DrawLineBezier(in Vector2 startPos, in Vector2 endPos, float thick, in Color color);
+	
+	/// Draw a color-filled circle
+	[CLink]
+	public static extern void DrawCircle(int32 centerX, int32 centerY, float radius, in Color color);
+	
+	/// Draw a piece of a circle
+	[CLink]
+	public static extern void DrawCircleSector(in Vector2 center, float radius, float startAngle, float endAngle, int32 segments, in Color color);
+	
+	/// Draw circle sector outline
+	[CLink]
+	public static extern void DrawCircleSectorLines(in Vector2 center, float radius, float startAngle, float endAngle, int32 segments, in Color color);
+	
+	/// Draw a gradient-filled circle
+	[CLink]
+	public static extern void DrawCircleGradient(int32 centerX, int32 centerY, float radius, in Color color1, in Color color2);
+	
+	/// Draw a color-filled circle (Vector version)
+	[CLink]
+	public static extern void DrawCircleV(in Vector2 center, float radius, in Color color);
+	
+	/// Draw circle outline
+	[CLink]
+	public static extern void DrawCircleLines(int32 centerX, int32 centerY, float radius, in Color color);
+	
+	/// Draw circle outline (Vector version)
+	[CLink]
+	public static extern void DrawCircleLinesV(in Vector2 center, float radius, in Color color);
+	
+	/// Draw ellipse
+	[CLink]
+	public static extern void DrawEllipse(int32 centerX, int32 centerY, float radiusH, float radiusV, in Color color);
+	
+	/// Draw ellipse outline
+	[CLink]
+	public static extern void DrawEllipseLines(int32 centerX, int32 centerY, float radiusH, float radiusV, in Color color);
+	
+	/// Draw ring
+	[CLink]
+	public static extern void DrawRing(in Vector2 center, float innerRadius, float outerRadius, float startAngle, float endAngle, int32 segments, in Color color);
+	
+	/// Draw ring outline
+	[CLink]
+	public static extern void DrawRingLines(in Vector2 center, float innerRadius, float outerRadius, float startAngle, float endAngle, int32 segments, in Color color);
+	
+	/// Draw a color-filled rectangle
+	[CLink]
+	public static extern void DrawRectangle(int32 posX, int32 posY, int32 width, int32 height, in Color color);
+	
+	/// Draw a color-filled rectangle (Vector version)
+	[CLink]
+	public static extern void DrawRectangleV(in Vector2 position, in Vector2 size, in Color color);
+	
+	/// Draw a color-filled rectangle
+	[CLink]
+	public static extern void DrawRectangleRec(in Rectangle rec, in Color color);
+	
+	/// Draw a color-filled rectangle with pro parameters
+	[CLink]
+	public static extern void DrawRectanglePro(in Rectangle rec, in Vector2 origin, float rotation, in Color color);
+	
+	/// Draw a vertical-gradient-filled rectangle
+	[CLink]
+	public static extern void DrawRectangleGradientV(int32 posX, int32 posY, int32 width, int32 height, in Color color1, in Color color2);
+	
+	/// Draw a horizontal-gradient-filled rectangle
+	[CLink]
+	public static extern void DrawRectangleGradientH(int32 posX, int32 posY, int32 width, int32 height, in Color color1, in Color color2);
+	
+	/// Draw a gradient-filled rectangle with custom vertex colors
+	[CLink]
+	public static extern void DrawRectangleGradientEx(in Rectangle rec, in Color col1, in Color col2, in Color col3, in Color col4);
+	
+	/// Draw rectangle outline
+	[CLink]
+	public static extern void DrawRectangleLines(int32 posX, int32 posY, int32 width, int32 height, in Color color);
+	
+	/// Draw rectangle outline with extended parameters
+	[CLink]
+	public static extern void DrawRectangleLinesEx(in Rectangle rec, float lineThick, in Color color);
+	
+	/// Draw rectangle with rounded edges
+	[CLink]
+	public static extern void DrawRectangleRounded(in Rectangle rec, float roundness, int32 segments, in Color color);
+	
+	/// Draw rectangle with rounded edges outline
+	[CLink]
+	public static extern void DrawRectangleRoundedLines(in Rectangle rec, float roundness, int32 segments, float lineThick, in Color color);
+	
+	/// Draw a color-filled triangle (vertex in counter-clockwise order!)
+	[CLink]
+	public static extern void DrawTriangle(in Vector2 v1, in Vector2 v2, in Vector2 v3, in Color color);
+	
+	/// Draw triangle outline (vertex in counter-clockwise order!)
+	[CLink]
+	public static extern void DrawTriangleLines(in Vector2 v1, in Vector2 v2, in Vector2 v3, in Color color);
+	
+	/// Draw a triangle fan defined by points (first vertex is the center)
+	[CLink]
+	public static extern void DrawTriangleFan(Vector2 * points, int32 pointCount, in Color color);
+	
+	/// Draw a triangle strip defined by points
+	[CLink]
+	public static extern void DrawTriangleStrip(Vector2 * points, int32 pointCount, in Color color);
+	
+	/// Draw a regular polygon (Vector version)
+	[CLink]
+	public static extern void DrawPoly(in Vector2 center, int32 sides, float radius, float rotation, in Color color);
+	
+	/// Draw a polygon outline of n sides
+	[CLink]
+	public static extern void DrawPolyLines(in Vector2 center, int32 sides, float radius, float rotation, in Color color);
+	
+	/// Draw a polygon outline of n sides with extended parameters
+	[CLink]
+	public static extern void DrawPolyLinesEx(in Vector2 center, int32 sides, float radius, float rotation, float lineThick, in Color color);
+	
+	/// Draw spline: Linear, minimum 2 points
+	[CLink]
+	public static extern void DrawSplineLinear(Vector2 * points, int32 pointCount, float thick, in Color color);
+	
+	/// Draw spline: B-Spline, minimum 4 points
+	[CLink]
+	public static extern void DrawSplineBasis(Vector2 * points, int32 pointCount, float thick, in Color color);
+	
+	/// Draw spline: Catmull-Rom, minimum 4 points
+	[CLink]
+	public static extern void DrawSplineCatmullRom(Vector2 * points, int32 pointCount, float thick, in Color color);
+	
+	/// Draw spline: Quadratic Bezier, minimum 3 points (1 control point): [p1, c2, p3, c4...]
+	[CLink]
+	public static extern void DrawSplineBezierQuadratic(Vector2 * points, int32 pointCount, float thick, in Color color);
+	
+	/// Draw spline: Cubic Bezier, minimum 4 points (2 control points): [p1, c2, c3, p4, c5, c6...]
+	[CLink]
+	public static extern void DrawSplineBezierCubic(Vector2 * points, int32 pointCount, float thick, in Color color);
+	
+	/// Draw spline segment: Linear, 2 points
+	[CLink]
+	public static extern void DrawSplineSegmentLinear(in Vector2 p1, in Vector2 p2, float thick, in Color color);
+	
+	/// Draw spline segment: B-Spline, 4 points
+	[CLink]
+	public static extern void DrawSplineSegmentBasis(in Vector2 p1, in Vector2 p2, in Vector2 p3, in Vector2 p4, float thick, in Color color);
+	
+	/// Draw spline segment: Catmull-Rom, 4 points
+	[CLink]
+	public static extern void DrawSplineSegmentCatmullRom(in Vector2 p1, in Vector2 p2, in Vector2 p3, in Vector2 p4, float thick, in Color color);
+	
+	/// Draw spline segment: Quadratic Bezier, 2 points, 1 control point
+	[CLink]
+	public static extern void DrawSplineSegmentBezierQuadratic(in Vector2 p1, in Vector2 c2, in Vector2 p3, float thick, in Color color);
+	
+	/// Draw spline segment: Cubic Bezier, 2 points, 2 control points
+	[CLink]
+	public static extern void DrawSplineSegmentBezierCubic(in Vector2 p1, in Vector2 c2, in Vector2 c3, in Vector2 p4, float thick, in Color color);
+	
+	/// Get (evaluate) spline point: Linear
+	[CLink]
+	public static extern Vector2 GetSplinePointLinear(in Vector2 startPos, in Vector2 endPos, float t);
+	
+	/// Get (evaluate) spline point: B-Spline
+	[CLink]
+	public static extern Vector2 GetSplinePointBasis(in Vector2 p1, in Vector2 p2, in Vector2 p3, in Vector2 p4, float t);
+	
+	/// Get (evaluate) spline point: Catmull-Rom
+	[CLink]
+	public static extern Vector2 GetSplinePointCatmullRom(in Vector2 p1, in Vector2 p2, in Vector2 p3, in Vector2 p4, float t);
+	
+	/// Get (evaluate) spline point: Quadratic Bezier
+	[CLink]
+	public static extern Vector2 GetSplinePointBezierQuad(in Vector2 p1, in Vector2 c2, in Vector2 p3, float t);
+	
+	/// Get (evaluate) spline point: Cubic Bezier
+	[CLink]
+	public static extern Vector2 GetSplinePointBezierCubic(in Vector2 p1, in Vector2 c2, in Vector2 c3, in Vector2 p4, float t);
+	
+	/// Check collision between two rectangles
+	[CLink]
+	public static extern bool CheckCollisionRecs(in Rectangle rec1, in Rectangle rec2);
+	
+	/// Check collision between two circles
+	[CLink]
+	public static extern bool CheckCollisionCircles(in Vector2 center1, float radius1, in Vector2 center2, float radius2);
+	
+	/// Check collision between circle and rectangle
+	[CLink]
+	public static extern bool CheckCollisionCircleRec(in Vector2 center, float radius, in Rectangle rec);
+	
+	/// Check if point is inside rectangle
+	[CLink]
+	public static extern bool CheckCollisionPointRec(in Vector2 point, in Rectangle rec);
+	
+	/// Check if point is inside circle
+	[CLink]
+	public static extern bool CheckCollisionPointCircle(in Vector2 point, in Vector2 center, float radius);
+	
+	/// Check if point is inside a triangle
+	[CLink]
+	public static extern bool CheckCollisionPointTriangle(in Vector2 point, in Vector2 p1, in Vector2 p2, in Vector2 p3);
+	
+	/// Check if point is within a polygon described by array of vertices
+	[CLink]
+	public static extern bool CheckCollisionPointPoly(in Vector2 point, Vector2 * points, int32 pointCount);
+	
+	/// Check the collision between two lines defined by two points each, returns collision point by reference
+	[CLink]
+	public static extern bool CheckCollisionLines(in Vector2 startPos1, in Vector2 endPos1, in Vector2 startPos2, in Vector2 endPos2, Vector2 * collisionPoint);
+	
+	/// Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]
+	[CLink]
+	public static extern bool CheckCollisionPointLine(in Vector2 point, in Vector2 p1, in Vector2 p2, int32 threshold);
+	
+	/// Get collision rectangle for two rectangles collision
+	[CLink]
+	public static extern Rectangle GetCollisionRec(in Rectangle rec1, in Rectangle rec2);
+	
+	/// Load image from GPU texture data
+	[CLink]
+	public static extern Image LoadImageFromTexture(in Texture2D texture);
+	
+	/// Check if an image is ready
+	[CLink]
+	public static extern bool IsImageReady(in Image image);
+	
+	/// Unload image from CPU memory (RAM)
+	[CLink]
+	public static extern void UnloadImage(in Image image);
+	
+	/// Export image data to file, returns true on success
+	[CLink]
+	public static extern bool ExportImage(in Image image, char8 * fileName);
+	
+	/// Export image to memory buffer
+	[CLink]
+	public static extern char8 * ExportImageToMemory(in Image image, char8 * fileType, int32 * fileSize);
+	
+	/// Export image as code file defining an array of bytes, returns true on success
+	[CLink]
+	public static extern bool ExportImageAsCode(in Image image, char8 * fileName);
+	
+	/// Generate image: plain color
+	[CLink]
+	public static extern Image GenImageColor(int32 width, int32 height, in Color color);
+	
+	/// Generate image: linear gradient, direction in degrees [0..360], 0=Vertical gradient
+	[CLink]
+	public static extern Image GenImageGradientLinear(int32 width, int32 height, int32 direction, in Color start, in Color end);
+	
+	/// Generate image: radial gradient
+	[CLink]
+	public static extern Image GenImageGradientRadial(int32 width, int32 height, float density, in Color inner, in Color outer);
+	
+	/// Generate image: square gradient
+	[CLink]
+	public static extern Image GenImageGradientSquare(int32 width, int32 height, float density, in Color inner, in Color outer);
+	
+	/// Generate image: checked
+	[CLink]
+	public static extern Image GenImageChecked(int32 width, int32 height, int32 checksX, int32 checksY, in Color col1, in Color col2);
+	
+	/// Create an image duplicate (useful for transformations)
+	[CLink]
+	public static extern Image ImageCopy(in Image image);
+	
+	/// Create an image from another image piece
+	[CLink]
+	public static extern Image ImageFromImage(in Image image, in Rectangle rec);
+	
+	/// Create an image from text (default font)
+	[CLink]
+	public static extern Image ImageText(char8 * text, int32 fontSize, in Color color);
+	
+	/// Create an image from text (custom sprite font)
+	[CLink]
+	public static extern Image ImageTextEx(in Font font, char8 * text, float fontSize, float spacing, in Color tint);
+	
+	/// Convert image to POT (power-of-two)
+	[CLink]
+	public static extern void ImageToPOT(Image * image, in Color fill);
+	
+	/// Crop an image to a defined rectangle
+	[CLink]
+	public static extern void ImageCrop(Image * image, in Rectangle crop);
+	
+	/// Clear alpha channel to desired color
+	[CLink]
+	public static extern void ImageAlphaClear(Image * image, in Color color, float threshold);
+	
+	/// Apply alpha mask to image
+	[CLink]
+	public static extern void ImageAlphaMask(Image * image, in Image alphaMask);
+	
+	/// Resize canvas and fill with color
+	[CLink]
+	public static extern void ImageResizeCanvas(Image * image, int32 newWidth, int32 newHeight, int32 offsetX, int32 offsetY, in Color fill);
+	
+	/// Modify image color: tint
+	[CLink]
+	public static extern void ImageColorTint(Image * image, in Color color);
+	
+	/// Modify image color: replace color
+	[CLink]
+	public static extern void ImageColorReplace(Image * image, in Color color, in Color replace);
+	
+	/// Load color data from image as a Color array (RGBA - 32bit)
+	[CLink]
+	public static extern Color * LoadImageColors(in Image image);
+	
+	/// Load colors palette from image as a Color array (RGBA - 32bit)
+	[CLink]
+	public static extern Color * LoadImagePalette(in Image image, int32 maxPaletteSize, int32 * colorCount);
+	
+	/// Get image alpha border rectangle
+	[CLink]
+	public static extern Rectangle GetImageAlphaBorder(in Image image, float threshold);
+	
+	/// Get image pixel color at (x, y) position
+	[CLink]
+	public static extern Color GetImageColor(in Image image, int32 x, int32 y);
+	
+	/// Clear image background with given color
+	[CLink]
+	public static extern void ImageClearBackground(Image * dst, in Color color);
+	
+	/// Draw pixel within an image
+	[CLink]
+	public static extern void ImageDrawPixel(Image * dst, int32 posX, int32 posY, in Color color);
+	
+	/// Draw pixel within an image (Vector version)
+	[CLink]
+	public static extern void ImageDrawPixelV(Image * dst, in Vector2 position, in Color color);
+	
+	/// Draw line within an image
+	[CLink]
+	public static extern void ImageDrawLine(Image * dst, int32 startPosX, int32 startPosY, int32 endPosX, int32 endPosY, in Color color);
+	
+	/// Draw line within an image (Vector version)
+	[CLink]
+	public static extern void ImageDrawLineV(Image * dst, in Vector2 start, in Vector2 end, in Color color);
+	
+	/// Draw a filled circle within an image
+	[CLink]
+	public static extern void ImageDrawCircle(Image * dst, int32 centerX, int32 centerY, int32 radius, in Color color);
+	
+	/// Draw a filled circle within an image (Vector version)
+	[CLink]
+	public static extern void ImageDrawCircleV(Image * dst, in Vector2 center, int32 radius, in Color color);
+	
+	/// Draw circle outline within an image
+	[CLink]
+	public static extern void ImageDrawCircleLines(Image * dst, int32 centerX, int32 centerY, int32 radius, in Color color);
+	
+	/// Draw circle outline within an image (Vector version)
+	[CLink]
+	public static extern void ImageDrawCircleLinesV(Image * dst, in Vector2 center, int32 radius, in Color color);
+	
+	/// Draw rectangle within an image
+	[CLink]
+	public static extern void ImageDrawRectangle(Image * dst, int32 posX, int32 posY, int32 width, int32 height, in Color color);
+	
+	/// Draw rectangle within an image (Vector version)
+	[CLink]
+	public static extern void ImageDrawRectangleV(Image * dst, in Vector2 position, in Vector2 size, in Color color);
+	
+	/// Draw rectangle within an image
+	[CLink]
+	public static extern void ImageDrawRectangleRec(Image * dst, in Rectangle rec, in Color color);
+	
+	/// Draw rectangle lines within an image
+	[CLink]
+	public static extern void ImageDrawRectangleLines(Image * dst, in Rectangle rec, int32 thick, in Color color);
+	
+	/// Draw a source image within a destination image (tint applied to source)
+	[CLink]
+	public static extern void ImageDraw(Image * dst, in Image src, in Rectangle srcRec, in Rectangle dstRec, in Color tint);
+	
+	/// Draw text (using default font) within an image (destination)
+	[CLink]
+	public static extern void ImageDrawText(Image * dst, char8 * text, int32 posX, int32 posY, int32 fontSize, in Color color);
+	
+	/// Draw text (custom sprite font) within an image (destination)
+	[CLink]
+	public static extern void ImageDrawTextEx(Image * dst, in Font font, char8 * text, in Vector2 position, float fontSize, float spacing, in Color tint);
+	
+	/// Load texture from image data
+	[CLink]
+	public static extern Texture2D LoadTextureFromImage(in Image image);
+	
+	/// Load cubemap from image, multiple image cubemap layouts supported
+	[CLink]
+	public static extern TextureCubemap LoadTextureCubemap(in Image image, int32 layout);
+	
+	/// Check if a texture is ready
+	[CLink]
+	public static extern bool IsTextureReady(in Texture2D texture);
+	
+	/// Unload texture from GPU memory (VRAM)
+	[CLink]
+	public static extern void UnloadTexture(in Texture2D texture);
+	
+	/// Check if a render texture is ready
+	[CLink]
+	public static extern bool IsRenderTextureReady(in RenderTexture2D target);
+	
+	/// Unload render texture from GPU memory (VRAM)
+	[CLink]
+	public static extern void UnloadRenderTexture(in RenderTexture2D target);
+	
+	/// Update GPU texture with new data
+	[CLink]
+	public static extern void UpdateTexture(in Texture2D texture, void * pixels);
+	
+	/// Update GPU texture rectangle with new data
+	[CLink]
+	public static extern void UpdateTextureRec(in Texture2D texture, in Rectangle rec, void * pixels);
+	
+	/// Set texture scaling filter mode
+	[CLink]
+	public static extern void SetTextureFilter(in Texture2D texture, int32 filter);
+	
+	/// Set texture wrapping mode
+	[CLink]
+	public static extern void SetTextureWrap(in Texture2D texture, int32 wrap);
+	
+	/// Draw a Texture2D
+	[CLink]
+	public static extern void DrawTexture(in Texture2D texture, int32 posX, int32 posY, in Color tint);
+	
+	/// Draw a Texture2D with position defined as Vector2
+	[CLink]
+	public static extern void DrawTextureV(in Texture2D texture, in Vector2 position, in Color tint);
+	
+	/// Draw a Texture2D with extended parameters
+	[CLink]
+	public static extern void DrawTextureEx(in Texture2D texture, in Vector2 position, float rotation, float scale, in Color tint);
+	
+	/// Draw a part of a texture defined by a rectangle
+	[CLink]
+	public static extern void DrawTextureRec(in Texture2D texture, in Rectangle source, in Vector2 position, in Color tint);
+	
+	/// Draw a part of a texture defined by a rectangle with 'pro' parameters
+	[CLink]
+	public static extern void DrawTexturePro(in Texture2D texture, in Rectangle source, in Rectangle dest, in Vector2 origin, float rotation, in Color tint);
+	
+	/// Draws a texture (or part of it) that stretches or shrinks nicely
+	[CLink]
+	public static extern void DrawTextureNPatch(in Texture2D texture, in NPatchInfo nPatchInfo, in Rectangle dest, in Vector2 origin, float rotation, in Color tint);
+	
+	/// Get color with alpha applied, alpha goes from 0.0f to 1.0f
+	[CLink]
+	public static extern Color Fade(in Color color, float alpha);
+	
+	/// Get hexadecimal value for a Color
+	[CLink]
+	public static extern int32 ColorToInt(in Color color);
+	
+	/// Get Color normalized as float [0..1]
+	[CLink]
+	public static extern Vector4 ColorNormalize(in Color color);
+	
+	/// Get Color from normalized values [0..1]
+	[CLink]
+	public static extern Color ColorFromNormalized(in Vector4 normalized);
+	
+	/// Get HSV values for a Color, hue [0..360], saturation/value [0..1]
+	[CLink]
+	public static extern Vector3 ColorToHSV(in Color color);
+	
+	/// Get color multiplied with another color
+	[CLink]
+	public static extern Color ColorTint(in Color color, in Color tint);
+	
+	/// Get color with brightness correction, brightness factor goes from -1.0f to 1.0f
+	[CLink]
+	public static extern Color ColorBrightness(in Color color, float factor);
+	
+	/// Get color with contrast correction, contrast values between -1.0f and 1.0f
+	[CLink]
+	public static extern Color ColorContrast(in Color color, float contrast);
+	
+	/// Get color with alpha applied, alpha goes from 0.0f to 1.0f
+	[CLink]
+	public static extern Color ColorAlpha(in Color color, float alpha);
+	
+	/// Get src alpha-blended into dst color with tint
+	[CLink]
+	public static extern Color ColorAlphaBlend(in Color dst, in Color src, in Color tint);
+	
+	/// Set color formatted into destination pixel pointer
+	[CLink]
+	public static extern void SetPixelColor(void * dstPtr, in Color color, int32 format);
+	
+	/// Load font from Image (XNA style)
+	[CLink]
+	public static extern Font LoadFontFromImage(in Image image, in Color key, int32 firstChar);
+	
+	/// Check if a font is ready
+	[CLink]
+	public static extern bool IsFontReady(in Font font);
+	
+	/// Unload font from GPU memory (VRAM)
+	[CLink]
+	public static extern void UnloadFont(in Font font);
+	
+	/// Export font as code file, returns true on success
+	[CLink]
+	public static extern bool ExportFontAsCode(in Font font, char8 * fileName);
+	
+	/// Draw text (using default font)
+	[CLink]
+	public static extern void DrawText(char8 * text, int32 posX, int32 posY, int32 fontSize, in Color color);
+	
+	/// Draw text using font and additional parameters
+	[CLink]
+	public static extern void DrawTextEx(in Font font, char8 * text, in Vector2 position, float fontSize, float spacing, in Color tint);
+	
+	/// Draw text using Font and pro parameters (rotation)
+	[CLink]
+	public static extern void DrawTextPro(in Font font, char8 * text, in Vector2 position, in Vector2 origin, float rotation, float fontSize, float spacing, in Color tint);
+	
+	/// Draw one character (codepoint)
+	[CLink]
+	public static extern void DrawTextCodepoint(in Font font, int32 codepoint, in Vector2 position, float fontSize, in Color tint);
+	
+	/// Draw multiple character (codepoint)
+	[CLink]
+	public static extern void DrawTextCodepoints(in Font font, int32 * codepoints, int32 codepointCount, in Vector2 position, float fontSize, float spacing, in Color tint);
+	
+	/// Measure string size for Font
+	[CLink]
+	public static extern Vector2 MeasureTextEx(in Font font, char8 * text, float fontSize, float spacing);
+	
+	/// Get glyph index position in font for a codepoint (unicode character), fallback to '?' if not found
+	[CLink]
+	public static extern int32 GetGlyphIndex(in Font font, int32 codepoint);
+	
+	/// Get glyph font info data for a codepoint (unicode character), fallback to '?' if not found
+	[CLink]
+	public static extern GlyphInfo GetGlyphInfo(in Font font, int32 codepoint);
+	
+	/// Get glyph rectangle in font atlas for a codepoint (unicode character), fallback to '?' if not found
+	[CLink]
+	public static extern Rectangle GetGlyphAtlasRec(in Font font, int32 codepoint);
+	
+	/// Draw a line in 3D world space
+	[CLink]
+	public static extern void DrawLine3D(in Vector3 startPos, in Vector3 endPos, in Color color);
+	
+	/// Draw a point in 3D space, actually a small line
+	[CLink]
+	public static extern void DrawPoint3D(in Vector3 position, in Color color);
+	
+	/// Draw a circle in 3D world space
+	[CLink]
+	public static extern void DrawCircle3D(in Vector3 center, float radius, in Vector3 rotationAxis, float rotationAngle, in Color color);
+	
+	/// Draw a color-filled triangle (vertex in counter-clockwise order!)
+	[CLink]
+	public static extern void DrawTriangle3D(in Vector3 v1, in Vector3 v2, in Vector3 v3, in Color color);
+	
+	/// Draw a triangle strip defined by points
+	[CLink]
+	public static extern void DrawTriangleStrip3D(Vector3 * points, int32 pointCount, in Color color);
+	
+	/// Draw cube
+	[CLink]
+	public static extern void DrawCube(in Vector3 position, float width, float height, float length, in Color color);
+	
+	/// Draw cube (Vector version)
+	[CLink]
+	public static extern void DrawCubeV(in Vector3 position, in Vector3 size, in Color color);
+	
+	/// Draw cube wires
+	[CLink]
+	public static extern void DrawCubeWires(in Vector3 position, float width, float height, float length, in Color color);
+	
+	/// Draw cube wires (Vector version)
+	[CLink]
+	public static extern void DrawCubeWiresV(in Vector3 position, in Vector3 size, in Color color);
+	
+	/// Draw sphere
+	[CLink]
+	public static extern void DrawSphere(in Vector3 centerPos, float radius, in Color color);
+	
+	/// Draw sphere with extended parameters
+	[CLink]
+	public static extern void DrawSphereEx(in Vector3 centerPos, float radius, int32 rings, int32 slices, in Color color);
+	
+	/// Draw sphere wires
+	[CLink]
+	public static extern void DrawSphereWires(in Vector3 centerPos, float radius, int32 rings, int32 slices, in Color color);
+	
+	/// Draw a cylinder/cone
+	[CLink]
+	public static extern void DrawCylinder(in Vector3 position, float radiusTop, float radiusBottom, float height, int32 slices, in Color color);
+	
+	/// Draw a cylinder with base at startPos and top at endPos
+	[CLink]
+	public static extern void DrawCylinderEx(in Vector3 startPos, in Vector3 endPos, float startRadius, float endRadius, int32 sides, in Color color);
+	
+	/// Draw a cylinder/cone wires
+	[CLink]
+	public static extern void DrawCylinderWires(in Vector3 position, float radiusTop, float radiusBottom, float height, int32 slices, in Color color);
+	
+	/// Draw a cylinder wires with base at startPos and top at endPos
+	[CLink]
+	public static extern void DrawCylinderWiresEx(in Vector3 startPos, in Vector3 endPos, float startRadius, float endRadius, int32 sides, in Color color);
+	
+	/// Draw a capsule with the center of its sphere caps at startPos and endPos
+	[CLink]
+	public static extern void DrawCapsule(in Vector3 startPos, in Vector3 endPos, float radius, int32 slices, int32 rings, in Color color);
+	
+	/// Draw capsule wireframe with the center of its sphere caps at startPos and endPos
+	[CLink]
+	public static extern void DrawCapsuleWires(in Vector3 startPos, in Vector3 endPos, float radius, int32 slices, int32 rings, in Color color);
+	
+	/// Draw a plane XZ
+	[CLink]
+	public static extern void DrawPlane(in Vector3 centerPos, in Vector2 size, in Color color);
+	
+	/// Draw a ray line
+	[CLink]
+	public static extern void DrawRay(in Ray ray, in Color color);
+	
+	/// Load model from generated mesh (default material)
+	[CLink]
+	public static extern Model LoadModelFromMesh(in Mesh mesh);
+	
+	/// Check if a model is ready
+	[CLink]
+	public static extern bool IsModelReady(in Model model);
+	
+	/// Unload model (including meshes) from memory (RAM and/or VRAM)
+	[CLink]
+	public static extern void UnloadModel(in Model model);
+	
+	/// Compute model bounding box limits (considers all meshes)
+	[CLink]
+	public static extern BoundingBox GetModelBoundingBox(in Model model);
+	
+	/// Draw a model (with texture if set)
+	[CLink]
+	public static extern void DrawModel(in Model model, in Vector3 position, float scale, in Color tint);
+	
+	/// Draw a model with extended parameters
+	[CLink]
+	public static extern void DrawModelEx(in Model model, in Vector3 position, in Vector3 rotationAxis, float rotationAngle, in Vector3 scale, in Color tint);
+	
+	/// Draw a model wires (with texture if set)
+	[CLink]
+	public static extern void DrawModelWires(in Model model, in Vector3 position, float scale, in Color tint);
+	
+	/// Draw a model wires (with texture if set) with extended parameters
+	[CLink]
+	public static extern void DrawModelWiresEx(in Model model, in Vector3 position, in Vector3 rotationAxis, float rotationAngle, in Vector3 scale, in Color tint);
+	
+	/// Draw bounding box (wires)
+	[CLink]
+	public static extern void DrawBoundingBox(in BoundingBox @box, in Color color);
+	
+	/// Draw a billboard texture
+	[CLink]
+	public static extern void DrawBillboard(in Camera camera, in Texture2D texture, in Vector3 position, float size, in Color tint);
+	
+	/// Draw a billboard texture defined by source
+	[CLink]
+	public static extern void DrawBillboardRec(in Camera camera, in Texture2D texture, in Rectangle source, in Vector3 position, in Vector2 size, in Color tint);
+	
+	/// Draw a billboard texture defined by source and rotation
+	[CLink]
+	public static extern void DrawBillboardPro(in Camera camera, in Texture2D texture, in Rectangle source, in Vector3 position, in Vector3 up, in Vector2 size, in Vector2 origin, float rotation, in Color tint);
+	
+	/// Update mesh vertex data in GPU for a specific buffer index
+	[CLink]
+	public static extern void UpdateMeshBuffer(in Mesh mesh, int32 index, void * data, int32 dataSize, int32 offset);
+	
+	/// Unload mesh data from CPU and GPU
+	[CLink]
+	public static extern void UnloadMesh(in Mesh mesh);
+	
+	/// Draw a 3d mesh with material and transform
+	[CLink]
+	public static extern void DrawMesh(in Mesh mesh, in Material material, in Matrix transform);
+	
+	/// Draw multiple mesh instances with material and different transforms
+	[CLink]
+	public static extern void DrawMeshInstanced(in Mesh mesh, in Material material, Matrix * transforms, int32 instances);
+	
+	/// Export mesh data to file, returns true on success
+	[CLink]
+	public static extern bool ExportMesh(in Mesh mesh, char8 * fileName);
+	
+	/// Compute mesh bounding box limits
+	[CLink]
+	public static extern BoundingBox GetMeshBoundingBox(in Mesh mesh);
+	
+	/// Generate heightmap mesh from image data
+	[CLink]
+	public static extern Mesh GenMeshHeightmap(in Image heightmap, in Vector3 size);
+	
+	/// Generate cubes-based map mesh from image data
+	[CLink]
+	public static extern Mesh GenMeshCubicmap(in Image cubicmap, in Vector3 cubeSize);
+	
+	/// Check if a material is ready
+	[CLink]
+	public static extern bool IsMaterialReady(in Material material);
+	
+	/// Unload material from GPU memory (VRAM)
+	[CLink]
+	public static extern void UnloadMaterial(in Material material);
+	
+	/// Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)
+	[CLink]
+	public static extern void SetMaterialTexture(Material * material, int32 mapType, in Texture2D texture);
+	
+	/// Update model animation pose
+	[CLink]
+	public static extern void UpdateModelAnimation(in Model model, in ModelAnimation anim, int32 frame);
+	
+	/// Unload animation data
+	[CLink]
+	public static extern void UnloadModelAnimation(in ModelAnimation anim);
+	
+	/// Check model animation skeleton match
+	[CLink]
+	public static extern bool IsModelAnimationValid(in Model model, in ModelAnimation anim);
+	
+	/// Check collision between two spheres
+	[CLink]
+	public static extern bool CheckCollisionSpheres(in Vector3 center1, float radius1, in Vector3 center2, float radius2);
+	
+	/// Check collision between two bounding boxes
+	[CLink]
+	public static extern bool CheckCollisionBoxes(in BoundingBox box1, in BoundingBox box2);
+	
+	/// Check collision between box and sphere
+	[CLink]
+	public static extern bool CheckCollisionBoxSphere(in BoundingBox @box, in Vector3 center, float radius);
+	
+	/// Get collision info between ray and sphere
+	[CLink]
+	public static extern RayCollision GetRayCollisionSphere(in Ray ray, in Vector3 center, float radius);
+	
+	/// Get collision info between ray and box
+	[CLink]
+	public static extern RayCollision GetRayCollisionBox(in Ray ray, in BoundingBox @box);
+	
+	/// Get collision info between ray and mesh
+	[CLink]
+	public static extern RayCollision GetRayCollisionMesh(in Ray ray, in Mesh mesh, in Matrix transform);
+	
+	/// Get collision info between ray and triangle
+	[CLink]
+	public static extern RayCollision GetRayCollisionTriangle(in Ray ray, in Vector3 p1, in Vector3 p2, in Vector3 p3);
+	
+	/// Get collision info between ray and quad
+	[CLink]
+	public static extern RayCollision GetRayCollisionQuad(in Ray ray, in Vector3 p1, in Vector3 p2, in Vector3 p3, in Vector3 p4);
+	
+	/// Checks if wave data is ready
+	[CLink]
+	public static extern bool IsWaveReady(in Wave wave);
+	
+	/// Load sound from wave data
+	[CLink]
+	public static extern Sound LoadSoundFromWave(in Wave wave);
+	
+	/// Create a new sound that shares the same sample data as the source sound, does not own the sound data
+	[CLink]
+	public static extern Sound LoadSoundAlias(in Sound source);
+	
+	/// Checks if a sound is ready
+	[CLink]
+	public static extern bool IsSoundReady(in Sound sound);
+	
+	/// Update sound buffer with new data
+	[CLink]
+	public static extern void UpdateSound(in Sound sound, void * data, int32 sampleCount);
+	
+	/// Unload wave data
+	[CLink]
+	public static extern void UnloadWave(in Wave wave);
+	
+	/// Unload sound
+	[CLink]
+	public static extern void UnloadSound(in Sound sound);
+	
+	/// Unload a sound alias (does not deallocate sample data)
+	[CLink]
+	public static extern void UnloadSoundAlias(in Sound alias);
+	
+	/// Export wave data to file, returns true on success
+	[CLink]
+	public static extern bool ExportWave(in Wave wave, char8 * fileName);
+	
+	/// Export wave sample data to code (.h), returns true on success
+	[CLink]
+	public static extern bool ExportWaveAsCode(in Wave wave, char8 * fileName);
+	
+	/// Play a sound
+	[CLink]
+	public static extern void PlaySound(in Sound sound);
+	
+	/// Stop playing a sound
+	[CLink]
+	public static extern void StopSound(in Sound sound);
+	
+	/// Pause a sound
+	[CLink]
+	public static extern void PauseSound(in Sound sound);
+	
+	/// Resume a paused sound
+	[CLink]
+	public static extern void ResumeSound(in Sound sound);
+	
+	/// Check if a sound is currently playing
+	[CLink]
+	public static extern bool IsSoundPlaying(in Sound sound);
+	
+	/// Set volume for a sound (1.0 is max level)
+	[CLink]
+	public static extern void SetSoundVolume(in Sound sound, float volume);
+	
+	/// Set pitch for a sound (1.0 is base level)
+	[CLink]
+	public static extern void SetSoundPitch(in Sound sound, float pitch);
+	
+	/// Set pan for a sound (0.5 is center)
+	[CLink]
+	public static extern void SetSoundPan(in Sound sound, float pan);
+	
+	/// Copy a wave to a new wave
+	[CLink]
+	public static extern Wave WaveCopy(in Wave wave);
+	
+	/// Load samples data from wave as a 32bit float data array
+	[CLink]
+	public static extern float * LoadWaveSamples(in Wave wave);
+	
+	/// Checks if a music stream is ready
+	[CLink]
+	public static extern bool IsMusicReady(in Music music);
+	
+	/// Unload music stream
+	[CLink]
+	public static extern void UnloadMusicStream(in Music music);
+	
+	/// Start music playing
+	[CLink]
+	public static extern void PlayMusicStream(in Music music);
+	
+	/// Check if music is playing
+	[CLink]
+	public static extern bool IsMusicStreamPlaying(in Music music);
+	
+	/// Updates buffers for music streaming
+	[CLink]
+	public static extern void UpdateMusicStream(in Music music);
+	
+	/// Stop music playing
+	[CLink]
+	public static extern void StopMusicStream(in Music music);
+	
+	/// Pause music playing
+	[CLink]
+	public static extern void PauseMusicStream(in Music music);
+	
+	/// Resume playing paused music
+	[CLink]
+	public static extern void ResumeMusicStream(in Music music);
+	
+	/// Seek music to a position (in seconds)
+	[CLink]
+	public static extern void SeekMusicStream(in Music music, float position);
+	
+	/// Set volume for music (1.0 is max level)
+	[CLink]
+	public static extern void SetMusicVolume(in Music music, float volume);
+	
+	/// Set pitch for a music (1.0 is base level)
+	[CLink]
+	public static extern void SetMusicPitch(in Music music, float pitch);
+	
+	/// Set pan for a music (0.5 is center)
+	[CLink]
+	public static extern void SetMusicPan(in Music music, float pan);
+	
+	/// Get music time length (in seconds)
+	[CLink]
+	public static extern float GetMusicTimeLength(in Music music);
+	
+	/// Get current music time played (in seconds)
+	[CLink]
+	public static extern float GetMusicTimePlayed(in Music music);
+	
+	/// Checks if an audio stream is ready
+	[CLink]
+	public static extern bool IsAudioStreamReady(in AudioStream stream);
+	
+	/// Unload audio stream and free memory
+	[CLink]
+	public static extern void UnloadAudioStream(in AudioStream stream);
+	
+	/// Update audio stream buffers with data
+	[CLink]
+	public static extern void UpdateAudioStream(in AudioStream stream, void * data, int32 frameCount);
+	
+	/// Check if any audio stream buffers requires refill
+	[CLink]
+	public static extern bool IsAudioStreamProcessed(in AudioStream stream);
+	
+	/// Play audio stream
+	[CLink]
+	public static extern void PlayAudioStream(in AudioStream stream);
+	
+	/// Pause audio stream
+	[CLink]
+	public static extern void PauseAudioStream(in AudioStream stream);
+	
+	/// Resume audio stream
+	[CLink]
+	public static extern void ResumeAudioStream(in AudioStream stream);
+	
+	/// Check if audio stream is playing
+	[CLink]
+	public static extern bool IsAudioStreamPlaying(in AudioStream stream);
+	
+	/// Stop audio stream
+	[CLink]
+	public static extern void StopAudioStream(in AudioStream stream);
+	
+	/// Set volume for audio stream (1.0 is max level)
+	[CLink]
+	public static extern void SetAudioStreamVolume(in AudioStream stream, float volume);
+	
+	/// Set pitch for audio stream (1.0 is base level)
+	[CLink]
+	public static extern void SetAudioStreamPitch(in AudioStream stream, float pitch);
+	
+	/// Set pan for audio stream (0.5 is centered)
+	[CLink]
+	public static extern void SetAudioStreamPan(in AudioStream stream, float pan);
+	
+	/// Audio thread callback to request new data
+	[CLink]
+	public static extern void SetAudioStreamCallback(in AudioStream stream, AudioCallback callback);
+	
+	/// Attach audio stream processor to stream, receives the samples as <float>s
+	[CLink]
+	public static extern void AttachAudioStreamProcessor(in AudioStream stream, AudioCallback processor);
+	
+	/// Detach audio stream processor from stream
+	[CLink]
+	public static extern void DetachAudioStreamProcessor(in AudioStream stream, AudioCallback processor);
+	
+#endif
 	
 	/// Logging: Redirect trace log messages
 	public function void TraceLogCallback(int32 logLevel, char8 * text, void* args);

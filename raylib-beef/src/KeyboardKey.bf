@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// Keyboard keys (US keyboard layout)
 public enum KeyboardKey : c_int
 {

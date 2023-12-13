@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// Mouse cursor
 public enum MouseCursor : c_int
 {

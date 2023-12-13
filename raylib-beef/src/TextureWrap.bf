@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+[AllowDuplicates]
 /// Texture parameters: wrap mode
 public enum TextureWrap : c_int
 {

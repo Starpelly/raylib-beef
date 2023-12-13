@@ -19,9 +19,9 @@ public struct Wave
 	public int32 channels;
 	
 	/// Buffer data pointer
-	public void * data;
+	public void* data;
 	
-	public this(int32 frameCount, int32 sampleRate, int32 sampleSize, int32 channels, void * data)
+	public this(int32 frameCount, int32 sampleRate, int32 sampleSize, int32 channels, void* data)
 	{
 		this.frameCount = frameCount;
 		this.sampleRate = sampleRate;

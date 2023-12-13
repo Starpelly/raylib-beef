@@ -7,7 +7,7 @@ namespace RaylibBeef;
 public struct Image
 {
 	/// Image raw data
-	public void * data;
+	public void* data;
 	
 	/// Image base width
 	public int32 width;
@@ -21,7 +21,7 @@ public struct Image
 	/// Data format (PixelFormat type)
 	public int32 format;
 	
-	public this(void * data, int32 width, int32 height, int32 mipmaps, int32 format)
+	public this(void* data, int32 width, int32 height, int32 mipmaps, int32 format)
 	{
 		this.data = data;
 		this.width = width;

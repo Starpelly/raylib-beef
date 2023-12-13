@@ -10,13 +10,13 @@ public struct rlVertexBuffer
 	public int32 elementCount;
 	
 	/// Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
-	public float * vertices;
+	public void* vertices;
 	
 	/// Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)
-	public float * texcoords;
+	public void* texcoords;
 	
 	/// Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
-	public char8 * colors;
+	public void* colors;
 	
 	/// Vertex indices (in case vertex data comes indexed) (6 indices per quad)
 	public void* indices;
@@ -27,7 +27,7 @@ public struct rlVertexBuffer
 	/// OpenGL Vertex Buffer Objects id (4 types of vertex data)
 	public int32[4] vboId;
 	
-	public this(int32 elementCount, float * vertices, float * texcoords, char8 * colors, void* indices, void* vaoId, int32[4] vboId)
+	public this(int32 elementCount, void* vertices, void* texcoords, void* colors, void* indices, void* vaoId, int32[4] vboId)
 	{
 		this.elementCount = elementCount;
 		this.vertices = vertices;

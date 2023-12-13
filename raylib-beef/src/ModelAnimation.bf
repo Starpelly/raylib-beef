@@ -16,12 +16,12 @@ public struct ModelAnimation
 	public BoneInfo * bones;
 	
 	/// Poses array by frame
-	public Transform ** framePoses;
+	public void* framePoses;
 	
 	/// Animation name
 	public char8[32] name;
 	
-	public this(int32 boneCount, int32 frameCount, BoneInfo * bones, Transform ** framePoses, char8[32] name)
+	public this(int32 boneCount, int32 frameCount, BoneInfo * bones, void* framePoses, char8[32] name)
 	{
 		this.boneCount = boneCount;
 		this.frameCount = frameCount;

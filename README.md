@@ -4,7 +4,7 @@
 
 BeefLang bindings for **Raylib 5.0**.
 
-> **Note**: OS is limited to Windows right now, I see no reason why this wouldn't work on other platforms, though. I guess only one way to find out.
+> **Note**: OS is limited to Windows & WebAssembly right now, I see no reason why this wouldn't work on other platforms, though. I guess only one way to find out.
 
 ## Example
 ```cs
@@ -21,8 +21,8 @@ class Program
 		InitWindow(800, 600, scope $"Raylib Beef {RAYLIB_VERSION_MAJOR}.{RAYLIB_VERSION_MINOR}.{RAYLIB_VERSION_PATCH}");
 		InitAudioDevice();
 
-		var beefMain = Color(165, 47, 78, 255);
-		var beefOutline = Color(243, 157, 157, 255);
+		let beefMain = Color(165, 47, 78, 255);
+		let beefOutline = Color(243, 157, 157, 255);
 
 		while (!WindowShouldClose())
 		{
