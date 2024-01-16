@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace RaylibBeefGenerator
 {
@@ -22,6 +23,7 @@ namespace RaylibBeefGenerator
             { "raylib.json", new ("Raylib", "Raylib") },
             { "rlgl.json", new("Rlgl", "Rlgl") },
             { "raymath.json", new("Raymath", "Raymath") }
+            //{ "raygui.json", new("Raygui", "Raygui") }
         };
             
         public struct FileDefinition
@@ -42,6 +44,7 @@ namespace RaylibBeefGenerator
 
         public static void Main(string[] args)
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             Console.WriteLine($"Generating files at {OutputDir}");
             Console.WriteLine($"...");
             
@@ -74,6 +77,7 @@ namespace RaylibBeefGenerator
 
                 if (!string.IsNullOrEmpty(define.Description)) AppendLine($"/// {define.Description}");
                 var defineType = define.Type.ConvertTypes();
+
                 AppendLine($"public const {defineType} {define.Name.ConvertName()} = {define.Value.ToString()!.ParseValue(defineType)};");
                 AppendLine("");
             }
