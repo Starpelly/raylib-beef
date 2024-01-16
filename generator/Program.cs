@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace RaylibBeefGenerator
 {
@@ -42,6 +43,7 @@ namespace RaylibBeefGenerator
 
         public static void Main(string[] args)
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             Console.WriteLine($"Generating files at {OutputDir}");
             Console.WriteLine($"...");
             
@@ -365,6 +367,7 @@ namespace RaylibBeefGenerator
             input = ReplaceWholeWord(input, "box", "@box");
             input = ReplaceWholeWord(input, "params", "@params");
             input = ReplaceWholeWord(input, "readonly", "@readonly");
+            input = ReplaceWholeWord(input, "checked", "@checked");
 
             return input;
         }
