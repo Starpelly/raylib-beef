@@ -365,6 +365,7 @@ namespace RaylibBeefGenerator
             input = ReplaceWholeWord(input, "box", "@box");
             input = ReplaceWholeWord(input, "params", "@params");
             input = ReplaceWholeWord(input, "readonly", "@readonly");
+            input = ReplaceWholeWord(input, "checked", "@checked");
 
             return input;
         }
