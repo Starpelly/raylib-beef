@@ -55,6 +55,28 @@ class Program
 }
 ```
 
+## Quick Start (using Beef IDE)
+1. Clone this repository to wherever you want
+2. Right-click on your workspace and select *Add Existing Project* and select the folder where the *BeefProj.toml* file is.
+   
+![image](https://github.com/Starpelly/raylib-beef/assets/24588691/1fe9457a-4ff1-485b-a5c2-f054470ea364)
+
+3. Add raylib-beef as a dependency of your project
+
+![image](https://github.com/Starpelly/raylib-beef/assets/24588691/69060f60-4aad-43f5-b2d8-e9e01830e300)
+
+## Static Linking
+On Windows, default linking is set to dynamically link to raylib. This is because of some weird linking problems with MSVC. You can change that by selecting a different project configuration for raylib-beef in the **Workspace** settings. You can select from **StaticDebug** and **StaticRelease**.
+
+![image](https://github.com/Starpelly/raylib-beef/assets/24588691/d78c5e3f-62ac-4927-89c2-7e73b1262ed7)
+
+Then set your app's build settings to:
+* C Library: Dynamic
+* Beef Library: Static
+
+![image](https://github.com/Starpelly/raylib-beef/assets/24588691/9a0e1f4d-6291-4378-9a1f-708a81e5c149)
+
+
 ## More Links
 * Raylib Repo (https://github.com/raysan5/raylib)
 * BeefLang (https://www.beeflang.org)
