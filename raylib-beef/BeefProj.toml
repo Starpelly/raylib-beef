@@ -60,12 +60,12 @@ LibPaths = ["$(ProjectDir)\\libs\\_x64\\libraylib.a"]
 
 [Configs.StaticDebug.Win64]
 OtherLinkFlags = "$(LinkFlags) -libpath:\"$(ProjectDir)/libs/libs_x64\""
-LibPaths = ["$(ProjectDir)\\libs\\libs_x64\\staticraylib.lib"]
+LibPaths = ["$(ProjectDir)\\libs\\libs_x64\\staticraylib.lib", "user32.lib", "gdi32.lib", "windowsapp.lib", "shell32.lib"]
 
 [Configs.StaticRelease.Win64]
 OtherLinkFlags = "$(LinkFlags) -libpath:\"$(ProjectDir)/libs/libs_x64\""
-LibPaths = ["$(ProjectDir)\\libs\\libs_x64\\staticraylib.lib"]
+LibPaths = ["$(ProjectDir)\\libs\\libs_x64\\staticraylib.lib", "user32.lib", "gdi32.lib", "windowsapp.lib", "shell32.lib"]
 
 [Configs.StaticTest.Win64]
 OtherLinkFlags = "$(LinkFlags) -libpath:\"$(ProjectDir)/libs/libs_x64\""
-LibPaths = ["$(ProjectDir)\\libs\\libs_x64\\staticraylib.lib"]
+LibPaths = ["$(ProjectDir)\\libs\\libs_x64\\staticraylib.lib", "user32.lib", "gdi32.lib", "windowsapp.lib", "shell32.lib"]
