@@ -4,8 +4,6 @@
 
 BeefLang bindings for **Raylib 5.0**.
 
-> **Note**: OS is limited to Windows & WebAssembly right now, I see no reason why this wouldn't work on other platforms, though. I guess only one way to find out.
-
 ## Example
 ```cs
 using System;
@@ -69,12 +67,6 @@ class Program
 On Windows, default linking is set to dynamically link to raylib. This is because of some weird linking problems with MSVC. You can change that by selecting a different project configuration for raylib-beef in the **Workspace** settings. You can select from **StaticDebug** and **StaticRelease**.
 
 ![image](https://github.com/Starpelly/raylib-beef/assets/24588691/d78c5e3f-62ac-4927-89c2-7e73b1262ed7)
-
-Then set your app's build settings to:
-* C Library: Dynamic
-* Beef Library: Static
-
-![image](https://github.com/Starpelly/raylib-beef/assets/24588691/9a0e1f4d-6291-4378-9a1f-708a81e5c149)
 
 
 ## More Links
