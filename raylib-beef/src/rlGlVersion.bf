@@ -8,15 +8,17 @@ namespace RaylibBeef;
 public enum rlGlVersion : c_int
 {
 	/// OpenGL 1.1
-	RL_OPENGL_11 = 1,
+	case RL_OPENGL_11 = 1;
 	/// OpenGL 2.1 (GLSL 120)
-	RL_OPENGL_21 = 2,
+	case RL_OPENGL_21 = 2;
 	/// OpenGL 3.3 (GLSL 330)
-	RL_OPENGL_33 = 3,
+	case RL_OPENGL_33 = 3;
 	/// OpenGL 4.3 (using GLSL 330)
-	RL_OPENGL_43 = 4,
+	case RL_OPENGL_43 = 4;
 	/// OpenGL ES 2.0 (GLSL 100)
-	RL_OPENGL_ES_20 = 5,
+	case RL_OPENGL_ES_20 = 5;
 	/// OpenGL ES 3.0 (GLSL 300 es)
-	RL_OPENGL_ES_30 = 6,
+	case RL_OPENGL_ES_30 = 6;
+	
+	public static operator int32 (rlGlVersion self) => (int32)self;
 }

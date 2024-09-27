@@ -8,55 +8,57 @@ namespace RaylibBeef;
 public enum ShaderLocationIndex : c_int
 {
 	/// Shader location: vertex attribute: position
-	SHADER_LOC_VERTEX_POSITION = 0,
+	case SHADER_LOC_VERTEX_POSITION = 0;
 	/// Shader location: vertex attribute: texcoord01
-	SHADER_LOC_VERTEX_TEXCOORD01 = 1,
+	case SHADER_LOC_VERTEX_TEXCOORD01 = 1;
 	/// Shader location: vertex attribute: texcoord02
-	SHADER_LOC_VERTEX_TEXCOORD02 = 2,
+	case SHADER_LOC_VERTEX_TEXCOORD02 = 2;
 	/// Shader location: vertex attribute: normal
-	SHADER_LOC_VERTEX_NORMAL = 3,
+	case SHADER_LOC_VERTEX_NORMAL = 3;
 	/// Shader location: vertex attribute: tangent
-	SHADER_LOC_VERTEX_TANGENT = 4,
+	case SHADER_LOC_VERTEX_TANGENT = 4;
 	/// Shader location: vertex attribute: color
-	SHADER_LOC_VERTEX_COLOR = 5,
+	case SHADER_LOC_VERTEX_COLOR = 5;
 	/// Shader location: matrix uniform: model-view-projection
-	SHADER_LOC_MATRIX_MVP = 6,
+	case SHADER_LOC_MATRIX_MVP = 6;
 	/// Shader location: matrix uniform: view (camera transform)
-	SHADER_LOC_MATRIX_VIEW = 7,
+	case SHADER_LOC_MATRIX_VIEW = 7;
 	/// Shader location: matrix uniform: projection
-	SHADER_LOC_MATRIX_PROJECTION = 8,
+	case SHADER_LOC_MATRIX_PROJECTION = 8;
 	/// Shader location: matrix uniform: model (transform)
-	SHADER_LOC_MATRIX_MODEL = 9,
+	case SHADER_LOC_MATRIX_MODEL = 9;
 	/// Shader location: matrix uniform: normal
-	SHADER_LOC_MATRIX_NORMAL = 10,
+	case SHADER_LOC_MATRIX_NORMAL = 10;
 	/// Shader location: vector uniform: view
-	SHADER_LOC_VECTOR_VIEW = 11,
+	case SHADER_LOC_VECTOR_VIEW = 11;
 	/// Shader location: vector uniform: diffuse color
-	SHADER_LOC_COLOR_DIFFUSE = 12,
+	case SHADER_LOC_COLOR_DIFFUSE = 12;
 	/// Shader location: vector uniform: specular color
-	SHADER_LOC_COLOR_SPECULAR = 13,
+	case SHADER_LOC_COLOR_SPECULAR = 13;
 	/// Shader location: vector uniform: ambient color
-	SHADER_LOC_COLOR_AMBIENT = 14,
+	case SHADER_LOC_COLOR_AMBIENT = 14;
 	/// Shader location: sampler2d texture: albedo (same as: SHADER_LOC_MAP_DIFFUSE)
-	SHADER_LOC_MAP_ALBEDO = 15,
+	case SHADER_LOC_MAP_ALBEDO = 15;
 	/// Shader location: sampler2d texture: metalness (same as: SHADER_LOC_MAP_SPECULAR)
-	SHADER_LOC_MAP_METALNESS = 16,
+	case SHADER_LOC_MAP_METALNESS = 16;
 	/// Shader location: sampler2d texture: normal
-	SHADER_LOC_MAP_NORMAL = 17,
+	case SHADER_LOC_MAP_NORMAL = 17;
 	/// Shader location: sampler2d texture: roughness
-	SHADER_LOC_MAP_ROUGHNESS = 18,
+	case SHADER_LOC_MAP_ROUGHNESS = 18;
 	/// Shader location: sampler2d texture: occlusion
-	SHADER_LOC_MAP_OCCLUSION = 19,
+	case SHADER_LOC_MAP_OCCLUSION = 19;
 	/// Shader location: sampler2d texture: emission
-	SHADER_LOC_MAP_EMISSION = 20,
+	case SHADER_LOC_MAP_EMISSION = 20;
 	/// Shader location: sampler2d texture: height
-	SHADER_LOC_MAP_HEIGHT = 21,
+	case SHADER_LOC_MAP_HEIGHT = 21;
 	/// Shader location: samplerCube texture: cubemap
-	SHADER_LOC_MAP_CUBEMAP = 22,
+	case SHADER_LOC_MAP_CUBEMAP = 22;
 	/// Shader location: samplerCube texture: irradiance
-	SHADER_LOC_MAP_IRRADIANCE = 23,
+	case SHADER_LOC_MAP_IRRADIANCE = 23;
 	/// Shader location: samplerCube texture: prefilter
-	SHADER_LOC_MAP_PREFILTER = 24,
+	case SHADER_LOC_MAP_PREFILTER = 24;
 	/// Shader location: sampler2d texture: brdf
-	SHADER_LOC_MAP_BRDF = 25,
+	case SHADER_LOC_MAP_BRDF = 25;
+	
+	public static operator int32 (ShaderLocationIndex self) => (int32)self;
 }

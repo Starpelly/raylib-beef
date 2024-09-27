@@ -8,19 +8,21 @@ namespace RaylibBeef;
 public enum BlendMode : c_int
 {
 	/// Blend textures considering alpha (default)
-	BLEND_ALPHA = 0,
+	case BLEND_ALPHA = 0;
 	/// Blend textures adding colors
-	BLEND_ADDITIVE = 1,
+	case BLEND_ADDITIVE = 1;
 	/// Blend textures multiplying colors
-	BLEND_MULTIPLIED = 2,
+	case BLEND_MULTIPLIED = 2;
 	/// Blend textures adding colors (alternative)
-	BLEND_ADD_COLORS = 3,
+	case BLEND_ADD_COLORS = 3;
 	/// Blend textures subtracting colors (alternative)
-	BLEND_SUBTRACT_COLORS = 4,
+	case BLEND_SUBTRACT_COLORS = 4;
 	/// Blend premultiplied textures considering alpha
-	BLEND_ALPHA_PREMULTIPLY = 5,
+	case BLEND_ALPHA_PREMULTIPLY = 5;
 	/// Blend textures using custom src/dst factors (use rlSetBlendFactors())
-	BLEND_CUSTOM = 6,
+	case BLEND_CUSTOM = 6;
 	/// Blend textures using custom rgb/alpha separate src/dst factors (use rlSetBlendFactorsSeparate())
-	BLEND_CUSTOM_SEPARATE = 7,
+	case BLEND_CUSTOM_SEPARATE = 7;
+	
+	public static operator int32 (BlendMode self) => (int32)self;
 }

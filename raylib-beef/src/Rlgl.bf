@@ -252,7 +252,7 @@ public static class Rlgl
 	
 	/// Multiply the current matrix by another matrix
 	[CLink]
-	public static extern void rlMultMatrixf(float * matf);
+	public static extern void rlMultMatrixf(float *matf);
 	
 	/// 
 	[CLink]
@@ -340,7 +340,7 @@ public static class Rlgl
 	
 	/// Enable attribute state pointer
 	[CLink]
-	public static extern void rlEnableStatePointer(int32 vertexAttribType, void * buffer);
+	public static extern void rlEnableStatePointer(int32 vertexAttribType, void *buffer);
 	
 	/// Disable attribute state pointer
 	[CLink]
@@ -520,7 +520,7 @@ public static class Rlgl
 	
 	/// Load OpenGL extensions (loader function required)
 	[CLink]
-	public static extern void rlLoadExtensions(void * loader);
+	public static extern void rlLoadExtensions(void *loader);
 	
 	/// Get current OpenGL version
 	[CLink]
@@ -560,11 +560,11 @@ public static class Rlgl
 	
 	/// Draw render batch data (Update->Draw->Reset)
 	[CLink]
-	public static extern void rlDrawRenderBatch(rlRenderBatch * batch);
+	public static extern void rlDrawRenderBatch(rlRenderBatch *batch);
 	
 	/// Set the active render batch for rlgl (NULL for default internal)
 	[CLink]
-	public static extern void rlSetRenderBatchActive(rlRenderBatch * batch);
+	public static extern void rlSetRenderBatchActive(rlRenderBatch *batch);
 	
 	/// Update and draw internal render batch
 	[CLink]
@@ -584,19 +584,19 @@ public static class Rlgl
 	
 	/// Load a vertex buffer attribute
 	[CLink]
-	public static extern int32 rlLoadVertexBuffer(void * buffer, int32 size, bool dynamic);
+	public static extern int32 rlLoadVertexBuffer(void *buffer, int32 size, bool dynamic);
 	
 	/// Load a new attributes element buffer
 	[CLink]
-	public static extern int32 rlLoadVertexBufferElement(void * buffer, int32 size, bool dynamic);
+	public static extern int32 rlLoadVertexBufferElement(void *buffer, int32 size, bool dynamic);
 	
 	/// Update GPU buffer with new data
 	[CLink]
-	public static extern void rlUpdateVertexBuffer(int32 bufferId, void * data, int32 dataSize, int32 offset);
+	public static extern void rlUpdateVertexBuffer(int32 bufferId, void *data, int32 dataSize, int32 offset);
 	
 	/// Update vertex buffer elements with new data
 	[CLink]
-	public static extern void rlUpdateVertexBufferElements(int32 id, void * data, int32 dataSize, int32 offset);
+	public static extern void rlUpdateVertexBufferElements(int32 id, void *data, int32 dataSize, int32 offset);
 	
 	/// 
 	[CLink]
@@ -608,7 +608,7 @@ public static class Rlgl
 	
 	/// 
 	[CLink]
-	public static extern void rlSetVertexAttribute(int32 index, int32 compSize, int32 type, bool normalized, int32 stride, void * pointer);
+	public static extern void rlSetVertexAttribute(int32 index, int32 compSize, int32 type, bool normalized, int32 stride, void *pointer);
 	
 	/// 
 	[CLink]
@@ -616,7 +616,7 @@ public static class Rlgl
 	
 	/// Set vertex attribute default value
 	[CLink]
-	public static extern void rlSetVertexAttributeDefault(int32 locIndex, void * value, int32 attribType, int32 count);
+	public static extern void rlSetVertexAttributeDefault(int32 locIndex, void *value, int32 attribType, int32 count);
 	
 	/// 
 	[CLink]
@@ -624,7 +624,7 @@ public static class Rlgl
 	
 	/// 
 	[CLink]
-	public static extern void rlDrawVertexArrayElements(int32 offset, int32 count, void * buffer);
+	public static extern void rlDrawVertexArrayElements(int32 offset, int32 count, void *buffer);
 	
 	/// 
 	[CLink]
@@ -632,11 +632,11 @@ public static class Rlgl
 	
 	/// 
 	[CLink]
-	public static extern void rlDrawVertexArrayElementsInstanced(int32 offset, int32 count, void * buffer, int32 instances);
+	public static extern void rlDrawVertexArrayElementsInstanced(int32 offset, int32 count, void *buffer, int32 instances);
 	
 	/// Load texture in GPU
 	[CLink]
-	public static extern int32 rlLoadTexture(void * data, int32 width, int32 height, int32 format, int32 mipmapCount);
+	public static extern int32 rlLoadTexture(void *data, int32 width, int32 height, int32 format, int32 mipmapCount);
 	
 	/// Load depth texture/renderbuffer (to be attached to fbo)
 	[CLink]
@@ -644,15 +644,15 @@ public static class Rlgl
 	
 	/// Load texture cubemap
 	[CLink]
-	public static extern int32 rlLoadTextureCubemap(void * data, int32 size, int32 format);
+	public static extern int32 rlLoadTextureCubemap(void *data, int32 size, int32 format);
 	
 	/// Update GPU texture with new data
 	[CLink]
-	public static extern void rlUpdateTexture(int32 id, int32 offsetX, int32 offsetY, int32 width, int32 height, int32 format, void * data);
+	public static extern void rlUpdateTexture(int32 id, int32 offsetX, int32 offsetY, int32 width, int32 height, int32 format, void *data);
 	
 	/// Get OpenGL internal formats
 	[CLink]
-	public static extern void rlGetGlTextureFormats(int32 format, int32 * glInternalFormat, int32 * glFormat, int32 * glType);
+	public static extern void rlGetGlTextureFormats(int32 format, int32 *glInternalFormat, int32 *glFormat, int32 *glType);
 	
 	/// Get name string for pixel format
 	[CLink]
@@ -664,7 +664,7 @@ public static class Rlgl
 	
 	/// Generate mipmap data for selected texture
 	[CLink]
-	public static extern void rlGenTextureMipmaps(int32 id, int32 width, int32 height, int32 format, int32 * mipmaps);
+	public static extern void rlGenTextureMipmaps(int32 id, int32 width, int32 height, int32 format, int32 *mipmaps);
 	
 	/// Read texture pixel data
 	[CLink]
@@ -692,11 +692,11 @@ public static class Rlgl
 	
 	/// Load shader from code strings
 	[CLink]
-	public static extern int32 rlLoadShaderCode(char8 * vsCode, char8 * fsCode);
+	public static extern int32 rlLoadShaderCode(char8 *vsCode, char8 *fsCode);
 	
 	/// Compile custom shader and return shader id (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)
 	[CLink]
-	public static extern int32 rlCompileShader(char8 * shaderCode, int32 type);
+	public static extern int32 rlCompileShader(char8 *shaderCode, int32 type);
 	
 	/// Load custom shader program
 	[CLink]
@@ -708,15 +708,15 @@ public static class Rlgl
 	
 	/// Get shader location uniform
 	[CLink]
-	public static extern int32 rlGetLocationUniform(int32 shaderId, char8 * uniformName);
+	public static extern int32 rlGetLocationUniform(int32 shaderId, char8 *uniformName);
 	
 	/// Get shader location attribute
 	[CLink]
-	public static extern int32 rlGetLocationAttrib(int32 shaderId, char8 * attribName);
+	public static extern int32 rlGetLocationAttrib(int32 shaderId, char8 *attribName);
 	
 	/// Set shader value uniform
 	[CLink]
-	public static extern void rlSetUniform(int32 locIndex, void * value, int32 uniformType, int32 count);
+	public static extern void rlSetUniform(int32 locIndex, void *value, int32 uniformType, int32 count);
 	
 	/// Set shader value sampler
 	[CLink]
@@ -724,7 +724,7 @@ public static class Rlgl
 	
 	/// Set shader currently active (id and locations)
 	[CLink]
-	public static extern void rlSetShader(int32 id, int32 * locs);
+	public static extern void rlSetShader(int32 id, int32 *locs);
 	
 	/// Load compute shader program
 	[CLink]
@@ -736,7 +736,7 @@ public static class Rlgl
 	
 	/// Load shader storage buffer object (SSBO)
 	[CLink]
-	public static extern int32 rlLoadShaderBuffer(int32 size, void * data, int32 usageHint);
+	public static extern int32 rlLoadShaderBuffer(int32 size, void *data, int32 usageHint);
 	
 	/// Unload shader storage buffer object (SSBO)
 	[CLink]
@@ -744,7 +744,7 @@ public static class Rlgl
 	
 	/// Update SSBO buffer data
 	[CLink]
-	public static extern void rlUpdateShaderBuffer(int32 id, void * data, int32 dataSize, int32 offset);
+	public static extern void rlUpdateShaderBuffer(int32 id, void *data, int32 dataSize, int32 offset);
 	
 	/// Bind SSBO buffer
 	[CLink]
@@ -752,7 +752,7 @@ public static class Rlgl
 	
 	/// Read SSBO buffer data (GPU->CPU)
 	[CLink]
-	public static extern void rlReadShaderBuffer(int32 id, void * dest, int32 count, int32 offset);
+	public static extern void rlReadShaderBuffer(int32 id, void *dest, int32 count, int32 offset);
 	
 	/// Copy SSBO data between buffers
 	[CLink]

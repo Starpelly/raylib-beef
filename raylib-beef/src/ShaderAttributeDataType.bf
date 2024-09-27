@@ -8,11 +8,13 @@ namespace RaylibBeef;
 public enum ShaderAttributeDataType : c_int
 {
 	/// Shader attribute type: float
-	SHADER_ATTRIB_FLOAT = 0,
+	case SHADER_ATTRIB_FLOAT = 0;
 	/// Shader attribute type: vec2 (2 float)
-	SHADER_ATTRIB_VEC2 = 1,
+	case SHADER_ATTRIB_VEC2 = 1;
 	/// Shader attribute type: vec3 (3 float)
-	SHADER_ATTRIB_VEC3 = 2,
+	case SHADER_ATTRIB_VEC3 = 2;
 	/// Shader attribute type: vec4 (4 float)
-	SHADER_ATTRIB_VEC4 = 3,
+	case SHADER_ATTRIB_VEC4 = 3;
+	
+	public static operator int32 (ShaderAttributeDataType self) => (int32)self;
 }

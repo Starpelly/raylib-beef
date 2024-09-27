@@ -63,7 +63,7 @@ public static class Raymath
 	
 	/// 
 	[CLink]
-	public static extern void Vector3OrthoNormalize(Vector3 * v1, Vector3 * v2);
+	public static extern void Vector3OrthoNormalize(Vector3 *v1, Vector3 *v2);
 	
 	/// 
 	[CLink]
@@ -457,7 +457,7 @@ public static class Raymath
 	
 	/// 
 	[CLink]
-	public static extern void QuaternionToAxisAngle(Quaternion q, Vector3 * outAxis, float * outAngle);
+	public static extern void QuaternionToAxisAngle(Quaternion q, Vector3 *outAxis, float *outAngle);
 	
 	/// 
 	[CLink]
@@ -819,7 +819,7 @@ public static class Raymath
 	
 	/// 
 	[CLink]
-	public static extern void QuaternionToAxisAngle(in Quaternion q, Vector3 * outAxis, float * outAngle);
+	public static extern void QuaternionToAxisAngle(in Quaternion q, Vector3 *outAxis, float *outAngle);
 	
 	/// 
 	[CLink]

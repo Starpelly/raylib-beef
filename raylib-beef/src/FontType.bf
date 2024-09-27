@@ -8,9 +8,11 @@ namespace RaylibBeef;
 public enum FontType : c_int
 {
 	/// Default font generation, anti-aliased
-	FONT_DEFAULT = 0,
+	case FONT_DEFAULT = 0;
 	/// Bitmap font generation, no anti-aliasing
-	FONT_BITMAP = 1,
+	case FONT_BITMAP = 1;
 	/// SDF font generation, requires external shader
-	FONT_SDF = 2,
+	case FONT_SDF = 2;
+	
+	public static operator int32 (FontType self) => (int32)self;
 }
