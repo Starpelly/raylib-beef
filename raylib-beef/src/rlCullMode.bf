@@ -8,7 +8,9 @@ namespace RaylibBeef;
 public enum rlCullMode : c_int
 {
 	/// 
-	RL_CULL_FACE_FRONT = 0,
+	case RL_CULL_FACE_FRONT = 0;
 	/// 
-	RL_CULL_FACE_BACK = 1,
+	case RL_CULL_FACE_BACK = 1;
+	
+	public static operator int32 (rlCullMode self) => (int32)self;
 }

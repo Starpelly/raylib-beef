@@ -8,19 +8,21 @@ namespace RaylibBeef;
 public enum rlTraceLogLevel : c_int
 {
 	/// Display all logs
-	RL_LOG_ALL = 0,
+	case RL_LOG_ALL = 0;
 	/// Trace logging, intended for internal use only
-	RL_LOG_TRACE = 1,
+	case RL_LOG_TRACE = 1;
 	/// Debug logging, used for internal debugging, it should be disabled on release builds
-	RL_LOG_DEBUG = 2,
+	case RL_LOG_DEBUG = 2;
 	/// Info logging, used for program execution info
-	RL_LOG_INFO = 3,
+	case RL_LOG_INFO = 3;
 	/// Warning logging, used on recoverable failures
-	RL_LOG_WARNING = 4,
+	case RL_LOG_WARNING = 4;
 	/// Error logging, used on unrecoverable failures
-	RL_LOG_ERROR = 5,
+	case RL_LOG_ERROR = 5;
 	/// Fatal logging, used to abort program: exit(EXIT_FAILURE)
-	RL_LOG_FATAL = 6,
+	case RL_LOG_FATAL = 6;
 	/// Disable logging
-	RL_LOG_NONE = 7,
+	case RL_LOG_NONE = 7;
+	
+	public static operator int32 (rlTraceLogLevel self) => (int32)self;
 }

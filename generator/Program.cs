@@ -100,6 +100,64 @@ namespace RaylibBeefGenerator
                     functionsWStructs.Add(func);
             }
 
+            // Functions that have only 1 parameter that is also associated with an enum.
+            // The goal is to generate a helper function that provides an API that would be more idiomatic Beef code
+            // e.g:
+            // C style API 
+            // Raylib.IsKeyPressed((int32)KeyboardKey.KEY_SPACE);
+            //
+            // Beef style API
+            // Raylib.IsKeyPressed(.KEY_SPACE);
+            var oneParamHelperFunctions = new Dictionary<String, (String, String)>
+            { 
+                {"IsWindowState", ("ConfigFlags", "flag")},
+                {"SetWindowState", ("ConfigFlags", "flag")},
+                {"ClearWindowState", ("ConfigFlags", "flag")},
+
+                {"BeginBlendMode", ("BlendMode", "mode")},
+
+                {"SetConfigFlags", ("ConfigFlags", "flags")},
+
+                {"SetTraceLogLevel", ("TraceLogLevel", "logLevel")},
+
+                {"IsKeyPressed", ("KeyboardKey", "key")},
+                {"IsKeyPressedRepeat", ("KeyboardKey", "key")},
+                {"IsKeyDown", ("KeyboardKey", "key")},
+                {"IsKeyReleased", ("KeyboardKey", "key")},
+                {"IsKeyUp", ("KeyboardKey", "key")},
+                {"SetExitKey", ("KeyboardKey", "key")},
+
+                {"IsMouseButtonPressed", ("MouseButton", "button")},
+                {"IsMouseButtonDown", ("MouseButton", "button")},
+                {"IsMouseButtonReleased", ("MouseButton", "button")},
+                {"IsMouseButtonUp", ("MouseButton", "button")},
+
+                {"SetMouseCursor", ("MouseCursor", "cursor")},
+
+                {"SetGesturesEnabled", ("Gesture", "flags")},
+                {"IsGestureDetected", ("Gesture", "gesture")},
+            };
+
+            // Functions that have only 2 parameters and for which the second parameter is also associated with an enum.
+            // The goal is to generate a helper function that provides an API that would be more idiomatic Beef code
+            // e.g:
+            // C style API 
+            // Raylib.IsGamepadButtonPressed(0, (int32)GamepadButton.GAMEPAD_BUTTON_LEFT_TRIGGER_1);
+            //
+            // Beef style API
+            // Raylib.IsGamepadButtonPressed(.GAMEPAD_BUTTON_LEFT_TRIGGER_1);
+            var secondParamHelperFunctions = new Dictionary<String, (String, String)>
+            {
+                {"IsGamepadButtonPressed", ("GamepadButton", "button")},
+                {"IsGamepadButtonDown", ("GamepadButton", "button")},
+                {"IsGamepadButtonReleased", ("GamepadButton", "button")},
+                {"IsGamepadButtonUp", ("GamepadButton", "button")},
+
+                {"GetGamepadAxisMovement", ("GamepadAxis", "axis")},
+
+                {"UpdateCamera", ("CameraMode", "mode")}
+            };
+
             // Platform agnostic methods (kinda)
             foreach (var func in functionsWOStructs)
             {
@@ -107,6 +165,33 @@ namespace RaylibBeefGenerator
                 // AppendLine($"[Import(Raylib.RaylibBin), CallingConvention(.Cdecl), LinkName(\"{func.Name}\")]");
                 AppendLine("[CLink]");
                 AppendLine($"public static extern {func.ReturnType.ConvertTypes()} {func.Name.ConvertName()}({Parameters2String(func.Params, api)});");
+
+                // Generates Beef idiomatic helper functions to be used with an enum parameter:
+                // e.g: public static bool IsKeyPressed(KeyboardKey key) => IsKeyPressed((int32)key);
+                // The Beef function will call the extern C function from Raylib.
+                if (oneParamHelperFunctions.ContainsKey(func.Name))
+                {
+                    var (paramType, paramName) = oneParamHelperFunctions[func.Name];
+                    AppendLine($"public static {func.ReturnType.ConvertTypes()} {func.Name.ConvertName()}({paramType} {paramName}) => {func.Name}((int32){paramName});");
+                }
+
+                // Generates Beef idiomatic helper functions to be used with an enum parameter:
+                // e.g: public static bool IsGamepadButtonPressed(int32 gamepad, GamepadButton key) => IsGamepadButtonPressed(gamepad, (int32)button);
+                // The Beef function will call the extern C function from Raylib.
+                if (secondParamHelperFunctions.ContainsKey(func.Name))
+                {
+                    var (bfParamType, bfParamName) = secondParamHelperFunctions[func.Name];
+                    
+                    var parameters = Parameters2String(func.Params, api).Split(',');
+                    var paramString = parameters[0] + $", {bfParamType} {bfParamName}";
+                    var firstParam = parameters[0].Split(' ')[1];
+
+                    if (firstParam.StartsWith('*'))
+                        firstParam = firstParam.Remove(0, 1);
+
+                    AppendLine($"public static {func.ReturnType.ConvertTypes()} {func.Name.ConvertName()}({paramString}) => {func.Name}({firstParam}, (int32){bfParamName});");
+                }
+
                 AppendLine("");
             }
 
@@ -178,9 +263,11 @@ namespace RaylibBeefGenerator
             for (int i = 0; i < @enum.Values.Count; i++)
             {
                 AppendLine($"/// {@enum.Values[i].Description}");
-                AppendLine($"{@enum.Values[i].Name} = {@enum.Values[i].Value_},");
+                AppendLine($"case {@enum.Values[i].Name} = {@enum.Values[i].Value_};");
             }
 
+            AppendLine("");
+            AppendLine($"public static operator int32 ({@enum.Name} self) => (int32)self;");
             DecreaseTab();
             AppendLine("}");
 
@@ -281,7 +368,8 @@ namespace RaylibBeefGenerator
                         paramStr += "in ";
                 }
 
-                paramStr += $"{t} {param.Name.ConvertName()}";
+                paramStr += $"{t}{(t.EndsWith('*') ? "": " ")}{param.Name.ConvertName()}";
+
                 if (p < @params.Count - 1)
                     paramStr += ", ";
             }
