@@ -7,11 +7,11 @@ public static class Raylib
 {
 	public const int32 RAYLIB_VERSION_MAJOR = 5;
 	
-	public const int32 RAYLIB_VERSION_MINOR = 0;
+	public const int32 RAYLIB_VERSION_MINOR = 5;
 	
 	public const int32 RAYLIB_VERSION_PATCH = 0;
 	
-	public const char8* RAYLIB_VERSION = "5.0";
+	public const char8* RAYLIB_VERSION = "5.5";
 	
 	public const float PI = 3.141592653589793f;
 	
@@ -117,19 +117,19 @@ public static class Raylib
 	[CLink]
 	public static extern bool IsWindowFullscreen();
 	
-	/// Check if window is currently hidden (only PLATFORM_DESKTOP)
+	/// Check if window is currently hidden
 	[CLink]
 	public static extern bool IsWindowHidden();
 	
-	/// Check if window is currently minimized (only PLATFORM_DESKTOP)
+	/// Check if window is currently minimized
 	[CLink]
 	public static extern bool IsWindowMinimized();
 	
-	/// Check if window is currently maximized (only PLATFORM_DESKTOP)
+	/// Check if window is currently maximized
 	[CLink]
 	public static extern bool IsWindowMaximized();
 	
-	/// Check if window is currently focused (only PLATFORM_DESKTOP)
+	/// Check if window is currently focused
 	[CLink]
 	public static extern bool IsWindowFocused();
 	
@@ -142,7 +142,7 @@ public static class Raylib
 	public static extern bool IsWindowState(int32 flag);
 	public static bool IsWindowState(ConfigFlags flag) => IsWindowState((int32)flag);
 	
-	/// Set window configuration state using flags (only PLATFORM_DESKTOP)
+	/// Set window configuration state using flags
 	[CLink]
 	public static extern void SetWindowState(int32 flags);
 	public static void SetWindowState(ConfigFlags flag) => SetWindowState((int32)flag);
@@ -152,35 +152,35 @@ public static class Raylib
 	public static extern void ClearWindowState(int32 flags);
 	public static void ClearWindowState(ConfigFlags flag) => ClearWindowState((int32)flag);
 	
-	/// Toggle window state: fullscreen/windowed (only PLATFORM_DESKTOP)
+	/// Toggle window state: fullscreen/windowed, resizes monitor to match window resolution
 	[CLink]
 	public static extern void ToggleFullscreen();
 	
-	/// Toggle window state: borderless windowed (only PLATFORM_DESKTOP)
+	/// Toggle window state: borderless windowed, resizes window to match monitor resolution
 	[CLink]
 	public static extern void ToggleBorderlessWindowed();
 	
-	/// Set window state: maximized, if resizable (only PLATFORM_DESKTOP)
+	/// Set window state: maximized, if resizable
 	[CLink]
 	public static extern void MaximizeWindow();
 	
-	/// Set window state: minimized, if resizable (only PLATFORM_DESKTOP)
+	/// Set window state: minimized, if resizable
 	[CLink]
 	public static extern void MinimizeWindow();
 	
-	/// Set window state: not minimized/maximized (only PLATFORM_DESKTOP)
+	/// Set window state: not minimized/maximized
 	[CLink]
 	public static extern void RestoreWindow();
 	
-	/// Set icon for window (multiple images, RGBA 32bit, only PLATFORM_DESKTOP)
+	/// Set icon for window (multiple images, RGBA 32bit)
 	[CLink]
 	public static extern void SetWindowIcons(Image *images, int32 count);
 	
-	/// Set title for window (only PLATFORM_DESKTOP and PLATFORM_WEB)
+	/// Set title for window
 	[CLink]
 	public static extern void SetWindowTitle(char8 *title);
 	
-	/// Set window position on screen (only PLATFORM_DESKTOP)
+	/// Set window position on screen
 	[CLink]
 	public static extern void SetWindowPosition(int32 x, int32 y);
 	
@@ -200,11 +200,11 @@ public static class Raylib
 	[CLink]
 	public static extern void SetWindowSize(int32 width, int32 height);
 	
-	/// Set window opacity [0.0f..1.0f] (only PLATFORM_DESKTOP)
+	/// Set window opacity [0.0f..1.0f]
 	[CLink]
 	public static extern void SetWindowOpacity(float opacity);
 	
-	/// Set window focused (only PLATFORM_DESKTOP)
+	/// Set window focused
 	[CLink]
 	public static extern void SetWindowFocused();
 	
@@ -232,7 +232,7 @@ public static class Raylib
 	[CLink]
 	public static extern int32 GetMonitorCount();
 	
-	/// Get current connected monitor
+	/// Get current monitor where window is placed
 	[CLink]
 	public static extern int32 GetCurrentMonitor();
 	
@@ -279,6 +279,10 @@ public static class Raylib
 	/// Get clipboard text content
 	[CLink]
 	public static extern char8 * GetClipboardText();
+	
+	/// Get clipboard image content
+	[CLink]
+	public static extern Image GetClipboardImage();
 	
 	/// Enable waiting for events on EndDrawing(), no automatic event polling
 	[CLink]
@@ -535,6 +539,10 @@ public static class Raylib
 	[CLink]
 	public static extern char8 * GetApplicationDirectory();
 	
+	/// Create directories (including full path requested), returns 0 on success
+	[CLink]
+	public static extern int32 MakeDirectory(char8 *dirPath);
+	
 	/// Change working directory, return true on success
 	[CLink]
 	public static extern bool ChangeDirectory(char8 *dir);
@@ -543,11 +551,15 @@ public static class Raylib
 	[CLink]
 	public static extern bool IsPathFile(char8 *path);
 	
+	/// Check if fileName is valid for the platform/OS
+	[CLink]
+	public static extern bool IsFileNameValid(char8 *fileName);
+	
 	/// Load directory filepaths
 	[CLink]
 	public static extern FilePathList LoadDirectoryFiles(char8 *dirPath);
 	
-	/// Load directory filepaths with extension filtering and recursive directory scan
+	/// Load directory filepaths with extension filtering and recursive directory scan. Use 'DIR' in the filter string to include directories in the result
 	[CLink]
 	public static extern FilePathList LoadDirectoryFilesEx(char8 *basePath, char8 *filter, bool scanSubdirs);
 	
@@ -579,13 +591,21 @@ public static class Raylib
 	[CLink]
 	public static extern char8 * DecodeDataBase64(char8 *data, int32 *outputSize);
 	
+	/// Compute CRC32 hash code
+	[CLink]
+	public static extern int32 ComputeCRC32(char8 *data, int32 dataSize);
+	
+	/// Compute MD5 hash code, returns static int[4] (16 bytes)
+	[CLink]
+	public static extern int32 * ComputeMD5(char8 *data, int32 dataSize);
+	
+	/// Compute SHA1 hash code, returns static int[5] (20 bytes)
+	[CLink]
+	public static extern int32 * ComputeSHA1(char8 *data, int32 dataSize);
+	
 	/// Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS
 	[CLink]
 	public static extern AutomationEventList LoadAutomationEventList(char8 *fileName);
-	
-	/// Unload automation events list from file
-	[CLink]
-	public static extern void UnloadAutomationEventList(AutomationEventList *list);
 	
 	/// Set automation event list to record to
 	[CLink]
@@ -608,7 +628,7 @@ public static class Raylib
 	public static extern bool IsKeyPressed(int32 key);
 	public static bool IsKeyPressed(KeyboardKey key) => IsKeyPressed((int32)key);
 	
-	/// Check if a key has been pressed again (Only PLATFORM_DESKTOP)
+	/// Check if a key has been pressed again
 	[CLink]
 	public static extern bool IsKeyPressedRepeat(int32 key);
 	public static bool IsKeyPressedRepeat(KeyboardKey key) => IsKeyPressedRepeat((int32)key);
@@ -685,6 +705,10 @@ public static class Raylib
 	/// Set internal gamepad mappings (SDL_GameControllerDB)
 	[CLink]
 	public static extern int32 SetGamepadMappings(char8 *mappings);
+	
+	/// Set gamepad vibration for both motors (duration in seconds)
+	[CLink]
+	public static extern void SetGamepadVibration(int32 gamepad, float leftMotor, float rightMotor, float duration);
 	
 	/// Check if a mouse button has been pressed once
 	[CLink]
@@ -781,7 +805,7 @@ public static class Raylib
 	[CLink]
 	public static extern int32 GetGestureDetected();
 	
-	/// Get gesture hold time in milliseconds
+	/// Get gesture hold time in seconds
 	[CLink]
 	public static extern float GetGestureHoldDuration();
 	
@@ -806,6 +830,14 @@ public static class Raylib
 	public static extern void UpdateCamera(Camera *camera, int32 mode);
 	public static void UpdateCamera(Camera *camera, CameraMode mode) => UpdateCamera(camera, (int32)mode);
 	
+	/// Get texture that is used for shapes drawing
+	[CLink]
+	public static extern Texture2D GetShapesTexture();
+	
+	/// Get texture source rectangle that is used for shapes drawing
+	[CLink]
+	public static extern Rectangle GetShapesTextureRectangle();
+	
 	/// Load image from file into CPU memory (RAM)
 	[CLink]
 	public static extern Image LoadImage(char8 *fileName);
@@ -814,13 +846,13 @@ public static class Raylib
 	[CLink]
 	public static extern Image LoadImageRaw(char8 *fileName, int32 width, int32 height, int32 format, int32 headerSize);
 	
-	/// Load image from SVG file data or string with specified size
-	[CLink]
-	public static extern Image LoadImageSvg(char8 *fileNameOrString, int32 width, int32 height);
-	
 	/// Load image sequence from file (frames appended to image.data)
 	[CLink]
 	public static extern Image LoadImageAnim(char8 *fileName, int32 *frames);
+	
+	/// Load image sequence from memory buffer
+	[CLink]
+	public static extern Image LoadImageAnimFromMemory(char8 *fileType, char8 *fileData, int32 dataSize, int32 *frames);
 	
 	/// Load image from memory buffer, fileType refers to extension: i.e. '.png'
 	[CLink]
@@ -861,6 +893,10 @@ public static class Raylib
 	/// Apply Gaussian blur using a box blur approximation
 	[CLink]
 	public static extern void ImageBlurGaussian(Image *image, int32 blurSize);
+	
+	/// Apply custom square convolution kernel to image
+	[CLink]
+	public static extern void ImageKernelConvolution(Image *image, float *kernel, int32 kernelSize);
 	
 	/// Resize image (Bicubic scaling algorithm)
 	[CLink]
@@ -958,7 +994,7 @@ public static class Raylib
 	[CLink]
 	public static extern Font LoadFont(char8 *fileName);
 	
-	/// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default character setFont
+	/// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default character set, font size is provided in pixels height
 	[CLink]
 	public static extern Font LoadFontEx(char8 *fileName, int32 fontSize, int32 *codepoints, int32 codepointCount);
 	
@@ -1082,9 +1118,21 @@ public static class Raylib
 	[CLink]
 	public static extern char8 * TextToPascal(char8 *text);
 	
+	/// Get Snake case notation version of provided string
+	[CLink]
+	public static extern char8 * TextToSnake(char8 *text);
+	
+	/// Get Camel case notation version of provided string
+	[CLink]
+	public static extern char8 * TextToCamel(char8 *text);
+	
 	/// Get integer value from text (negative values not supported)
 	[CLink]
 	public static extern int32 TextToInteger(char8 *text);
+	
+	/// Get float value from text (negative values not supported)
+	[CLink]
+	public static extern float TextToFloat(char8 *text);
 	
 	/// Draw a grid (centered at (0, 0, 0))
 	[CLink]
@@ -1190,9 +1238,9 @@ public static class Raylib
 	[CLink]
 	public static extern Sound LoadSound(char8 *fileName);
 	
-	/// Crop a wave to defined samples range
+	/// Crop a wave to defined frames range
 	[CLink]
-	public static extern void WaveCrop(Wave *wave, int32 initSample, int32 finalSample);
+	public static extern void WaveCrop(Wave *wave, int32 initFrame, int32 finalFrame);
 	
 	/// Convert wave data to desired format
 	[CLink]
@@ -1218,7 +1266,7 @@ public static class Raylib
 	[CLink]
 	public static extern void SetAudioStreamBufferSizeDefault(int32 size);
 	
-	/// Attach audio stream processor to the entire audio pipeline, receives the samples as <float>s
+	/// Attach audio stream processor to the entire audio pipeline, receives the samples as 'float'
 	[CLink]
 	public static extern void AttachAudioMixedProcessor(AudioCallback processor);
 	
@@ -1228,7 +1276,7 @@ public static class Raylib
 	
 #if !BF_PLATFORM_WASM
 	
-	/// Set icon for window (single image, RGBA 32bit, only PLATFORM_DESKTOP)
+	/// Set icon for window (single image, RGBA 32bit)
 	[CLink]
 	public static extern void SetWindowIcon(Image image);
 	
@@ -1264,9 +1312,9 @@ public static class Raylib
 	[CLink]
 	public static extern void UnloadVrStereoConfig(VrStereoConfig config);
 	
-	/// Check if a shader is ready
+	/// Check if a shader is valid (loaded on GPU)
 	[CLink]
-	public static extern bool IsShaderReady(Shader shader);
+	public static extern bool IsShaderValid(Shader shader);
 	
 	/// Get shader uniform location
 	[CLink]
@@ -1296,25 +1344,17 @@ public static class Raylib
 	[CLink]
 	public static extern void UnloadShader(Shader shader);
 	
-	/// Get a ray trace from mouse position
+	/// Get a ray trace from screen position (i.e mouse)
 	[CLink]
-	public static extern Ray GetMouseRay(Vector2 mousePosition, Camera camera);
+	public static extern Ray GetScreenToWorldRay(Vector2 position, Camera camera);
 	
-	/// Get camera transform matrix (view matrix)
+	/// Get a ray trace from screen position (i.e mouse) in a viewport
 	[CLink]
-	public static extern Matrix GetCameraMatrix(Camera camera);
-	
-	/// Get camera 2d transform matrix
-	[CLink]
-	public static extern Matrix GetCameraMatrix2D(Camera2D camera);
+	public static extern Ray GetScreenToWorldRayEx(Vector2 position, Camera camera, int32 width, int32 height);
 	
 	/// Get the screen space position for a 3d world space position
 	[CLink]
 	public static extern Vector2 GetWorldToScreen(Vector3 position, Camera camera);
-	
-	/// Get the world space position for a 2d camera screen space position
-	[CLink]
-	public static extern Vector2 GetScreenToWorld2D(Vector2 position, Camera2D camera);
 	
 	/// Get size position for a 3d world space position
 	[CLink]
@@ -1324,6 +1364,18 @@ public static class Raylib
 	[CLink]
 	public static extern Vector2 GetWorldToScreen2D(Vector2 position, Camera2D camera);
 	
+	/// Get the world space position for a 2d camera screen space position
+	[CLink]
+	public static extern Vector2 GetScreenToWorld2D(Vector2 position, Camera2D camera);
+	
+	/// Get camera transform matrix (view matrix)
+	[CLink]
+	public static extern Matrix GetCameraMatrix(Camera camera);
+	
+	/// Get camera 2d transform matrix
+	[CLink]
+	public static extern Matrix GetCameraMatrix2D(Camera2D camera);
+	
 	/// Unload filepaths
 	[CLink]
 	public static extern void UnloadDirectoryFiles(FilePathList files);
@@ -1331,6 +1383,10 @@ public static class Raylib
 	/// Unload dropped filepaths
 	[CLink]
 	public static extern void UnloadDroppedFiles(FilePathList files);
+	
+	/// Unload automation events list from file
+	[CLink]
+	public static extern void UnloadAutomationEventList(AutomationEventList list);
 	
 	/// Export automation events list as text file
 	[CLink]
@@ -1348,11 +1404,11 @@ public static class Raylib
 	[CLink]
 	public static extern void SetShapesTexture(Texture2D texture, Rectangle source);
 	
-	/// Draw a pixel
+	/// Draw a pixel using geometry [Can be slow, use with care]
 	[CLink]
 	public static extern void DrawPixel(int32 posX, int32 posY, Color color);
 	
-	/// Draw a pixel (Vector version)
+	/// Draw a pixel using geometry (Vector version) [Can be slow, use with care]
 	[CLink]
 	public static extern void DrawPixelV(Vector2 position, Color color);
 	
@@ -1390,7 +1446,7 @@ public static class Raylib
 	
 	/// Draw a gradient-filled circle
 	[CLink]
-	public static extern void DrawCircleGradient(int32 centerX, int32 centerY, float radius, Color color1, Color color2);
+	public static extern void DrawCircleGradient(int32 centerX, int32 centerY, float radius, Color inner, Color outer);
 	
 	/// Draw a color-filled circle (Vector version)
 	[CLink]
@@ -1438,15 +1494,15 @@ public static class Raylib
 	
 	/// Draw a vertical-gradient-filled rectangle
 	[CLink]
-	public static extern void DrawRectangleGradientV(int32 posX, int32 posY, int32 width, int32 height, Color color1, Color color2);
+	public static extern void DrawRectangleGradientV(int32 posX, int32 posY, int32 width, int32 height, Color top, Color bottom);
 	
 	/// Draw a horizontal-gradient-filled rectangle
 	[CLink]
-	public static extern void DrawRectangleGradientH(int32 posX, int32 posY, int32 width, int32 height, Color color1, Color color2);
+	public static extern void DrawRectangleGradientH(int32 posX, int32 posY, int32 width, int32 height, Color left, Color right);
 	
 	/// Draw a gradient-filled rectangle with custom vertex colors
 	[CLink]
-	public static extern void DrawRectangleGradientEx(Rectangle rec, Color col1, Color col2, Color col3, Color col4);
+	public static extern void DrawRectangleGradientEx(Rectangle rec, Color topLeft, Color bottomLeft, Color topRight, Color bottomRight);
 	
 	/// Draw rectangle outline
 	[CLink]
@@ -1460,9 +1516,13 @@ public static class Raylib
 	[CLink]
 	public static extern void DrawRectangleRounded(Rectangle rec, float roundness, int32 segments, Color color);
 	
+	/// Draw rectangle lines with rounded edges
+	[CLink]
+	public static extern void DrawRectangleRoundedLines(Rectangle rec, float roundness, int32 segments, Color color);
+	
 	/// Draw rectangle with rounded edges outline
 	[CLink]
-	public static extern void DrawRectangleRoundedLines(Rectangle rec, float roundness, int32 segments, float lineThick, Color color);
+	public static extern void DrawRectangleRoundedLinesEx(Rectangle rec, float roundness, int32 segments, float lineThick, Color color);
 	
 	/// Draw a color-filled triangle (vertex in counter-clockwise order!)
 	[CLink]
@@ -1564,6 +1624,10 @@ public static class Raylib
 	[CLink]
 	public static extern bool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec);
 	
+	/// Check if circle collides with a line created betweeen two points [p1] and [p2]
+	[CLink]
+	public static extern bool CheckCollisionCircleLine(Vector2 center, float radius, Vector2 p1, Vector2 p2);
+	
 	/// Check if point is inside rectangle
 	[CLink]
 	public static extern bool CheckCollisionPointRec(Vector2 point, Rectangle rec);
@@ -1576,6 +1640,10 @@ public static class Raylib
 	[CLink]
 	public static extern bool CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3);
 	
+	/// Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]
+	[CLink]
+	public static extern bool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int32 threshold);
+	
 	/// Check if point is within a polygon described by array of vertices
 	[CLink]
 	public static extern bool CheckCollisionPointPoly(Vector2 point, Vector2 *points, int32 pointCount);
@@ -1583,10 +1651,6 @@ public static class Raylib
 	/// Check the collision between two lines defined by two points each, returns collision point by reference
 	[CLink]
 	public static extern bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2 *collisionPoint);
-	
-	/// Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]
-	[CLink]
-	public static extern bool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int32 threshold);
 	
 	/// Get collision rectangle for two rectangles collision
 	[CLink]
@@ -1596,9 +1660,9 @@ public static class Raylib
 	[CLink]
 	public static extern Image LoadImageFromTexture(Texture2D texture);
 	
-	/// Check if an image is ready
+	/// Check if an image is valid (data and parameters)
 	[CLink]
-	public static extern bool IsImageReady(Image image);
+	public static extern bool IsImageValid(Image image);
 	
 	/// Unload image from CPU memory (RAM)
 	[CLink]
@@ -1643,6 +1707,10 @@ public static class Raylib
 	/// Create an image from another image piece
 	[CLink]
 	public static extern Image ImageFromImage(Image image, Rectangle rec);
+	
+	/// Create an image from a selected channel of another image (GRAYSCALE)
+	[CLink]
+	public static extern Image ImageFromChannel(Image image, int32 selectedChannel);
 	
 	/// Create an image from text (default font)
 	[CLink]
@@ -1716,6 +1784,10 @@ public static class Raylib
 	[CLink]
 	public static extern void ImageDrawLineV(Image *dst, Vector2 start, Vector2 end, Color color);
 	
+	/// Draw a line defining thickness within an image
+	[CLink]
+	public static extern void ImageDrawLineEx(Image *dst, Vector2 start, Vector2 end, int32 thick, Color color);
+	
 	/// Draw a filled circle within an image
 	[CLink]
 	public static extern void ImageDrawCircle(Image *dst, int32 centerX, int32 centerY, int32 radius, Color color);
@@ -1748,6 +1820,26 @@ public static class Raylib
 	[CLink]
 	public static extern void ImageDrawRectangleLines(Image *dst, Rectangle rec, int32 thick, Color color);
 	
+	/// Draw triangle within an image
+	[CLink]
+	public static extern void ImageDrawTriangle(Image *dst, Vector2 v1, Vector2 v2, Vector2 v3, Color color);
+	
+	/// Draw triangle with interpolated colors within an image
+	[CLink]
+	public static extern void ImageDrawTriangleEx(Image *dst, Vector2 v1, Vector2 v2, Vector2 v3, Color c1, Color c2, Color c3);
+	
+	/// Draw triangle outline within an image
+	[CLink]
+	public static extern void ImageDrawTriangleLines(Image *dst, Vector2 v1, Vector2 v2, Vector2 v3, Color color);
+	
+	/// Draw a triangle fan defined by points within an image (first vertex is the center)
+	[CLink]
+	public static extern void ImageDrawTriangleFan(Image *dst, Vector2 *points, int32 pointCount, Color color);
+	
+	/// Draw a triangle strip defined by points within an image
+	[CLink]
+	public static extern void ImageDrawTriangleStrip(Image *dst, Vector2 *points, int32 pointCount, Color color);
+	
 	/// Draw a source image within a destination image (tint applied to source)
 	[CLink]
 	public static extern void ImageDraw(Image *dst, Image src, Rectangle srcRec, Rectangle dstRec, Color tint);
@@ -1768,17 +1860,17 @@ public static class Raylib
 	[CLink]
 	public static extern TextureCubemap LoadTextureCubemap(Image image, int32 layout);
 	
-	/// Check if a texture is ready
+	/// Check if a texture is valid (loaded in GPU)
 	[CLink]
-	public static extern bool IsTextureReady(Texture2D texture);
+	public static extern bool IsTextureValid(Texture2D texture);
 	
 	/// Unload texture from GPU memory (VRAM)
 	[CLink]
 	public static extern void UnloadTexture(Texture2D texture);
 	
-	/// Check if a render texture is ready
+	/// Check if a render texture is valid (loaded in GPU)
 	[CLink]
-	public static extern bool IsRenderTextureReady(RenderTexture2D target);
+	public static extern bool IsRenderTextureValid(RenderTexture2D target);
 	
 	/// Unload render texture from GPU memory (VRAM)
 	[CLink]
@@ -1824,11 +1916,15 @@ public static class Raylib
 	[CLink]
 	public static extern void DrawTextureNPatch(Texture2D texture, NPatchInfo nPatchInfo, Rectangle dest, Vector2 origin, float rotation, Color tint);
 	
+	/// Check if two colors are equal
+	[CLink]
+	public static extern bool ColorIsEqual(Color col1, Color col2);
+	
 	/// Get color with alpha applied, alpha goes from 0.0f to 1.0f
 	[CLink]
 	public static extern Color Fade(Color color, float alpha);
 	
-	/// Get hexadecimal value for a Color
+	/// Get hexadecimal value for a Color (0xRRGGBBAA)
 	[CLink]
 	public static extern int32 ColorToInt(Color color);
 	
@@ -1864,6 +1960,10 @@ public static class Raylib
 	[CLink]
 	public static extern Color ColorAlphaBlend(Color dst, Color src, Color tint);
 	
+	/// Get color lerp interpolation between two colors, factor [0.0f..1.0f]
+	[CLink]
+	public static extern Color ColorLerp(Color color1, Color color2, float factor);
+	
 	/// Set color formatted into destination pixel pointer
 	[CLink]
 	public static extern void SetPixelColor(void *dstPtr, Color color, int32 format);
@@ -1872,9 +1972,9 @@ public static class Raylib
 	[CLink]
 	public static extern Font LoadFontFromImage(Image image, Color key, int32 firstChar);
 	
-	/// Check if a font is ready
+	/// Check if a font is valid (font data loaded, WARNING: GPU texture not checked)
 	[CLink]
-	public static extern bool IsFontReady(Font font);
+	public static extern bool IsFontValid(Font font);
 	
 	/// Unload font from GPU memory (VRAM)
 	[CLink]
@@ -2004,9 +2104,9 @@ public static class Raylib
 	[CLink]
 	public static extern Model LoadModelFromMesh(Mesh mesh);
 	
-	/// Check if a model is ready
+	/// Check if a model is valid (loaded in GPU, VAO/VBOs)
 	[CLink]
-	public static extern bool IsModelReady(Model model);
+	public static extern bool IsModelValid(Model model);
 	
 	/// Unload model (including meshes) from memory (RAM and/or VRAM)
 	[CLink]
@@ -2032,13 +2132,21 @@ public static class Raylib
 	[CLink]
 	public static extern void DrawModelWiresEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
 	
+	/// Draw a model as points
+	[CLink]
+	public static extern void DrawModelPoints(Model model, Vector3 position, float scale, Color tint);
+	
+	/// Draw a model as points with extended parameters
+	[CLink]
+	public static extern void DrawModelPointsEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
+	
 	/// Draw bounding box (wires)
 	[CLink]
 	public static extern void DrawBoundingBox(BoundingBox @box, Color color);
 	
 	/// Draw a billboard texture
 	[CLink]
-	public static extern void DrawBillboard(Camera camera, Texture2D texture, Vector3 position, float size, Color tint);
+	public static extern void DrawBillboard(Camera camera, Texture2D texture, Vector3 position, float scale, Color tint);
 	
 	/// Draw a billboard texture defined by source
 	[CLink]
@@ -2064,13 +2172,17 @@ public static class Raylib
 	[CLink]
 	public static extern void DrawMeshInstanced(Mesh mesh, Material material, Matrix *transforms, int32 instances);
 	
+	/// Compute mesh bounding box limits
+	[CLink]
+	public static extern BoundingBox GetMeshBoundingBox(Mesh mesh);
+	
 	/// Export mesh data to file, returns true on success
 	[CLink]
 	public static extern bool ExportMesh(Mesh mesh, char8 *fileName);
 	
-	/// Compute mesh bounding box limits
+	/// Export mesh as code file (.h) defining multiple arrays of vertex attributes
 	[CLink]
-	public static extern BoundingBox GetMeshBoundingBox(Mesh mesh);
+	public static extern bool ExportMeshAsCode(Mesh mesh, char8 *fileName);
 	
 	/// Generate heightmap mesh from image data
 	[CLink]
@@ -2080,9 +2192,9 @@ public static class Raylib
 	[CLink]
 	public static extern Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize);
 	
-	/// Check if a material is ready
+	/// Check if a material is valid (shader assigned, map textures loaded in GPU)
 	[CLink]
-	public static extern bool IsMaterialReady(Material material);
+	public static extern bool IsMaterialValid(Material material);
 	
 	/// Unload material from GPU memory (VRAM)
 	[CLink]
@@ -2092,9 +2204,13 @@ public static class Raylib
 	[CLink]
 	public static extern void SetMaterialTexture(Material *material, int32 mapType, Texture2D texture);
 	
-	/// Update model animation pose
+	/// Update model animation pose (CPU)
 	[CLink]
 	public static extern void UpdateModelAnimation(Model model, ModelAnimation anim, int32 frame);
+	
+	/// Update model animation mesh bone matrices (GPU skinning)
+	[CLink]
+	public static extern void UpdateModelAnimationBones(Model model, ModelAnimation anim, int32 frame);
 	
 	/// Unload animation data
 	[CLink]
@@ -2136,9 +2252,9 @@ public static class Raylib
 	[CLink]
 	public static extern RayCollision GetRayCollisionQuad(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3, Vector3 p4);
 	
-	/// Checks if wave data is ready
+	/// Checks if wave data is valid (data loaded and parameters)
 	[CLink]
-	public static extern bool IsWaveReady(Wave wave);
+	public static extern bool IsWaveValid(Wave wave);
 	
 	/// Load sound from wave data
 	[CLink]
@@ -2148,9 +2264,9 @@ public static class Raylib
 	[CLink]
 	public static extern Sound LoadSoundAlias(Sound source);
 	
-	/// Checks if a sound is ready
+	/// Checks if a sound is valid (data loaded and buffers initialized)
 	[CLink]
-	public static extern bool IsSoundReady(Sound sound);
+	public static extern bool IsSoundValid(Sound sound);
 	
 	/// Update sound buffer with new data
 	[CLink]
@@ -2216,9 +2332,9 @@ public static class Raylib
 	[CLink]
 	public static extern float * LoadWaveSamples(Wave wave);
 	
-	/// Checks if a music stream is ready
+	/// Checks if a music stream is valid (context and buffers initialized)
 	[CLink]
-	public static extern bool IsMusicReady(Music music);
+	public static extern bool IsMusicValid(Music music);
 	
 	/// Unload music stream
 	[CLink]
@@ -2272,9 +2388,9 @@ public static class Raylib
 	[CLink]
 	public static extern float GetMusicTimePlayed(Music music);
 	
-	/// Checks if an audio stream is ready
+	/// Checks if an audio stream is valid (buffers initialized)
 	[CLink]
-	public static extern bool IsAudioStreamReady(AudioStream stream);
+	public static extern bool IsAudioStreamValid(AudioStream stream);
 	
 	/// Unload audio stream and free memory
 	[CLink]
@@ -2324,7 +2440,7 @@ public static class Raylib
 	[CLink]
 	public static extern void SetAudioStreamCallback(AudioStream stream, AudioCallback callback);
 	
-	/// Attach audio stream processor to stream, receives the samples as <float>s
+	/// Attach audio stream processor to stream, receives the samples as 'float'
 	[CLink]
 	public static extern void AttachAudioStreamProcessor(AudioStream stream, AudioCallback processor);
 	
@@ -2334,7 +2450,7 @@ public static class Raylib
 	
 #else
 	
-	/// Set icon for window (single image, RGBA 32bit, only PLATFORM_DESKTOP)
+	/// Set icon for window (single image, RGBA 32bit)
 	[CLink]
 	public static extern void SetWindowIcon(in Image image);
 	
@@ -2370,9 +2486,9 @@ public static class Raylib
 	[CLink]
 	public static extern void UnloadVrStereoConfig(in VrStereoConfig config);
 	
-	/// Check if a shader is ready
+	/// Check if a shader is valid (loaded on GPU)
 	[CLink]
-	public static extern bool IsShaderReady(in Shader shader);
+	public static extern bool IsShaderValid(in Shader shader);
 	
 	/// Get shader uniform location
 	[CLink]
@@ -2402,25 +2518,17 @@ public static class Raylib
 	[CLink]
 	public static extern void UnloadShader(in Shader shader);
 	
-	/// Get a ray trace from mouse position
+	/// Get a ray trace from screen position (i.e mouse)
 	[CLink]
-	public static extern Ray GetMouseRay(in Vector2 mousePosition, in Camera camera);
+	public static extern Ray GetScreenToWorldRay(in Vector2 position, in Camera camera);
 	
-	/// Get camera transform matrix (view matrix)
+	/// Get a ray trace from screen position (i.e mouse) in a viewport
 	[CLink]
-	public static extern Matrix GetCameraMatrix(in Camera camera);
-	
-	/// Get camera 2d transform matrix
-	[CLink]
-	public static extern Matrix GetCameraMatrix2D(in Camera2D camera);
+	public static extern Ray GetScreenToWorldRayEx(in Vector2 position, in Camera camera, int32 width, int32 height);
 	
 	/// Get the screen space position for a 3d world space position
 	[CLink]
 	public static extern Vector2 GetWorldToScreen(in Vector3 position, in Camera camera);
-	
-	/// Get the world space position for a 2d camera screen space position
-	[CLink]
-	public static extern Vector2 GetScreenToWorld2D(in Vector2 position, in Camera2D camera);
 	
 	/// Get size position for a 3d world space position
 	[CLink]
@@ -2430,6 +2538,18 @@ public static class Raylib
 	[CLink]
 	public static extern Vector2 GetWorldToScreen2D(in Vector2 position, in Camera2D camera);
 	
+	/// Get the world space position for a 2d camera screen space position
+	[CLink]
+	public static extern Vector2 GetScreenToWorld2D(in Vector2 position, in Camera2D camera);
+	
+	/// Get camera transform matrix (view matrix)
+	[CLink]
+	public static extern Matrix GetCameraMatrix(in Camera camera);
+	
+	/// Get camera 2d transform matrix
+	[CLink]
+	public static extern Matrix GetCameraMatrix2D(in Camera2D camera);
+	
 	/// Unload filepaths
 	[CLink]
 	public static extern void UnloadDirectoryFiles(in FilePathList files);
@@ -2437,6 +2557,10 @@ public static class Raylib
 	/// Unload dropped filepaths
 	[CLink]
 	public static extern void UnloadDroppedFiles(in FilePathList files);
+	
+	/// Unload automation events list from file
+	[CLink]
+	public static extern void UnloadAutomationEventList(in AutomationEventList list);
 	
 	/// Export automation events list as text file
 	[CLink]
@@ -2454,11 +2578,11 @@ public static class Raylib
 	[CLink]
 	public static extern void SetShapesTexture(in Texture2D texture, in Rectangle source);
 	
-	/// Draw a pixel
+	/// Draw a pixel using geometry [Can be slow, use with care]
 	[CLink]
 	public static extern void DrawPixel(int32 posX, int32 posY, in Color color);
 	
-	/// Draw a pixel (Vector version)
+	/// Draw a pixel using geometry (Vector version) [Can be slow, use with care]
 	[CLink]
 	public static extern void DrawPixelV(in Vector2 position, in Color color);
 	
@@ -2496,7 +2620,7 @@ public static class Raylib
 	
 	/// Draw a gradient-filled circle
 	[CLink]
-	public static extern void DrawCircleGradient(int32 centerX, int32 centerY, float radius, in Color color1, in Color color2);
+	public static extern void DrawCircleGradient(int32 centerX, int32 centerY, float radius, in Color inner, in Color outer);
 	
 	/// Draw a color-filled circle (Vector version)
 	[CLink]
@@ -2544,15 +2668,15 @@ public static class Raylib
 	
 	/// Draw a vertical-gradient-filled rectangle
 	[CLink]
-	public static extern void DrawRectangleGradientV(int32 posX, int32 posY, int32 width, int32 height, in Color color1, in Color color2);
+	public static extern void DrawRectangleGradientV(int32 posX, int32 posY, int32 width, int32 height, in Color top, in Color bottom);
 	
 	/// Draw a horizontal-gradient-filled rectangle
 	[CLink]
-	public static extern void DrawRectangleGradientH(int32 posX, int32 posY, int32 width, int32 height, in Color color1, in Color color2);
+	public static extern void DrawRectangleGradientH(int32 posX, int32 posY, int32 width, int32 height, in Color left, in Color right);
 	
 	/// Draw a gradient-filled rectangle with custom vertex colors
 	[CLink]
-	public static extern void DrawRectangleGradientEx(in Rectangle rec, in Color col1, in Color col2, in Color col3, in Color col4);
+	public static extern void DrawRectangleGradientEx(in Rectangle rec, in Color topLeft, in Color bottomLeft, in Color topRight, in Color bottomRight);
 	
 	/// Draw rectangle outline
 	[CLink]
@@ -2566,9 +2690,13 @@ public static class Raylib
 	[CLink]
 	public static extern void DrawRectangleRounded(in Rectangle rec, float roundness, int32 segments, in Color color);
 	
+	/// Draw rectangle lines with rounded edges
+	[CLink]
+	public static extern void DrawRectangleRoundedLines(in Rectangle rec, float roundness, int32 segments, in Color color);
+	
 	/// Draw rectangle with rounded edges outline
 	[CLink]
-	public static extern void DrawRectangleRoundedLines(in Rectangle rec, float roundness, int32 segments, float lineThick, in Color color);
+	public static extern void DrawRectangleRoundedLinesEx(in Rectangle rec, float roundness, int32 segments, float lineThick, in Color color);
 	
 	/// Draw a color-filled triangle (vertex in counter-clockwise order!)
 	[CLink]
@@ -2670,6 +2798,10 @@ public static class Raylib
 	[CLink]
 	public static extern bool CheckCollisionCircleRec(in Vector2 center, float radius, in Rectangle rec);
 	
+	/// Check if circle collides with a line created betweeen two points [p1] and [p2]
+	[CLink]
+	public static extern bool CheckCollisionCircleLine(in Vector2 center, float radius, in Vector2 p1, in Vector2 p2);
+	
 	/// Check if point is inside rectangle
 	[CLink]
 	public static extern bool CheckCollisionPointRec(in Vector2 point, in Rectangle rec);
@@ -2682,6 +2814,10 @@ public static class Raylib
 	[CLink]
 	public static extern bool CheckCollisionPointTriangle(in Vector2 point, in Vector2 p1, in Vector2 p2, in Vector2 p3);
 	
+	/// Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]
+	[CLink]
+	public static extern bool CheckCollisionPointLine(in Vector2 point, in Vector2 p1, in Vector2 p2, int32 threshold);
+	
 	/// Check if point is within a polygon described by array of vertices
 	[CLink]
 	public static extern bool CheckCollisionPointPoly(in Vector2 point, Vector2 *points, int32 pointCount);
@@ -2689,10 +2825,6 @@ public static class Raylib
 	/// Check the collision between two lines defined by two points each, returns collision point by reference
 	[CLink]
 	public static extern bool CheckCollisionLines(in Vector2 startPos1, in Vector2 endPos1, in Vector2 startPos2, in Vector2 endPos2, Vector2 *collisionPoint);
-	
-	/// Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]
-	[CLink]
-	public static extern bool CheckCollisionPointLine(in Vector2 point, in Vector2 p1, in Vector2 p2, int32 threshold);
 	
 	/// Get collision rectangle for two rectangles collision
 	[CLink]
@@ -2702,9 +2834,9 @@ public static class Raylib
 	[CLink]
 	public static extern Image LoadImageFromTexture(in Texture2D texture);
 	
-	/// Check if an image is ready
+	/// Check if an image is valid (data and parameters)
 	[CLink]
-	public static extern bool IsImageReady(in Image image);
+	public static extern bool IsImageValid(in Image image);
 	
 	/// Unload image from CPU memory (RAM)
 	[CLink]
@@ -2749,6 +2881,10 @@ public static class Raylib
 	/// Create an image from another image piece
 	[CLink]
 	public static extern Image ImageFromImage(in Image image, in Rectangle rec);
+	
+	/// Create an image from a selected channel of another image (GRAYSCALE)
+	[CLink]
+	public static extern Image ImageFromChannel(in Image image, int32 selectedChannel);
 	
 	/// Create an image from text (default font)
 	[CLink]
@@ -2822,6 +2958,10 @@ public static class Raylib
 	[CLink]
 	public static extern void ImageDrawLineV(Image *dst, in Vector2 start, in Vector2 end, in Color color);
 	
+	/// Draw a line defining thickness within an image
+	[CLink]
+	public static extern void ImageDrawLineEx(Image *dst, in Vector2 start, in Vector2 end, int32 thick, in Color color);
+	
 	/// Draw a filled circle within an image
 	[CLink]
 	public static extern void ImageDrawCircle(Image *dst, int32 centerX, int32 centerY, int32 radius, in Color color);
@@ -2854,6 +2994,26 @@ public static class Raylib
 	[CLink]
 	public static extern void ImageDrawRectangleLines(Image *dst, in Rectangle rec, int32 thick, in Color color);
 	
+	/// Draw triangle within an image
+	[CLink]
+	public static extern void ImageDrawTriangle(Image *dst, in Vector2 v1, in Vector2 v2, in Vector2 v3, in Color color);
+	
+	/// Draw triangle with interpolated colors within an image
+	[CLink]
+	public static extern void ImageDrawTriangleEx(Image *dst, in Vector2 v1, in Vector2 v2, in Vector2 v3, in Color c1, in Color c2, in Color c3);
+	
+	/// Draw triangle outline within an image
+	[CLink]
+	public static extern void ImageDrawTriangleLines(Image *dst, in Vector2 v1, in Vector2 v2, in Vector2 v3, in Color color);
+	
+	/// Draw a triangle fan defined by points within an image (first vertex is the center)
+	[CLink]
+	public static extern void ImageDrawTriangleFan(Image *dst, Vector2 *points, int32 pointCount, in Color color);
+	
+	/// Draw a triangle strip defined by points within an image
+	[CLink]
+	public static extern void ImageDrawTriangleStrip(Image *dst, Vector2 *points, int32 pointCount, in Color color);
+	
 	/// Draw a source image within a destination image (tint applied to source)
 	[CLink]
 	public static extern void ImageDraw(Image *dst, in Image src, in Rectangle srcRec, in Rectangle dstRec, in Color tint);
@@ -2874,17 +3034,17 @@ public static class Raylib
 	[CLink]
 	public static extern TextureCubemap LoadTextureCubemap(in Image image, int32 layout);
 	
-	/// Check if a texture is ready
+	/// Check if a texture is valid (loaded in GPU)
 	[CLink]
-	public static extern bool IsTextureReady(in Texture2D texture);
+	public static extern bool IsTextureValid(in Texture2D texture);
 	
 	/// Unload texture from GPU memory (VRAM)
 	[CLink]
 	public static extern void UnloadTexture(in Texture2D texture);
 	
-	/// Check if a render texture is ready
+	/// Check if a render texture is valid (loaded in GPU)
 	[CLink]
-	public static extern bool IsRenderTextureReady(in RenderTexture2D target);
+	public static extern bool IsRenderTextureValid(in RenderTexture2D target);
 	
 	/// Unload render texture from GPU memory (VRAM)
 	[CLink]
@@ -2930,11 +3090,15 @@ public static class Raylib
 	[CLink]
 	public static extern void DrawTextureNPatch(in Texture2D texture, in NPatchInfo nPatchInfo, in Rectangle dest, in Vector2 origin, float rotation, in Color tint);
 	
+	/// Check if two colors are equal
+	[CLink]
+	public static extern bool ColorIsEqual(in Color col1, in Color col2);
+	
 	/// Get color with alpha applied, alpha goes from 0.0f to 1.0f
 	[CLink]
 	public static extern Color Fade(in Color color, float alpha);
 	
-	/// Get hexadecimal value for a Color
+	/// Get hexadecimal value for a Color (0xRRGGBBAA)
 	[CLink]
 	public static extern int32 ColorToInt(in Color color);
 	
@@ -2970,6 +3134,10 @@ public static class Raylib
 	[CLink]
 	public static extern Color ColorAlphaBlend(in Color dst, in Color src, in Color tint);
 	
+	/// Get color lerp interpolation between two colors, factor [0.0f..1.0f]
+	[CLink]
+	public static extern Color ColorLerp(in Color color1, in Color color2, float factor);
+	
 	/// Set color formatted into destination pixel pointer
 	[CLink]
 	public static extern void SetPixelColor(void *dstPtr, in Color color, int32 format);
@@ -2978,9 +3146,9 @@ public static class Raylib
 	[CLink]
 	public static extern Font LoadFontFromImage(in Image image, in Color key, int32 firstChar);
 	
-	/// Check if a font is ready
+	/// Check if a font is valid (font data loaded, WARNING: GPU texture not checked)
 	[CLink]
-	public static extern bool IsFontReady(in Font font);
+	public static extern bool IsFontValid(in Font font);
 	
 	/// Unload font from GPU memory (VRAM)
 	[CLink]
@@ -3110,9 +3278,9 @@ public static class Raylib
 	[CLink]
 	public static extern Model LoadModelFromMesh(in Mesh mesh);
 	
-	/// Check if a model is ready
+	/// Check if a model is valid (loaded in GPU, VAO/VBOs)
 	[CLink]
-	public static extern bool IsModelReady(in Model model);
+	public static extern bool IsModelValid(in Model model);
 	
 	/// Unload model (including meshes) from memory (RAM and/or VRAM)
 	[CLink]
@@ -3138,13 +3306,21 @@ public static class Raylib
 	[CLink]
 	public static extern void DrawModelWiresEx(in Model model, in Vector3 position, in Vector3 rotationAxis, float rotationAngle, in Vector3 scale, in Color tint);
 	
+	/// Draw a model as points
+	[CLink]
+	public static extern void DrawModelPoints(in Model model, in Vector3 position, float scale, in Color tint);
+	
+	/// Draw a model as points with extended parameters
+	[CLink]
+	public static extern void DrawModelPointsEx(in Model model, in Vector3 position, in Vector3 rotationAxis, float rotationAngle, in Vector3 scale, in Color tint);
+	
 	/// Draw bounding box (wires)
 	[CLink]
 	public static extern void DrawBoundingBox(in BoundingBox @box, in Color color);
 	
 	/// Draw a billboard texture
 	[CLink]
-	public static extern void DrawBillboard(in Camera camera, in Texture2D texture, in Vector3 position, float size, in Color tint);
+	public static extern void DrawBillboard(in Camera camera, in Texture2D texture, in Vector3 position, float scale, in Color tint);
 	
 	/// Draw a billboard texture defined by source
 	[CLink]
@@ -3170,13 +3346,17 @@ public static class Raylib
 	[CLink]
 	public static extern void DrawMeshInstanced(in Mesh mesh, in Material material, Matrix *transforms, int32 instances);
 	
+	/// Compute mesh bounding box limits
+	[CLink]
+	public static extern BoundingBox GetMeshBoundingBox(in Mesh mesh);
+	
 	/// Export mesh data to file, returns true on success
 	[CLink]
 	public static extern bool ExportMesh(in Mesh mesh, char8 *fileName);
 	
-	/// Compute mesh bounding box limits
+	/// Export mesh as code file (.h) defining multiple arrays of vertex attributes
 	[CLink]
-	public static extern BoundingBox GetMeshBoundingBox(in Mesh mesh);
+	public static extern bool ExportMeshAsCode(in Mesh mesh, char8 *fileName);
 	
 	/// Generate heightmap mesh from image data
 	[CLink]
@@ -3186,9 +3366,9 @@ public static class Raylib
 	[CLink]
 	public static extern Mesh GenMeshCubicmap(in Image cubicmap, in Vector3 cubeSize);
 	
-	/// Check if a material is ready
+	/// Check if a material is valid (shader assigned, map textures loaded in GPU)
 	[CLink]
-	public static extern bool IsMaterialReady(in Material material);
+	public static extern bool IsMaterialValid(in Material material);
 	
 	/// Unload material from GPU memory (VRAM)
 	[CLink]
@@ -3198,9 +3378,13 @@ public static class Raylib
 	[CLink]
 	public static extern void SetMaterialTexture(Material *material, int32 mapType, in Texture2D texture);
 	
-	/// Update model animation pose
+	/// Update model animation pose (CPU)
 	[CLink]
 	public static extern void UpdateModelAnimation(in Model model, in ModelAnimation anim, int32 frame);
+	
+	/// Update model animation mesh bone matrices (GPU skinning)
+	[CLink]
+	public static extern void UpdateModelAnimationBones(in Model model, in ModelAnimation anim, int32 frame);
 	
 	/// Unload animation data
 	[CLink]
@@ -3242,9 +3426,9 @@ public static class Raylib
 	[CLink]
 	public static extern RayCollision GetRayCollisionQuad(in Ray ray, in Vector3 p1, in Vector3 p2, in Vector3 p3, in Vector3 p4);
 	
-	/// Checks if wave data is ready
+	/// Checks if wave data is valid (data loaded and parameters)
 	[CLink]
-	public static extern bool IsWaveReady(in Wave wave);
+	public static extern bool IsWaveValid(in Wave wave);
 	
 	/// Load sound from wave data
 	[CLink]
@@ -3254,9 +3438,9 @@ public static class Raylib
 	[CLink]
 	public static extern Sound LoadSoundAlias(in Sound source);
 	
-	/// Checks if a sound is ready
+	/// Checks if a sound is valid (data loaded and buffers initialized)
 	[CLink]
-	public static extern bool IsSoundReady(in Sound sound);
+	public static extern bool IsSoundValid(in Sound sound);
 	
 	/// Update sound buffer with new data
 	[CLink]
@@ -3322,9 +3506,9 @@ public static class Raylib
 	[CLink]
 	public static extern float * LoadWaveSamples(in Wave wave);
 	
-	/// Checks if a music stream is ready
+	/// Checks if a music stream is valid (context and buffers initialized)
 	[CLink]
-	public static extern bool IsMusicReady(in Music music);
+	public static extern bool IsMusicValid(in Music music);
 	
 	/// Unload music stream
 	[CLink]
@@ -3378,9 +3562,9 @@ public static class Raylib
 	[CLink]
 	public static extern float GetMusicTimePlayed(in Music music);
 	
-	/// Checks if an audio stream is ready
+	/// Checks if an audio stream is valid (buffers initialized)
 	[CLink]
-	public static extern bool IsAudioStreamReady(in AudioStream stream);
+	public static extern bool IsAudioStreamValid(in AudioStream stream);
 	
 	/// Unload audio stream and free memory
 	[CLink]
@@ -3430,7 +3614,7 @@ public static class Raylib
 	[CLink]
 	public static extern void SetAudioStreamCallback(in AudioStream stream, AudioCallback callback);
 	
-	/// Attach audio stream processor to stream, receives the samples as <float>s
+	/// Attach audio stream processor to stream, receives the samples as 'float'
 	[CLink]
 	public static extern void AttachAudioStreamProcessor(in AudioStream stream, AudioCallback processor);
 	

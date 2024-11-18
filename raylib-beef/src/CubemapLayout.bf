@@ -17,8 +17,6 @@ public enum CubemapLayout : c_int
 	case CUBEMAP_LAYOUT_CROSS_THREE_BY_FOUR = 3;
 	/// Layout is defined by a 4x3 cross with cubemap faces
 	case CUBEMAP_LAYOUT_CROSS_FOUR_BY_THREE = 4;
-	/// Layout is defined by a panorama image (equirrectangular map)
-	case CUBEMAP_LAYOUT_PANORAMA = 5;
 	
 	public static operator int32 (CubemapLayout self) => (int32)self;
 }

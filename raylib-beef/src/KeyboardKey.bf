@@ -222,7 +222,7 @@ public enum KeyboardKey : c_int
 	/// Key: Android back button
 	case KEY_BACK = 4;
 	/// Key: Android menu button
-	case KEY_MENU = 82;
+	case KEY_MENU = 5;
 	/// Key: Android volume up button
 	case KEY_VOLUME_UP = 24;
 	/// Key: Android volume down button

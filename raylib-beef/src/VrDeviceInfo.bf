@@ -18,9 +18,6 @@ public struct VrDeviceInfo
 	/// Vertical size in meters
 	public float vScreenSize;
 	
-	/// Screen center in meters
-	public float vScreenCenter;
-	
 	/// Distance between eye and display in meters
 	public float eyeToScreenDistance;
 	
@@ -36,13 +33,12 @@ public struct VrDeviceInfo
 	/// Chromatic aberration correction parameters
 	public float[4] chromaAbCorrection;
 	
-	public this(int32 hResolution, int32 vResolution, float hScreenSize, float vScreenSize, float vScreenCenter, float eyeToScreenDistance, float lensSeparationDistance, float interpupillaryDistance, float[4] lensDistortionValues, float[4] chromaAbCorrection)
+	public this(int32 hResolution, int32 vResolution, float hScreenSize, float vScreenSize, float eyeToScreenDistance, float lensSeparationDistance, float interpupillaryDistance, float[4] lensDistortionValues, float[4] chromaAbCorrection)
 	{
 		this.hResolution = hResolution;
 		this.vResolution = vResolution;
 		this.hScreenSize = hScreenSize;
 		this.vScreenSize = vScreenSize;
-		this.vScreenCenter = vScreenCenter;
 		this.eyeToScreenDistance = eyeToScreenDistance;
 		this.lensSeparationDistance = lensSeparationDistance;
 		this.interpupillaryDistance = interpupillaryDistance;
