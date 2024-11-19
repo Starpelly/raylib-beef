@@ -5,7 +5,7 @@ namespace RaylibBeef;
 
 public static class Rlgl
 {
-	public const char8* RLGL_VERSION = "4.5";
+	public const char8* RLGL_VERSION = "5.0";
 	
 	public const int32 RL_DEFAULT_BATCH_BUFFER_ELEMENTS = 8192;
 	
@@ -222,6 +222,30 @@ public static class Rlgl
 	/// GL_BLEND_COLOR
 	public const int32 RL_BLEND_COLOR = 32773;
 	
+	/// GL_READ_FRAMEBUFFER
+	public const int32 RL_READ_FRAMEBUFFER = 36008;
+	
+	/// GL_DRAW_FRAMEBUFFER
+	public const int32 RL_DRAW_FRAMEBUFFER = 36009;
+	
+	public const int32 RL_DEFAULT_SHADER_ATTRIB_LOCATION_POSITION = 0;
+	
+	public const int32 RL_DEFAULT_SHADER_ATTRIB_LOCATION_TEXCOORD = 1;
+	
+	public const int32 RL_DEFAULT_SHADER_ATTRIB_LOCATION_NORMAL = 2;
+	
+	public const int32 RL_DEFAULT_SHADER_ATTRIB_LOCATION_COLOR = 3;
+	
+	public const int32 RL_DEFAULT_SHADER_ATTRIB_LOCATION_TANGENT = 4;
+	
+	public const int32 RL_DEFAULT_SHADER_ATTRIB_LOCATION_TEXCOORD2 = 5;
+	
+	public const int32 RL_DEFAULT_SHADER_ATTRIB_LOCATION_INDICES = 6;
+	
+	public const int32 RL_DEFAULT_SHADER_ATTRIB_LOCATION_BONEIDS = 7;
+	
+	public const int32 RL_DEFAULT_SHADER_ATTRIB_LOCATION_BONEWEIGHTS = 8;
+	
 	/// Choose the current matrix to be transformed
 	[CLink]
 	public static extern void rlMatrixMode(int32 mode);
@@ -265,6 +289,18 @@ public static class Rlgl
 	/// Set the viewport area
 	[CLink]
 	public static extern void rlViewport(int32 x, int32 y, int32 width, int32 height);
+	
+	/// Set clip planes distances
+	[CLink]
+	public static extern void rlSetClipPlanes(double nearPlane, double farPlane);
+	
+	/// Get cull plane distance near
+	[CLink]
+	public static extern double rlGetCullDistanceNear();
+	
+	/// Get cull plane distance far
+	[CLink]
+	public static extern double rlGetCullDistanceFar();
 	
 	/// Initialize drawing mode (how to organize vertex)
 	[CLink]
@@ -390,6 +426,10 @@ public static class Rlgl
 	[CLink]
 	public static extern void rlDisableFramebuffer();
 	
+	/// Get the currently active render texture (fbo), 0 for default framebuffer
+	[CLink]
+	public static extern int32 rlGetActiveFramebuffer();
+	
 	/// Activate multiple draw color buffers
 	[CLink]
 	public static extern void rlActiveDrawBuffers(int32 count);
@@ -397,6 +437,10 @@ public static class Rlgl
 	/// Blit active framebuffer to main framebuffer
 	[CLink]
 	public static extern void rlBlitFramebuffer(int32 srcX, int32 srcY, int32 srcWidth, int32 srcHeight, int32 dstX, int32 dstY, int32 dstWidth, int32 dstHeight, int32 bufferMask);
+	
+	/// Bind framebuffer (FBO)
+	[CLink]
+	public static extern void rlBindFramebuffer(int32 target, int32 framebuffer);
 	
 	/// Enable color blending
 	[CLink]
@@ -430,6 +474,10 @@ public static class Rlgl
 	[CLink]
 	public static extern void rlDisableBackfaceCulling();
 	
+	/// Color mask control
+	[CLink]
+	public static extern void rlColorMask(bool r, bool g, bool b, bool a);
+	
 	/// Set face culling mode
 	[CLink]
 	public static extern void rlSetCullFace(int32 mode);
@@ -454,7 +502,7 @@ public static class Rlgl
 	[CLink]
 	public static extern void rlEnablePointMode();
 	
-	/// Disable wire mode ( and point ) maybe rename
+	/// Disable wire (and point) mode
 	[CLink]
 	public static extern void rlDisableWireMode();
 	
@@ -582,59 +630,59 @@ public static class Rlgl
 	[CLink]
 	public static extern int32 rlLoadVertexArray();
 	
-	/// Load a vertex buffer attribute
+	/// Load a vertex buffer object
 	[CLink]
 	public static extern int32 rlLoadVertexBuffer(void *buffer, int32 size, bool dynamic);
 	
-	/// Load a new attributes element buffer
+	/// Load vertex buffer elements object
 	[CLink]
 	public static extern int32 rlLoadVertexBufferElement(void *buffer, int32 size, bool dynamic);
 	
-	/// Update GPU buffer with new data
+	/// Update vertex buffer object data on GPU buffer
 	[CLink]
 	public static extern void rlUpdateVertexBuffer(int32 bufferId, void *data, int32 dataSize, int32 offset);
 	
-	/// Update vertex buffer elements with new data
+	/// Update vertex buffer elements data on GPU buffer
 	[CLink]
 	public static extern void rlUpdateVertexBufferElements(int32 id, void *data, int32 dataSize, int32 offset);
 	
-	/// 
+	/// Unload vertex array (vao)
 	[CLink]
 	public static extern void rlUnloadVertexArray(int32 vaoId);
 	
-	/// 
+	/// Unload vertex buffer object
 	[CLink]
 	public static extern void rlUnloadVertexBuffer(int32 vboId);
 	
-	/// 
+	/// Set vertex attribute data configuration
 	[CLink]
-	public static extern void rlSetVertexAttribute(int32 index, int32 compSize, int32 type, bool normalized, int32 stride, void *pointer);
+	public static extern void rlSetVertexAttribute(int32 index, int32 compSize, int32 type, bool normalized, int32 stride, int32 offset);
 	
-	/// 
+	/// Set vertex attribute data divisor
 	[CLink]
 	public static extern void rlSetVertexAttributeDivisor(int32 index, int32 divisor);
 	
-	/// Set vertex attribute default value
+	/// Set vertex attribute default value, when attribute to provided
 	[CLink]
 	public static extern void rlSetVertexAttributeDefault(int32 locIndex, void *value, int32 attribType, int32 count);
 	
-	/// 
+	/// Draw vertex array (currently active vao)
 	[CLink]
 	public static extern void rlDrawVertexArray(int32 offset, int32 count);
 	
-	/// 
+	/// Draw vertex array elements
 	[CLink]
 	public static extern void rlDrawVertexArrayElements(int32 offset, int32 count, void *buffer);
 	
-	/// 
+	/// Draw vertex array (currently active vao) with instancing
 	[CLink]
 	public static extern void rlDrawVertexArrayInstanced(int32 offset, int32 count, int32 instances);
 	
-	/// 
+	/// Draw vertex array elements with instancing
 	[CLink]
 	public static extern void rlDrawVertexArrayElementsInstanced(int32 offset, int32 count, void *buffer, int32 instances);
 	
-	/// Load texture in GPU
+	/// Load texture data
 	[CLink]
 	public static extern int32 rlLoadTexture(void *data, int32 width, int32 height, int32 format, int32 mipmapCount);
 	
@@ -642,11 +690,11 @@ public static class Rlgl
 	[CLink]
 	public static extern int32 rlLoadTextureDepth(int32 width, int32 height, bool useRenderBuffer);
 	
-	/// Load texture cubemap
+	/// Load texture cubemap data
 	[CLink]
-	public static extern int32 rlLoadTextureCubemap(void *data, int32 size, int32 format);
+	public static extern int32 rlLoadTextureCubemap(void *data, int32 size, int32 format, int32 mipmapCount);
 	
-	/// Update GPU texture with new data
+	/// Update texture with new data on GPU
 	[CLink]
 	public static extern void rlUpdateTexture(int32 id, int32 offsetX, int32 offsetY, int32 width, int32 height, int32 format, void *data);
 	
@@ -676,7 +724,7 @@ public static class Rlgl
 	
 	/// Load an empty framebuffer
 	[CLink]
-	public static extern int32 rlLoadFramebuffer(int32 width, int32 height);
+	public static extern int32 rlLoadFramebuffer();
 	
 	/// Attach texture/renderbuffer to a framebuffer
 	[CLink]
@@ -717,6 +765,10 @@ public static class Rlgl
 	/// Set shader value uniform
 	[CLink]
 	public static extern void rlSetUniform(int32 locIndex, void *value, int32 uniformType, int32 count);
+	
+	/// Set shader value matrices
+	[CLink]
+	public static extern void rlSetUniformMatrices(int32 locIndex, Matrix *mat, int32 count);
 	
 	/// Set shader value sampler
 	[CLink]

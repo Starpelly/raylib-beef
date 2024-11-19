@@ -59,6 +59,12 @@ public enum ShaderLocationIndex : c_int
 	case SHADER_LOC_MAP_PREFILTER = 24;
 	/// Shader location: sampler2d texture: brdf
 	case SHADER_LOC_MAP_BRDF = 25;
+	/// Shader location: vertex attribute: boneIds
+	case SHADER_LOC_VERTEX_BONEIDS = 26;
+	/// Shader location: vertex attribute: boneWeights
+	case SHADER_LOC_VERTEX_BONEWEIGHTS = 27;
+	/// Shader location: array of matrices uniform: boneMatrices
+	case SHADER_LOC_BONE_MATRICES = 28;
 	
 	public static operator int32 (ShaderLocationIndex self) => (int32)self;
 }

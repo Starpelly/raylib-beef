@@ -15,6 +15,9 @@ public struct rlVertexBuffer
 	/// Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)
 	public void* texcoords;
 	
+	/// Vertex normal (XYZ - 3 components per vertex) (shader-location = 2)
+	public void* normals;
+	
 	/// Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
 	public void* colors;
 	
@@ -24,14 +27,15 @@ public struct rlVertexBuffer
 	/// OpenGL Vertex Array Object id
 	public void* vaoId;
 	
-	/// OpenGL Vertex Buffer Objects id (4 types of vertex data)
-	public int32[4] vboId;
+	/// OpenGL Vertex Buffer Objects id (5 types of vertex data)
+	public int32[5] vboId;
 	
-	public this(int32 elementCount, void* vertices, void* texcoords, void* colors, void* indices, void* vaoId, int32[4] vboId)
+	public this(int32 elementCount, void* vertices, void* texcoords, void* normals, void* colors, void* indices, void* vaoId, int32[5] vboId)
 	{
 		this.elementCount = elementCount;
 		this.vertices = vertices;
 		this.texcoords = texcoords;
+		this.normals = normals;
 		this.colors = colors;
 		this.indices = indices;
 		this.vaoId = vaoId;

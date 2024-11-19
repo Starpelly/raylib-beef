@@ -67,6 +67,14 @@ public static class Raymath
 	
 	/// 
 	[CLink]
+	public static extern Vector4 Vector4Zero();
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4One();
+	
+	/// 
+	[CLink]
 	public static extern Matrix MatrixIdentity();
 	
 	/// 
@@ -91,7 +99,7 @@ public static class Raymath
 	
 	/// 
 	[CLink]
-	public static extern Matrix MatrixFrustum(double left, double right, double bottom, double top, double near, double far);
+	public static extern Matrix MatrixFrustum(double left, double right, double bottom, double top, double nearPlane, double farPlane);
 	
 	/// 
 	[CLink]
@@ -189,6 +197,14 @@ public static class Raymath
 	
 	/// 
 	[CLink]
+	public static extern Vector2 Vector2Min(Vector2 v1, Vector2 v2);
+	
+	/// 
+	[CLink]
+	public static extern Vector2 Vector2Max(Vector2 v1, Vector2 v2);
+	
+	/// 
+	[CLink]
 	public static extern Vector2 Vector2Rotate(Vector2 v, float angle);
 	
 	/// 
@@ -210,6 +226,10 @@ public static class Raymath
 	/// 
 	[CLink]
 	public static extern int32 Vector2Equals(Vector2 p, Vector2 q);
+	
+	/// 
+	[CLink]
+	public static extern Vector2 Vector2Refract(Vector2 v, Vector2 n, float r);
 	
 	/// 
 	[CLink]
@@ -293,7 +313,15 @@ public static class Raymath
 	
 	/// 
 	[CLink]
+	public static extern Vector3 Vector3MoveTowards(Vector3 v, Vector3 target, float maxDistance);
+	
+	/// 
+	[CLink]
 	public static extern Vector3 Vector3Lerp(Vector3 v1, Vector3 v2, float amount);
+	
+	/// 
+	[CLink]
+	public static extern Vector3 Vector3CubicHermite(Vector3 v1, Vector3 tangent1, Vector3 v2, Vector3 tangent2, float amount);
 	
 	/// 
 	[CLink]
@@ -338,6 +366,86 @@ public static class Raymath
 	/// 
 	[CLink]
 	public static extern Vector3 Vector3Refract(Vector3 v, Vector3 n, float r);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Add(Vector4 v1, Vector4 v2);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4AddValue(Vector4 v, float add);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Subtract(Vector4 v1, Vector4 v2);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4SubtractValue(Vector4 v, float add);
+	
+	/// 
+	[CLink]
+	public static extern float Vector4Length(Vector4 v);
+	
+	/// 
+	[CLink]
+	public static extern float Vector4LengthSqr(Vector4 v);
+	
+	/// 
+	[CLink]
+	public static extern float Vector4DotProduct(Vector4 v1, Vector4 v2);
+	
+	/// 
+	[CLink]
+	public static extern float Vector4Distance(Vector4 v1, Vector4 v2);
+	
+	/// 
+	[CLink]
+	public static extern float Vector4DistanceSqr(Vector4 v1, Vector4 v2);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Scale(Vector4 v, float scale);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Multiply(Vector4 v1, Vector4 v2);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Negate(Vector4 v);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Divide(Vector4 v1, Vector4 v2);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Normalize(Vector4 v);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Min(Vector4 v1, Vector4 v2);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Max(Vector4 v1, Vector4 v2);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Lerp(Vector4 v1, Vector4 v2, float amount);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4MoveTowards(Vector4 v, Vector4 target, float maxDistance);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Invert(Vector4 v);
+	
+	/// 
+	[CLink]
+	public static extern int32 Vector4Equals(Vector4 p, Vector4 q);
 	
 	/// 
 	[CLink]
@@ -441,6 +549,10 @@ public static class Raymath
 	
 	/// 
 	[CLink]
+	public static extern Quaternion QuaternionCubicHermiteSpline(Quaternion q1, Quaternion outTangent1, Quaternion q2, Quaternion inTangent2, float t);
+	
+	/// 
+	[CLink]
 	public static extern Quaternion QuaternionFromVector3ToVector3(Vector3 from, Vector3 to);
 	
 	/// 
@@ -470,6 +582,10 @@ public static class Raymath
 	/// 
 	[CLink]
 	public static extern int32 QuaternionEquals(Quaternion p, Quaternion q);
+	
+	/// 
+	[CLink]
+	public static extern void MatrixDecompose(Matrix mat, Vector3 *translation, Quaternion *rotation, Vector3 *scale);
 	
 #else
 	
@@ -551,6 +667,14 @@ public static class Raymath
 	
 	/// 
 	[CLink]
+	public static extern Vector2 Vector2Min(in Vector2 v1, in Vector2 v2);
+	
+	/// 
+	[CLink]
+	public static extern Vector2 Vector2Max(in Vector2 v1, in Vector2 v2);
+	
+	/// 
+	[CLink]
 	public static extern Vector2 Vector2Rotate(in Vector2 v, float angle);
 	
 	/// 
@@ -572,6 +696,10 @@ public static class Raymath
 	/// 
 	[CLink]
 	public static extern int32 Vector2Equals(in Vector2 p, in Vector2 q);
+	
+	/// 
+	[CLink]
+	public static extern Vector2 Vector2Refract(in Vector2 v, in Vector2 n, float r);
 	
 	/// 
 	[CLink]
@@ -655,7 +783,15 @@ public static class Raymath
 	
 	/// 
 	[CLink]
+	public static extern Vector3 Vector3MoveTowards(in Vector3 v, in Vector3 target, float maxDistance);
+	
+	/// 
+	[CLink]
 	public static extern Vector3 Vector3Lerp(in Vector3 v1, in Vector3 v2, float amount);
+	
+	/// 
+	[CLink]
+	public static extern Vector3 Vector3CubicHermite(in Vector3 v1, in Vector3 tangent1, in Vector3 v2, in Vector3 tangent2, float amount);
 	
 	/// 
 	[CLink]
@@ -700,6 +836,86 @@ public static class Raymath
 	/// 
 	[CLink]
 	public static extern Vector3 Vector3Refract(in Vector3 v, in Vector3 n, float r);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Add(in Vector4 v1, in Vector4 v2);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4AddValue(in Vector4 v, float add);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Subtract(in Vector4 v1, in Vector4 v2);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4SubtractValue(in Vector4 v, float add);
+	
+	/// 
+	[CLink]
+	public static extern float Vector4Length(in Vector4 v);
+	
+	/// 
+	[CLink]
+	public static extern float Vector4LengthSqr(in Vector4 v);
+	
+	/// 
+	[CLink]
+	public static extern float Vector4DotProduct(in Vector4 v1, in Vector4 v2);
+	
+	/// 
+	[CLink]
+	public static extern float Vector4Distance(in Vector4 v1, in Vector4 v2);
+	
+	/// 
+	[CLink]
+	public static extern float Vector4DistanceSqr(in Vector4 v1, in Vector4 v2);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Scale(in Vector4 v, float scale);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Multiply(in Vector4 v1, in Vector4 v2);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Negate(in Vector4 v);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Divide(in Vector4 v1, in Vector4 v2);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Normalize(in Vector4 v);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Min(in Vector4 v1, in Vector4 v2);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Max(in Vector4 v1, in Vector4 v2);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Lerp(in Vector4 v1, in Vector4 v2, float amount);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4MoveTowards(in Vector4 v, in Vector4 target, float maxDistance);
+	
+	/// 
+	[CLink]
+	public static extern Vector4 Vector4Invert(in Vector4 v);
+	
+	/// 
+	[CLink]
+	public static extern int32 Vector4Equals(in Vector4 p, in Vector4 q);
 	
 	/// 
 	[CLink]
@@ -803,6 +1019,10 @@ public static class Raymath
 	
 	/// 
 	[CLink]
+	public static extern Quaternion QuaternionCubicHermiteSpline(in Quaternion q1, in Quaternion outTangent1, in Quaternion q2, in Quaternion inTangent2, float t);
+	
+	/// 
+	[CLink]
 	public static extern Quaternion QuaternionFromVector3ToVector3(in Vector3 from, in Vector3 to);
 	
 	/// 
@@ -832,6 +1052,10 @@ public static class Raymath
 	/// 
 	[CLink]
 	public static extern int32 QuaternionEquals(in Quaternion p, in Quaternion q);
+	
+	/// 
+	[CLink]
+	public static extern void MatrixDecompose(in Matrix mat, Vector3 *translation, Quaternion *rotation, Vector3 *scale);
 	
 #endif
 	
