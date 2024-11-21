@@ -34,16 +34,16 @@ PostBuildCmds = ["CopyToDependents(\"$(ProjectDir)/libs/libs_x64/*.dll\")"]
 
 [Configs.Debug.Linux64]
 CLibType = "DynamicDebug"
-LibPaths = ["$(ProjectDir)\\libs\\linux_x64\\libraylib.so"]
+LibPaths = ["$(ProjectDir)\\libs\\linux_x64\\libraylib.so,550"]
 PostBuildCmds = ["CopyToDependents(\"$(ProjectDir)/libs/linux_x64/*.so\")"]
 
 [Configs.Release.Linux64]
 CLibType = "Dynamic"
-LibPaths = ["$(ProjectDir)\\libs\\linux_x64\\libraylib.so"]
+LibPaths = ["$(ProjectDir)\\libs\\linux_x64\\libraylib.so.550"]
 PostBuildCmds = ["CopyToDependents(\"$(ProjectDir)/libs/linux_x64/*.so\")"]
 
 [Configs.Test.Linux64]
-LibPaths = ["$(ProjectDir)\\libs\\_x64\\libraylib.so"]
+LibPaths = ["$(ProjectDir)\\libs\\_x64\\libraylib.so.550"]
 PostBuildCmds = ["CopyToDependents(\"$(ProjectDir)/libs/linux_x64/*.so\")"]
 
 [Configs.StaticDebug.Linux64]
