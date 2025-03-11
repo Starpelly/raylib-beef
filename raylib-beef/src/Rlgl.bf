@@ -875,28 +875,58 @@ public static class Rlgl
 #else
 	
 	/// Unload render batch system
-	[CLink]
-	public static extern void rlUnloadRenderBatch(in rlRenderBatch batch);
+	[Inline]
+	public static void rlUnloadRenderBatch(rlRenderBatch batch)
+	{
+		rlUnloadRenderBatch_Impl(batch);
+	}
+	[LinkName("rlUnloadRenderBatch")]
+	private static extern void rlUnloadRenderBatch_Impl(in rlRenderBatch batch);
 	
 	/// Set shader value matrix
-	[CLink]
-	public static extern void rlSetUniformMatrix(int32 locIndex, in Matrix mat);
+	[Inline]
+	public static void rlSetUniformMatrix(int32 locIndex, Matrix mat)
+	{
+		rlSetUniformMatrix_Impl(locIndex, mat);
+	}
+	[LinkName("rlSetUniformMatrix")]
+	private static extern void rlSetUniformMatrix_Impl(int32 locIndex, in Matrix mat);
 	
 	/// Set a custom projection matrix (replaces internal projection matrix)
-	[CLink]
-	public static extern void rlSetMatrixProjection(in Matrix proj);
+	[Inline]
+	public static void rlSetMatrixProjection(Matrix proj)
+	{
+		rlSetMatrixProjection_Impl(proj);
+	}
+	[LinkName("rlSetMatrixProjection")]
+	private static extern void rlSetMatrixProjection_Impl(in Matrix proj);
 	
 	/// Set a custom modelview matrix (replaces internal modelview matrix)
-	[CLink]
-	public static extern void rlSetMatrixModelview(in Matrix view);
+	[Inline]
+	public static void rlSetMatrixModelview(Matrix view)
+	{
+		rlSetMatrixModelview_Impl(view);
+	}
+	[LinkName("rlSetMatrixModelview")]
+	private static extern void rlSetMatrixModelview_Impl(in Matrix view);
 	
 	/// Set eyes projection matrices for stereo rendering
-	[CLink]
-	public static extern void rlSetMatrixProjectionStereo(in Matrix right, in Matrix left);
+	[Inline]
+	public static void rlSetMatrixProjectionStereo(Matrix right, Matrix left)
+	{
+		rlSetMatrixProjectionStereo_Impl(right, left);
+	}
+	[LinkName("rlSetMatrixProjectionStereo")]
+	private static extern void rlSetMatrixProjectionStereo_Impl(in Matrix right, in Matrix left);
 	
 	/// Set eyes view offsets matrices for stereo rendering
-	[CLink]
-	public static extern void rlSetMatrixViewOffsetStereo(in Matrix right, in Matrix left);
+	[Inline]
+	public static void rlSetMatrixViewOffsetStereo(Matrix right, Matrix left)
+	{
+		rlSetMatrixViewOffsetStereo_Impl(right, left);
+	}
+	[LinkName("rlSetMatrixViewOffsetStereo")]
+	private static extern void rlSetMatrixViewOffsetStereo_Impl(in Matrix right, in Matrix left);
 	
 #endif
 	

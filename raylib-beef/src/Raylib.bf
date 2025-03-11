@@ -2451,1176 +2451,2641 @@ public static class Raylib
 #else
 	
 	/// Set icon for window (single image, RGBA 32bit)
-	[CLink]
-	public static extern void SetWindowIcon(in Image image);
+	[Inline]
+	public static void SetWindowIcon(Image image)
+	{
+		SetWindowIcon_Impl(image);
+	}
+	[LinkName("SetWindowIcon")]
+	private static extern void SetWindowIcon_Impl(in Image image);
 	
 	/// Set background color (framebuffer clear color)
-	[CLink]
-	public static extern void ClearBackground(in Color color);
+	[Inline]
+	public static void ClearBackground(Color color)
+	{
+		ClearBackground_Impl(color);
+	}
+	[LinkName("ClearBackground")]
+	private static extern void ClearBackground_Impl(in Color color);
 	
 	/// Begin 2D mode with custom camera (2D)
-	[CLink]
-	public static extern void BeginMode2D(in Camera2D camera);
+	[Inline]
+	public static void BeginMode2D(Camera2D camera)
+	{
+		BeginMode2D_Impl(camera);
+	}
+	[LinkName("BeginMode2D")]
+	private static extern void BeginMode2D_Impl(in Camera2D camera);
 	
 	/// Begin 3D mode with custom camera (3D)
-	[CLink]
-	public static extern void BeginMode3D(in Camera3D camera);
+	[Inline]
+	public static void BeginMode3D(Camera3D camera)
+	{
+		BeginMode3D_Impl(camera);
+	}
+	[LinkName("BeginMode3D")]
+	private static extern void BeginMode3D_Impl(in Camera3D camera);
 	
 	/// Begin drawing to render texture
-	[CLink]
-	public static extern void BeginTextureMode(in RenderTexture2D target);
+	[Inline]
+	public static void BeginTextureMode(RenderTexture2D target)
+	{
+		BeginTextureMode_Impl(target);
+	}
+	[LinkName("BeginTextureMode")]
+	private static extern void BeginTextureMode_Impl(in RenderTexture2D target);
 	
 	/// Begin custom shader drawing
-	[CLink]
-	public static extern void BeginShaderMode(in Shader shader);
+	[Inline]
+	public static void BeginShaderMode(Shader shader)
+	{
+		BeginShaderMode_Impl(shader);
+	}
+	[LinkName("BeginShaderMode")]
+	private static extern void BeginShaderMode_Impl(in Shader shader);
 	
 	/// Begin stereo rendering (requires VR simulator)
-	[CLink]
-	public static extern void BeginVrStereoMode(in VrStereoConfig config);
+	[Inline]
+	public static void BeginVrStereoMode(VrStereoConfig config)
+	{
+		BeginVrStereoMode_Impl(config);
+	}
+	[LinkName("BeginVrStereoMode")]
+	private static extern void BeginVrStereoMode_Impl(in VrStereoConfig config);
 	
 	/// Load VR stereo config for VR simulator device parameters
-	[CLink]
-	public static extern VrStereoConfig LoadVrStereoConfig(in VrDeviceInfo device);
+	[Inline]
+	public static VrStereoConfig LoadVrStereoConfig(VrDeviceInfo device)
+	{
+		return LoadVrStereoConfig_Impl(device);
+	}
+	[LinkName("LoadVrStereoConfig")]
+	private static extern VrStereoConfig LoadVrStereoConfig_Impl(in VrDeviceInfo device);
 	
 	/// Unload VR stereo config
-	[CLink]
-	public static extern void UnloadVrStereoConfig(in VrStereoConfig config);
+	[Inline]
+	public static void UnloadVrStereoConfig(VrStereoConfig config)
+	{
+		UnloadVrStereoConfig_Impl(config);
+	}
+	[LinkName("UnloadVrStereoConfig")]
+	private static extern void UnloadVrStereoConfig_Impl(in VrStereoConfig config);
 	
 	/// Check if a shader is valid (loaded on GPU)
-	[CLink]
-	public static extern bool IsShaderValid(in Shader shader);
+	[Inline]
+	public static bool IsShaderValid(Shader shader)
+	{
+		return IsShaderValid_Impl(shader);
+	}
+	[LinkName("IsShaderValid")]
+	private static extern bool IsShaderValid_Impl(in Shader shader);
 	
 	/// Get shader uniform location
-	[CLink]
-	public static extern int32 GetShaderLocation(in Shader shader, char8 *uniformName);
+	[Inline]
+	public static int32 GetShaderLocation(Shader shader, char8 *uniformName)
+	{
+		return GetShaderLocation_Impl(shader, uniformName);
+	}
+	[LinkName("GetShaderLocation")]
+	private static extern int32 GetShaderLocation_Impl(in Shader shader, char8 *uniformName);
 	
 	/// Get shader attribute location
-	[CLink]
-	public static extern int32 GetShaderLocationAttrib(in Shader shader, char8 *attribName);
+	[Inline]
+	public static int32 GetShaderLocationAttrib(Shader shader, char8 *attribName)
+	{
+		return GetShaderLocationAttrib_Impl(shader, attribName);
+	}
+	[LinkName("GetShaderLocationAttrib")]
+	private static extern int32 GetShaderLocationAttrib_Impl(in Shader shader, char8 *attribName);
 	
 	/// Set shader uniform value
-	[CLink]
-	public static extern void SetShaderValue(in Shader shader, int32 locIndex, void *value, int32 uniformType);
+	[Inline]
+	public static void SetShaderValue(Shader shader, int32 locIndex, void *value, int32 uniformType)
+	{
+		SetShaderValue_Impl(shader, locIndex, value, uniformType);
+	}
+	[LinkName("SetShaderValue")]
+	private static extern void SetShaderValue_Impl(in Shader shader, int32 locIndex, void *value, int32 uniformType);
 	
 	/// Set shader uniform value vector
-	[CLink]
-	public static extern void SetShaderValueV(in Shader shader, int32 locIndex, void *value, int32 uniformType, int32 count);
+	[Inline]
+	public static void SetShaderValueV(Shader shader, int32 locIndex, void *value, int32 uniformType, int32 count)
+	{
+		SetShaderValueV_Impl(shader, locIndex, value, uniformType, count);
+	}
+	[LinkName("SetShaderValueV")]
+	private static extern void SetShaderValueV_Impl(in Shader shader, int32 locIndex, void *value, int32 uniformType, int32 count);
 	
 	/// Set shader uniform value (matrix 4x4)
-	[CLink]
-	public static extern void SetShaderValueMatrix(in Shader shader, int32 locIndex, in Matrix mat);
+	[Inline]
+	public static void SetShaderValueMatrix(Shader shader, int32 locIndex, Matrix mat)
+	{
+		SetShaderValueMatrix_Impl(shader, locIndex, mat);
+	}
+	[LinkName("SetShaderValueMatrix")]
+	private static extern void SetShaderValueMatrix_Impl(in Shader shader, int32 locIndex, in Matrix mat);
 	
 	/// Set shader uniform value for texture (sampler2d)
-	[CLink]
-	public static extern void SetShaderValueTexture(in Shader shader, int32 locIndex, in Texture2D texture);
+	[Inline]
+	public static void SetShaderValueTexture(Shader shader, int32 locIndex, Texture2D texture)
+	{
+		SetShaderValueTexture_Impl(shader, locIndex, texture);
+	}
+	[LinkName("SetShaderValueTexture")]
+	private static extern void SetShaderValueTexture_Impl(in Shader shader, int32 locIndex, in Texture2D texture);
 	
 	/// Unload shader from GPU memory (VRAM)
-	[CLink]
-	public static extern void UnloadShader(in Shader shader);
+	[Inline]
+	public static void UnloadShader(Shader shader)
+	{
+		UnloadShader_Impl(shader);
+	}
+	[LinkName("UnloadShader")]
+	private static extern void UnloadShader_Impl(in Shader shader);
 	
 	/// Get a ray trace from screen position (i.e mouse)
-	[CLink]
-	public static extern Ray GetScreenToWorldRay(in Vector2 position, in Camera camera);
+	[Inline]
+	public static Ray GetScreenToWorldRay(Vector2 position, Camera camera)
+	{
+		return GetScreenToWorldRay_Impl(position, camera);
+	}
+	[LinkName("GetScreenToWorldRay")]
+	private static extern Ray GetScreenToWorldRay_Impl(in Vector2 position, in Camera camera);
 	
 	/// Get a ray trace from screen position (i.e mouse) in a viewport
-	[CLink]
-	public static extern Ray GetScreenToWorldRayEx(in Vector2 position, in Camera camera, int32 width, int32 height);
+	[Inline]
+	public static Ray GetScreenToWorldRayEx(Vector2 position, Camera camera, int32 width, int32 height)
+	{
+		return GetScreenToWorldRayEx_Impl(position, camera, width, height);
+	}
+	[LinkName("GetScreenToWorldRayEx")]
+	private static extern Ray GetScreenToWorldRayEx_Impl(in Vector2 position, in Camera camera, int32 width, int32 height);
 	
 	/// Get the screen space position for a 3d world space position
-	[CLink]
-	public static extern Vector2 GetWorldToScreen(in Vector3 position, in Camera camera);
+	[Inline]
+	public static Vector2 GetWorldToScreen(Vector3 position, Camera camera)
+	{
+		return GetWorldToScreen_Impl(position, camera);
+	}
+	[LinkName("GetWorldToScreen")]
+	private static extern Vector2 GetWorldToScreen_Impl(in Vector3 position, in Camera camera);
 	
 	/// Get size position for a 3d world space position
-	[CLink]
-	public static extern Vector2 GetWorldToScreenEx(in Vector3 position, in Camera camera, int32 width, int32 height);
+	[Inline]
+	public static Vector2 GetWorldToScreenEx(Vector3 position, Camera camera, int32 width, int32 height)
+	{
+		return GetWorldToScreenEx_Impl(position, camera, width, height);
+	}
+	[LinkName("GetWorldToScreenEx")]
+	private static extern Vector2 GetWorldToScreenEx_Impl(in Vector3 position, in Camera camera, int32 width, int32 height);
 	
 	/// Get the screen space position for a 2d camera world space position
-	[CLink]
-	public static extern Vector2 GetWorldToScreen2D(in Vector2 position, in Camera2D camera);
+	[Inline]
+	public static Vector2 GetWorldToScreen2D(Vector2 position, Camera2D camera)
+	{
+		return GetWorldToScreen2D_Impl(position, camera);
+	}
+	[LinkName("GetWorldToScreen2D")]
+	private static extern Vector2 GetWorldToScreen2D_Impl(in Vector2 position, in Camera2D camera);
 	
 	/// Get the world space position for a 2d camera screen space position
-	[CLink]
-	public static extern Vector2 GetScreenToWorld2D(in Vector2 position, in Camera2D camera);
+	[Inline]
+	public static Vector2 GetScreenToWorld2D(Vector2 position, Camera2D camera)
+	{
+		return GetScreenToWorld2D_Impl(position, camera);
+	}
+	[LinkName("GetScreenToWorld2D")]
+	private static extern Vector2 GetScreenToWorld2D_Impl(in Vector2 position, in Camera2D camera);
 	
 	/// Get camera transform matrix (view matrix)
-	[CLink]
-	public static extern Matrix GetCameraMatrix(in Camera camera);
+	[Inline]
+	public static Matrix GetCameraMatrix(Camera camera)
+	{
+		return GetCameraMatrix_Impl(camera);
+	}
+	[LinkName("GetCameraMatrix")]
+	private static extern Matrix GetCameraMatrix_Impl(in Camera camera);
 	
 	/// Get camera 2d transform matrix
-	[CLink]
-	public static extern Matrix GetCameraMatrix2D(in Camera2D camera);
+	[Inline]
+	public static Matrix GetCameraMatrix2D(Camera2D camera)
+	{
+		return GetCameraMatrix2D_Impl(camera);
+	}
+	[LinkName("GetCameraMatrix2D")]
+	private static extern Matrix GetCameraMatrix2D_Impl(in Camera2D camera);
 	
 	/// Unload filepaths
-	[CLink]
-	public static extern void UnloadDirectoryFiles(in FilePathList files);
+	[Inline]
+	public static void UnloadDirectoryFiles(FilePathList files)
+	{
+		UnloadDirectoryFiles_Impl(files);
+	}
+	[LinkName("UnloadDirectoryFiles")]
+	private static extern void UnloadDirectoryFiles_Impl(in FilePathList files);
 	
 	/// Unload dropped filepaths
-	[CLink]
-	public static extern void UnloadDroppedFiles(in FilePathList files);
+	[Inline]
+	public static void UnloadDroppedFiles(FilePathList files)
+	{
+		UnloadDroppedFiles_Impl(files);
+	}
+	[LinkName("UnloadDroppedFiles")]
+	private static extern void UnloadDroppedFiles_Impl(in FilePathList files);
 	
 	/// Unload automation events list from file
-	[CLink]
-	public static extern void UnloadAutomationEventList(in AutomationEventList list);
+	[Inline]
+	public static void UnloadAutomationEventList(AutomationEventList list)
+	{
+		UnloadAutomationEventList_Impl(list);
+	}
+	[LinkName("UnloadAutomationEventList")]
+	private static extern void UnloadAutomationEventList_Impl(in AutomationEventList list);
 	
 	/// Export automation events list as text file
-	[CLink]
-	public static extern bool ExportAutomationEventList(in AutomationEventList list, char8 *fileName);
+	[Inline]
+	public static bool ExportAutomationEventList(AutomationEventList list, char8 *fileName)
+	{
+		return ExportAutomationEventList_Impl(list, fileName);
+	}
+	[LinkName("ExportAutomationEventList")]
+	private static extern bool ExportAutomationEventList_Impl(in AutomationEventList list, char8 *fileName);
 	
 	/// Play a recorded automation event
-	[CLink]
-	public static extern void PlayAutomationEvent(in AutomationEvent event);
+	[Inline]
+	public static void PlayAutomationEvent(AutomationEvent event)
+	{
+		PlayAutomationEvent_Impl(event);
+	}
+	[LinkName("PlayAutomationEvent")]
+	private static extern void PlayAutomationEvent_Impl(in AutomationEvent event);
 	
 	/// Update camera movement/rotation
-	[CLink]
-	public static extern void UpdateCameraPro(Camera *camera, in Vector3 movement, in Vector3 rotation, float zoom);
+	[Inline]
+	public static void UpdateCameraPro(Camera *camera, Vector3 movement, Vector3 rotation, float zoom)
+	{
+		UpdateCameraPro_Impl(camera, movement, rotation, zoom);
+	}
+	[LinkName("UpdateCameraPro")]
+	private static extern void UpdateCameraPro_Impl(Camera *camera, in Vector3 movement, in Vector3 rotation, float zoom);
 	
 	/// Set texture and rectangle to be used on shapes drawing
-	[CLink]
-	public static extern void SetShapesTexture(in Texture2D texture, in Rectangle source);
+	[Inline]
+	public static void SetShapesTexture(Texture2D texture, Rectangle source)
+	{
+		SetShapesTexture_Impl(texture, source);
+	}
+	[LinkName("SetShapesTexture")]
+	private static extern void SetShapesTexture_Impl(in Texture2D texture, in Rectangle source);
 	
 	/// Draw a pixel using geometry [Can be slow, use with care]
-	[CLink]
-	public static extern void DrawPixel(int32 posX, int32 posY, in Color color);
+	[Inline]
+	public static void DrawPixel(int32 posX, int32 posY, Color color)
+	{
+		DrawPixel_Impl(posX, posY, color);
+	}
+	[LinkName("DrawPixel")]
+	private static extern void DrawPixel_Impl(int32 posX, int32 posY, in Color color);
 	
 	/// Draw a pixel using geometry (Vector version) [Can be slow, use with care]
-	[CLink]
-	public static extern void DrawPixelV(in Vector2 position, in Color color);
+	[Inline]
+	public static void DrawPixelV(Vector2 position, Color color)
+	{
+		DrawPixelV_Impl(position, color);
+	}
+	[LinkName("DrawPixelV")]
+	private static extern void DrawPixelV_Impl(in Vector2 position, in Color color);
 	
 	/// Draw a line
-	[CLink]
-	public static extern void DrawLine(int32 startPosX, int32 startPosY, int32 endPosX, int32 endPosY, in Color color);
+	[Inline]
+	public static void DrawLine(int32 startPosX, int32 startPosY, int32 endPosX, int32 endPosY, Color color)
+	{
+		DrawLine_Impl(startPosX, startPosY, endPosX, endPosY, color);
+	}
+	[LinkName("DrawLine")]
+	private static extern void DrawLine_Impl(int32 startPosX, int32 startPosY, int32 endPosX, int32 endPosY, in Color color);
 	
 	/// Draw a line (using gl lines)
-	[CLink]
-	public static extern void DrawLineV(in Vector2 startPos, in Vector2 endPos, in Color color);
+	[Inline]
+	public static void DrawLineV(Vector2 startPos, Vector2 endPos, Color color)
+	{
+		DrawLineV_Impl(startPos, endPos, color);
+	}
+	[LinkName("DrawLineV")]
+	private static extern void DrawLineV_Impl(in Vector2 startPos, in Vector2 endPos, in Color color);
 	
 	/// Draw a line (using triangles/quads)
-	[CLink]
-	public static extern void DrawLineEx(in Vector2 startPos, in Vector2 endPos, float thick, in Color color);
+	[Inline]
+	public static void DrawLineEx(Vector2 startPos, Vector2 endPos, float thick, Color color)
+	{
+		DrawLineEx_Impl(startPos, endPos, thick, color);
+	}
+	[LinkName("DrawLineEx")]
+	private static extern void DrawLineEx_Impl(in Vector2 startPos, in Vector2 endPos, float thick, in Color color);
 	
 	/// Draw lines sequence (using gl lines)
-	[CLink]
-	public static extern void DrawLineStrip(Vector2 *points, int32 pointCount, in Color color);
+	[Inline]
+	public static void DrawLineStrip(Vector2 *points, int32 pointCount, Color color)
+	{
+		DrawLineStrip_Impl(points, pointCount, color);
+	}
+	[LinkName("DrawLineStrip")]
+	private static extern void DrawLineStrip_Impl(Vector2 *points, int32 pointCount, in Color color);
 	
 	/// Draw line segment cubic-bezier in-out interpolation
-	[CLink]
-	public static extern void DrawLineBezier(in Vector2 startPos, in Vector2 endPos, float thick, in Color color);
+	[Inline]
+	public static void DrawLineBezier(Vector2 startPos, Vector2 endPos, float thick, Color color)
+	{
+		DrawLineBezier_Impl(startPos, endPos, thick, color);
+	}
+	[LinkName("DrawLineBezier")]
+	private static extern void DrawLineBezier_Impl(in Vector2 startPos, in Vector2 endPos, float thick, in Color color);
 	
 	/// Draw a color-filled circle
-	[CLink]
-	public static extern void DrawCircle(int32 centerX, int32 centerY, float radius, in Color color);
+	[Inline]
+	public static void DrawCircle(int32 centerX, int32 centerY, float radius, Color color)
+	{
+		DrawCircle_Impl(centerX, centerY, radius, color);
+	}
+	[LinkName("DrawCircle")]
+	private static extern void DrawCircle_Impl(int32 centerX, int32 centerY, float radius, in Color color);
 	
 	/// Draw a piece of a circle
-	[CLink]
-	public static extern void DrawCircleSector(in Vector2 center, float radius, float startAngle, float endAngle, int32 segments, in Color color);
+	[Inline]
+	public static void DrawCircleSector(Vector2 center, float radius, float startAngle, float endAngle, int32 segments, Color color)
+	{
+		DrawCircleSector_Impl(center, radius, startAngle, endAngle, segments, color);
+	}
+	[LinkName("DrawCircleSector")]
+	private static extern void DrawCircleSector_Impl(in Vector2 center, float radius, float startAngle, float endAngle, int32 segments, in Color color);
 	
 	/// Draw circle sector outline
-	[CLink]
-	public static extern void DrawCircleSectorLines(in Vector2 center, float radius, float startAngle, float endAngle, int32 segments, in Color color);
+	[Inline]
+	public static void DrawCircleSectorLines(Vector2 center, float radius, float startAngle, float endAngle, int32 segments, Color color)
+	{
+		DrawCircleSectorLines_Impl(center, radius, startAngle, endAngle, segments, color);
+	}
+	[LinkName("DrawCircleSectorLines")]
+	private static extern void DrawCircleSectorLines_Impl(in Vector2 center, float radius, float startAngle, float endAngle, int32 segments, in Color color);
 	
 	/// Draw a gradient-filled circle
-	[CLink]
-	public static extern void DrawCircleGradient(int32 centerX, int32 centerY, float radius, in Color inner, in Color outer);
+	[Inline]
+	public static void DrawCircleGradient(int32 centerX, int32 centerY, float radius, Color inner, Color outer)
+	{
+		DrawCircleGradient_Impl(centerX, centerY, radius, inner, outer);
+	}
+	[LinkName("DrawCircleGradient")]
+	private static extern void DrawCircleGradient_Impl(int32 centerX, int32 centerY, float radius, in Color inner, in Color outer);
 	
 	/// Draw a color-filled circle (Vector version)
-	[CLink]
-	public static extern void DrawCircleV(in Vector2 center, float radius, in Color color);
+	[Inline]
+	public static void DrawCircleV(Vector2 center, float radius, Color color)
+	{
+		DrawCircleV_Impl(center, radius, color);
+	}
+	[LinkName("DrawCircleV")]
+	private static extern void DrawCircleV_Impl(in Vector2 center, float radius, in Color color);
 	
 	/// Draw circle outline
-	[CLink]
-	public static extern void DrawCircleLines(int32 centerX, int32 centerY, float radius, in Color color);
+	[Inline]
+	public static void DrawCircleLines(int32 centerX, int32 centerY, float radius, Color color)
+	{
+		DrawCircleLines_Impl(centerX, centerY, radius, color);
+	}
+	[LinkName("DrawCircleLines")]
+	private static extern void DrawCircleLines_Impl(int32 centerX, int32 centerY, float radius, in Color color);
 	
 	/// Draw circle outline (Vector version)
-	[CLink]
-	public static extern void DrawCircleLinesV(in Vector2 center, float radius, in Color color);
+	[Inline]
+	public static void DrawCircleLinesV(Vector2 center, float radius, Color color)
+	{
+		DrawCircleLinesV_Impl(center, radius, color);
+	}
+	[LinkName("DrawCircleLinesV")]
+	private static extern void DrawCircleLinesV_Impl(in Vector2 center, float radius, in Color color);
 	
 	/// Draw ellipse
-	[CLink]
-	public static extern void DrawEllipse(int32 centerX, int32 centerY, float radiusH, float radiusV, in Color color);
+	[Inline]
+	public static void DrawEllipse(int32 centerX, int32 centerY, float radiusH, float radiusV, Color color)
+	{
+		DrawEllipse_Impl(centerX, centerY, radiusH, radiusV, color);
+	}
+	[LinkName("DrawEllipse")]
+	private static extern void DrawEllipse_Impl(int32 centerX, int32 centerY, float radiusH, float radiusV, in Color color);
 	
 	/// Draw ellipse outline
-	[CLink]
-	public static extern void DrawEllipseLines(int32 centerX, int32 centerY, float radiusH, float radiusV, in Color color);
+	[Inline]
+	public static void DrawEllipseLines(int32 centerX, int32 centerY, float radiusH, float radiusV, Color color)
+	{
+		DrawEllipseLines_Impl(centerX, centerY, radiusH, radiusV, color);
+	}
+	[LinkName("DrawEllipseLines")]
+	private static extern void DrawEllipseLines_Impl(int32 centerX, int32 centerY, float radiusH, float radiusV, in Color color);
 	
 	/// Draw ring
-	[CLink]
-	public static extern void DrawRing(in Vector2 center, float innerRadius, float outerRadius, float startAngle, float endAngle, int32 segments, in Color color);
+	[Inline]
+	public static void DrawRing(Vector2 center, float innerRadius, float outerRadius, float startAngle, float endAngle, int32 segments, Color color)
+	{
+		DrawRing_Impl(center, innerRadius, outerRadius, startAngle, endAngle, segments, color);
+	}
+	[LinkName("DrawRing")]
+	private static extern void DrawRing_Impl(in Vector2 center, float innerRadius, float outerRadius, float startAngle, float endAngle, int32 segments, in Color color);
 	
 	/// Draw ring outline
-	[CLink]
-	public static extern void DrawRingLines(in Vector2 center, float innerRadius, float outerRadius, float startAngle, float endAngle, int32 segments, in Color color);
+	[Inline]
+	public static void DrawRingLines(Vector2 center, float innerRadius, float outerRadius, float startAngle, float endAngle, int32 segments, Color color)
+	{
+		DrawRingLines_Impl(center, innerRadius, outerRadius, startAngle, endAngle, segments, color);
+	}
+	[LinkName("DrawRingLines")]
+	private static extern void DrawRingLines_Impl(in Vector2 center, float innerRadius, float outerRadius, float startAngle, float endAngle, int32 segments, in Color color);
 	
 	/// Draw a color-filled rectangle
-	[CLink]
-	public static extern void DrawRectangle(int32 posX, int32 posY, int32 width, int32 height, in Color color);
+	[Inline]
+	public static void DrawRectangle(int32 posX, int32 posY, int32 width, int32 height, Color color)
+	{
+		DrawRectangle_Impl(posX, posY, width, height, color);
+	}
+	[LinkName("DrawRectangle")]
+	private static extern void DrawRectangle_Impl(int32 posX, int32 posY, int32 width, int32 height, in Color color);
 	
 	/// Draw a color-filled rectangle (Vector version)
-	[CLink]
-	public static extern void DrawRectangleV(in Vector2 position, in Vector2 size, in Color color);
+	[Inline]
+	public static void DrawRectangleV(Vector2 position, Vector2 size, Color color)
+	{
+		DrawRectangleV_Impl(position, size, color);
+	}
+	[LinkName("DrawRectangleV")]
+	private static extern void DrawRectangleV_Impl(in Vector2 position, in Vector2 size, in Color color);
 	
 	/// Draw a color-filled rectangle
-	[CLink]
-	public static extern void DrawRectangleRec(in Rectangle rec, in Color color);
+	[Inline]
+	public static void DrawRectangleRec(Rectangle rec, Color color)
+	{
+		DrawRectangleRec_Impl(rec, color);
+	}
+	[LinkName("DrawRectangleRec")]
+	private static extern void DrawRectangleRec_Impl(in Rectangle rec, in Color color);
 	
 	/// Draw a color-filled rectangle with pro parameters
-	[CLink]
-	public static extern void DrawRectanglePro(in Rectangle rec, in Vector2 origin, float rotation, in Color color);
+	[Inline]
+	public static void DrawRectanglePro(Rectangle rec, Vector2 origin, float rotation, Color color)
+	{
+		DrawRectanglePro_Impl(rec, origin, rotation, color);
+	}
+	[LinkName("DrawRectanglePro")]
+	private static extern void DrawRectanglePro_Impl(in Rectangle rec, in Vector2 origin, float rotation, in Color color);
 	
 	/// Draw a vertical-gradient-filled rectangle
-	[CLink]
-	public static extern void DrawRectangleGradientV(int32 posX, int32 posY, int32 width, int32 height, in Color top, in Color bottom);
+	[Inline]
+	public static void DrawRectangleGradientV(int32 posX, int32 posY, int32 width, int32 height, Color top, Color bottom)
+	{
+		DrawRectangleGradientV_Impl(posX, posY, width, height, top, bottom);
+	}
+	[LinkName("DrawRectangleGradientV")]
+	private static extern void DrawRectangleGradientV_Impl(int32 posX, int32 posY, int32 width, int32 height, in Color top, in Color bottom);
 	
 	/// Draw a horizontal-gradient-filled rectangle
-	[CLink]
-	public static extern void DrawRectangleGradientH(int32 posX, int32 posY, int32 width, int32 height, in Color left, in Color right);
+	[Inline]
+	public static void DrawRectangleGradientH(int32 posX, int32 posY, int32 width, int32 height, Color left, Color right)
+	{
+		DrawRectangleGradientH_Impl(posX, posY, width, height, left, right);
+	}
+	[LinkName("DrawRectangleGradientH")]
+	private static extern void DrawRectangleGradientH_Impl(int32 posX, int32 posY, int32 width, int32 height, in Color left, in Color right);
 	
 	/// Draw a gradient-filled rectangle with custom vertex colors
-	[CLink]
-	public static extern void DrawRectangleGradientEx(in Rectangle rec, in Color topLeft, in Color bottomLeft, in Color topRight, in Color bottomRight);
+	[Inline]
+	public static void DrawRectangleGradientEx(Rectangle rec, Color topLeft, Color bottomLeft, Color topRight, Color bottomRight)
+	{
+		DrawRectangleGradientEx_Impl(rec, topLeft, bottomLeft, topRight, bottomRight);
+	}
+	[LinkName("DrawRectangleGradientEx")]
+	private static extern void DrawRectangleGradientEx_Impl(in Rectangle rec, in Color topLeft, in Color bottomLeft, in Color topRight, in Color bottomRight);
 	
 	/// Draw rectangle outline
-	[CLink]
-	public static extern void DrawRectangleLines(int32 posX, int32 posY, int32 width, int32 height, in Color color);
+	[Inline]
+	public static void DrawRectangleLines(int32 posX, int32 posY, int32 width, int32 height, Color color)
+	{
+		DrawRectangleLines_Impl(posX, posY, width, height, color);
+	}
+	[LinkName("DrawRectangleLines")]
+	private static extern void DrawRectangleLines_Impl(int32 posX, int32 posY, int32 width, int32 height, in Color color);
 	
 	/// Draw rectangle outline with extended parameters
-	[CLink]
-	public static extern void DrawRectangleLinesEx(in Rectangle rec, float lineThick, in Color color);
+	[Inline]
+	public static void DrawRectangleLinesEx(Rectangle rec, float lineThick, Color color)
+	{
+		DrawRectangleLinesEx_Impl(rec, lineThick, color);
+	}
+	[LinkName("DrawRectangleLinesEx")]
+	private static extern void DrawRectangleLinesEx_Impl(in Rectangle rec, float lineThick, in Color color);
 	
 	/// Draw rectangle with rounded edges
-	[CLink]
-	public static extern void DrawRectangleRounded(in Rectangle rec, float roundness, int32 segments, in Color color);
+	[Inline]
+	public static void DrawRectangleRounded(Rectangle rec, float roundness, int32 segments, Color color)
+	{
+		DrawRectangleRounded_Impl(rec, roundness, segments, color);
+	}
+	[LinkName("DrawRectangleRounded")]
+	private static extern void DrawRectangleRounded_Impl(in Rectangle rec, float roundness, int32 segments, in Color color);
 	
 	/// Draw rectangle lines with rounded edges
-	[CLink]
-	public static extern void DrawRectangleRoundedLines(in Rectangle rec, float roundness, int32 segments, in Color color);
+	[Inline]
+	public static void DrawRectangleRoundedLines(Rectangle rec, float roundness, int32 segments, Color color)
+	{
+		DrawRectangleRoundedLines_Impl(rec, roundness, segments, color);
+	}
+	[LinkName("DrawRectangleRoundedLines")]
+	private static extern void DrawRectangleRoundedLines_Impl(in Rectangle rec, float roundness, int32 segments, in Color color);
 	
 	/// Draw rectangle with rounded edges outline
-	[CLink]
-	public static extern void DrawRectangleRoundedLinesEx(in Rectangle rec, float roundness, int32 segments, float lineThick, in Color color);
+	[Inline]
+	public static void DrawRectangleRoundedLinesEx(Rectangle rec, float roundness, int32 segments, float lineThick, Color color)
+	{
+		DrawRectangleRoundedLinesEx_Impl(rec, roundness, segments, lineThick, color);
+	}
+	[LinkName("DrawRectangleRoundedLinesEx")]
+	private static extern void DrawRectangleRoundedLinesEx_Impl(in Rectangle rec, float roundness, int32 segments, float lineThick, in Color color);
 	
 	/// Draw a color-filled triangle (vertex in counter-clockwise order!)
-	[CLink]
-	public static extern void DrawTriangle(in Vector2 v1, in Vector2 v2, in Vector2 v3, in Color color);
+	[Inline]
+	public static void DrawTriangle(Vector2 v1, Vector2 v2, Vector2 v3, Color color)
+	{
+		DrawTriangle_Impl(v1, v2, v3, color);
+	}
+	[LinkName("DrawTriangle")]
+	private static extern void DrawTriangle_Impl(in Vector2 v1, in Vector2 v2, in Vector2 v3, in Color color);
 	
 	/// Draw triangle outline (vertex in counter-clockwise order!)
-	[CLink]
-	public static extern void DrawTriangleLines(in Vector2 v1, in Vector2 v2, in Vector2 v3, in Color color);
+	[Inline]
+	public static void DrawTriangleLines(Vector2 v1, Vector2 v2, Vector2 v3, Color color)
+	{
+		DrawTriangleLines_Impl(v1, v2, v3, color);
+	}
+	[LinkName("DrawTriangleLines")]
+	private static extern void DrawTriangleLines_Impl(in Vector2 v1, in Vector2 v2, in Vector2 v3, in Color color);
 	
 	/// Draw a triangle fan defined by points (first vertex is the center)
-	[CLink]
-	public static extern void DrawTriangleFan(Vector2 *points, int32 pointCount, in Color color);
+	[Inline]
+	public static void DrawTriangleFan(Vector2 *points, int32 pointCount, Color color)
+	{
+		DrawTriangleFan_Impl(points, pointCount, color);
+	}
+	[LinkName("DrawTriangleFan")]
+	private static extern void DrawTriangleFan_Impl(Vector2 *points, int32 pointCount, in Color color);
 	
 	/// Draw a triangle strip defined by points
-	[CLink]
-	public static extern void DrawTriangleStrip(Vector2 *points, int32 pointCount, in Color color);
+	[Inline]
+	public static void DrawTriangleStrip(Vector2 *points, int32 pointCount, Color color)
+	{
+		DrawTriangleStrip_Impl(points, pointCount, color);
+	}
+	[LinkName("DrawTriangleStrip")]
+	private static extern void DrawTriangleStrip_Impl(Vector2 *points, int32 pointCount, in Color color);
 	
 	/// Draw a regular polygon (Vector version)
-	[CLink]
-	public static extern void DrawPoly(in Vector2 center, int32 sides, float radius, float rotation, in Color color);
+	[Inline]
+	public static void DrawPoly(Vector2 center, int32 sides, float radius, float rotation, Color color)
+	{
+		DrawPoly_Impl(center, sides, radius, rotation, color);
+	}
+	[LinkName("DrawPoly")]
+	private static extern void DrawPoly_Impl(in Vector2 center, int32 sides, float radius, float rotation, in Color color);
 	
 	/// Draw a polygon outline of n sides
-	[CLink]
-	public static extern void DrawPolyLines(in Vector2 center, int32 sides, float radius, float rotation, in Color color);
+	[Inline]
+	public static void DrawPolyLines(Vector2 center, int32 sides, float radius, float rotation, Color color)
+	{
+		DrawPolyLines_Impl(center, sides, radius, rotation, color);
+	}
+	[LinkName("DrawPolyLines")]
+	private static extern void DrawPolyLines_Impl(in Vector2 center, int32 sides, float radius, float rotation, in Color color);
 	
 	/// Draw a polygon outline of n sides with extended parameters
-	[CLink]
-	public static extern void DrawPolyLinesEx(in Vector2 center, int32 sides, float radius, float rotation, float lineThick, in Color color);
+	[Inline]
+	public static void DrawPolyLinesEx(Vector2 center, int32 sides, float radius, float rotation, float lineThick, Color color)
+	{
+		DrawPolyLinesEx_Impl(center, sides, radius, rotation, lineThick, color);
+	}
+	[LinkName("DrawPolyLinesEx")]
+	private static extern void DrawPolyLinesEx_Impl(in Vector2 center, int32 sides, float radius, float rotation, float lineThick, in Color color);
 	
 	/// Draw spline: Linear, minimum 2 points
-	[CLink]
-	public static extern void DrawSplineLinear(Vector2 *points, int32 pointCount, float thick, in Color color);
+	[Inline]
+	public static void DrawSplineLinear(Vector2 *points, int32 pointCount, float thick, Color color)
+	{
+		DrawSplineLinear_Impl(points, pointCount, thick, color);
+	}
+	[LinkName("DrawSplineLinear")]
+	private static extern void DrawSplineLinear_Impl(Vector2 *points, int32 pointCount, float thick, in Color color);
 	
 	/// Draw spline: B-Spline, minimum 4 points
-	[CLink]
-	public static extern void DrawSplineBasis(Vector2 *points, int32 pointCount, float thick, in Color color);
+	[Inline]
+	public static void DrawSplineBasis(Vector2 *points, int32 pointCount, float thick, Color color)
+	{
+		DrawSplineBasis_Impl(points, pointCount, thick, color);
+	}
+	[LinkName("DrawSplineBasis")]
+	private static extern void DrawSplineBasis_Impl(Vector2 *points, int32 pointCount, float thick, in Color color);
 	
 	/// Draw spline: Catmull-Rom, minimum 4 points
-	[CLink]
-	public static extern void DrawSplineCatmullRom(Vector2 *points, int32 pointCount, float thick, in Color color);
+	[Inline]
+	public static void DrawSplineCatmullRom(Vector2 *points, int32 pointCount, float thick, Color color)
+	{
+		DrawSplineCatmullRom_Impl(points, pointCount, thick, color);
+	}
+	[LinkName("DrawSplineCatmullRom")]
+	private static extern void DrawSplineCatmullRom_Impl(Vector2 *points, int32 pointCount, float thick, in Color color);
 	
 	/// Draw spline: Quadratic Bezier, minimum 3 points (1 control point): [p1, c2, p3, c4...]
-	[CLink]
-	public static extern void DrawSplineBezierQuadratic(Vector2 *points, int32 pointCount, float thick, in Color color);
+	[Inline]
+	public static void DrawSplineBezierQuadratic(Vector2 *points, int32 pointCount, float thick, Color color)
+	{
+		DrawSplineBezierQuadratic_Impl(points, pointCount, thick, color);
+	}
+	[LinkName("DrawSplineBezierQuadratic")]
+	private static extern void DrawSplineBezierQuadratic_Impl(Vector2 *points, int32 pointCount, float thick, in Color color);
 	
 	/// Draw spline: Cubic Bezier, minimum 4 points (2 control points): [p1, c2, c3, p4, c5, c6...]
-	[CLink]
-	public static extern void DrawSplineBezierCubic(Vector2 *points, int32 pointCount, float thick, in Color color);
+	[Inline]
+	public static void DrawSplineBezierCubic(Vector2 *points, int32 pointCount, float thick, Color color)
+	{
+		DrawSplineBezierCubic_Impl(points, pointCount, thick, color);
+	}
+	[LinkName("DrawSplineBezierCubic")]
+	private static extern void DrawSplineBezierCubic_Impl(Vector2 *points, int32 pointCount, float thick, in Color color);
 	
 	/// Draw spline segment: Linear, 2 points
-	[CLink]
-	public static extern void DrawSplineSegmentLinear(in Vector2 p1, in Vector2 p2, float thick, in Color color);
+	[Inline]
+	public static void DrawSplineSegmentLinear(Vector2 p1, Vector2 p2, float thick, Color color)
+	{
+		DrawSplineSegmentLinear_Impl(p1, p2, thick, color);
+	}
+	[LinkName("DrawSplineSegmentLinear")]
+	private static extern void DrawSplineSegmentLinear_Impl(in Vector2 p1, in Vector2 p2, float thick, in Color color);
 	
 	/// Draw spline segment: B-Spline, 4 points
-	[CLink]
-	public static extern void DrawSplineSegmentBasis(in Vector2 p1, in Vector2 p2, in Vector2 p3, in Vector2 p4, float thick, in Color color);
+	[Inline]
+	public static void DrawSplineSegmentBasis(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float thick, Color color)
+	{
+		DrawSplineSegmentBasis_Impl(p1, p2, p3, p4, thick, color);
+	}
+	[LinkName("DrawSplineSegmentBasis")]
+	private static extern void DrawSplineSegmentBasis_Impl(in Vector2 p1, in Vector2 p2, in Vector2 p3, in Vector2 p4, float thick, in Color color);
 	
 	/// Draw spline segment: Catmull-Rom, 4 points
-	[CLink]
-	public static extern void DrawSplineSegmentCatmullRom(in Vector2 p1, in Vector2 p2, in Vector2 p3, in Vector2 p4, float thick, in Color color);
+	[Inline]
+	public static void DrawSplineSegmentCatmullRom(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float thick, Color color)
+	{
+		DrawSplineSegmentCatmullRom_Impl(p1, p2, p3, p4, thick, color);
+	}
+	[LinkName("DrawSplineSegmentCatmullRom")]
+	private static extern void DrawSplineSegmentCatmullRom_Impl(in Vector2 p1, in Vector2 p2, in Vector2 p3, in Vector2 p4, float thick, in Color color);
 	
 	/// Draw spline segment: Quadratic Bezier, 2 points, 1 control point
-	[CLink]
-	public static extern void DrawSplineSegmentBezierQuadratic(in Vector2 p1, in Vector2 c2, in Vector2 p3, float thick, in Color color);
+	[Inline]
+	public static void DrawSplineSegmentBezierQuadratic(Vector2 p1, Vector2 c2, Vector2 p3, float thick, Color color)
+	{
+		DrawSplineSegmentBezierQuadratic_Impl(p1, c2, p3, thick, color);
+	}
+	[LinkName("DrawSplineSegmentBezierQuadratic")]
+	private static extern void DrawSplineSegmentBezierQuadratic_Impl(in Vector2 p1, in Vector2 c2, in Vector2 p3, float thick, in Color color);
 	
 	/// Draw spline segment: Cubic Bezier, 2 points, 2 control points
-	[CLink]
-	public static extern void DrawSplineSegmentBezierCubic(in Vector2 p1, in Vector2 c2, in Vector2 c3, in Vector2 p4, float thick, in Color color);
+	[Inline]
+	public static void DrawSplineSegmentBezierCubic(Vector2 p1, Vector2 c2, Vector2 c3, Vector2 p4, float thick, Color color)
+	{
+		DrawSplineSegmentBezierCubic_Impl(p1, c2, c3, p4, thick, color);
+	}
+	[LinkName("DrawSplineSegmentBezierCubic")]
+	private static extern void DrawSplineSegmentBezierCubic_Impl(in Vector2 p1, in Vector2 c2, in Vector2 c3, in Vector2 p4, float thick, in Color color);
 	
 	/// Get (evaluate) spline point: Linear
-	[CLink]
-	public static extern Vector2 GetSplinePointLinear(in Vector2 startPos, in Vector2 endPos, float t);
+	[Inline]
+	public static Vector2 GetSplinePointLinear(Vector2 startPos, Vector2 endPos, float t)
+	{
+		return GetSplinePointLinear_Impl(startPos, endPos, t);
+	}
+	[LinkName("GetSplinePointLinear")]
+	private static extern Vector2 GetSplinePointLinear_Impl(in Vector2 startPos, in Vector2 endPos, float t);
 	
 	/// Get (evaluate) spline point: B-Spline
-	[CLink]
-	public static extern Vector2 GetSplinePointBasis(in Vector2 p1, in Vector2 p2, in Vector2 p3, in Vector2 p4, float t);
+	[Inline]
+	public static Vector2 GetSplinePointBasis(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float t)
+	{
+		return GetSplinePointBasis_Impl(p1, p2, p3, p4, t);
+	}
+	[LinkName("GetSplinePointBasis")]
+	private static extern Vector2 GetSplinePointBasis_Impl(in Vector2 p1, in Vector2 p2, in Vector2 p3, in Vector2 p4, float t);
 	
 	/// Get (evaluate) spline point: Catmull-Rom
-	[CLink]
-	public static extern Vector2 GetSplinePointCatmullRom(in Vector2 p1, in Vector2 p2, in Vector2 p3, in Vector2 p4, float t);
+	[Inline]
+	public static Vector2 GetSplinePointCatmullRom(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float t)
+	{
+		return GetSplinePointCatmullRom_Impl(p1, p2, p3, p4, t);
+	}
+	[LinkName("GetSplinePointCatmullRom")]
+	private static extern Vector2 GetSplinePointCatmullRom_Impl(in Vector2 p1, in Vector2 p2, in Vector2 p3, in Vector2 p4, float t);
 	
 	/// Get (evaluate) spline point: Quadratic Bezier
-	[CLink]
-	public static extern Vector2 GetSplinePointBezierQuad(in Vector2 p1, in Vector2 c2, in Vector2 p3, float t);
+	[Inline]
+	public static Vector2 GetSplinePointBezierQuad(Vector2 p1, Vector2 c2, Vector2 p3, float t)
+	{
+		return GetSplinePointBezierQuad_Impl(p1, c2, p3, t);
+	}
+	[LinkName("GetSplinePointBezierQuad")]
+	private static extern Vector2 GetSplinePointBezierQuad_Impl(in Vector2 p1, in Vector2 c2, in Vector2 p3, float t);
 	
 	/// Get (evaluate) spline point: Cubic Bezier
-	[CLink]
-	public static extern Vector2 GetSplinePointBezierCubic(in Vector2 p1, in Vector2 c2, in Vector2 c3, in Vector2 p4, float t);
+	[Inline]
+	public static Vector2 GetSplinePointBezierCubic(Vector2 p1, Vector2 c2, Vector2 c3, Vector2 p4, float t)
+	{
+		return GetSplinePointBezierCubic_Impl(p1, c2, c3, p4, t);
+	}
+	[LinkName("GetSplinePointBezierCubic")]
+	private static extern Vector2 GetSplinePointBezierCubic_Impl(in Vector2 p1, in Vector2 c2, in Vector2 c3, in Vector2 p4, float t);
 	
 	/// Check collision between two rectangles
-	[CLink]
-	public static extern bool CheckCollisionRecs(in Rectangle rec1, in Rectangle rec2);
+	[Inline]
+	public static bool CheckCollisionRecs(Rectangle rec1, Rectangle rec2)
+	{
+		return CheckCollisionRecs_Impl(rec1, rec2);
+	}
+	[LinkName("CheckCollisionRecs")]
+	private static extern bool CheckCollisionRecs_Impl(in Rectangle rec1, in Rectangle rec2);
 	
 	/// Check collision between two circles
-	[CLink]
-	public static extern bool CheckCollisionCircles(in Vector2 center1, float radius1, in Vector2 center2, float radius2);
+	[Inline]
+	public static bool CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2)
+	{
+		return CheckCollisionCircles_Impl(center1, radius1, center2, radius2);
+	}
+	[LinkName("CheckCollisionCircles")]
+	private static extern bool CheckCollisionCircles_Impl(in Vector2 center1, float radius1, in Vector2 center2, float radius2);
 	
 	/// Check collision between circle and rectangle
-	[CLink]
-	public static extern bool CheckCollisionCircleRec(in Vector2 center, float radius, in Rectangle rec);
+	[Inline]
+	public static bool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec)
+	{
+		return CheckCollisionCircleRec_Impl(center, radius, rec);
+	}
+	[LinkName("CheckCollisionCircleRec")]
+	private static extern bool CheckCollisionCircleRec_Impl(in Vector2 center, float radius, in Rectangle rec);
 	
 	/// Check if circle collides with a line created betweeen two points [p1] and [p2]
-	[CLink]
-	public static extern bool CheckCollisionCircleLine(in Vector2 center, float radius, in Vector2 p1, in Vector2 p2);
+	[Inline]
+	public static bool CheckCollisionCircleLine(Vector2 center, float radius, Vector2 p1, Vector2 p2)
+	{
+		return CheckCollisionCircleLine_Impl(center, radius, p1, p2);
+	}
+	[LinkName("CheckCollisionCircleLine")]
+	private static extern bool CheckCollisionCircleLine_Impl(in Vector2 center, float radius, in Vector2 p1, in Vector2 p2);
 	
 	/// Check if point is inside rectangle
-	[CLink]
-	public static extern bool CheckCollisionPointRec(in Vector2 point, in Rectangle rec);
+	[Inline]
+	public static bool CheckCollisionPointRec(Vector2 point, Rectangle rec)
+	{
+		return CheckCollisionPointRec_Impl(point, rec);
+	}
+	[LinkName("CheckCollisionPointRec")]
+	private static extern bool CheckCollisionPointRec_Impl(in Vector2 point, in Rectangle rec);
 	
 	/// Check if point is inside circle
-	[CLink]
-	public static extern bool CheckCollisionPointCircle(in Vector2 point, in Vector2 center, float radius);
+	[Inline]
+	public static bool CheckCollisionPointCircle(Vector2 point, Vector2 center, float radius)
+	{
+		return CheckCollisionPointCircle_Impl(point, center, radius);
+	}
+	[LinkName("CheckCollisionPointCircle")]
+	private static extern bool CheckCollisionPointCircle_Impl(in Vector2 point, in Vector2 center, float radius);
 	
 	/// Check if point is inside a triangle
-	[CLink]
-	public static extern bool CheckCollisionPointTriangle(in Vector2 point, in Vector2 p1, in Vector2 p2, in Vector2 p3);
+	[Inline]
+	public static bool CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3)
+	{
+		return CheckCollisionPointTriangle_Impl(point, p1, p2, p3);
+	}
+	[LinkName("CheckCollisionPointTriangle")]
+	private static extern bool CheckCollisionPointTriangle_Impl(in Vector2 point, in Vector2 p1, in Vector2 p2, in Vector2 p3);
 	
 	/// Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]
-	[CLink]
-	public static extern bool CheckCollisionPointLine(in Vector2 point, in Vector2 p1, in Vector2 p2, int32 threshold);
+	[Inline]
+	public static bool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int32 threshold)
+	{
+		return CheckCollisionPointLine_Impl(point, p1, p2, threshold);
+	}
+	[LinkName("CheckCollisionPointLine")]
+	private static extern bool CheckCollisionPointLine_Impl(in Vector2 point, in Vector2 p1, in Vector2 p2, int32 threshold);
 	
 	/// Check if point is within a polygon described by array of vertices
-	[CLink]
-	public static extern bool CheckCollisionPointPoly(in Vector2 point, Vector2 *points, int32 pointCount);
+	[Inline]
+	public static bool CheckCollisionPointPoly(Vector2 point, Vector2 *points, int32 pointCount)
+	{
+		return CheckCollisionPointPoly_Impl(point, points, pointCount);
+	}
+	[LinkName("CheckCollisionPointPoly")]
+	private static extern bool CheckCollisionPointPoly_Impl(in Vector2 point, Vector2 *points, int32 pointCount);
 	
 	/// Check the collision between two lines defined by two points each, returns collision point by reference
-	[CLink]
-	public static extern bool CheckCollisionLines(in Vector2 startPos1, in Vector2 endPos1, in Vector2 startPos2, in Vector2 endPos2, Vector2 *collisionPoint);
+	[Inline]
+	public static bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2 *collisionPoint)
+	{
+		return CheckCollisionLines_Impl(startPos1, endPos1, startPos2, endPos2, collisionPoint);
+	}
+	[LinkName("CheckCollisionLines")]
+	private static extern bool CheckCollisionLines_Impl(in Vector2 startPos1, in Vector2 endPos1, in Vector2 startPos2, in Vector2 endPos2, Vector2 *collisionPoint);
 	
 	/// Get collision rectangle for two rectangles collision
-	[CLink]
-	public static extern Rectangle GetCollisionRec(in Rectangle rec1, in Rectangle rec2);
+	[Inline]
+	public static Rectangle GetCollisionRec(Rectangle rec1, Rectangle rec2)
+	{
+		return GetCollisionRec_Impl(rec1, rec2);
+	}
+	[LinkName("GetCollisionRec")]
+	private static extern Rectangle GetCollisionRec_Impl(in Rectangle rec1, in Rectangle rec2);
 	
 	/// Load image from GPU texture data
-	[CLink]
-	public static extern Image LoadImageFromTexture(in Texture2D texture);
+	[Inline]
+	public static Image LoadImageFromTexture(Texture2D texture)
+	{
+		return LoadImageFromTexture_Impl(texture);
+	}
+	[LinkName("LoadImageFromTexture")]
+	private static extern Image LoadImageFromTexture_Impl(in Texture2D texture);
 	
 	/// Check if an image is valid (data and parameters)
-	[CLink]
-	public static extern bool IsImageValid(in Image image);
+	[Inline]
+	public static bool IsImageValid(Image image)
+	{
+		return IsImageValid_Impl(image);
+	}
+	[LinkName("IsImageValid")]
+	private static extern bool IsImageValid_Impl(in Image image);
 	
 	/// Unload image from CPU memory (RAM)
-	[CLink]
-	public static extern void UnloadImage(in Image image);
+	[Inline]
+	public static void UnloadImage(Image image)
+	{
+		UnloadImage_Impl(image);
+	}
+	[LinkName("UnloadImage")]
+	private static extern void UnloadImage_Impl(in Image image);
 	
 	/// Export image data to file, returns true on success
-	[CLink]
-	public static extern bool ExportImage(in Image image, char8 *fileName);
+	[Inline]
+	public static bool ExportImage(Image image, char8 *fileName)
+	{
+		return ExportImage_Impl(image, fileName);
+	}
+	[LinkName("ExportImage")]
+	private static extern bool ExportImage_Impl(in Image image, char8 *fileName);
 	
 	/// Export image to memory buffer
-	[CLink]
-	public static extern char8 * ExportImageToMemory(in Image image, char8 *fileType, int32 *fileSize);
+	[Inline]
+	public static char8 * ExportImageToMemory(Image image, char8 *fileType, int32 *fileSize)
+	{
+		return ExportImageToMemory_Impl(image, fileType, fileSize);
+	}
+	[LinkName("ExportImageToMemory")]
+	private static extern char8 * ExportImageToMemory_Impl(in Image image, char8 *fileType, int32 *fileSize);
 	
 	/// Export image as code file defining an array of bytes, returns true on success
-	[CLink]
-	public static extern bool ExportImageAsCode(in Image image, char8 *fileName);
+	[Inline]
+	public static bool ExportImageAsCode(Image image, char8 *fileName)
+	{
+		return ExportImageAsCode_Impl(image, fileName);
+	}
+	[LinkName("ExportImageAsCode")]
+	private static extern bool ExportImageAsCode_Impl(in Image image, char8 *fileName);
 	
 	/// Generate image: plain color
-	[CLink]
-	public static extern Image GenImageColor(int32 width, int32 height, in Color color);
+	[Inline]
+	public static Image GenImageColor(int32 width, int32 height, Color color)
+	{
+		return GenImageColor_Impl(width, height, color);
+	}
+	[LinkName("GenImageColor")]
+	private static extern Image GenImageColor_Impl(int32 width, int32 height, in Color color);
 	
 	/// Generate image: linear gradient, direction in degrees [0..360], 0=Vertical gradient
-	[CLink]
-	public static extern Image GenImageGradientLinear(int32 width, int32 height, int32 direction, in Color start, in Color end);
+	[Inline]
+	public static Image GenImageGradientLinear(int32 width, int32 height, int32 direction, Color start, Color end)
+	{
+		return GenImageGradientLinear_Impl(width, height, direction, start, end);
+	}
+	[LinkName("GenImageGradientLinear")]
+	private static extern Image GenImageGradientLinear_Impl(int32 width, int32 height, int32 direction, in Color start, in Color end);
 	
 	/// Generate image: radial gradient
-	[CLink]
-	public static extern Image GenImageGradientRadial(int32 width, int32 height, float density, in Color inner, in Color outer);
+	[Inline]
+	public static Image GenImageGradientRadial(int32 width, int32 height, float density, Color inner, Color outer)
+	{
+		return GenImageGradientRadial_Impl(width, height, density, inner, outer);
+	}
+	[LinkName("GenImageGradientRadial")]
+	private static extern Image GenImageGradientRadial_Impl(int32 width, int32 height, float density, in Color inner, in Color outer);
 	
 	/// Generate image: square gradient
-	[CLink]
-	public static extern Image GenImageGradientSquare(int32 width, int32 height, float density, in Color inner, in Color outer);
+	[Inline]
+	public static Image GenImageGradientSquare(int32 width, int32 height, float density, Color inner, Color outer)
+	{
+		return GenImageGradientSquare_Impl(width, height, density, inner, outer);
+	}
+	[LinkName("GenImageGradientSquare")]
+	private static extern Image GenImageGradientSquare_Impl(int32 width, int32 height, float density, in Color inner, in Color outer);
 	
 	/// Generate image: checked
-	[CLink]
-	public static extern Image GenImageChecked(int32 width, int32 height, int32 checksX, int32 checksY, in Color col1, in Color col2);
+	[Inline]
+	public static Image GenImageChecked(int32 width, int32 height, int32 checksX, int32 checksY, Color col1, Color col2)
+	{
+		return GenImageChecked_Impl(width, height, checksX, checksY, col1, col2);
+	}
+	[LinkName("GenImageChecked")]
+	private static extern Image GenImageChecked_Impl(int32 width, int32 height, int32 checksX, int32 checksY, in Color col1, in Color col2);
 	
 	/// Create an image duplicate (useful for transformations)
-	[CLink]
-	public static extern Image ImageCopy(in Image image);
+	[Inline]
+	public static Image ImageCopy(Image image)
+	{
+		return ImageCopy_Impl(image);
+	}
+	[LinkName("ImageCopy")]
+	private static extern Image ImageCopy_Impl(in Image image);
 	
 	/// Create an image from another image piece
-	[CLink]
-	public static extern Image ImageFromImage(in Image image, in Rectangle rec);
+	[Inline]
+	public static Image ImageFromImage(Image image, Rectangle rec)
+	{
+		return ImageFromImage_Impl(image, rec);
+	}
+	[LinkName("ImageFromImage")]
+	private static extern Image ImageFromImage_Impl(in Image image, in Rectangle rec);
 	
 	/// Create an image from a selected channel of another image (GRAYSCALE)
-	[CLink]
-	public static extern Image ImageFromChannel(in Image image, int32 selectedChannel);
+	[Inline]
+	public static Image ImageFromChannel(Image image, int32 selectedChannel)
+	{
+		return ImageFromChannel_Impl(image, selectedChannel);
+	}
+	[LinkName("ImageFromChannel")]
+	private static extern Image ImageFromChannel_Impl(in Image image, int32 selectedChannel);
 	
 	/// Create an image from text (default font)
-	[CLink]
-	public static extern Image ImageText(char8 *text, int32 fontSize, in Color color);
+	[Inline]
+	public static Image ImageText(char8 *text, int32 fontSize, Color color)
+	{
+		return ImageText_Impl(text, fontSize, color);
+	}
+	[LinkName("ImageText")]
+	private static extern Image ImageText_Impl(char8 *text, int32 fontSize, in Color color);
 	
 	/// Create an image from text (custom sprite font)
-	[CLink]
-	public static extern Image ImageTextEx(in Font font, char8 *text, float fontSize, float spacing, in Color tint);
+	[Inline]
+	public static Image ImageTextEx(Font font, char8 *text, float fontSize, float spacing, Color tint)
+	{
+		return ImageTextEx_Impl(font, text, fontSize, spacing, tint);
+	}
+	[LinkName("ImageTextEx")]
+	private static extern Image ImageTextEx_Impl(in Font font, char8 *text, float fontSize, float spacing, in Color tint);
 	
 	/// Convert image to POT (power-of-two)
-	[CLink]
-	public static extern void ImageToPOT(Image *image, in Color fill);
+	[Inline]
+	public static void ImageToPOT(Image *image, Color fill)
+	{
+		ImageToPOT_Impl(image, fill);
+	}
+	[LinkName("ImageToPOT")]
+	private static extern void ImageToPOT_Impl(Image *image, in Color fill);
 	
 	/// Crop an image to a defined rectangle
-	[CLink]
-	public static extern void ImageCrop(Image *image, in Rectangle crop);
+	[Inline]
+	public static void ImageCrop(Image *image, Rectangle crop)
+	{
+		ImageCrop_Impl(image, crop);
+	}
+	[LinkName("ImageCrop")]
+	private static extern void ImageCrop_Impl(Image *image, in Rectangle crop);
 	
 	/// Clear alpha channel to desired color
-	[CLink]
-	public static extern void ImageAlphaClear(Image *image, in Color color, float threshold);
+	[Inline]
+	public static void ImageAlphaClear(Image *image, Color color, float threshold)
+	{
+		ImageAlphaClear_Impl(image, color, threshold);
+	}
+	[LinkName("ImageAlphaClear")]
+	private static extern void ImageAlphaClear_Impl(Image *image, in Color color, float threshold);
 	
 	/// Apply alpha mask to image
-	[CLink]
-	public static extern void ImageAlphaMask(Image *image, in Image alphaMask);
+	[Inline]
+	public static void ImageAlphaMask(Image *image, Image alphaMask)
+	{
+		ImageAlphaMask_Impl(image, alphaMask);
+	}
+	[LinkName("ImageAlphaMask")]
+	private static extern void ImageAlphaMask_Impl(Image *image, in Image alphaMask);
 	
 	/// Resize canvas and fill with color
-	[CLink]
-	public static extern void ImageResizeCanvas(Image *image, int32 newWidth, int32 newHeight, int32 offsetX, int32 offsetY, in Color fill);
+	[Inline]
+	public static void ImageResizeCanvas(Image *image, int32 newWidth, int32 newHeight, int32 offsetX, int32 offsetY, Color fill)
+	{
+		ImageResizeCanvas_Impl(image, newWidth, newHeight, offsetX, offsetY, fill);
+	}
+	[LinkName("ImageResizeCanvas")]
+	private static extern void ImageResizeCanvas_Impl(Image *image, int32 newWidth, int32 newHeight, int32 offsetX, int32 offsetY, in Color fill);
 	
 	/// Modify image color: tint
-	[CLink]
-	public static extern void ImageColorTint(Image *image, in Color color);
+	[Inline]
+	public static void ImageColorTint(Image *image, Color color)
+	{
+		ImageColorTint_Impl(image, color);
+	}
+	[LinkName("ImageColorTint")]
+	private static extern void ImageColorTint_Impl(Image *image, in Color color);
 	
 	/// Modify image color: replace color
-	[CLink]
-	public static extern void ImageColorReplace(Image *image, in Color color, in Color replace);
+	[Inline]
+	public static void ImageColorReplace(Image *image, Color color, Color replace)
+	{
+		ImageColorReplace_Impl(image, color, replace);
+	}
+	[LinkName("ImageColorReplace")]
+	private static extern void ImageColorReplace_Impl(Image *image, in Color color, in Color replace);
 	
 	/// Load color data from image as a Color array (RGBA - 32bit)
-	[CLink]
-	public static extern Color * LoadImageColors(in Image image);
+	[Inline]
+	public static Color * LoadImageColors(Image image)
+	{
+		return LoadImageColors_Impl(image);
+	}
+	[LinkName("LoadImageColors")]
+	private static extern Color * LoadImageColors_Impl(in Image image);
 	
 	/// Load colors palette from image as a Color array (RGBA - 32bit)
-	[CLink]
-	public static extern Color * LoadImagePalette(in Image image, int32 maxPaletteSize, int32 *colorCount);
+	[Inline]
+	public static Color * LoadImagePalette(Image image, int32 maxPaletteSize, int32 *colorCount)
+	{
+		return LoadImagePalette_Impl(image, maxPaletteSize, colorCount);
+	}
+	[LinkName("LoadImagePalette")]
+	private static extern Color * LoadImagePalette_Impl(in Image image, int32 maxPaletteSize, int32 *colorCount);
 	
 	/// Get image alpha border rectangle
-	[CLink]
-	public static extern Rectangle GetImageAlphaBorder(in Image image, float threshold);
+	[Inline]
+	public static Rectangle GetImageAlphaBorder(Image image, float threshold)
+	{
+		return GetImageAlphaBorder_Impl(image, threshold);
+	}
+	[LinkName("GetImageAlphaBorder")]
+	private static extern Rectangle GetImageAlphaBorder_Impl(in Image image, float threshold);
 	
 	/// Get image pixel color at (x, y) position
-	[CLink]
-	public static extern Color GetImageColor(in Image image, int32 x, int32 y);
+	[Inline]
+	public static Color GetImageColor(Image image, int32 x, int32 y)
+	{
+		return GetImageColor_Impl(image, x, y);
+	}
+	[LinkName("GetImageColor")]
+	private static extern Color GetImageColor_Impl(in Image image, int32 x, int32 y);
 	
 	/// Clear image background with given color
-	[CLink]
-	public static extern void ImageClearBackground(Image *dst, in Color color);
+	[Inline]
+	public static void ImageClearBackground(Image *dst, Color color)
+	{
+		ImageClearBackground_Impl(dst, color);
+	}
+	[LinkName("ImageClearBackground")]
+	private static extern void ImageClearBackground_Impl(Image *dst, in Color color);
 	
 	/// Draw pixel within an image
-	[CLink]
-	public static extern void ImageDrawPixel(Image *dst, int32 posX, int32 posY, in Color color);
+	[Inline]
+	public static void ImageDrawPixel(Image *dst, int32 posX, int32 posY, Color color)
+	{
+		ImageDrawPixel_Impl(dst, posX, posY, color);
+	}
+	[LinkName("ImageDrawPixel")]
+	private static extern void ImageDrawPixel_Impl(Image *dst, int32 posX, int32 posY, in Color color);
 	
 	/// Draw pixel within an image (Vector version)
-	[CLink]
-	public static extern void ImageDrawPixelV(Image *dst, in Vector2 position, in Color color);
+	[Inline]
+	public static void ImageDrawPixelV(Image *dst, Vector2 position, Color color)
+	{
+		ImageDrawPixelV_Impl(dst, position, color);
+	}
+	[LinkName("ImageDrawPixelV")]
+	private static extern void ImageDrawPixelV_Impl(Image *dst, in Vector2 position, in Color color);
 	
 	/// Draw line within an image
-	[CLink]
-	public static extern void ImageDrawLine(Image *dst, int32 startPosX, int32 startPosY, int32 endPosX, int32 endPosY, in Color color);
+	[Inline]
+	public static void ImageDrawLine(Image *dst, int32 startPosX, int32 startPosY, int32 endPosX, int32 endPosY, Color color)
+	{
+		ImageDrawLine_Impl(dst, startPosX, startPosY, endPosX, endPosY, color);
+	}
+	[LinkName("ImageDrawLine")]
+	private static extern void ImageDrawLine_Impl(Image *dst, int32 startPosX, int32 startPosY, int32 endPosX, int32 endPosY, in Color color);
 	
 	/// Draw line within an image (Vector version)
-	[CLink]
-	public static extern void ImageDrawLineV(Image *dst, in Vector2 start, in Vector2 end, in Color color);
+	[Inline]
+	public static void ImageDrawLineV(Image *dst, Vector2 start, Vector2 end, Color color)
+	{
+		ImageDrawLineV_Impl(dst, start, end, color);
+	}
+	[LinkName("ImageDrawLineV")]
+	private static extern void ImageDrawLineV_Impl(Image *dst, in Vector2 start, in Vector2 end, in Color color);
 	
 	/// Draw a line defining thickness within an image
-	[CLink]
-	public static extern void ImageDrawLineEx(Image *dst, in Vector2 start, in Vector2 end, int32 thick, in Color color);
+	[Inline]
+	public static void ImageDrawLineEx(Image *dst, Vector2 start, Vector2 end, int32 thick, Color color)
+	{
+		ImageDrawLineEx_Impl(dst, start, end, thick, color);
+	}
+	[LinkName("ImageDrawLineEx")]
+	private static extern void ImageDrawLineEx_Impl(Image *dst, in Vector2 start, in Vector2 end, int32 thick, in Color color);
 	
 	/// Draw a filled circle within an image
-	[CLink]
-	public static extern void ImageDrawCircle(Image *dst, int32 centerX, int32 centerY, int32 radius, in Color color);
+	[Inline]
+	public static void ImageDrawCircle(Image *dst, int32 centerX, int32 centerY, int32 radius, Color color)
+	{
+		ImageDrawCircle_Impl(dst, centerX, centerY, radius, color);
+	}
+	[LinkName("ImageDrawCircle")]
+	private static extern void ImageDrawCircle_Impl(Image *dst, int32 centerX, int32 centerY, int32 radius, in Color color);
 	
 	/// Draw a filled circle within an image (Vector version)
-	[CLink]
-	public static extern void ImageDrawCircleV(Image *dst, in Vector2 center, int32 radius, in Color color);
+	[Inline]
+	public static void ImageDrawCircleV(Image *dst, Vector2 center, int32 radius, Color color)
+	{
+		ImageDrawCircleV_Impl(dst, center, radius, color);
+	}
+	[LinkName("ImageDrawCircleV")]
+	private static extern void ImageDrawCircleV_Impl(Image *dst, in Vector2 center, int32 radius, in Color color);
 	
 	/// Draw circle outline within an image
-	[CLink]
-	public static extern void ImageDrawCircleLines(Image *dst, int32 centerX, int32 centerY, int32 radius, in Color color);
+	[Inline]
+	public static void ImageDrawCircleLines(Image *dst, int32 centerX, int32 centerY, int32 radius, Color color)
+	{
+		ImageDrawCircleLines_Impl(dst, centerX, centerY, radius, color);
+	}
+	[LinkName("ImageDrawCircleLines")]
+	private static extern void ImageDrawCircleLines_Impl(Image *dst, int32 centerX, int32 centerY, int32 radius, in Color color);
 	
 	/// Draw circle outline within an image (Vector version)
-	[CLink]
-	public static extern void ImageDrawCircleLinesV(Image *dst, in Vector2 center, int32 radius, in Color color);
+	[Inline]
+	public static void ImageDrawCircleLinesV(Image *dst, Vector2 center, int32 radius, Color color)
+	{
+		ImageDrawCircleLinesV_Impl(dst, center, radius, color);
+	}
+	[LinkName("ImageDrawCircleLinesV")]
+	private static extern void ImageDrawCircleLinesV_Impl(Image *dst, in Vector2 center, int32 radius, in Color color);
 	
 	/// Draw rectangle within an image
-	[CLink]
-	public static extern void ImageDrawRectangle(Image *dst, int32 posX, int32 posY, int32 width, int32 height, in Color color);
+	[Inline]
+	public static void ImageDrawRectangle(Image *dst, int32 posX, int32 posY, int32 width, int32 height, Color color)
+	{
+		ImageDrawRectangle_Impl(dst, posX, posY, width, height, color);
+	}
+	[LinkName("ImageDrawRectangle")]
+	private static extern void ImageDrawRectangle_Impl(Image *dst, int32 posX, int32 posY, int32 width, int32 height, in Color color);
 	
 	/// Draw rectangle within an image (Vector version)
-	[CLink]
-	public static extern void ImageDrawRectangleV(Image *dst, in Vector2 position, in Vector2 size, in Color color);
+	[Inline]
+	public static void ImageDrawRectangleV(Image *dst, Vector2 position, Vector2 size, Color color)
+	{
+		ImageDrawRectangleV_Impl(dst, position, size, color);
+	}
+	[LinkName("ImageDrawRectangleV")]
+	private static extern void ImageDrawRectangleV_Impl(Image *dst, in Vector2 position, in Vector2 size, in Color color);
 	
 	/// Draw rectangle within an image
-	[CLink]
-	public static extern void ImageDrawRectangleRec(Image *dst, in Rectangle rec, in Color color);
+	[Inline]
+	public static void ImageDrawRectangleRec(Image *dst, Rectangle rec, Color color)
+	{
+		ImageDrawRectangleRec_Impl(dst, rec, color);
+	}
+	[LinkName("ImageDrawRectangleRec")]
+	private static extern void ImageDrawRectangleRec_Impl(Image *dst, in Rectangle rec, in Color color);
 	
 	/// Draw rectangle lines within an image
-	[CLink]
-	public static extern void ImageDrawRectangleLines(Image *dst, in Rectangle rec, int32 thick, in Color color);
+	[Inline]
+	public static void ImageDrawRectangleLines(Image *dst, Rectangle rec, int32 thick, Color color)
+	{
+		ImageDrawRectangleLines_Impl(dst, rec, thick, color);
+	}
+	[LinkName("ImageDrawRectangleLines")]
+	private static extern void ImageDrawRectangleLines_Impl(Image *dst, in Rectangle rec, int32 thick, in Color color);
 	
 	/// Draw triangle within an image
-	[CLink]
-	public static extern void ImageDrawTriangle(Image *dst, in Vector2 v1, in Vector2 v2, in Vector2 v3, in Color color);
+	[Inline]
+	public static void ImageDrawTriangle(Image *dst, Vector2 v1, Vector2 v2, Vector2 v3, Color color)
+	{
+		ImageDrawTriangle_Impl(dst, v1, v2, v3, color);
+	}
+	[LinkName("ImageDrawTriangle")]
+	private static extern void ImageDrawTriangle_Impl(Image *dst, in Vector2 v1, in Vector2 v2, in Vector2 v3, in Color color);
 	
 	/// Draw triangle with interpolated colors within an image
-	[CLink]
-	public static extern void ImageDrawTriangleEx(Image *dst, in Vector2 v1, in Vector2 v2, in Vector2 v3, in Color c1, in Color c2, in Color c3);
+	[Inline]
+	public static void ImageDrawTriangleEx(Image *dst, Vector2 v1, Vector2 v2, Vector2 v3, Color c1, Color c2, Color c3)
+	{
+		ImageDrawTriangleEx_Impl(dst, v1, v2, v3, c1, c2, c3);
+	}
+	[LinkName("ImageDrawTriangleEx")]
+	private static extern void ImageDrawTriangleEx_Impl(Image *dst, in Vector2 v1, in Vector2 v2, in Vector2 v3, in Color c1, in Color c2, in Color c3);
 	
 	/// Draw triangle outline within an image
-	[CLink]
-	public static extern void ImageDrawTriangleLines(Image *dst, in Vector2 v1, in Vector2 v2, in Vector2 v3, in Color color);
+	[Inline]
+	public static void ImageDrawTriangleLines(Image *dst, Vector2 v1, Vector2 v2, Vector2 v3, Color color)
+	{
+		ImageDrawTriangleLines_Impl(dst, v1, v2, v3, color);
+	}
+	[LinkName("ImageDrawTriangleLines")]
+	private static extern void ImageDrawTriangleLines_Impl(Image *dst, in Vector2 v1, in Vector2 v2, in Vector2 v3, in Color color);
 	
 	/// Draw a triangle fan defined by points within an image (first vertex is the center)
-	[CLink]
-	public static extern void ImageDrawTriangleFan(Image *dst, Vector2 *points, int32 pointCount, in Color color);
+	[Inline]
+	public static void ImageDrawTriangleFan(Image *dst, Vector2 *points, int32 pointCount, Color color)
+	{
+		ImageDrawTriangleFan_Impl(dst, points, pointCount, color);
+	}
+	[LinkName("ImageDrawTriangleFan")]
+	private static extern void ImageDrawTriangleFan_Impl(Image *dst, Vector2 *points, int32 pointCount, in Color color);
 	
 	/// Draw a triangle strip defined by points within an image
-	[CLink]
-	public static extern void ImageDrawTriangleStrip(Image *dst, Vector2 *points, int32 pointCount, in Color color);
+	[Inline]
+	public static void ImageDrawTriangleStrip(Image *dst, Vector2 *points, int32 pointCount, Color color)
+	{
+		ImageDrawTriangleStrip_Impl(dst, points, pointCount, color);
+	}
+	[LinkName("ImageDrawTriangleStrip")]
+	private static extern void ImageDrawTriangleStrip_Impl(Image *dst, Vector2 *points, int32 pointCount, in Color color);
 	
 	/// Draw a source image within a destination image (tint applied to source)
-	[CLink]
-	public static extern void ImageDraw(Image *dst, in Image src, in Rectangle srcRec, in Rectangle dstRec, in Color tint);
+	[Inline]
+	public static void ImageDraw(Image *dst, Image src, Rectangle srcRec, Rectangle dstRec, Color tint)
+	{
+		ImageDraw_Impl(dst, src, srcRec, dstRec, tint);
+	}
+	[LinkName("ImageDraw")]
+	private static extern void ImageDraw_Impl(Image *dst, in Image src, in Rectangle srcRec, in Rectangle dstRec, in Color tint);
 	
 	/// Draw text (using default font) within an image (destination)
-	[CLink]
-	public static extern void ImageDrawText(Image *dst, char8 *text, int32 posX, int32 posY, int32 fontSize, in Color color);
+	[Inline]
+	public static void ImageDrawText(Image *dst, char8 *text, int32 posX, int32 posY, int32 fontSize, Color color)
+	{
+		ImageDrawText_Impl(dst, text, posX, posY, fontSize, color);
+	}
+	[LinkName("ImageDrawText")]
+	private static extern void ImageDrawText_Impl(Image *dst, char8 *text, int32 posX, int32 posY, int32 fontSize, in Color color);
 	
 	/// Draw text (custom sprite font) within an image (destination)
-	[CLink]
-	public static extern void ImageDrawTextEx(Image *dst, in Font font, char8 *text, in Vector2 position, float fontSize, float spacing, in Color tint);
+	[Inline]
+	public static void ImageDrawTextEx(Image *dst, Font font, char8 *text, Vector2 position, float fontSize, float spacing, Color tint)
+	{
+		ImageDrawTextEx_Impl(dst, font, text, position, fontSize, spacing, tint);
+	}
+	[LinkName("ImageDrawTextEx")]
+	private static extern void ImageDrawTextEx_Impl(Image *dst, in Font font, char8 *text, in Vector2 position, float fontSize, float spacing, in Color tint);
 	
 	/// Load texture from image data
-	[CLink]
-	public static extern Texture2D LoadTextureFromImage(in Image image);
+	[Inline]
+	public static Texture2D LoadTextureFromImage(Image image)
+	{
+		return LoadTextureFromImage_Impl(image);
+	}
+	[LinkName("LoadTextureFromImage")]
+	private static extern Texture2D LoadTextureFromImage_Impl(in Image image);
 	
 	/// Load cubemap from image, multiple image cubemap layouts supported
-	[CLink]
-	public static extern TextureCubemap LoadTextureCubemap(in Image image, int32 layout);
+	[Inline]
+	public static TextureCubemap LoadTextureCubemap(Image image, int32 layout)
+	{
+		return LoadTextureCubemap_Impl(image, layout);
+	}
+	[LinkName("LoadTextureCubemap")]
+	private static extern TextureCubemap LoadTextureCubemap_Impl(in Image image, int32 layout);
 	
 	/// Check if a texture is valid (loaded in GPU)
-	[CLink]
-	public static extern bool IsTextureValid(in Texture2D texture);
+	[Inline]
+	public static bool IsTextureValid(Texture2D texture)
+	{
+		return IsTextureValid_Impl(texture);
+	}
+	[LinkName("IsTextureValid")]
+	private static extern bool IsTextureValid_Impl(in Texture2D texture);
 	
 	/// Unload texture from GPU memory (VRAM)
-	[CLink]
-	public static extern void UnloadTexture(in Texture2D texture);
+	[Inline]
+	public static void UnloadTexture(Texture2D texture)
+	{
+		UnloadTexture_Impl(texture);
+	}
+	[LinkName("UnloadTexture")]
+	private static extern void UnloadTexture_Impl(in Texture2D texture);
 	
 	/// Check if a render texture is valid (loaded in GPU)
-	[CLink]
-	public static extern bool IsRenderTextureValid(in RenderTexture2D target);
+	[Inline]
+	public static bool IsRenderTextureValid(RenderTexture2D target)
+	{
+		return IsRenderTextureValid_Impl(target);
+	}
+	[LinkName("IsRenderTextureValid")]
+	private static extern bool IsRenderTextureValid_Impl(in RenderTexture2D target);
 	
 	/// Unload render texture from GPU memory (VRAM)
-	[CLink]
-	public static extern void UnloadRenderTexture(in RenderTexture2D target);
+	[Inline]
+	public static void UnloadRenderTexture(RenderTexture2D target)
+	{
+		UnloadRenderTexture_Impl(target);
+	}
+	[LinkName("UnloadRenderTexture")]
+	private static extern void UnloadRenderTexture_Impl(in RenderTexture2D target);
 	
 	/// Update GPU texture with new data
-	[CLink]
-	public static extern void UpdateTexture(in Texture2D texture, void *pixels);
+	[Inline]
+	public static void UpdateTexture(Texture2D texture, void *pixels)
+	{
+		UpdateTexture_Impl(texture, pixels);
+	}
+	[LinkName("UpdateTexture")]
+	private static extern void UpdateTexture_Impl(in Texture2D texture, void *pixels);
 	
 	/// Update GPU texture rectangle with new data
-	[CLink]
-	public static extern void UpdateTextureRec(in Texture2D texture, in Rectangle rec, void *pixels);
+	[Inline]
+	public static void UpdateTextureRec(Texture2D texture, Rectangle rec, void *pixels)
+	{
+		UpdateTextureRec_Impl(texture, rec, pixels);
+	}
+	[LinkName("UpdateTextureRec")]
+	private static extern void UpdateTextureRec_Impl(in Texture2D texture, in Rectangle rec, void *pixels);
 	
 	/// Set texture scaling filter mode
-	[CLink]
-	public static extern void SetTextureFilter(in Texture2D texture, int32 filter);
+	[Inline]
+	public static void SetTextureFilter(Texture2D texture, int32 filter)
+	{
+		SetTextureFilter_Impl(texture, filter);
+	}
+	[LinkName("SetTextureFilter")]
+	private static extern void SetTextureFilter_Impl(in Texture2D texture, int32 filter);
 	
 	/// Set texture wrapping mode
-	[CLink]
-	public static extern void SetTextureWrap(in Texture2D texture, int32 wrap);
+	[Inline]
+	public static void SetTextureWrap(Texture2D texture, int32 wrap)
+	{
+		SetTextureWrap_Impl(texture, wrap);
+	}
+	[LinkName("SetTextureWrap")]
+	private static extern void SetTextureWrap_Impl(in Texture2D texture, int32 wrap);
 	
 	/// Draw a Texture2D
-	[CLink]
-	public static extern void DrawTexture(in Texture2D texture, int32 posX, int32 posY, in Color tint);
+	[Inline]
+	public static void DrawTexture(Texture2D texture, int32 posX, int32 posY, Color tint)
+	{
+		DrawTexture_Impl(texture, posX, posY, tint);
+	}
+	[LinkName("DrawTexture")]
+	private static extern void DrawTexture_Impl(in Texture2D texture, int32 posX, int32 posY, in Color tint);
 	
 	/// Draw a Texture2D with position defined as Vector2
-	[CLink]
-	public static extern void DrawTextureV(in Texture2D texture, in Vector2 position, in Color tint);
+	[Inline]
+	public static void DrawTextureV(Texture2D texture, Vector2 position, Color tint)
+	{
+		DrawTextureV_Impl(texture, position, tint);
+	}
+	[LinkName("DrawTextureV")]
+	private static extern void DrawTextureV_Impl(in Texture2D texture, in Vector2 position, in Color tint);
 	
 	/// Draw a Texture2D with extended parameters
-	[CLink]
-	public static extern void DrawTextureEx(in Texture2D texture, in Vector2 position, float rotation, float scale, in Color tint);
+	[Inline]
+	public static void DrawTextureEx(Texture2D texture, Vector2 position, float rotation, float scale, Color tint)
+	{
+		DrawTextureEx_Impl(texture, position, rotation, scale, tint);
+	}
+	[LinkName("DrawTextureEx")]
+	private static extern void DrawTextureEx_Impl(in Texture2D texture, in Vector2 position, float rotation, float scale, in Color tint);
 	
 	/// Draw a part of a texture defined by a rectangle
-	[CLink]
-	public static extern void DrawTextureRec(in Texture2D texture, in Rectangle source, in Vector2 position, in Color tint);
+	[Inline]
+	public static void DrawTextureRec(Texture2D texture, Rectangle source, Vector2 position, Color tint)
+	{
+		DrawTextureRec_Impl(texture, source, position, tint);
+	}
+	[LinkName("DrawTextureRec")]
+	private static extern void DrawTextureRec_Impl(in Texture2D texture, in Rectangle source, in Vector2 position, in Color tint);
 	
 	/// Draw a part of a texture defined by a rectangle with 'pro' parameters
-	[CLink]
-	public static extern void DrawTexturePro(in Texture2D texture, in Rectangle source, in Rectangle dest, in Vector2 origin, float rotation, in Color tint);
+	[Inline]
+	public static void DrawTexturePro(Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, Color tint)
+	{
+		DrawTexturePro_Impl(texture, source, dest, origin, rotation, tint);
+	}
+	[LinkName("DrawTexturePro")]
+	private static extern void DrawTexturePro_Impl(in Texture2D texture, in Rectangle source, in Rectangle dest, in Vector2 origin, float rotation, in Color tint);
 	
 	/// Draws a texture (or part of it) that stretches or shrinks nicely
-	[CLink]
-	public static extern void DrawTextureNPatch(in Texture2D texture, in NPatchInfo nPatchInfo, in Rectangle dest, in Vector2 origin, float rotation, in Color tint);
+	[Inline]
+	public static void DrawTextureNPatch(Texture2D texture, NPatchInfo nPatchInfo, Rectangle dest, Vector2 origin, float rotation, Color tint)
+	{
+		DrawTextureNPatch_Impl(texture, nPatchInfo, dest, origin, rotation, tint);
+	}
+	[LinkName("DrawTextureNPatch")]
+	private static extern void DrawTextureNPatch_Impl(in Texture2D texture, in NPatchInfo nPatchInfo, in Rectangle dest, in Vector2 origin, float rotation, in Color tint);
 	
 	/// Check if two colors are equal
-	[CLink]
-	public static extern bool ColorIsEqual(in Color col1, in Color col2);
+	[Inline]
+	public static bool ColorIsEqual(Color col1, Color col2)
+	{
+		return ColorIsEqual_Impl(col1, col2);
+	}
+	[LinkName("ColorIsEqual")]
+	private static extern bool ColorIsEqual_Impl(in Color col1, in Color col2);
 	
 	/// Get color with alpha applied, alpha goes from 0.0f to 1.0f
-	[CLink]
-	public static extern Color Fade(in Color color, float alpha);
+	[Inline]
+	public static Color Fade(Color color, float alpha)
+	{
+		return Fade_Impl(color, alpha);
+	}
+	[LinkName("Fade")]
+	private static extern Color Fade_Impl(in Color color, float alpha);
 	
 	/// Get hexadecimal value for a Color (0xRRGGBBAA)
-	[CLink]
-	public static extern int32 ColorToInt(in Color color);
+	[Inline]
+	public static int32 ColorToInt(Color color)
+	{
+		return ColorToInt_Impl(color);
+	}
+	[LinkName("ColorToInt")]
+	private static extern int32 ColorToInt_Impl(in Color color);
 	
 	/// Get Color normalized as float [0..1]
-	[CLink]
-	public static extern Vector4 ColorNormalize(in Color color);
+	[Inline]
+	public static Vector4 ColorNormalize(Color color)
+	{
+		return ColorNormalize_Impl(color);
+	}
+	[LinkName("ColorNormalize")]
+	private static extern Vector4 ColorNormalize_Impl(in Color color);
 	
 	/// Get Color from normalized values [0..1]
-	[CLink]
-	public static extern Color ColorFromNormalized(in Vector4 normalized);
+	[Inline]
+	public static Color ColorFromNormalized(Vector4 normalized)
+	{
+		return ColorFromNormalized_Impl(normalized);
+	}
+	[LinkName("ColorFromNormalized")]
+	private static extern Color ColorFromNormalized_Impl(in Vector4 normalized);
 	
 	/// Get HSV values for a Color, hue [0..360], saturation/value [0..1]
-	[CLink]
-	public static extern Vector3 ColorToHSV(in Color color);
+	[Inline]
+	public static Vector3 ColorToHSV(Color color)
+	{
+		return ColorToHSV_Impl(color);
+	}
+	[LinkName("ColorToHSV")]
+	private static extern Vector3 ColorToHSV_Impl(in Color color);
 	
 	/// Get color multiplied with another color
-	[CLink]
-	public static extern Color ColorTint(in Color color, in Color tint);
+	[Inline]
+	public static Color ColorTint(Color color, Color tint)
+	{
+		return ColorTint_Impl(color, tint);
+	}
+	[LinkName("ColorTint")]
+	private static extern Color ColorTint_Impl(in Color color, in Color tint);
 	
 	/// Get color with brightness correction, brightness factor goes from -1.0f to 1.0f
-	[CLink]
-	public static extern Color ColorBrightness(in Color color, float factor);
+	[Inline]
+	public static Color ColorBrightness(Color color, float factor)
+	{
+		return ColorBrightness_Impl(color, factor);
+	}
+	[LinkName("ColorBrightness")]
+	private static extern Color ColorBrightness_Impl(in Color color, float factor);
 	
 	/// Get color with contrast correction, contrast values between -1.0f and 1.0f
-	[CLink]
-	public static extern Color ColorContrast(in Color color, float contrast);
+	[Inline]
+	public static Color ColorContrast(Color color, float contrast)
+	{
+		return ColorContrast_Impl(color, contrast);
+	}
+	[LinkName("ColorContrast")]
+	private static extern Color ColorContrast_Impl(in Color color, float contrast);
 	
 	/// Get color with alpha applied, alpha goes from 0.0f to 1.0f
-	[CLink]
-	public static extern Color ColorAlpha(in Color color, float alpha);
+	[Inline]
+	public static Color ColorAlpha(Color color, float alpha)
+	{
+		return ColorAlpha_Impl(color, alpha);
+	}
+	[LinkName("ColorAlpha")]
+	private static extern Color ColorAlpha_Impl(in Color color, float alpha);
 	
 	/// Get src alpha-blended into dst color with tint
-	[CLink]
-	public static extern Color ColorAlphaBlend(in Color dst, in Color src, in Color tint);
+	[Inline]
+	public static Color ColorAlphaBlend(Color dst, Color src, Color tint)
+	{
+		return ColorAlphaBlend_Impl(dst, src, tint);
+	}
+	[LinkName("ColorAlphaBlend")]
+	private static extern Color ColorAlphaBlend_Impl(in Color dst, in Color src, in Color tint);
 	
 	/// Get color lerp interpolation between two colors, factor [0.0f..1.0f]
-	[CLink]
-	public static extern Color ColorLerp(in Color color1, in Color color2, float factor);
+	[Inline]
+	public static Color ColorLerp(Color color1, Color color2, float factor)
+	{
+		return ColorLerp_Impl(color1, color2, factor);
+	}
+	[LinkName("ColorLerp")]
+	private static extern Color ColorLerp_Impl(in Color color1, in Color color2, float factor);
 	
 	/// Set color formatted into destination pixel pointer
-	[CLink]
-	public static extern void SetPixelColor(void *dstPtr, in Color color, int32 format);
+	[Inline]
+	public static void SetPixelColor(void *dstPtr, Color color, int32 format)
+	{
+		SetPixelColor_Impl(dstPtr, color, format);
+	}
+	[LinkName("SetPixelColor")]
+	private static extern void SetPixelColor_Impl(void *dstPtr, in Color color, int32 format);
 	
 	/// Load font from Image (XNA style)
-	[CLink]
-	public static extern Font LoadFontFromImage(in Image image, in Color key, int32 firstChar);
+	[Inline]
+	public static Font LoadFontFromImage(Image image, Color key, int32 firstChar)
+	{
+		return LoadFontFromImage_Impl(image, key, firstChar);
+	}
+	[LinkName("LoadFontFromImage")]
+	private static extern Font LoadFontFromImage_Impl(in Image image, in Color key, int32 firstChar);
 	
 	/// Check if a font is valid (font data loaded, WARNING: GPU texture not checked)
-	[CLink]
-	public static extern bool IsFontValid(in Font font);
+	[Inline]
+	public static bool IsFontValid(Font font)
+	{
+		return IsFontValid_Impl(font);
+	}
+	[LinkName("IsFontValid")]
+	private static extern bool IsFontValid_Impl(in Font font);
 	
 	/// Unload font from GPU memory (VRAM)
-	[CLink]
-	public static extern void UnloadFont(in Font font);
+	[Inline]
+	public static void UnloadFont(Font font)
+	{
+		UnloadFont_Impl(font);
+	}
+	[LinkName("UnloadFont")]
+	private static extern void UnloadFont_Impl(in Font font);
 	
 	/// Export font as code file, returns true on success
-	[CLink]
-	public static extern bool ExportFontAsCode(in Font font, char8 *fileName);
+	[Inline]
+	public static bool ExportFontAsCode(Font font, char8 *fileName)
+	{
+		return ExportFontAsCode_Impl(font, fileName);
+	}
+	[LinkName("ExportFontAsCode")]
+	private static extern bool ExportFontAsCode_Impl(in Font font, char8 *fileName);
 	
 	/// Draw text (using default font)
-	[CLink]
-	public static extern void DrawText(char8 *text, int32 posX, int32 posY, int32 fontSize, in Color color);
+	[Inline]
+	public static void DrawText(char8 *text, int32 posX, int32 posY, int32 fontSize, Color color)
+	{
+		DrawText_Impl(text, posX, posY, fontSize, color);
+	}
+	[LinkName("DrawText")]
+	private static extern void DrawText_Impl(char8 *text, int32 posX, int32 posY, int32 fontSize, in Color color);
 	
 	/// Draw text using font and additional parameters
-	[CLink]
-	public static extern void DrawTextEx(in Font font, char8 *text, in Vector2 position, float fontSize, float spacing, in Color tint);
+	[Inline]
+	public static void DrawTextEx(Font font, char8 *text, Vector2 position, float fontSize, float spacing, Color tint)
+	{
+		DrawTextEx_Impl(font, text, position, fontSize, spacing, tint);
+	}
+	[LinkName("DrawTextEx")]
+	private static extern void DrawTextEx_Impl(in Font font, char8 *text, in Vector2 position, float fontSize, float spacing, in Color tint);
 	
 	/// Draw text using Font and pro parameters (rotation)
-	[CLink]
-	public static extern void DrawTextPro(in Font font, char8 *text, in Vector2 position, in Vector2 origin, float rotation, float fontSize, float spacing, in Color tint);
+	[Inline]
+	public static void DrawTextPro(Font font, char8 *text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint)
+	{
+		DrawTextPro_Impl(font, text, position, origin, rotation, fontSize, spacing, tint);
+	}
+	[LinkName("DrawTextPro")]
+	private static extern void DrawTextPro_Impl(in Font font, char8 *text, in Vector2 position, in Vector2 origin, float rotation, float fontSize, float spacing, in Color tint);
 	
 	/// Draw one character (codepoint)
-	[CLink]
-	public static extern void DrawTextCodepoint(in Font font, int32 codepoint, in Vector2 position, float fontSize, in Color tint);
+	[Inline]
+	public static void DrawTextCodepoint(Font font, int32 codepoint, Vector2 position, float fontSize, Color tint)
+	{
+		DrawTextCodepoint_Impl(font, codepoint, position, fontSize, tint);
+	}
+	[LinkName("DrawTextCodepoint")]
+	private static extern void DrawTextCodepoint_Impl(in Font font, int32 codepoint, in Vector2 position, float fontSize, in Color tint);
 	
 	/// Draw multiple character (codepoint)
-	[CLink]
-	public static extern void DrawTextCodepoints(in Font font, int32 *codepoints, int32 codepointCount, in Vector2 position, float fontSize, float spacing, in Color tint);
+	[Inline]
+	public static void DrawTextCodepoints(Font font, int32 *codepoints, int32 codepointCount, Vector2 position, float fontSize, float spacing, Color tint)
+	{
+		DrawTextCodepoints_Impl(font, codepoints, codepointCount, position, fontSize, spacing, tint);
+	}
+	[LinkName("DrawTextCodepoints")]
+	private static extern void DrawTextCodepoints_Impl(in Font font, int32 *codepoints, int32 codepointCount, in Vector2 position, float fontSize, float spacing, in Color tint);
 	
 	/// Measure string size for Font
-	[CLink]
-	public static extern Vector2 MeasureTextEx(in Font font, char8 *text, float fontSize, float spacing);
+	[Inline]
+	public static Vector2 MeasureTextEx(Font font, char8 *text, float fontSize, float spacing)
+	{
+		return MeasureTextEx_Impl(font, text, fontSize, spacing);
+	}
+	[LinkName("MeasureTextEx")]
+	private static extern Vector2 MeasureTextEx_Impl(in Font font, char8 *text, float fontSize, float spacing);
 	
 	/// Get glyph index position in font for a codepoint (unicode character), fallback to '?' if not found
-	[CLink]
-	public static extern int32 GetGlyphIndex(in Font font, int32 codepoint);
+	[Inline]
+	public static int32 GetGlyphIndex(Font font, int32 codepoint)
+	{
+		return GetGlyphIndex_Impl(font, codepoint);
+	}
+	[LinkName("GetGlyphIndex")]
+	private static extern int32 GetGlyphIndex_Impl(in Font font, int32 codepoint);
 	
 	/// Get glyph font info data for a codepoint (unicode character), fallback to '?' if not found
-	[CLink]
-	public static extern GlyphInfo GetGlyphInfo(in Font font, int32 codepoint);
+	[Inline]
+	public static GlyphInfo GetGlyphInfo(Font font, int32 codepoint)
+	{
+		return GetGlyphInfo_Impl(font, codepoint);
+	}
+	[LinkName("GetGlyphInfo")]
+	private static extern GlyphInfo GetGlyphInfo_Impl(in Font font, int32 codepoint);
 	
 	/// Get glyph rectangle in font atlas for a codepoint (unicode character), fallback to '?' if not found
-	[CLink]
-	public static extern Rectangle GetGlyphAtlasRec(in Font font, int32 codepoint);
+	[Inline]
+	public static Rectangle GetGlyphAtlasRec(Font font, int32 codepoint)
+	{
+		return GetGlyphAtlasRec_Impl(font, codepoint);
+	}
+	[LinkName("GetGlyphAtlasRec")]
+	private static extern Rectangle GetGlyphAtlasRec_Impl(in Font font, int32 codepoint);
 	
 	/// Draw a line in 3D world space
-	[CLink]
-	public static extern void DrawLine3D(in Vector3 startPos, in Vector3 endPos, in Color color);
+	[Inline]
+	public static void DrawLine3D(Vector3 startPos, Vector3 endPos, Color color)
+	{
+		DrawLine3D_Impl(startPos, endPos, color);
+	}
+	[LinkName("DrawLine3D")]
+	private static extern void DrawLine3D_Impl(in Vector3 startPos, in Vector3 endPos, in Color color);
 	
 	/// Draw a point in 3D space, actually a small line
-	[CLink]
-	public static extern void DrawPoint3D(in Vector3 position, in Color color);
+	[Inline]
+	public static void DrawPoint3D(Vector3 position, Color color)
+	{
+		DrawPoint3D_Impl(position, color);
+	}
+	[LinkName("DrawPoint3D")]
+	private static extern void DrawPoint3D_Impl(in Vector3 position, in Color color);
 	
 	/// Draw a circle in 3D world space
-	[CLink]
-	public static extern void DrawCircle3D(in Vector3 center, float radius, in Vector3 rotationAxis, float rotationAngle, in Color color);
+	[Inline]
+	public static void DrawCircle3D(Vector3 center, float radius, Vector3 rotationAxis, float rotationAngle, Color color)
+	{
+		DrawCircle3D_Impl(center, radius, rotationAxis, rotationAngle, color);
+	}
+	[LinkName("DrawCircle3D")]
+	private static extern void DrawCircle3D_Impl(in Vector3 center, float radius, in Vector3 rotationAxis, float rotationAngle, in Color color);
 	
 	/// Draw a color-filled triangle (vertex in counter-clockwise order!)
-	[CLink]
-	public static extern void DrawTriangle3D(in Vector3 v1, in Vector3 v2, in Vector3 v3, in Color color);
+	[Inline]
+	public static void DrawTriangle3D(Vector3 v1, Vector3 v2, Vector3 v3, Color color)
+	{
+		DrawTriangle3D_Impl(v1, v2, v3, color);
+	}
+	[LinkName("DrawTriangle3D")]
+	private static extern void DrawTriangle3D_Impl(in Vector3 v1, in Vector3 v2, in Vector3 v3, in Color color);
 	
 	/// Draw a triangle strip defined by points
-	[CLink]
-	public static extern void DrawTriangleStrip3D(Vector3 *points, int32 pointCount, in Color color);
+	[Inline]
+	public static void DrawTriangleStrip3D(Vector3 *points, int32 pointCount, Color color)
+	{
+		DrawTriangleStrip3D_Impl(points, pointCount, color);
+	}
+	[LinkName("DrawTriangleStrip3D")]
+	private static extern void DrawTriangleStrip3D_Impl(Vector3 *points, int32 pointCount, in Color color);
 	
 	/// Draw cube
-	[CLink]
-	public static extern void DrawCube(in Vector3 position, float width, float height, float length, in Color color);
+	[Inline]
+	public static void DrawCube(Vector3 position, float width, float height, float length, Color color)
+	{
+		DrawCube_Impl(position, width, height, length, color);
+	}
+	[LinkName("DrawCube")]
+	private static extern void DrawCube_Impl(in Vector3 position, float width, float height, float length, in Color color);
 	
 	/// Draw cube (Vector version)
-	[CLink]
-	public static extern void DrawCubeV(in Vector3 position, in Vector3 size, in Color color);
+	[Inline]
+	public static void DrawCubeV(Vector3 position, Vector3 size, Color color)
+	{
+		DrawCubeV_Impl(position, size, color);
+	}
+	[LinkName("DrawCubeV")]
+	private static extern void DrawCubeV_Impl(in Vector3 position, in Vector3 size, in Color color);
 	
 	/// Draw cube wires
-	[CLink]
-	public static extern void DrawCubeWires(in Vector3 position, float width, float height, float length, in Color color);
+	[Inline]
+	public static void DrawCubeWires(Vector3 position, float width, float height, float length, Color color)
+	{
+		DrawCubeWires_Impl(position, width, height, length, color);
+	}
+	[LinkName("DrawCubeWires")]
+	private static extern void DrawCubeWires_Impl(in Vector3 position, float width, float height, float length, in Color color);
 	
 	/// Draw cube wires (Vector version)
-	[CLink]
-	public static extern void DrawCubeWiresV(in Vector3 position, in Vector3 size, in Color color);
+	[Inline]
+	public static void DrawCubeWiresV(Vector3 position, Vector3 size, Color color)
+	{
+		DrawCubeWiresV_Impl(position, size, color);
+	}
+	[LinkName("DrawCubeWiresV")]
+	private static extern void DrawCubeWiresV_Impl(in Vector3 position, in Vector3 size, in Color color);
 	
 	/// Draw sphere
-	[CLink]
-	public static extern void DrawSphere(in Vector3 centerPos, float radius, in Color color);
+	[Inline]
+	public static void DrawSphere(Vector3 centerPos, float radius, Color color)
+	{
+		DrawSphere_Impl(centerPos, radius, color);
+	}
+	[LinkName("DrawSphere")]
+	private static extern void DrawSphere_Impl(in Vector3 centerPos, float radius, in Color color);
 	
 	/// Draw sphere with extended parameters
-	[CLink]
-	public static extern void DrawSphereEx(in Vector3 centerPos, float radius, int32 rings, int32 slices, in Color color);
+	[Inline]
+	public static void DrawSphereEx(Vector3 centerPos, float radius, int32 rings, int32 slices, Color color)
+	{
+		DrawSphereEx_Impl(centerPos, radius, rings, slices, color);
+	}
+	[LinkName("DrawSphereEx")]
+	private static extern void DrawSphereEx_Impl(in Vector3 centerPos, float radius, int32 rings, int32 slices, in Color color);
 	
 	/// Draw sphere wires
-	[CLink]
-	public static extern void DrawSphereWires(in Vector3 centerPos, float radius, int32 rings, int32 slices, in Color color);
+	[Inline]
+	public static void DrawSphereWires(Vector3 centerPos, float radius, int32 rings, int32 slices, Color color)
+	{
+		DrawSphereWires_Impl(centerPos, radius, rings, slices, color);
+	}
+	[LinkName("DrawSphereWires")]
+	private static extern void DrawSphereWires_Impl(in Vector3 centerPos, float radius, int32 rings, int32 slices, in Color color);
 	
 	/// Draw a cylinder/cone
-	[CLink]
-	public static extern void DrawCylinder(in Vector3 position, float radiusTop, float radiusBottom, float height, int32 slices, in Color color);
+	[Inline]
+	public static void DrawCylinder(Vector3 position, float radiusTop, float radiusBottom, float height, int32 slices, Color color)
+	{
+		DrawCylinder_Impl(position, radiusTop, radiusBottom, height, slices, color);
+	}
+	[LinkName("DrawCylinder")]
+	private static extern void DrawCylinder_Impl(in Vector3 position, float radiusTop, float radiusBottom, float height, int32 slices, in Color color);
 	
 	/// Draw a cylinder with base at startPos and top at endPos
-	[CLink]
-	public static extern void DrawCylinderEx(in Vector3 startPos, in Vector3 endPos, float startRadius, float endRadius, int32 sides, in Color color);
+	[Inline]
+	public static void DrawCylinderEx(Vector3 startPos, Vector3 endPos, float startRadius, float endRadius, int32 sides, Color color)
+	{
+		DrawCylinderEx_Impl(startPos, endPos, startRadius, endRadius, sides, color);
+	}
+	[LinkName("DrawCylinderEx")]
+	private static extern void DrawCylinderEx_Impl(in Vector3 startPos, in Vector3 endPos, float startRadius, float endRadius, int32 sides, in Color color);
 	
 	/// Draw a cylinder/cone wires
-	[CLink]
-	public static extern void DrawCylinderWires(in Vector3 position, float radiusTop, float radiusBottom, float height, int32 slices, in Color color);
+	[Inline]
+	public static void DrawCylinderWires(Vector3 position, float radiusTop, float radiusBottom, float height, int32 slices, Color color)
+	{
+		DrawCylinderWires_Impl(position, radiusTop, radiusBottom, height, slices, color);
+	}
+	[LinkName("DrawCylinderWires")]
+	private static extern void DrawCylinderWires_Impl(in Vector3 position, float radiusTop, float radiusBottom, float height, int32 slices, in Color color);
 	
 	/// Draw a cylinder wires with base at startPos and top at endPos
-	[CLink]
-	public static extern void DrawCylinderWiresEx(in Vector3 startPos, in Vector3 endPos, float startRadius, float endRadius, int32 sides, in Color color);
+	[Inline]
+	public static void DrawCylinderWiresEx(Vector3 startPos, Vector3 endPos, float startRadius, float endRadius, int32 sides, Color color)
+	{
+		DrawCylinderWiresEx_Impl(startPos, endPos, startRadius, endRadius, sides, color);
+	}
+	[LinkName("DrawCylinderWiresEx")]
+	private static extern void DrawCylinderWiresEx_Impl(in Vector3 startPos, in Vector3 endPos, float startRadius, float endRadius, int32 sides, in Color color);
 	
 	/// Draw a capsule with the center of its sphere caps at startPos and endPos
-	[CLink]
-	public static extern void DrawCapsule(in Vector3 startPos, in Vector3 endPos, float radius, int32 slices, int32 rings, in Color color);
+	[Inline]
+	public static void DrawCapsule(Vector3 startPos, Vector3 endPos, float radius, int32 slices, int32 rings, Color color)
+	{
+		DrawCapsule_Impl(startPos, endPos, radius, slices, rings, color);
+	}
+	[LinkName("DrawCapsule")]
+	private static extern void DrawCapsule_Impl(in Vector3 startPos, in Vector3 endPos, float radius, int32 slices, int32 rings, in Color color);
 	
 	/// Draw capsule wireframe with the center of its sphere caps at startPos and endPos
-	[CLink]
-	public static extern void DrawCapsuleWires(in Vector3 startPos, in Vector3 endPos, float radius, int32 slices, int32 rings, in Color color);
+	[Inline]
+	public static void DrawCapsuleWires(Vector3 startPos, Vector3 endPos, float radius, int32 slices, int32 rings, Color color)
+	{
+		DrawCapsuleWires_Impl(startPos, endPos, radius, slices, rings, color);
+	}
+	[LinkName("DrawCapsuleWires")]
+	private static extern void DrawCapsuleWires_Impl(in Vector3 startPos, in Vector3 endPos, float radius, int32 slices, int32 rings, in Color color);
 	
 	/// Draw a plane XZ
-	[CLink]
-	public static extern void DrawPlane(in Vector3 centerPos, in Vector2 size, in Color color);
+	[Inline]
+	public static void DrawPlane(Vector3 centerPos, Vector2 size, Color color)
+	{
+		DrawPlane_Impl(centerPos, size, color);
+	}
+	[LinkName("DrawPlane")]
+	private static extern void DrawPlane_Impl(in Vector3 centerPos, in Vector2 size, in Color color);
 	
 	/// Draw a ray line
-	[CLink]
-	public static extern void DrawRay(in Ray ray, in Color color);
+	[Inline]
+	public static void DrawRay(Ray ray, Color color)
+	{
+		DrawRay_Impl(ray, color);
+	}
+	[LinkName("DrawRay")]
+	private static extern void DrawRay_Impl(in Ray ray, in Color color);
 	
 	/// Load model from generated mesh (default material)
-	[CLink]
-	public static extern Model LoadModelFromMesh(in Mesh mesh);
+	[Inline]
+	public static Model LoadModelFromMesh(Mesh mesh)
+	{
+		return LoadModelFromMesh_Impl(mesh);
+	}
+	[LinkName("LoadModelFromMesh")]
+	private static extern Model LoadModelFromMesh_Impl(in Mesh mesh);
 	
 	/// Check if a model is valid (loaded in GPU, VAO/VBOs)
-	[CLink]
-	public static extern bool IsModelValid(in Model model);
+	[Inline]
+	public static bool IsModelValid(Model model)
+	{
+		return IsModelValid_Impl(model);
+	}
+	[LinkName("IsModelValid")]
+	private static extern bool IsModelValid_Impl(in Model model);
 	
 	/// Unload model (including meshes) from memory (RAM and/or VRAM)
-	[CLink]
-	public static extern void UnloadModel(in Model model);
+	[Inline]
+	public static void UnloadModel(Model model)
+	{
+		UnloadModel_Impl(model);
+	}
+	[LinkName("UnloadModel")]
+	private static extern void UnloadModel_Impl(in Model model);
 	
 	/// Compute model bounding box limits (considers all meshes)
-	[CLink]
-	public static extern BoundingBox GetModelBoundingBox(in Model model);
+	[Inline]
+	public static BoundingBox GetModelBoundingBox(Model model)
+	{
+		return GetModelBoundingBox_Impl(model);
+	}
+	[LinkName("GetModelBoundingBox")]
+	private static extern BoundingBox GetModelBoundingBox_Impl(in Model model);
 	
 	/// Draw a model (with texture if set)
-	[CLink]
-	public static extern void DrawModel(in Model model, in Vector3 position, float scale, in Color tint);
+	[Inline]
+	public static void DrawModel(Model model, Vector3 position, float scale, Color tint)
+	{
+		DrawModel_Impl(model, position, scale, tint);
+	}
+	[LinkName("DrawModel")]
+	private static extern void DrawModel_Impl(in Model model, in Vector3 position, float scale, in Color tint);
 	
 	/// Draw a model with extended parameters
-	[CLink]
-	public static extern void DrawModelEx(in Model model, in Vector3 position, in Vector3 rotationAxis, float rotationAngle, in Vector3 scale, in Color tint);
+	[Inline]
+	public static void DrawModelEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint)
+	{
+		DrawModelEx_Impl(model, position, rotationAxis, rotationAngle, scale, tint);
+	}
+	[LinkName("DrawModelEx")]
+	private static extern void DrawModelEx_Impl(in Model model, in Vector3 position, in Vector3 rotationAxis, float rotationAngle, in Vector3 scale, in Color tint);
 	
 	/// Draw a model wires (with texture if set)
-	[CLink]
-	public static extern void DrawModelWires(in Model model, in Vector3 position, float scale, in Color tint);
+	[Inline]
+	public static void DrawModelWires(Model model, Vector3 position, float scale, Color tint)
+	{
+		DrawModelWires_Impl(model, position, scale, tint);
+	}
+	[LinkName("DrawModelWires")]
+	private static extern void DrawModelWires_Impl(in Model model, in Vector3 position, float scale, in Color tint);
 	
 	/// Draw a model wires (with texture if set) with extended parameters
-	[CLink]
-	public static extern void DrawModelWiresEx(in Model model, in Vector3 position, in Vector3 rotationAxis, float rotationAngle, in Vector3 scale, in Color tint);
+	[Inline]
+	public static void DrawModelWiresEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint)
+	{
+		DrawModelWiresEx_Impl(model, position, rotationAxis, rotationAngle, scale, tint);
+	}
+	[LinkName("DrawModelWiresEx")]
+	private static extern void DrawModelWiresEx_Impl(in Model model, in Vector3 position, in Vector3 rotationAxis, float rotationAngle, in Vector3 scale, in Color tint);
 	
 	/// Draw a model as points
-	[CLink]
-	public static extern void DrawModelPoints(in Model model, in Vector3 position, float scale, in Color tint);
+	[Inline]
+	public static void DrawModelPoints(Model model, Vector3 position, float scale, Color tint)
+	{
+		DrawModelPoints_Impl(model, position, scale, tint);
+	}
+	[LinkName("DrawModelPoints")]
+	private static extern void DrawModelPoints_Impl(in Model model, in Vector3 position, float scale, in Color tint);
 	
 	/// Draw a model as points with extended parameters
-	[CLink]
-	public static extern void DrawModelPointsEx(in Model model, in Vector3 position, in Vector3 rotationAxis, float rotationAngle, in Vector3 scale, in Color tint);
+	[Inline]
+	public static void DrawModelPointsEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint)
+	{
+		DrawModelPointsEx_Impl(model, position, rotationAxis, rotationAngle, scale, tint);
+	}
+	[LinkName("DrawModelPointsEx")]
+	private static extern void DrawModelPointsEx_Impl(in Model model, in Vector3 position, in Vector3 rotationAxis, float rotationAngle, in Vector3 scale, in Color tint);
 	
 	/// Draw bounding box (wires)
-	[CLink]
-	public static extern void DrawBoundingBox(in BoundingBox @box, in Color color);
+	[Inline]
+	public static void DrawBoundingBox(BoundingBox @box, Color color)
+	{
+		DrawBoundingBox_Impl(@box, color);
+	}
+	[LinkName("DrawBoundingBox")]
+	private static extern void DrawBoundingBox_Impl(in BoundingBox @box, in Color color);
 	
 	/// Draw a billboard texture
-	[CLink]
-	public static extern void DrawBillboard(in Camera camera, in Texture2D texture, in Vector3 position, float scale, in Color tint);
+	[Inline]
+	public static void DrawBillboard(Camera camera, Texture2D texture, Vector3 position, float scale, Color tint)
+	{
+		DrawBillboard_Impl(camera, texture, position, scale, tint);
+	}
+	[LinkName("DrawBillboard")]
+	private static extern void DrawBillboard_Impl(in Camera camera, in Texture2D texture, in Vector3 position, float scale, in Color tint);
 	
 	/// Draw a billboard texture defined by source
-	[CLink]
-	public static extern void DrawBillboardRec(in Camera camera, in Texture2D texture, in Rectangle source, in Vector3 position, in Vector2 size, in Color tint);
+	[Inline]
+	public static void DrawBillboardRec(Camera camera, Texture2D texture, Rectangle source, Vector3 position, Vector2 size, Color tint)
+	{
+		DrawBillboardRec_Impl(camera, texture, source, position, size, tint);
+	}
+	[LinkName("DrawBillboardRec")]
+	private static extern void DrawBillboardRec_Impl(in Camera camera, in Texture2D texture, in Rectangle source, in Vector3 position, in Vector2 size, in Color tint);
 	
 	/// Draw a billboard texture defined by source and rotation
-	[CLink]
-	public static extern void DrawBillboardPro(in Camera camera, in Texture2D texture, in Rectangle source, in Vector3 position, in Vector3 up, in Vector2 size, in Vector2 origin, float rotation, in Color tint);
+	[Inline]
+	public static void DrawBillboardPro(Camera camera, Texture2D texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint)
+	{
+		DrawBillboardPro_Impl(camera, texture, source, position, up, size, origin, rotation, tint);
+	}
+	[LinkName("DrawBillboardPro")]
+	private static extern void DrawBillboardPro_Impl(in Camera camera, in Texture2D texture, in Rectangle source, in Vector3 position, in Vector3 up, in Vector2 size, in Vector2 origin, float rotation, in Color tint);
 	
 	/// Update mesh vertex data in GPU for a specific buffer index
-	[CLink]
-	public static extern void UpdateMeshBuffer(in Mesh mesh, int32 index, void *data, int32 dataSize, int32 offset);
+	[Inline]
+	public static void UpdateMeshBuffer(Mesh mesh, int32 index, void *data, int32 dataSize, int32 offset)
+	{
+		UpdateMeshBuffer_Impl(mesh, index, data, dataSize, offset);
+	}
+	[LinkName("UpdateMeshBuffer")]
+	private static extern void UpdateMeshBuffer_Impl(in Mesh mesh, int32 index, void *data, int32 dataSize, int32 offset);
 	
 	/// Unload mesh data from CPU and GPU
-	[CLink]
-	public static extern void UnloadMesh(in Mesh mesh);
+	[Inline]
+	public static void UnloadMesh(Mesh mesh)
+	{
+		UnloadMesh_Impl(mesh);
+	}
+	[LinkName("UnloadMesh")]
+	private static extern void UnloadMesh_Impl(in Mesh mesh);
 	
 	/// Draw a 3d mesh with material and transform
-	[CLink]
-	public static extern void DrawMesh(in Mesh mesh, in Material material, in Matrix transform);
+	[Inline]
+	public static void DrawMesh(Mesh mesh, Material material, Matrix transform)
+	{
+		DrawMesh_Impl(mesh, material, transform);
+	}
+	[LinkName("DrawMesh")]
+	private static extern void DrawMesh_Impl(in Mesh mesh, in Material material, in Matrix transform);
 	
 	/// Draw multiple mesh instances with material and different transforms
-	[CLink]
-	public static extern void DrawMeshInstanced(in Mesh mesh, in Material material, Matrix *transforms, int32 instances);
+	[Inline]
+	public static void DrawMeshInstanced(Mesh mesh, Material material, Matrix *transforms, int32 instances)
+	{
+		DrawMeshInstanced_Impl(mesh, material, transforms, instances);
+	}
+	[LinkName("DrawMeshInstanced")]
+	private static extern void DrawMeshInstanced_Impl(in Mesh mesh, in Material material, Matrix *transforms, int32 instances);
 	
 	/// Compute mesh bounding box limits
-	[CLink]
-	public static extern BoundingBox GetMeshBoundingBox(in Mesh mesh);
+	[Inline]
+	public static BoundingBox GetMeshBoundingBox(Mesh mesh)
+	{
+		return GetMeshBoundingBox_Impl(mesh);
+	}
+	[LinkName("GetMeshBoundingBox")]
+	private static extern BoundingBox GetMeshBoundingBox_Impl(in Mesh mesh);
 	
 	/// Export mesh data to file, returns true on success
-	[CLink]
-	public static extern bool ExportMesh(in Mesh mesh, char8 *fileName);
+	[Inline]
+	public static bool ExportMesh(Mesh mesh, char8 *fileName)
+	{
+		return ExportMesh_Impl(mesh, fileName);
+	}
+	[LinkName("ExportMesh")]
+	private static extern bool ExportMesh_Impl(in Mesh mesh, char8 *fileName);
 	
 	/// Export mesh as code file (.h) defining multiple arrays of vertex attributes
-	[CLink]
-	public static extern bool ExportMeshAsCode(in Mesh mesh, char8 *fileName);
+	[Inline]
+	public static bool ExportMeshAsCode(Mesh mesh, char8 *fileName)
+	{
+		return ExportMeshAsCode_Impl(mesh, fileName);
+	}
+	[LinkName("ExportMeshAsCode")]
+	private static extern bool ExportMeshAsCode_Impl(in Mesh mesh, char8 *fileName);
 	
 	/// Generate heightmap mesh from image data
-	[CLink]
-	public static extern Mesh GenMeshHeightmap(in Image heightmap, in Vector3 size);
+	[Inline]
+	public static Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
+	{
+		return GenMeshHeightmap_Impl(heightmap, size);
+	}
+	[LinkName("GenMeshHeightmap")]
+	private static extern Mesh GenMeshHeightmap_Impl(in Image heightmap, in Vector3 size);
 	
 	/// Generate cubes-based map mesh from image data
-	[CLink]
-	public static extern Mesh GenMeshCubicmap(in Image cubicmap, in Vector3 cubeSize);
+	[Inline]
+	public static Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize)
+	{
+		return GenMeshCubicmap_Impl(cubicmap, cubeSize);
+	}
+	[LinkName("GenMeshCubicmap")]
+	private static extern Mesh GenMeshCubicmap_Impl(in Image cubicmap, in Vector3 cubeSize);
 	
 	/// Check if a material is valid (shader assigned, map textures loaded in GPU)
-	[CLink]
-	public static extern bool IsMaterialValid(in Material material);
+	[Inline]
+	public static bool IsMaterialValid(Material material)
+	{
+		return IsMaterialValid_Impl(material);
+	}
+	[LinkName("IsMaterialValid")]
+	private static extern bool IsMaterialValid_Impl(in Material material);
 	
 	/// Unload material from GPU memory (VRAM)
-	[CLink]
-	public static extern void UnloadMaterial(in Material material);
+	[Inline]
+	public static void UnloadMaterial(Material material)
+	{
+		UnloadMaterial_Impl(material);
+	}
+	[LinkName("UnloadMaterial")]
+	private static extern void UnloadMaterial_Impl(in Material material);
 	
 	/// Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)
-	[CLink]
-	public static extern void SetMaterialTexture(Material *material, int32 mapType, in Texture2D texture);
+	[Inline]
+	public static void SetMaterialTexture(Material *material, int32 mapType, Texture2D texture)
+	{
+		SetMaterialTexture_Impl(material, mapType, texture);
+	}
+	[LinkName("SetMaterialTexture")]
+	private static extern void SetMaterialTexture_Impl(Material *material, int32 mapType, in Texture2D texture);
 	
 	/// Update model animation pose (CPU)
-	[CLink]
-	public static extern void UpdateModelAnimation(in Model model, in ModelAnimation anim, int32 frame);
+	[Inline]
+	public static void UpdateModelAnimation(Model model, ModelAnimation anim, int32 frame)
+	{
+		UpdateModelAnimation_Impl(model, anim, frame);
+	}
+	[LinkName("UpdateModelAnimation")]
+	private static extern void UpdateModelAnimation_Impl(in Model model, in ModelAnimation anim, int32 frame);
 	
 	/// Update model animation mesh bone matrices (GPU skinning)
-	[CLink]
-	public static extern void UpdateModelAnimationBones(in Model model, in ModelAnimation anim, int32 frame);
+	[Inline]
+	public static void UpdateModelAnimationBones(Model model, ModelAnimation anim, int32 frame)
+	{
+		UpdateModelAnimationBones_Impl(model, anim, frame);
+	}
+	[LinkName("UpdateModelAnimationBones")]
+	private static extern void UpdateModelAnimationBones_Impl(in Model model, in ModelAnimation anim, int32 frame);
 	
 	/// Unload animation data
-	[CLink]
-	public static extern void UnloadModelAnimation(in ModelAnimation anim);
+	[Inline]
+	public static void UnloadModelAnimation(ModelAnimation anim)
+	{
+		UnloadModelAnimation_Impl(anim);
+	}
+	[LinkName("UnloadModelAnimation")]
+	private static extern void UnloadModelAnimation_Impl(in ModelAnimation anim);
 	
 	/// Check model animation skeleton match
-	[CLink]
-	public static extern bool IsModelAnimationValid(in Model model, in ModelAnimation anim);
+	[Inline]
+	public static bool IsModelAnimationValid(Model model, ModelAnimation anim)
+	{
+		return IsModelAnimationValid_Impl(model, anim);
+	}
+	[LinkName("IsModelAnimationValid")]
+	private static extern bool IsModelAnimationValid_Impl(in Model model, in ModelAnimation anim);
 	
 	/// Check collision between two spheres
-	[CLink]
-	public static extern bool CheckCollisionSpheres(in Vector3 center1, float radius1, in Vector3 center2, float radius2);
+	[Inline]
+	public static bool CheckCollisionSpheres(Vector3 center1, float radius1, Vector3 center2, float radius2)
+	{
+		return CheckCollisionSpheres_Impl(center1, radius1, center2, radius2);
+	}
+	[LinkName("CheckCollisionSpheres")]
+	private static extern bool CheckCollisionSpheres_Impl(in Vector3 center1, float radius1, in Vector3 center2, float radius2);
 	
 	/// Check collision between two bounding boxes
-	[CLink]
-	public static extern bool CheckCollisionBoxes(in BoundingBox box1, in BoundingBox box2);
+	[Inline]
+	public static bool CheckCollisionBoxes(BoundingBox box1, BoundingBox box2)
+	{
+		return CheckCollisionBoxes_Impl(box1, box2);
+	}
+	[LinkName("CheckCollisionBoxes")]
+	private static extern bool CheckCollisionBoxes_Impl(in BoundingBox box1, in BoundingBox box2);
 	
 	/// Check collision between box and sphere
-	[CLink]
-	public static extern bool CheckCollisionBoxSphere(in BoundingBox @box, in Vector3 center, float radius);
+	[Inline]
+	public static bool CheckCollisionBoxSphere(BoundingBox @box, Vector3 center, float radius)
+	{
+		return CheckCollisionBoxSphere_Impl(@box, center, radius);
+	}
+	[LinkName("CheckCollisionBoxSphere")]
+	private static extern bool CheckCollisionBoxSphere_Impl(in BoundingBox @box, in Vector3 center, float radius);
 	
 	/// Get collision info between ray and sphere
-	[CLink]
-	public static extern RayCollision GetRayCollisionSphere(in Ray ray, in Vector3 center, float radius);
+	[Inline]
+	public static RayCollision GetRayCollisionSphere(Ray ray, Vector3 center, float radius)
+	{
+		return GetRayCollisionSphere_Impl(ray, center, radius);
+	}
+	[LinkName("GetRayCollisionSphere")]
+	private static extern RayCollision GetRayCollisionSphere_Impl(in Ray ray, in Vector3 center, float radius);
 	
 	/// Get collision info between ray and box
-	[CLink]
-	public static extern RayCollision GetRayCollisionBox(in Ray ray, in BoundingBox @box);
+	[Inline]
+	public static RayCollision GetRayCollisionBox(Ray ray, BoundingBox @box)
+	{
+		return GetRayCollisionBox_Impl(ray, @box);
+	}
+	[LinkName("GetRayCollisionBox")]
+	private static extern RayCollision GetRayCollisionBox_Impl(in Ray ray, in BoundingBox @box);
 	
 	/// Get collision info between ray and mesh
-	[CLink]
-	public static extern RayCollision GetRayCollisionMesh(in Ray ray, in Mesh mesh, in Matrix transform);
+	[Inline]
+	public static RayCollision GetRayCollisionMesh(Ray ray, Mesh mesh, Matrix transform)
+	{
+		return GetRayCollisionMesh_Impl(ray, mesh, transform);
+	}
+	[LinkName("GetRayCollisionMesh")]
+	private static extern RayCollision GetRayCollisionMesh_Impl(in Ray ray, in Mesh mesh, in Matrix transform);
 	
 	/// Get collision info between ray and triangle
-	[CLink]
-	public static extern RayCollision GetRayCollisionTriangle(in Ray ray, in Vector3 p1, in Vector3 p2, in Vector3 p3);
+	[Inline]
+	public static RayCollision GetRayCollisionTriangle(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3)
+	{
+		return GetRayCollisionTriangle_Impl(ray, p1, p2, p3);
+	}
+	[LinkName("GetRayCollisionTriangle")]
+	private static extern RayCollision GetRayCollisionTriangle_Impl(in Ray ray, in Vector3 p1, in Vector3 p2, in Vector3 p3);
 	
 	/// Get collision info between ray and quad
-	[CLink]
-	public static extern RayCollision GetRayCollisionQuad(in Ray ray, in Vector3 p1, in Vector3 p2, in Vector3 p3, in Vector3 p4);
+	[Inline]
+	public static RayCollision GetRayCollisionQuad(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3, Vector3 p4)
+	{
+		return GetRayCollisionQuad_Impl(ray, p1, p2, p3, p4);
+	}
+	[LinkName("GetRayCollisionQuad")]
+	private static extern RayCollision GetRayCollisionQuad_Impl(in Ray ray, in Vector3 p1, in Vector3 p2, in Vector3 p3, in Vector3 p4);
 	
 	/// Checks if wave data is valid (data loaded and parameters)
-	[CLink]
-	public static extern bool IsWaveValid(in Wave wave);
+	[Inline]
+	public static bool IsWaveValid(Wave wave)
+	{
+		return IsWaveValid_Impl(wave);
+	}
+	[LinkName("IsWaveValid")]
+	private static extern bool IsWaveValid_Impl(in Wave wave);
 	
 	/// Load sound from wave data
-	[CLink]
-	public static extern Sound LoadSoundFromWave(in Wave wave);
+	[Inline]
+	public static Sound LoadSoundFromWave(Wave wave)
+	{
+		return LoadSoundFromWave_Impl(wave);
+	}
+	[LinkName("LoadSoundFromWave")]
+	private static extern Sound LoadSoundFromWave_Impl(in Wave wave);
 	
 	/// Create a new sound that shares the same sample data as the source sound, does not own the sound data
-	[CLink]
-	public static extern Sound LoadSoundAlias(in Sound source);
+	[Inline]
+	public static Sound LoadSoundAlias(Sound source)
+	{
+		return LoadSoundAlias_Impl(source);
+	}
+	[LinkName("LoadSoundAlias")]
+	private static extern Sound LoadSoundAlias_Impl(in Sound source);
 	
 	/// Checks if a sound is valid (data loaded and buffers initialized)
-	[CLink]
-	public static extern bool IsSoundValid(in Sound sound);
+	[Inline]
+	public static bool IsSoundValid(Sound sound)
+	{
+		return IsSoundValid_Impl(sound);
+	}
+	[LinkName("IsSoundValid")]
+	private static extern bool IsSoundValid_Impl(in Sound sound);
 	
 	/// Update sound buffer with new data
-	[CLink]
-	public static extern void UpdateSound(in Sound sound, void *data, int32 sampleCount);
+	[Inline]
+	public static void UpdateSound(Sound sound, void *data, int32 sampleCount)
+	{
+		UpdateSound_Impl(sound, data, sampleCount);
+	}
+	[LinkName("UpdateSound")]
+	private static extern void UpdateSound_Impl(in Sound sound, void *data, int32 sampleCount);
 	
 	/// Unload wave data
-	[CLink]
-	public static extern void UnloadWave(in Wave wave);
+	[Inline]
+	public static void UnloadWave(Wave wave)
+	{
+		UnloadWave_Impl(wave);
+	}
+	[LinkName("UnloadWave")]
+	private static extern void UnloadWave_Impl(in Wave wave);
 	
 	/// Unload sound
-	[CLink]
-	public static extern void UnloadSound(in Sound sound);
+	[Inline]
+	public static void UnloadSound(Sound sound)
+	{
+		UnloadSound_Impl(sound);
+	}
+	[LinkName("UnloadSound")]
+	private static extern void UnloadSound_Impl(in Sound sound);
 	
 	/// Unload a sound alias (does not deallocate sample data)
-	[CLink]
-	public static extern void UnloadSoundAlias(in Sound alias);
+	[Inline]
+	public static void UnloadSoundAlias(Sound alias)
+	{
+		UnloadSoundAlias_Impl(alias);
+	}
+	[LinkName("UnloadSoundAlias")]
+	private static extern void UnloadSoundAlias_Impl(in Sound alias);
 	
 	/// Export wave data to file, returns true on success
-	[CLink]
-	public static extern bool ExportWave(in Wave wave, char8 *fileName);
+	[Inline]
+	public static bool ExportWave(Wave wave, char8 *fileName)
+	{
+		return ExportWave_Impl(wave, fileName);
+	}
+	[LinkName("ExportWave")]
+	private static extern bool ExportWave_Impl(in Wave wave, char8 *fileName);
 	
 	/// Export wave sample data to code (.h), returns true on success
-	[CLink]
-	public static extern bool ExportWaveAsCode(in Wave wave, char8 *fileName);
+	[Inline]
+	public static bool ExportWaveAsCode(Wave wave, char8 *fileName)
+	{
+		return ExportWaveAsCode_Impl(wave, fileName);
+	}
+	[LinkName("ExportWaveAsCode")]
+	private static extern bool ExportWaveAsCode_Impl(in Wave wave, char8 *fileName);
 	
 	/// Play a sound
-	[CLink]
-	public static extern void PlaySound(in Sound sound);
+	[Inline]
+	public static void PlaySound(Sound sound)
+	{
+		PlaySound_Impl(sound);
+	}
+	[LinkName("PlaySound")]
+	private static extern void PlaySound_Impl(in Sound sound);
 	
 	/// Stop playing a sound
-	[CLink]
-	public static extern void StopSound(in Sound sound);
+	[Inline]
+	public static void StopSound(Sound sound)
+	{
+		StopSound_Impl(sound);
+	}
+	[LinkName("StopSound")]
+	private static extern void StopSound_Impl(in Sound sound);
 	
 	/// Pause a sound
-	[CLink]
-	public static extern void PauseSound(in Sound sound);
+	[Inline]
+	public static void PauseSound(Sound sound)
+	{
+		PauseSound_Impl(sound);
+	}
+	[LinkName("PauseSound")]
+	private static extern void PauseSound_Impl(in Sound sound);
 	
 	/// Resume a paused sound
-	[CLink]
-	public static extern void ResumeSound(in Sound sound);
+	[Inline]
+	public static void ResumeSound(Sound sound)
+	{
+		ResumeSound_Impl(sound);
+	}
+	[LinkName("ResumeSound")]
+	private static extern void ResumeSound_Impl(in Sound sound);
 	
 	/// Check if a sound is currently playing
-	[CLink]
-	public static extern bool IsSoundPlaying(in Sound sound);
+	[Inline]
+	public static bool IsSoundPlaying(Sound sound)
+	{
+		return IsSoundPlaying_Impl(sound);
+	}
+	[LinkName("IsSoundPlaying")]
+	private static extern bool IsSoundPlaying_Impl(in Sound sound);
 	
 	/// Set volume for a sound (1.0 is max level)
-	[CLink]
-	public static extern void SetSoundVolume(in Sound sound, float volume);
+	[Inline]
+	public static void SetSoundVolume(Sound sound, float volume)
+	{
+		SetSoundVolume_Impl(sound, volume);
+	}
+	[LinkName("SetSoundVolume")]
+	private static extern void SetSoundVolume_Impl(in Sound sound, float volume);
 	
 	/// Set pitch for a sound (1.0 is base level)
-	[CLink]
-	public static extern void SetSoundPitch(in Sound sound, float pitch);
+	[Inline]
+	public static void SetSoundPitch(Sound sound, float pitch)
+	{
+		SetSoundPitch_Impl(sound, pitch);
+	}
+	[LinkName("SetSoundPitch")]
+	private static extern void SetSoundPitch_Impl(in Sound sound, float pitch);
 	
 	/// Set pan for a sound (0.5 is center)
-	[CLink]
-	public static extern void SetSoundPan(in Sound sound, float pan);
+	[Inline]
+	public static void SetSoundPan(Sound sound, float pan)
+	{
+		SetSoundPan_Impl(sound, pan);
+	}
+	[LinkName("SetSoundPan")]
+	private static extern void SetSoundPan_Impl(in Sound sound, float pan);
 	
 	/// Copy a wave to a new wave
-	[CLink]
-	public static extern Wave WaveCopy(in Wave wave);
+	[Inline]
+	public static Wave WaveCopy(Wave wave)
+	{
+		return WaveCopy_Impl(wave);
+	}
+	[LinkName("WaveCopy")]
+	private static extern Wave WaveCopy_Impl(in Wave wave);
 	
 	/// Load samples data from wave as a 32bit float data array
-	[CLink]
-	public static extern float * LoadWaveSamples(in Wave wave);
+	[Inline]
+	public static float * LoadWaveSamples(Wave wave)
+	{
+		return LoadWaveSamples_Impl(wave);
+	}
+	[LinkName("LoadWaveSamples")]
+	private static extern float * LoadWaveSamples_Impl(in Wave wave);
 	
 	/// Checks if a music stream is valid (context and buffers initialized)
-	[CLink]
-	public static extern bool IsMusicValid(in Music music);
+	[Inline]
+	public static bool IsMusicValid(Music music)
+	{
+		return IsMusicValid_Impl(music);
+	}
+	[LinkName("IsMusicValid")]
+	private static extern bool IsMusicValid_Impl(in Music music);
 	
 	/// Unload music stream
-	[CLink]
-	public static extern void UnloadMusicStream(in Music music);
+	[Inline]
+	public static void UnloadMusicStream(Music music)
+	{
+		UnloadMusicStream_Impl(music);
+	}
+	[LinkName("UnloadMusicStream")]
+	private static extern void UnloadMusicStream_Impl(in Music music);
 	
 	/// Start music playing
-	[CLink]
-	public static extern void PlayMusicStream(in Music music);
+	[Inline]
+	public static void PlayMusicStream(Music music)
+	{
+		PlayMusicStream_Impl(music);
+	}
+	[LinkName("PlayMusicStream")]
+	private static extern void PlayMusicStream_Impl(in Music music);
 	
 	/// Check if music is playing
-	[CLink]
-	public static extern bool IsMusicStreamPlaying(in Music music);
+	[Inline]
+	public static bool IsMusicStreamPlaying(Music music)
+	{
+		return IsMusicStreamPlaying_Impl(music);
+	}
+	[LinkName("IsMusicStreamPlaying")]
+	private static extern bool IsMusicStreamPlaying_Impl(in Music music);
 	
 	/// Updates buffers for music streaming
-	[CLink]
-	public static extern void UpdateMusicStream(in Music music);
+	[Inline]
+	public static void UpdateMusicStream(Music music)
+	{
+		UpdateMusicStream_Impl(music);
+	}
+	[LinkName("UpdateMusicStream")]
+	private static extern void UpdateMusicStream_Impl(in Music music);
 	
 	/// Stop music playing
-	[CLink]
-	public static extern void StopMusicStream(in Music music);
+	[Inline]
+	public static void StopMusicStream(Music music)
+	{
+		StopMusicStream_Impl(music);
+	}
+	[LinkName("StopMusicStream")]
+	private static extern void StopMusicStream_Impl(in Music music);
 	
 	/// Pause music playing
-	[CLink]
-	public static extern void PauseMusicStream(in Music music);
+	[Inline]
+	public static void PauseMusicStream(Music music)
+	{
+		PauseMusicStream_Impl(music);
+	}
+	[LinkName("PauseMusicStream")]
+	private static extern void PauseMusicStream_Impl(in Music music);
 	
 	/// Resume playing paused music
-	[CLink]
-	public static extern void ResumeMusicStream(in Music music);
+	[Inline]
+	public static void ResumeMusicStream(Music music)
+	{
+		ResumeMusicStream_Impl(music);
+	}
+	[LinkName("ResumeMusicStream")]
+	private static extern void ResumeMusicStream_Impl(in Music music);
 	
 	/// Seek music to a position (in seconds)
-	[CLink]
-	public static extern void SeekMusicStream(in Music music, float position);
+	[Inline]
+	public static void SeekMusicStream(Music music, float position)
+	{
+		SeekMusicStream_Impl(music, position);
+	}
+	[LinkName("SeekMusicStream")]
+	private static extern void SeekMusicStream_Impl(in Music music, float position);
 	
 	/// Set volume for music (1.0 is max level)
-	[CLink]
-	public static extern void SetMusicVolume(in Music music, float volume);
+	[Inline]
+	public static void SetMusicVolume(Music music, float volume)
+	{
+		SetMusicVolume_Impl(music, volume);
+	}
+	[LinkName("SetMusicVolume")]
+	private static extern void SetMusicVolume_Impl(in Music music, float volume);
 	
 	/// Set pitch for a music (1.0 is base level)
-	[CLink]
-	public static extern void SetMusicPitch(in Music music, float pitch);
+	[Inline]
+	public static void SetMusicPitch(Music music, float pitch)
+	{
+		SetMusicPitch_Impl(music, pitch);
+	}
+	[LinkName("SetMusicPitch")]
+	private static extern void SetMusicPitch_Impl(in Music music, float pitch);
 	
 	/// Set pan for a music (0.5 is center)
-	[CLink]
-	public static extern void SetMusicPan(in Music music, float pan);
+	[Inline]
+	public static void SetMusicPan(Music music, float pan)
+	{
+		SetMusicPan_Impl(music, pan);
+	}
+	[LinkName("SetMusicPan")]
+	private static extern void SetMusicPan_Impl(in Music music, float pan);
 	
 	/// Get music time length (in seconds)
-	[CLink]
-	public static extern float GetMusicTimeLength(in Music music);
+	[Inline]
+	public static float GetMusicTimeLength(Music music)
+	{
+		return GetMusicTimeLength_Impl(music);
+	}
+	[LinkName("GetMusicTimeLength")]
+	private static extern float GetMusicTimeLength_Impl(in Music music);
 	
 	/// Get current music time played (in seconds)
-	[CLink]
-	public static extern float GetMusicTimePlayed(in Music music);
+	[Inline]
+	public static float GetMusicTimePlayed(Music music)
+	{
+		return GetMusicTimePlayed_Impl(music);
+	}
+	[LinkName("GetMusicTimePlayed")]
+	private static extern float GetMusicTimePlayed_Impl(in Music music);
 	
 	/// Checks if an audio stream is valid (buffers initialized)
-	[CLink]
-	public static extern bool IsAudioStreamValid(in AudioStream stream);
+	[Inline]
+	public static bool IsAudioStreamValid(AudioStream stream)
+	{
+		return IsAudioStreamValid_Impl(stream);
+	}
+	[LinkName("IsAudioStreamValid")]
+	private static extern bool IsAudioStreamValid_Impl(in AudioStream stream);
 	
 	/// Unload audio stream and free memory
-	[CLink]
-	public static extern void UnloadAudioStream(in AudioStream stream);
+	[Inline]
+	public static void UnloadAudioStream(AudioStream stream)
+	{
+		UnloadAudioStream_Impl(stream);
+	}
+	[LinkName("UnloadAudioStream")]
+	private static extern void UnloadAudioStream_Impl(in AudioStream stream);
 	
 	/// Update audio stream buffers with data
-	[CLink]
-	public static extern void UpdateAudioStream(in AudioStream stream, void *data, int32 frameCount);
+	[Inline]
+	public static void UpdateAudioStream(AudioStream stream, void *data, int32 frameCount)
+	{
+		UpdateAudioStream_Impl(stream, data, frameCount);
+	}
+	[LinkName("UpdateAudioStream")]
+	private static extern void UpdateAudioStream_Impl(in AudioStream stream, void *data, int32 frameCount);
 	
 	/// Check if any audio stream buffers requires refill
-	[CLink]
-	public static extern bool IsAudioStreamProcessed(in AudioStream stream);
+	[Inline]
+	public static bool IsAudioStreamProcessed(AudioStream stream)
+	{
+		return IsAudioStreamProcessed_Impl(stream);
+	}
+	[LinkName("IsAudioStreamProcessed")]
+	private static extern bool IsAudioStreamProcessed_Impl(in AudioStream stream);
 	
 	/// Play audio stream
-	[CLink]
-	public static extern void PlayAudioStream(in AudioStream stream);
+	[Inline]
+	public static void PlayAudioStream(AudioStream stream)
+	{
+		PlayAudioStream_Impl(stream);
+	}
+	[LinkName("PlayAudioStream")]
+	private static extern void PlayAudioStream_Impl(in AudioStream stream);
 	
 	/// Pause audio stream
-	[CLink]
-	public static extern void PauseAudioStream(in AudioStream stream);
+	[Inline]
+	public static void PauseAudioStream(AudioStream stream)
+	{
+		PauseAudioStream_Impl(stream);
+	}
+	[LinkName("PauseAudioStream")]
+	private static extern void PauseAudioStream_Impl(in AudioStream stream);
 	
 	/// Resume audio stream
-	[CLink]
-	public static extern void ResumeAudioStream(in AudioStream stream);
+	[Inline]
+	public static void ResumeAudioStream(AudioStream stream)
+	{
+		ResumeAudioStream_Impl(stream);
+	}
+	[LinkName("ResumeAudioStream")]
+	private static extern void ResumeAudioStream_Impl(in AudioStream stream);
 	
 	/// Check if audio stream is playing
-	[CLink]
-	public static extern bool IsAudioStreamPlaying(in AudioStream stream);
+	[Inline]
+	public static bool IsAudioStreamPlaying(AudioStream stream)
+	{
+		return IsAudioStreamPlaying_Impl(stream);
+	}
+	[LinkName("IsAudioStreamPlaying")]
+	private static extern bool IsAudioStreamPlaying_Impl(in AudioStream stream);
 	
 	/// Stop audio stream
-	[CLink]
-	public static extern void StopAudioStream(in AudioStream stream);
+	[Inline]
+	public static void StopAudioStream(AudioStream stream)
+	{
+		StopAudioStream_Impl(stream);
+	}
+	[LinkName("StopAudioStream")]
+	private static extern void StopAudioStream_Impl(in AudioStream stream);
 	
 	/// Set volume for audio stream (1.0 is max level)
-	[CLink]
-	public static extern void SetAudioStreamVolume(in AudioStream stream, float volume);
+	[Inline]
+	public static void SetAudioStreamVolume(AudioStream stream, float volume)
+	{
+		SetAudioStreamVolume_Impl(stream, volume);
+	}
+	[LinkName("SetAudioStreamVolume")]
+	private static extern void SetAudioStreamVolume_Impl(in AudioStream stream, float volume);
 	
 	/// Set pitch for audio stream (1.0 is base level)
-	[CLink]
-	public static extern void SetAudioStreamPitch(in AudioStream stream, float pitch);
+	[Inline]
+	public static void SetAudioStreamPitch(AudioStream stream, float pitch)
+	{
+		SetAudioStreamPitch_Impl(stream, pitch);
+	}
+	[LinkName("SetAudioStreamPitch")]
+	private static extern void SetAudioStreamPitch_Impl(in AudioStream stream, float pitch);
 	
 	/// Set pan for audio stream (0.5 is centered)
-	[CLink]
-	public static extern void SetAudioStreamPan(in AudioStream stream, float pan);
+	[Inline]
+	public static void SetAudioStreamPan(AudioStream stream, float pan)
+	{
+		SetAudioStreamPan_Impl(stream, pan);
+	}
+	[LinkName("SetAudioStreamPan")]
+	private static extern void SetAudioStreamPan_Impl(in AudioStream stream, float pan);
 	
 	/// Audio thread callback to request new data
-	[CLink]
-	public static extern void SetAudioStreamCallback(in AudioStream stream, AudioCallback callback);
+	[Inline]
+	public static void SetAudioStreamCallback(AudioStream stream, AudioCallback callback)
+	{
+		SetAudioStreamCallback_Impl(stream, callback);
+	}
+	[LinkName("SetAudioStreamCallback")]
+	private static extern void SetAudioStreamCallback_Impl(in AudioStream stream, AudioCallback callback);
 	
 	/// Attach audio stream processor to stream, receives the samples as 'float'
-	[CLink]
-	public static extern void AttachAudioStreamProcessor(in AudioStream stream, AudioCallback processor);
+	[Inline]
+	public static void AttachAudioStreamProcessor(AudioStream stream, AudioCallback processor)
+	{
+		AttachAudioStreamProcessor_Impl(stream, processor);
+	}
+	[LinkName("AttachAudioStreamProcessor")]
+	private static extern void AttachAudioStreamProcessor_Impl(in AudioStream stream, AudioCallback processor);
 	
 	/// Detach audio stream processor from stream
-	[CLink]
-	public static extern void DetachAudioStreamProcessor(in AudioStream stream, AudioCallback processor);
+	[Inline]
+	public static void DetachAudioStreamProcessor(AudioStream stream, AudioCallback processor)
+	{
+		DetachAudioStreamProcessor_Impl(stream, processor);
+	}
+	[LinkName("DetachAudioStreamProcessor")]
+	private static extern void DetachAudioStreamProcessor_Impl(in AudioStream stream, AudioCallback processor);
 	
 #endif
 	

@@ -186,9 +186,32 @@ namespace RaylibBeefGenerator
             foreach (var func in functionsWStructs)
             { 
                 AppendLine($"/// {func.Description}");
-                // AppendLine($"[Import(Raylib.RaylibBin), CallingConvention(.Cdecl), LinkName(\"{func.Name}\")]");
-                AppendLine("[CLink]");
-                AppendLine($"public static extern {func.ReturnType.ConvertTypes()} {func.Name.ConvertName()}({Parameters2String(func.Params, api, true)});");
+
+                AppendLine("[Inline]");
+                AppendLine($"public static {func.ReturnType.ConvertTypes()} {func.Name.ConvertName()}({Parameters2String(func.Params, api, false)})");
+                AppendLine("{");
+                IncreaseTab();
+                {
+                    var implParamsStr = new StringBuilder();
+                    foreach (var param in func.Params)
+                    {
+                        implParamsStr.Append(param.Name.ConvertName());
+                        if (param != func.Params.Last())
+                            implParamsStr.Append(", ");
+                    }
+
+                    var lineStr = new StringBuilder();
+                    if (func.ReturnType != "void")
+                        lineStr.Append("return ");
+                    lineStr.Append($"{func.Name.ConvertName()}_Impl({implParamsStr});");
+
+                    AppendLine(lineStr.ToString());
+                }
+                DecreaseTab();
+                AppendLine("}");
+
+                AppendLine($"[LinkName(\"{func.Name}\")]");
+                AppendLine($"private static extern {func.ReturnType.ConvertTypes()} {func.Name.ConvertName()}_Impl({Parameters2String(func.Params, api, true)});");
 
                 GenerateBeefHelperFunctions(func, api);
 
