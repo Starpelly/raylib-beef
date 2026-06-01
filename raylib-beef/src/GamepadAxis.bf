@@ -4,7 +4,7 @@ using System.Interop;
 namespace RaylibBeef;
 
 [AllowDuplicates]
-/// Gamepad axis
+/// Gamepad axes
 public enum GamepadAxis : c_int
 {
 	/// Gamepad left stick X axis

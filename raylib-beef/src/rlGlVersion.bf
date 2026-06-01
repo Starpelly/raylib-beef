@@ -7,6 +7,8 @@ namespace RaylibBeef;
 /// OpenGL version
 public enum rlGlVersion : c_int
 {
+	/// Software rendering
+	case RL_OPENGL_SOFTWARE = 0;
 	/// OpenGL 1.1
 	case RL_OPENGL_11 = 1;
 	/// OpenGL 2.1 (GLSL 120)

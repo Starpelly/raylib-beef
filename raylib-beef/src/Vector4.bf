@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+/// Quaternion type
 typealias Quaternion = Vector4;
 
 [CRepr]

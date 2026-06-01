@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+/// RenderTexture2D, same as RenderTexture
 typealias RenderTexture2D = RenderTexture;
 
 [CRepr]

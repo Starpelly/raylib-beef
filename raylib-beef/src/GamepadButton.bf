@@ -7,7 +7,7 @@ namespace RaylibBeef;
 /// Gamepad buttons
 public enum GamepadButton : c_int
 {
-	/// Unknown button, just for error checking
+	/// Unknown button, for error checking
 	case GAMEPAD_BUTTON_UNKNOWN = 0;
 	/// Gamepad left DPAD up button
 	case GAMEPAD_BUTTON_LEFT_FACE_UP = 1;

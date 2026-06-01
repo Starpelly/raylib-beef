@@ -3,6 +3,9 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+/// Anim pose, an array of Transform[]
+typealias ModelAnimPose = Transform[];
+
 [CRepr]
 public struct Transform
 {

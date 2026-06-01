@@ -24,16 +24,16 @@ public struct Model
 	/// Mesh material number
 	public void* meshMaterial;
 	
-	/// Number of bones
-	public int32 boneCount;
+	/// Skeleton for animation
+	public ModelSkeleton skeleton;
 	
-	/// Bones information (skeleton)
-	public BoneInfo * bones;
+	/// Current animation pose (Transform[])
+	public ModelAnimPose currentPose;
 	
-	/// Bones base transformation (pose)
-	public Transform * bindPose;
+	/// Bones animated transformation matrices
+	public Matrix * boneMatrices;
 	
-	public this(Matrix transform, int32 meshCount, int32 materialCount, Mesh * meshes, Material * materials, void* meshMaterial, int32 boneCount, BoneInfo * bones, Transform * bindPose)
+	public this(Matrix transform, int32 meshCount, int32 materialCount, Mesh * meshes, Material * materials, void* meshMaterial, ModelSkeleton skeleton, ModelAnimPose currentPose, Matrix * boneMatrices)
 	{
 		this.transform = transform;
 		this.meshCount = meshCount;
@@ -41,8 +41,8 @@ public struct Model
 		this.meshes = meshes;
 		this.materials = materials;
 		this.meshMaterial = meshMaterial;
-		this.boneCount = boneCount;
-		this.bones = bones;
-		this.bindPose = bindPose;
+		this.skeleton = skeleton;
+		this.currentPose = currentPose;
+		this.boneMatrices = boneMatrices;
 	}
 }

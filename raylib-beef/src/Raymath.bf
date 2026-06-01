@@ -149,6 +149,10 @@ public static class Raymath
 	
 	/// 
 	[CLink]
+	public static extern float Vector2CrossProduct(Vector2 v1, Vector2 v2);
+	
+	/// 
+	[CLink]
 	public static extern float Vector2Distance(Vector2 v1, Vector2 v2);
 	
 	/// 
@@ -477,6 +481,10 @@ public static class Raymath
 	
 	/// 
 	[CLink]
+	public static extern Matrix MatrixMultiplyValue(Matrix left, float value);
+	
+	/// 
+	[CLink]
 	public static extern Matrix MatrixRotate(Vector3 axis, float angle);
 	
 	/// 
@@ -585,6 +593,10 @@ public static class Raymath
 	
 	/// 
 	[CLink]
+	public static extern Matrix MatrixCompose(Vector3 translation, Quaternion rotation, Vector3 scale);
+	
+	/// 
+	[CLink]
 	public static extern void MatrixDecompose(Matrix mat, Vector3 *translation, Quaternion *rotation, Vector3 *scale);
 	
 #else
@@ -651,6 +663,15 @@ public static class Raymath
 	}
 	[LinkName("Vector2DotProduct")]
 	private static extern float Vector2DotProduct_Impl(in Vector2 v1, in Vector2 v2);
+	
+	/// 
+	[Inline]
+	public static float Vector2CrossProduct(Vector2 v1, Vector2 v2)
+	{
+		return Vector2CrossProduct_Impl(v1, v2);
+	}
+	[LinkName("Vector2CrossProduct")]
+	private static extern float Vector2CrossProduct_Impl(in Vector2 v1, in Vector2 v2);
 	
 	/// 
 	[Inline]
@@ -1392,6 +1413,15 @@ public static class Raymath
 	
 	/// 
 	[Inline]
+	public static Matrix MatrixMultiplyValue(Matrix left, float value)
+	{
+		return MatrixMultiplyValue_Impl(left, value);
+	}
+	[LinkName("MatrixMultiplyValue")]
+	private static extern Matrix MatrixMultiplyValue_Impl(in Matrix left, float value);
+	
+	/// 
+	[Inline]
 	public static Matrix MatrixRotate(Vector3 axis, float angle)
 	{
 		return MatrixRotate_Impl(axis, angle);
@@ -1632,6 +1662,15 @@ public static class Raymath
 	}
 	[LinkName("QuaternionEquals")]
 	private static extern int32 QuaternionEquals_Impl(in Quaternion p, in Quaternion q);
+	
+	/// 
+	[Inline]
+	public static Matrix MatrixCompose(Vector3 translation, Quaternion rotation, Vector3 scale)
+	{
+		return MatrixCompose_Impl(translation, rotation, scale);
+	}
+	[LinkName("MatrixCompose")]
+	private static extern Matrix MatrixCompose_Impl(in Vector3 translation, in Quaternion rotation, in Vector3 scale);
 	
 	/// 
 	[Inline]

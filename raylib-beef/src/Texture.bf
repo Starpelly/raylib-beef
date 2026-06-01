@@ -3,7 +3,9 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+/// Texture2D, same as Texture
 typealias Texture2D = Texture;
+/// TextureCubemap, same as Texture
 typealias TextureCubemap = Texture;
 
 [CRepr]

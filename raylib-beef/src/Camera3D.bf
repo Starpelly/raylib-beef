@@ -3,6 +3,7 @@ using System.Interop;
 
 namespace RaylibBeef;
 
+/// Camera type fallback, defaults to Camera3D
 typealias Camera = Camera3D;
 
 [CRepr]
@@ -17,7 +18,7 @@ public struct Camera3D
 	/// Camera up vector (rotation over its axis)
 	public Vector3 up;
 	
-	/// Camera field-of-view aperture in Y (degrees) in perspective, used as near plane width in orthographic
+	/// Camera field-of-view aperture in Y (degrees) in perspective, used as near plane height in world units in orthographic
 	public float fovy;
 	
 	/// Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC

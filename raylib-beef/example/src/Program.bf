@@ -54,6 +54,8 @@ class Program
 		DrawCircle(GetMouseX(), GetMouseY(), 20, ColBeefOutline);
 		DrawCircle(GetMouseX(), GetMouseY(), 8, ColBeefMain);
 
+		DrawText(scope $"{RAYLIB_VERSION_MAJOR}.{RAYLIB_VERSION_MINOR}.{RAYLIB_VERSION_PATCH}", (GetScreenWidth() / 2) - 30, 90, 30, ColBeefOutline);
+
 		DrawFPS(20, 20);
 
 		EndDrawing();

@@ -49,7 +49,7 @@ public enum ShaderLocationIndex : c_int
 	case SHADER_LOC_MAP_OCCLUSION = 19;
 	/// Shader location: sampler2d texture: emission
 	case SHADER_LOC_MAP_EMISSION = 20;
-	/// Shader location: sampler2d texture: height
+	/// Shader location: sampler2d texture: heightmap
 	case SHADER_LOC_MAP_HEIGHT = 21;
 	/// Shader location: samplerCube texture: cubemap
 	case SHADER_LOC_MAP_CUBEMAP = 22;
@@ -59,12 +59,14 @@ public enum ShaderLocationIndex : c_int
 	case SHADER_LOC_MAP_PREFILTER = 24;
 	/// Shader location: sampler2d texture: brdf
 	case SHADER_LOC_MAP_BRDF = 25;
-	/// Shader location: vertex attribute: boneIds
+	/// Shader location: vertex attribute: bone indices
 	case SHADER_LOC_VERTEX_BONEIDS = 26;
-	/// Shader location: vertex attribute: boneWeights
+	/// Shader location: vertex attribute: bone weights
 	case SHADER_LOC_VERTEX_BONEWEIGHTS = 27;
-	/// Shader location: array of matrices uniform: boneMatrices
-	case SHADER_LOC_BONE_MATRICES = 28;
+	/// Shader location: matrix attribute: bone transforms (animation)
+	case SHADER_LOC_MATRIX_BONETRANSFORMS = 28;
+	/// Shader location: vertex attribute: instance transforms
+	case SHADER_LOC_VERTEX_INSTANCETRANSFORM = 29;
 	
 	public static operator int32 (ShaderLocationIndex self) => (int32)self;
 }

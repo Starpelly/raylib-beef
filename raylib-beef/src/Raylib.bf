@@ -5,13 +5,13 @@ namespace RaylibBeef;
 
 public static class Raylib
 {
-	public const int32 RAYLIB_VERSION_MAJOR = 5;
+	public const int32 RAYLIB_VERSION_MAJOR = 6;
 	
-	public const int32 RAYLIB_VERSION_MINOR = 5;
+	public const int32 RAYLIB_VERSION_MINOR = 0;
 	
 	public const int32 RAYLIB_VERSION_PATCH = 0;
 	
-	public const char8* RAYLIB_VERSION = "5.5";
+	public const char8* RAYLIB_VERSION = "6.0";
 	
 	public const float PI = 3.141592653589793f;
 	
@@ -168,7 +168,7 @@ public static class Raylib
 	[CLink]
 	public static extern void MinimizeWindow();
 	
-	/// Set window state: not minimized/maximized
+	/// Restore window from being minimized/maximized
 	[CLink]
 	public static extern void RestoreWindow();
 	
@@ -426,14 +426,18 @@ public static class Raylib
 	[CLink]
 	public static extern void OpenURL(char8 *url);
 	
-	/// Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...)
-	[CLink]
-	public static extern void TraceLog(int32 logLevel, char8 *text);
-	
 	/// Set the current threshold (minimum) log level
 	[CLink]
 	public static extern void SetTraceLogLevel(int32 logLevel);
 	public static void SetTraceLogLevel(TraceLogLevel logLevel) => SetTraceLogLevel((int32)logLevel);
+	
+	/// Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...)
+	[CLink]
+	public static extern void TraceLog(int32 logLevel, char8 *text);
+	
+	/// Set custom trace log
+	[CLink]
+	public static extern void SetTraceLogCallback(TraceLogCallback callback);
 	
 	/// Internal memory allocator
 	[CLink]
@@ -446,26 +450,6 @@ public static class Raylib
 	/// Internal memory free
 	[CLink]
 	public static extern void MemFree(void *ptr);
-	
-	/// Set custom trace log
-	[CLink]
-	public static extern void SetTraceLogCallback(TraceLogCallback callback);
-	
-	/// Set custom file binary data loader
-	[CLink]
-	public static extern void SetLoadFileDataCallback(LoadFileDataCallback callback);
-	
-	/// Set custom file binary data saver
-	[CLink]
-	public static extern void SetSaveFileDataCallback(SaveFileDataCallback callback);
-	
-	/// Set custom file text data loader
-	[CLink]
-	public static extern void SetLoadFileTextCallback(LoadFileTextCallback callback);
-	
-	/// Set custom file text data saver
-	[CLink]
-	public static extern void SetSaveFileTextCallback(SaveFileTextCallback callback);
 	
 	/// Load file data as byte array (read)
 	[CLink]
@@ -495,6 +479,46 @@ public static class Raylib
 	[CLink]
 	public static extern bool SaveFileText(char8 *fileName, char8 *text);
 	
+	/// Set custom file binary data loader
+	[CLink]
+	public static extern void SetLoadFileDataCallback(LoadFileDataCallback callback);
+	
+	/// Set custom file binary data saver
+	[CLink]
+	public static extern void SetSaveFileDataCallback(SaveFileDataCallback callback);
+	
+	/// Set custom file text data loader
+	[CLink]
+	public static extern void SetLoadFileTextCallback(LoadFileTextCallback callback);
+	
+	/// Set custom file text data saver
+	[CLink]
+	public static extern void SetSaveFileTextCallback(SaveFileTextCallback callback);
+	
+	/// Rename file (if exists)
+	[CLink]
+	public static extern int32 FileRename(char8 *fileName, char8 *fileRename);
+	
+	/// Remove file (if exists)
+	[CLink]
+	public static extern int32 FileRemove(char8 *fileName);
+	
+	/// Copy file from one path to another, dstPath created if it doesn't exist
+	[CLink]
+	public static extern int32 FileCopy(char8 *srcPath, char8 *dstPath);
+	
+	/// Move file from one directory to another, dstPath created if it doesn't exist
+	[CLink]
+	public static extern int32 FileMove(char8 *srcPath, char8 *dstPath);
+	
+	/// Replace text in an existing file
+	[CLink]
+	public static extern int32 FileTextReplace(char8 *fileName, char8 *search, char8 *replacement);
+	
+	/// Find text in existing file
+	[CLink]
+	public static extern int32 FileTextFindIndex(char8 *fileName, char8 *search);
+	
 	/// Check if file exists
 	[CLink]
 	public static extern bool FileExists(char8 *fileName);
@@ -503,13 +527,17 @@ public static class Raylib
 	[CLink]
 	public static extern bool DirectoryExists(char8 *dirPath);
 	
-	/// Check file extension (including point: .png, .wav)
+	/// Check file extension (recommended include point: .png, .wav)
 	[CLink]
 	public static extern bool IsFileExtension(char8 *fileName, char8 *ext);
 	
 	/// Get file length in bytes (NOTE: GetFileSize() conflicts with windows.h)
 	[CLink]
 	public static extern int32 GetFileLength(char8 *fileName);
+	
+	/// Get file modification time (last write time)
+	[CLink]
+	public static extern int32 GetFileModTime(char8 *fileName);
 	
 	/// Get pointer to extension for a filename string (includes dot: '.png')
 	[CLink]
@@ -545,7 +573,7 @@ public static class Raylib
 	
 	/// Change working directory, return true on success
 	[CLink]
-	public static extern bool ChangeDirectory(char8 *dir);
+	public static extern bool ChangeDirectory(char8 *dirPath);
 	
 	/// Check if a given path is a file or a directory
 	[CLink]
@@ -555,11 +583,11 @@ public static class Raylib
 	[CLink]
 	public static extern bool IsFileNameValid(char8 *fileName);
 	
-	/// Load directory filepaths
+	/// Load directory filepaths, files and directories, no subdirs scan
 	[CLink]
 	public static extern FilePathList LoadDirectoryFiles(char8 *dirPath);
 	
-	/// Load directory filepaths with extension filtering and recursive directory scan. Use 'DIR' in the filter string to include directories in the result
+	/// Load directory filepaths with extension filtering and subdir scan; some filters available: '*.*', 'FILES*', 'DIRS*'
 	[CLink]
 	public static extern FilePathList LoadDirectoryFilesEx(char8 *basePath, char8 *filter, bool scanSubdirs);
 	
@@ -571,9 +599,13 @@ public static class Raylib
 	[CLink]
 	public static extern FilePathList LoadDroppedFiles();
 	
-	/// Get file modification time (last write time)
+	/// Get the file count in a directory
 	[CLink]
-	public static extern int32 GetFileModTime(char8 *fileName);
+	public static extern int32 GetDirectoryFileCount(char8 *dirPath);
+	
+	/// Get the file count in a directory with extension filtering and recursive directory scan. Use 'DIR' in the filter string to include directories in the result
+	[CLink]
+	public static extern int32 GetDirectoryFileCountEx(char8 *basePath, char8 *filter, bool scanSubdirs);
 	
 	/// Compress data (DEFLATE algorithm), memory must be MemFree()
 	[CLink]
@@ -583,13 +615,13 @@ public static class Raylib
 	[CLink]
 	public static extern char8 * DecompressData(char8 *compData, int32 compDataSize, int32 *dataSize);
 	
-	/// Encode data to Base64 string, memory must be MemFree()
+	/// Encode data to Base64 string (includes NULL terminator), memory must be MemFree()
 	[CLink]
 	public static extern char8 * EncodeDataBase64(char8 *data, int32 dataSize, int32 *outputSize);
 	
-	/// Decode Base64 string data, memory must be MemFree()
+	/// Decode Base64 string (expected NULL terminated), memory must be MemFree()
 	[CLink]
-	public static extern char8 * DecodeDataBase64(char8 *data, int32 *outputSize);
+	public static extern char8 * DecodeDataBase64(char8 *text, int32 *outputSize);
 	
 	/// Compute CRC32 hash code
 	[CLink]
@@ -602,6 +634,10 @@ public static class Raylib
 	/// Compute SHA1 hash code, returns static int[5] (20 bytes)
 	[CLink]
 	public static extern int32 * ComputeSHA1(char8 *data, int32 dataSize);
+	
+	/// Compute SHA256 hash code, returns static int[8] (32 bytes)
+	[CLink]
+	public static extern int32 * ComputeSHA256(char8 *data, int32 dataSize);
 	
 	/// Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS
 	[CLink]
@@ -656,6 +692,10 @@ public static class Raylib
 	[CLink]
 	public static extern int32 GetCharPressed();
 	
+	/// Get name of a QWERTY key on the current keyboard layout (eg returns string 'q' for KEY_A on an AZERTY keyboard)
+	[CLink]
+	public static extern char8 * GetKeyName(int32 key);
+	
 	/// Set a custom key to exit program (default is ESC)
 	[CLink]
 	public static extern void SetExitKey(int32 key);
@@ -693,11 +733,11 @@ public static class Raylib
 	[CLink]
 	public static extern int32 GetGamepadButtonPressed();
 	
-	/// Get gamepad axis count for a gamepad
+	/// Get axis count for a gamepad
 	[CLink]
 	public static extern int32 GetGamepadAxisCount(int32 gamepad);
 	
-	/// Get axis movement value for a gamepad axis
+	/// Get movement value for a gamepad axis
 	[CLink]
 	public static extern float GetGamepadAxisMovement(int32 gamepad, int32 axis);
 	public static float GetGamepadAxisMovement(int32 gamepad, GamepadAxis axis) => GetGamepadAxisMovement(gamepad, (int32)axis);
@@ -1004,7 +1044,7 @@ public static class Raylib
 	
 	/// Load font data for further use
 	[CLink]
-	public static extern GlyphInfo * LoadFontData(char8 *fileData, int32 dataSize, int32 fontSize, int32 *codepoints, int32 codepointCount, int32 type);
+	public static extern GlyphInfo * LoadFontData(char8 *fileData, int32 dataSize, int32 fontSize, int32 *codepoints, int32 codepointCount, int32 type, int32 *glyphCount);
 	
 	/// Generate image font atlas using chars info
 	[CLink]
@@ -1062,6 +1102,14 @@ public static class Raylib
 	[CLink]
 	public static extern char8 * CodepointToUTF8(int32 codepoint, int32 *utf8Size);
 	
+	/// Load text as separate lines ('\n')
+	[CLink]
+	public static extern char8 ** LoadTextLines(char8 *text, int32 *count);
+	
+	/// Unload text lines
+	[CLink]
+	public static extern void UnloadTextLines(char8 **text, int32 lineCount);
+	
 	/// Copy one string to another, returns bytes copied
 	[CLink]
 	public static extern int32 TextCopy(char8 *dst, char8 *src);
@@ -1082,29 +1130,53 @@ public static class Raylib
 	[CLink]
 	public static extern char8 * TextSubtext(char8 *text, int32 position, int32 length);
 	
-	/// Replace text string (WARNING: memory must be freed!)
+	/// Remove text spaces, concat words
 	[CLink]
-	public static extern char8 * TextReplace(char8 *text, char8 *replace, char8 *by);
+	public static extern char8 * TextRemoveSpaces(char8 *text);
 	
-	/// Insert text in a position (WARNING: memory must be freed!)
+	/// Get text between two strings
+	[CLink]
+	public static extern char8 * GetTextBetween(char8 *text, char8 *begin, char8 *end);
+	
+	/// Replace text string with new string
+	[CLink]
+	public static extern char8 * TextReplace(char8 *text, char8 *search, char8 *replacement);
+	
+	/// Replace text string with new string, memory must be MemFree()
+	[CLink]
+	public static extern char8 * TextReplaceAlloc(char8 *text, char8 *search, char8 *replacement);
+	
+	/// Replace text between two specific strings
+	[CLink]
+	public static extern char8 * TextReplaceBetween(char8 *text, char8 *begin, char8 *end, char8 *replacement);
+	
+	/// Replace text between two specific strings, memory must be MemFree()
+	[CLink]
+	public static extern char8 * TextReplaceBetweenAlloc(char8 *text, char8 *begin, char8 *end, char8 *replacement);
+	
+	/// Insert text in a defined byte position
 	[CLink]
 	public static extern char8 * TextInsert(char8 *text, char8 *insert, int32 position);
+	
+	/// Insert text in a defined byte position, memory must be MemFree()
+	[CLink]
+	public static extern char8 * TextInsertAlloc(char8 *text, char8 *insert, int32 position);
 	
 	/// Join text strings with delimiter
 	[CLink]
 	public static extern char8 * TextJoin(char8 **textList, int32 count, char8 *delimiter);
 	
-	/// Split text into multiple strings
+	/// Split text into multiple strings, using MAX_TEXTSPLIT_COUNT static strings
 	[CLink]
 	public static extern char8 ** TextSplit(char8 *text, char8 delimiter, int32 *count);
 	
-	/// Append text at specific position and move cursor!
+	/// Append text at specific position and move cursor
 	[CLink]
 	public static extern void TextAppend(char8 *text, char8 *@append, int32 *position);
 	
-	/// Find first text occurrence within a string
+	/// Find first text occurrence within a string, -1 if not found
 	[CLink]
-	public static extern int32 TextFindIndex(char8 *text, char8 *find);
+	public static extern int32 TextFindIndex(char8 *text, char8 *search);
 	
 	/// Get upper case version of provided string
 	[CLink]
@@ -1126,11 +1198,11 @@ public static class Raylib
 	[CLink]
 	public static extern char8 * TextToCamel(char8 *text);
 	
-	/// Get integer value from text (negative values not supported)
+	/// Get integer value from text
 	[CLink]
 	public static extern int32 TextToInteger(char8 *text);
 	
-	/// Get float value from text (negative values not supported)
+	/// Get float value from text
 	[CLink]
 	public static extern float TextToFloat(char8 *text);
 	
@@ -1266,7 +1338,7 @@ public static class Raylib
 	[CLink]
 	public static extern void SetAudioStreamBufferSizeDefault(int32 size);
 	
-	/// Attach audio stream processor to the entire audio pipeline, receives the samples as 'float'
+	/// Attach audio stream processor to the entire audio pipeline, receives frames x 2 samples as 'float' (stereo)
 	[CLink]
 	public static extern void AttachAudioMixedProcessor(AudioCallback processor);
 	
@@ -1336,7 +1408,7 @@ public static class Raylib
 	[CLink]
 	public static extern void SetShaderValueMatrix(Shader shader, int32 locIndex, Matrix mat);
 	
-	/// Set shader uniform value for texture (sampler2d)
+	/// Set shader uniform value and bind the texture (sampler2d)
 	[CLink]
 	public static extern void SetShaderValueTexture(Shader shader, int32 locIndex, Texture2D texture);
 	
@@ -1432,9 +1504,21 @@ public static class Raylib
 	[CLink]
 	public static extern void DrawLineBezier(Vector2 startPos, Vector2 endPos, float thick, Color color);
 	
+	/// Draw a dashed line
+	[CLink]
+	public static extern void DrawLineDashed(Vector2 startPos, Vector2 endPos, int32 dashSize, int32 spaceSize, Color color);
+	
 	/// Draw a color-filled circle
 	[CLink]
 	public static extern void DrawCircle(int32 centerX, int32 centerY, float radius, Color color);
+	
+	/// Draw a color-filled circle (Vector version)
+	[CLink]
+	public static extern void DrawCircleV(Vector2 center, float radius, Color color);
+	
+	/// Draw a gradient-filled circle
+	[CLink]
+	public static extern void DrawCircleGradient(Vector2 center, float radius, Color inner, Color outer);
 	
 	/// Draw a piece of a circle
 	[CLink]
@@ -1443,14 +1527,6 @@ public static class Raylib
 	/// Draw circle sector outline
 	[CLink]
 	public static extern void DrawCircleSectorLines(Vector2 center, float radius, float startAngle, float endAngle, int32 segments, Color color);
-	
-	/// Draw a gradient-filled circle
-	[CLink]
-	public static extern void DrawCircleGradient(int32 centerX, int32 centerY, float radius, Color inner, Color outer);
-	
-	/// Draw a color-filled circle (Vector version)
-	[CLink]
-	public static extern void DrawCircleV(Vector2 center, float radius, Color color);
 	
 	/// Draw circle outline
 	[CLink]
@@ -1464,9 +1540,17 @@ public static class Raylib
 	[CLink]
 	public static extern void DrawEllipse(int32 centerX, int32 centerY, float radiusH, float radiusV, Color color);
 	
+	/// Draw ellipse (Vector version)
+	[CLink]
+	public static extern void DrawEllipseV(Vector2 center, float radiusH, float radiusV, Color color);
+	
 	/// Draw ellipse outline
 	[CLink]
 	public static extern void DrawEllipseLines(int32 centerX, int32 centerY, float radiusH, float radiusV, Color color);
+	
+	/// Draw ellipse outline (Vector version)
+	[CLink]
+	public static extern void DrawEllipseLinesV(Vector2 center, float radiusH, float radiusV, Color color);
 	
 	/// Draw ring
 	[CLink]
@@ -1502,7 +1586,7 @@ public static class Raylib
 	
 	/// Draw a gradient-filled rectangle with custom vertex colors
 	[CLink]
-	public static extern void DrawRectangleGradientEx(Rectangle rec, Color topLeft, Color bottomLeft, Color topRight, Color bottomRight);
+	public static extern void DrawRectangleGradientEx(Rectangle rec, Color topLeft, Color bottomLeft, Color bottomRight, Color topRight);
 	
 	/// Draw rectangle outline
 	[CLink]
@@ -1672,7 +1756,7 @@ public static class Raylib
 	[CLink]
 	public static extern bool ExportImage(Image image, char8 *fileName);
 	
-	/// Export image to memory buffer
+	/// Export image to memory buffer, memory must be MemFree()
 	[CLink]
 	public static extern char8 * ExportImageToMemory(Image image, char8 *fileType, int32 *fileSize);
 	
@@ -1876,11 +1960,11 @@ public static class Raylib
 	[CLink]
 	public static extern void UnloadRenderTexture(RenderTexture2D target);
 	
-	/// Update GPU texture with new data
+	/// Update GPU texture with new data (pixels should be able to fill texture)
 	[CLink]
 	public static extern void UpdateTexture(Texture2D texture, void *pixels);
 	
-	/// Update GPU texture rectangle with new data
+	/// Update GPU texture rectangle with new data (pixels and rec should fit in texture)
 	[CLink]
 	public static extern void UpdateTextureRec(Texture2D texture, Rectangle rec, void *pixels);
 	
@@ -2008,6 +2092,10 @@ public static class Raylib
 	[CLink]
 	public static extern Vector2 MeasureTextEx(Font font, char8 *text, float fontSize, float spacing);
 	
+	/// Measure string size for an existing array of codepoints for Font
+	[CLink]
+	public static extern Vector2 MeasureTextCodepoints(Font font, int32 *codepoints, int32 length, float fontSize, float spacing);
+	
 	/// Get glyph index position in font for a codepoint (unicode character), fallback to '?' if not found
 	[CLink]
 	public static extern int32 GetGlyphIndex(Font font, int32 codepoint);
@@ -2132,14 +2220,6 @@ public static class Raylib
 	[CLink]
 	public static extern void DrawModelWiresEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
 	
-	/// Draw a model as points
-	[CLink]
-	public static extern void DrawModelPoints(Model model, Vector3 position, float scale, Color tint);
-	
-	/// Draw a model as points with extended parameters
-	[CLink]
-	public static extern void DrawModelPointsEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
-	
 	/// Draw bounding box (wires)
 	[CLink]
 	public static extern void DrawBoundingBox(BoundingBox @box, Color color);
@@ -2204,17 +2284,13 @@ public static class Raylib
 	[CLink]
 	public static extern void SetMaterialTexture(Material *material, int32 mapType, Texture2D texture);
 	
-	/// Update model animation pose (CPU)
+	/// Update model animation pose (vertex buffers and bone matrices)
 	[CLink]
-	public static extern void UpdateModelAnimation(Model model, ModelAnimation anim, int32 frame);
+	public static extern void UpdateModelAnimation(Model model, ModelAnimation anim, float frame);
 	
-	/// Update model animation mesh bone matrices (GPU skinning)
+	/// Update model animation pose, blending two animations
 	[CLink]
-	public static extern void UpdateModelAnimationBones(Model model, ModelAnimation anim, int32 frame);
-	
-	/// Unload animation data
-	[CLink]
-	public static extern void UnloadModelAnimation(ModelAnimation anim);
+	public static extern void UpdateModelAnimationEx(Model model, ModelAnimation animA, float frameA, ModelAnimation animB, float frameB, float blend);
 	
 	/// Check model animation skeleton match
 	[CLink]
@@ -2268,7 +2344,7 @@ public static class Raylib
 	[CLink]
 	public static extern bool IsSoundValid(Sound sound);
 	
-	/// Update sound buffer with new data
+	/// Update sound buffer with new data (default data format: 32 bit float, stereo)
 	[CLink]
 	public static extern void UpdateSound(Sound sound, void *data, int32 sampleCount);
 	
@@ -2320,7 +2396,7 @@ public static class Raylib
 	[CLink]
 	public static extern void SetSoundPitch(Sound sound, float pitch);
 	
-	/// Set pan for a sound (0.5 is center)
+	/// Set pan for a sound (-1.0 left, 0.0 center, 1.0 right)
 	[CLink]
 	public static extern void SetSoundPan(Sound sound, float pan);
 	
@@ -2376,7 +2452,7 @@ public static class Raylib
 	[CLink]
 	public static extern void SetMusicPitch(Music music, float pitch);
 	
-	/// Set pan for a music (0.5 is center)
+	/// Set pan for a music (-1.0 left, 0.0 center, 1.0 right)
 	[CLink]
 	public static extern void SetMusicPan(Music music, float pan);
 	
@@ -2432,7 +2508,7 @@ public static class Raylib
 	[CLink]
 	public static extern void SetAudioStreamPitch(AudioStream stream, float pitch);
 	
-	/// Set pan for audio stream (0.5 is centered)
+	/// Set pan for audio stream (-1.0 to 1.0 range, 0.0 is centered)
 	[CLink]
 	public static extern void SetAudioStreamPan(AudioStream stream, float pan);
 	
@@ -2440,7 +2516,7 @@ public static class Raylib
 	[CLink]
 	public static extern void SetAudioStreamCallback(AudioStream stream, AudioCallback callback);
 	
-	/// Attach audio stream processor to stream, receives the samples as 'float'
+	/// Attach audio stream processor to stream, receives frames x 2 samples as 'float' (stereo)
 	[CLink]
 	public static extern void AttachAudioStreamProcessor(AudioStream stream, AudioCallback processor);
 	
@@ -2585,7 +2661,7 @@ public static class Raylib
 	[LinkName("SetShaderValueMatrix")]
 	private static extern void SetShaderValueMatrix_Impl(in Shader shader, int32 locIndex, in Matrix mat);
 	
-	/// Set shader uniform value for texture (sampler2d)
+	/// Set shader uniform value and bind the texture (sampler2d)
 	[Inline]
 	public static void SetShaderValueTexture(Shader shader, int32 locIndex, Texture2D texture)
 	{
@@ -2801,6 +2877,15 @@ public static class Raylib
 	[LinkName("DrawLineBezier")]
 	private static extern void DrawLineBezier_Impl(in Vector2 startPos, in Vector2 endPos, float thick, in Color color);
 	
+	/// Draw a dashed line
+	[Inline]
+	public static void DrawLineDashed(Vector2 startPos, Vector2 endPos, int32 dashSize, int32 spaceSize, Color color)
+	{
+		DrawLineDashed_Impl(startPos, endPos, dashSize, spaceSize, color);
+	}
+	[LinkName("DrawLineDashed")]
+	private static extern void DrawLineDashed_Impl(in Vector2 startPos, in Vector2 endPos, int32 dashSize, int32 spaceSize, in Color color);
+	
 	/// Draw a color-filled circle
 	[Inline]
 	public static void DrawCircle(int32 centerX, int32 centerY, float radius, Color color)
@@ -2809,6 +2894,24 @@ public static class Raylib
 	}
 	[LinkName("DrawCircle")]
 	private static extern void DrawCircle_Impl(int32 centerX, int32 centerY, float radius, in Color color);
+	
+	/// Draw a color-filled circle (Vector version)
+	[Inline]
+	public static void DrawCircleV(Vector2 center, float radius, Color color)
+	{
+		DrawCircleV_Impl(center, radius, color);
+	}
+	[LinkName("DrawCircleV")]
+	private static extern void DrawCircleV_Impl(in Vector2 center, float radius, in Color color);
+	
+	/// Draw a gradient-filled circle
+	[Inline]
+	public static void DrawCircleGradient(Vector2 center, float radius, Color inner, Color outer)
+	{
+		DrawCircleGradient_Impl(center, radius, inner, outer);
+	}
+	[LinkName("DrawCircleGradient")]
+	private static extern void DrawCircleGradient_Impl(in Vector2 center, float radius, in Color inner, in Color outer);
 	
 	/// Draw a piece of a circle
 	[Inline]
@@ -2827,24 +2930,6 @@ public static class Raylib
 	}
 	[LinkName("DrawCircleSectorLines")]
 	private static extern void DrawCircleSectorLines_Impl(in Vector2 center, float radius, float startAngle, float endAngle, int32 segments, in Color color);
-	
-	/// Draw a gradient-filled circle
-	[Inline]
-	public static void DrawCircleGradient(int32 centerX, int32 centerY, float radius, Color inner, Color outer)
-	{
-		DrawCircleGradient_Impl(centerX, centerY, radius, inner, outer);
-	}
-	[LinkName("DrawCircleGradient")]
-	private static extern void DrawCircleGradient_Impl(int32 centerX, int32 centerY, float radius, in Color inner, in Color outer);
-	
-	/// Draw a color-filled circle (Vector version)
-	[Inline]
-	public static void DrawCircleV(Vector2 center, float radius, Color color)
-	{
-		DrawCircleV_Impl(center, radius, color);
-	}
-	[LinkName("DrawCircleV")]
-	private static extern void DrawCircleV_Impl(in Vector2 center, float radius, in Color color);
 	
 	/// Draw circle outline
 	[Inline]
@@ -2873,6 +2958,15 @@ public static class Raylib
 	[LinkName("DrawEllipse")]
 	private static extern void DrawEllipse_Impl(int32 centerX, int32 centerY, float radiusH, float radiusV, in Color color);
 	
+	/// Draw ellipse (Vector version)
+	[Inline]
+	public static void DrawEllipseV(Vector2 center, float radiusH, float radiusV, Color color)
+	{
+		DrawEllipseV_Impl(center, radiusH, radiusV, color);
+	}
+	[LinkName("DrawEllipseV")]
+	private static extern void DrawEllipseV_Impl(in Vector2 center, float radiusH, float radiusV, in Color color);
+	
 	/// Draw ellipse outline
 	[Inline]
 	public static void DrawEllipseLines(int32 centerX, int32 centerY, float radiusH, float radiusV, Color color)
@@ -2881,6 +2975,15 @@ public static class Raylib
 	}
 	[LinkName("DrawEllipseLines")]
 	private static extern void DrawEllipseLines_Impl(int32 centerX, int32 centerY, float radiusH, float radiusV, in Color color);
+	
+	/// Draw ellipse outline (Vector version)
+	[Inline]
+	public static void DrawEllipseLinesV(Vector2 center, float radiusH, float radiusV, Color color)
+	{
+		DrawEllipseLinesV_Impl(center, radiusH, radiusV, color);
+	}
+	[LinkName("DrawEllipseLinesV")]
+	private static extern void DrawEllipseLinesV_Impl(in Vector2 center, float radiusH, float radiusV, in Color color);
 	
 	/// Draw ring
 	[Inline]
@@ -2956,12 +3059,12 @@ public static class Raylib
 	
 	/// Draw a gradient-filled rectangle with custom vertex colors
 	[Inline]
-	public static void DrawRectangleGradientEx(Rectangle rec, Color topLeft, Color bottomLeft, Color topRight, Color bottomRight)
+	public static void DrawRectangleGradientEx(Rectangle rec, Color topLeft, Color bottomLeft, Color bottomRight, Color topRight)
 	{
-		DrawRectangleGradientEx_Impl(rec, topLeft, bottomLeft, topRight, bottomRight);
+		DrawRectangleGradientEx_Impl(rec, topLeft, bottomLeft, bottomRight, topRight);
 	}
 	[LinkName("DrawRectangleGradientEx")]
-	private static extern void DrawRectangleGradientEx_Impl(in Rectangle rec, in Color topLeft, in Color bottomLeft, in Color topRight, in Color bottomRight);
+	private static extern void DrawRectangleGradientEx_Impl(in Rectangle rec, in Color topLeft, in Color bottomLeft, in Color bottomRight, in Color topRight);
 	
 	/// Draw rectangle outline
 	[Inline]
@@ -3341,7 +3444,7 @@ public static class Raylib
 	[LinkName("ExportImage")]
 	private static extern bool ExportImage_Impl(in Image image, char8 *fileName);
 	
-	/// Export image to memory buffer
+	/// Export image to memory buffer, memory must be MemFree()
 	[Inline]
 	public static char8 * ExportImageToMemory(Image image, char8 *fileType, int32 *fileSize)
 	{
@@ -3800,7 +3903,7 @@ public static class Raylib
 	[LinkName("UnloadRenderTexture")]
 	private static extern void UnloadRenderTexture_Impl(in RenderTexture2D target);
 	
-	/// Update GPU texture with new data
+	/// Update GPU texture with new data (pixels should be able to fill texture)
 	[Inline]
 	public static void UpdateTexture(Texture2D texture, void *pixels)
 	{
@@ -3809,7 +3912,7 @@ public static class Raylib
 	[LinkName("UpdateTexture")]
 	private static extern void UpdateTexture_Impl(in Texture2D texture, void *pixels);
 	
-	/// Update GPU texture rectangle with new data
+	/// Update GPU texture rectangle with new data (pixels and rec should fit in texture)
 	[Inline]
 	public static void UpdateTextureRec(Texture2D texture, Rectangle rec, void *pixels)
 	{
@@ -4097,6 +4200,15 @@ public static class Raylib
 	[LinkName("MeasureTextEx")]
 	private static extern Vector2 MeasureTextEx_Impl(in Font font, char8 *text, float fontSize, float spacing);
 	
+	/// Measure string size for an existing array of codepoints for Font
+	[Inline]
+	public static Vector2 MeasureTextCodepoints(Font font, int32 *codepoints, int32 length, float fontSize, float spacing)
+	{
+		return MeasureTextCodepoints_Impl(font, codepoints, length, fontSize, spacing);
+	}
+	[LinkName("MeasureTextCodepoints")]
+	private static extern Vector2 MeasureTextCodepoints_Impl(in Font font, int32 *codepoints, int32 length, float fontSize, float spacing);
+	
 	/// Get glyph index position in font for a codepoint (unicode character), fallback to '?' if not found
 	[Inline]
 	public static int32 GetGlyphIndex(Font font, int32 codepoint)
@@ -4376,24 +4488,6 @@ public static class Raylib
 	[LinkName("DrawModelWiresEx")]
 	private static extern void DrawModelWiresEx_Impl(in Model model, in Vector3 position, in Vector3 rotationAxis, float rotationAngle, in Vector3 scale, in Color tint);
 	
-	/// Draw a model as points
-	[Inline]
-	public static void DrawModelPoints(Model model, Vector3 position, float scale, Color tint)
-	{
-		DrawModelPoints_Impl(model, position, scale, tint);
-	}
-	[LinkName("DrawModelPoints")]
-	private static extern void DrawModelPoints_Impl(in Model model, in Vector3 position, float scale, in Color tint);
-	
-	/// Draw a model as points with extended parameters
-	[Inline]
-	public static void DrawModelPointsEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint)
-	{
-		DrawModelPointsEx_Impl(model, position, rotationAxis, rotationAngle, scale, tint);
-	}
-	[LinkName("DrawModelPointsEx")]
-	private static extern void DrawModelPointsEx_Impl(in Model model, in Vector3 position, in Vector3 rotationAxis, float rotationAngle, in Vector3 scale, in Color tint);
-	
 	/// Draw bounding box (wires)
 	[Inline]
 	public static void DrawBoundingBox(BoundingBox @box, Color color)
@@ -4538,32 +4632,23 @@ public static class Raylib
 	[LinkName("SetMaterialTexture")]
 	private static extern void SetMaterialTexture_Impl(Material *material, int32 mapType, in Texture2D texture);
 	
-	/// Update model animation pose (CPU)
+	/// Update model animation pose (vertex buffers and bone matrices)
 	[Inline]
-	public static void UpdateModelAnimation(Model model, ModelAnimation anim, int32 frame)
+	public static void UpdateModelAnimation(Model model, ModelAnimation anim, float frame)
 	{
 		UpdateModelAnimation_Impl(model, anim, frame);
 	}
 	[LinkName("UpdateModelAnimation")]
-	private static extern void UpdateModelAnimation_Impl(in Model model, in ModelAnimation anim, int32 frame);
+	private static extern void UpdateModelAnimation_Impl(in Model model, in ModelAnimation anim, float frame);
 	
-	/// Update model animation mesh bone matrices (GPU skinning)
+	/// Update model animation pose, blending two animations
 	[Inline]
-	public static void UpdateModelAnimationBones(Model model, ModelAnimation anim, int32 frame)
+	public static void UpdateModelAnimationEx(Model model, ModelAnimation animA, float frameA, ModelAnimation animB, float frameB, float blend)
 	{
-		UpdateModelAnimationBones_Impl(model, anim, frame);
+		UpdateModelAnimationEx_Impl(model, animA, frameA, animB, frameB, blend);
 	}
-	[LinkName("UpdateModelAnimationBones")]
-	private static extern void UpdateModelAnimationBones_Impl(in Model model, in ModelAnimation anim, int32 frame);
-	
-	/// Unload animation data
-	[Inline]
-	public static void UnloadModelAnimation(ModelAnimation anim)
-	{
-		UnloadModelAnimation_Impl(anim);
-	}
-	[LinkName("UnloadModelAnimation")]
-	private static extern void UnloadModelAnimation_Impl(in ModelAnimation anim);
+	[LinkName("UpdateModelAnimationEx")]
+	private static extern void UpdateModelAnimationEx_Impl(in Model model, in ModelAnimation animA, float frameA, in ModelAnimation animB, float frameB, float blend);
 	
 	/// Check model animation skeleton match
 	[Inline]
@@ -4682,7 +4767,7 @@ public static class Raylib
 	[LinkName("IsSoundValid")]
 	private static extern bool IsSoundValid_Impl(in Sound sound);
 	
-	/// Update sound buffer with new data
+	/// Update sound buffer with new data (default data format: 32 bit float, stereo)
 	[Inline]
 	public static void UpdateSound(Sound sound, void *data, int32 sampleCount)
 	{
@@ -4799,7 +4884,7 @@ public static class Raylib
 	[LinkName("SetSoundPitch")]
 	private static extern void SetSoundPitch_Impl(in Sound sound, float pitch);
 	
-	/// Set pan for a sound (0.5 is center)
+	/// Set pan for a sound (-1.0 left, 0.0 center, 1.0 right)
 	[Inline]
 	public static void SetSoundPan(Sound sound, float pan)
 	{
@@ -4925,7 +5010,7 @@ public static class Raylib
 	[LinkName("SetMusicPitch")]
 	private static extern void SetMusicPitch_Impl(in Music music, float pitch);
 	
-	/// Set pan for a music (0.5 is center)
+	/// Set pan for a music (-1.0 left, 0.0 center, 1.0 right)
 	[Inline]
 	public static void SetMusicPan(Music music, float pan)
 	{
@@ -5051,7 +5136,7 @@ public static class Raylib
 	[LinkName("SetAudioStreamPitch")]
 	private static extern void SetAudioStreamPitch_Impl(in AudioStream stream, float pitch);
 	
-	/// Set pan for audio stream (0.5 is centered)
+	/// Set pan for audio stream (-1.0 to 1.0 range, 0.0 is centered)
 	[Inline]
 	public static void SetAudioStreamPan(AudioStream stream, float pan)
 	{
@@ -5069,7 +5154,7 @@ public static class Raylib
 	[LinkName("SetAudioStreamCallback")]
 	private static extern void SetAudioStreamCallback_Impl(in AudioStream stream, AudioCallback callback);
 	
-	/// Attach audio stream processor to stream, receives the samples as 'float'
+	/// Attach audio stream processor to stream, receives frames x 2 samples as 'float' (stereo)
 	[Inline]
 	public static void AttachAudioStreamProcessor(AudioStream stream, AudioCallback processor)
 	{

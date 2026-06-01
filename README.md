@@ -2,7 +2,7 @@
 
 ![logo](img/raylib-beef-logo.png)
 
-BeefLang bindings for **Raylib 5.5**.
+BeefLang bindings for **Raylib 6.0**.
 
 ## Example
 ```cs

@@ -5,7 +5,7 @@ namespace RaylibBeef;
 
 public static class Rlgl
 {
-	public const char8* RLGL_VERSION = "5.0";
+	public const char8* RLGL_VERSION = "6.0";
 	
 	public const int32 RL_DEFAULT_BATCH_BUFFER_ELEMENTS = 8192;
 	
@@ -25,10 +25,10 @@ public static class Rlgl
 	public const int32 RL_MAX_SHADER_LOCATIONS = 32;
 	
 	/// Default near cull distance
-	public const double RL_CULL_DISTANCE_NEAR = 0.01;
+	public const double RL_CULL_DISTANCE_NEAR = 0.05;
 	
 	/// Default far cull distance
-	public const double RL_CULL_DISTANCE_FAR = 1000;
+	public const double RL_CULL_DISTANCE_FAR = 4000;
 	
 	/// GL_TEXTURE_WRAP_S
 	public const int32 RL_TEXTURE_WRAP_S = 10242;
@@ -242,9 +242,11 @@ public static class Rlgl
 	
 	public const int32 RL_DEFAULT_SHADER_ATTRIB_LOCATION_INDICES = 6;
 	
-	public const int32 RL_DEFAULT_SHADER_ATTRIB_LOCATION_BONEIDS = 7;
+	public const int32 RL_DEFAULT_SHADER_ATTRIB_LOCATION_BONEINDICES = 7;
 	
 	public const int32 RL_DEFAULT_SHADER_ATTRIB_LOCATION_BONEWEIGHTS = 8;
+	
+	public const int32 RL_DEFAULT_SHADER_ATTRIB_LOCATION_INSTANCETRANSFORM = 9;
 	
 	/// Choose the current matrix to be transformed
 	[CLink]
@@ -494,15 +496,27 @@ public static class Rlgl
 	[CLink]
 	public static extern void rlScissor(int32 x, int32 y, int32 width, int32 height);
 	
-	/// Enable wire mode
-	[CLink]
-	public static extern void rlEnableWireMode();
-	
 	/// Enable point mode
 	[CLink]
 	public static extern void rlEnablePointMode();
 	
-	/// Disable wire (and point) mode
+	/// Disable point mode
+	[CLink]
+	public static extern void rlDisablePointMode();
+	
+	/// Set the point drawing size
+	[CLink]
+	public static extern void rlSetPointSize(float size);
+	
+	/// Get the point drawing size
+	[CLink]
+	public static extern float rlGetPointSize();
+	
+	/// Enable wire mode
+	[CLink]
+	public static extern void rlEnableWireMode();
+	
+	/// Disable wire mode
 	[CLink]
 	public static extern void rlDisableWireMode();
 	
@@ -569,6 +583,10 @@ public static class Rlgl
 	/// Load OpenGL extensions (loader function required)
 	[CLink]
 	public static extern void rlLoadExtensions(void *loader);
+	
+	/// Get OpenGL procedure address
+	[CLink]
+	public static extern void * rlGetProcAddress(char8 *procName);
 	
 	/// Get current OpenGL version
 	[CLink]
@@ -728,7 +746,7 @@ public static class Rlgl
 	
 	/// Attach texture/renderbuffer to a framebuffer
 	[CLink]
-	public static extern void rlFramebufferAttach(int32 fboId, int32 texId, int32 attachType, int32 texType, int32 mipLevel);
+	public static extern void rlFramebufferAttach(int32 id, int32 texId, int32 attachType, int32 texType, int32 mipLevel);
 	
 	/// Verify framebuffer is complete
 	[CLink]
@@ -738,29 +756,45 @@ public static class Rlgl
 	[CLink]
 	public static extern void rlUnloadFramebuffer(int32 id);
 	
+	/// Copy framebuffer pixel data to internal buffer
+	[CLink]
+	public static extern void rlCopyFramebuffer(int32 x, int32 y, int32 width, int32 height, int32 format, void *pixels);
+	
+	/// Resize internal framebuffer
+	[CLink]
+	public static extern void rlResizeFramebuffer(int32 width, int32 height);
+	
+	/// Load (compile) shader and return shader id (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)
+	[CLink]
+	public static extern int32 rlLoadShader(char8 *code, int32 type);
+	
 	/// Load shader from code strings
 	[CLink]
-	public static extern int32 rlLoadShaderCode(char8 *vsCode, char8 *fsCode);
+	public static extern int32 rlLoadShaderProgram(char8 *vsCode, char8 *fsCode);
 	
-	/// Compile custom shader and return shader id (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)
+	/// Load shader program, using already loaded shader ids
 	[CLink]
-	public static extern int32 rlCompileShader(char8 *shaderCode, int32 type);
+	public static extern int32 rlLoadShaderProgramEx(int32 vsId, int32 fsId);
 	
-	/// Load custom shader program
+	/// Load compute shader program
 	[CLink]
-	public static extern int32 rlLoadShaderProgram(int32 vShaderId, int32 fShaderId);
+	public static extern int32 rlLoadShaderProgramCompute(int32 csId);
+	
+	/// Unload shader, loaded with rlLoadShader()
+	[CLink]
+	public static extern void rlUnloadShader(int32 id);
 	
 	/// Unload shader program
 	[CLink]
 	public static extern void rlUnloadShaderProgram(int32 id);
 	
-	/// Get shader location uniform
+	/// Get shader location uniform, requires shader program id
 	[CLink]
-	public static extern int32 rlGetLocationUniform(int32 shaderId, char8 *uniformName);
+	public static extern int32 rlGetLocationUniform(int32 id, char8 *uniformName);
 	
-	/// Get shader location attribute
+	/// Get shader location attribute, requires shader program id
 	[CLink]
-	public static extern int32 rlGetLocationAttrib(int32 shaderId, char8 *attribName);
+	public static extern int32 rlGetLocationAttrib(int32 id, char8 *attribName);
 	
 	/// Set shader value uniform
 	[CLink]
@@ -777,10 +811,6 @@ public static class Rlgl
 	/// Set shader currently active (id and locations)
 	[CLink]
 	public static extern void rlSetShader(int32 id, int32 *locs);
-	
-	/// Load compute shader program
-	[CLink]
-	public static extern int32 rlLoadComputeShaderProgram(int32 shaderId);
 	
 	/// Dispatch compute shader (equivalent to *draw* for graphics pipeline)
 	[CLink]

@@ -33,23 +33,20 @@ public struct Mesh
 	/// Vertex indices (in case vertex data comes indexed)
 	public void* indices;
 	
+	/// Number of bones (MAX: 256 bones)
+	public int32 boneCount;
+	
+	/// Vertex bone indices, up to 4 bones influence by vertex (skinning) (shader-location = 6)
+	public void* boneIndices;
+	
+	/// Vertex bone weight, up to 4 bones influence by vertex (skinning) (shader-location = 7)
+	public void* boneWeights;
+	
 	/// Animated vertex positions (after bones transformations)
 	public void* animVertices;
 	
 	/// Animated normals (after bones transformations)
 	public void* animNormals;
-	
-	/// Vertex bone ids, max 255 bone ids, up to 4 bones influence by vertex (skinning) (shader-location = 6)
-	public void* boneIds;
-	
-	/// Vertex bone weight, up to 4 bones influence by vertex (skinning) (shader-location = 7)
-	public void* boneWeights;
-	
-	/// Bones animated transformation matrices
-	public Matrix * boneMatrices;
-	
-	/// Number of bones
-	public int32 boneCount;
 	
 	/// OpenGL Vertex Array Object id
 	public int32 vaoId;
@@ -57,7 +54,7 @@ public struct Mesh
 	/// OpenGL Vertex Buffer Objects id (default vertex data)
 	public void* vboId;
 	
-	public this(int32 vertexCount, int32 triangleCount, void* vertices, void* texcoords, void* texcoords2, void* normals, void* tangents, void* colors, void* indices, void* animVertices, void* animNormals, void* boneIds, void* boneWeights, Matrix * boneMatrices, int32 boneCount, int32 vaoId, void* vboId)
+	public this(int32 vertexCount, int32 triangleCount, void* vertices, void* texcoords, void* texcoords2, void* normals, void* tangents, void* colors, void* indices, int32 boneCount, void* boneIndices, void* boneWeights, void* animVertices, void* animNormals, int32 vaoId, void* vboId)
 	{
 		this.vertexCount = vertexCount;
 		this.triangleCount = triangleCount;
@@ -68,12 +65,11 @@ public struct Mesh
 		this.tangents = tangents;
 		this.colors = colors;
 		this.indices = indices;
+		this.boneCount = boneCount;
+		this.boneIndices = boneIndices;
+		this.boneWeights = boneWeights;
 		this.animVertices = animVertices;
 		this.animNormals = animNormals;
-		this.boneIds = boneIds;
-		this.boneWeights = boneWeights;
-		this.boneMatrices = boneMatrices;
-		this.boneCount = boneCount;
 		this.vaoId = vaoId;
 		this.vboId = vboId;
 	}

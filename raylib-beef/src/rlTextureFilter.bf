@@ -7,7 +7,7 @@ namespace RaylibBeef;
 /// Texture parameters: filter mode
 public enum rlTextureFilter : c_int
 {
-	/// No filter, just pixel approximation
+	/// No filter, pixel approximation
 	case RL_TEXTURE_FILTER_POINT = 0;
 	/// Linear filtering
 	case RL_TEXTURE_FILTER_BILINEAR = 1;

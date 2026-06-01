@@ -328,7 +328,19 @@ namespace RaylibBeefGenerator
             {
                 for (int i = 0; i < alias.Count; i++)
                 {
-                    AppendLine($"typealias {alias[i].Name} = {alias[i].Type};");
+                    var aliasName = alias[i].Name;
+                    var aliasType = alias[i].Type;
+
+                    // ModelAnimPose is apparently "an array of Transform[]"
+                    // Dunno how that translates, but okay.
+                    if (aliasName.StartsWith("*"))
+                    {
+                        aliasType = $"{aliasType}[]";
+                        aliasName = aliasName.Substring(1);
+                    }
+
+                    AppendLine($"/// {alias[i].Description}");
+                    AppendLine($"typealias {aliasName} = {aliasType};");
                 }
                 if (alias.Count > 0) AppendLine("");
             }
